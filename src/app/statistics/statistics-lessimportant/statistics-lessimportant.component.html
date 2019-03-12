@@ -1,0 +1,75 @@
+<div class="col-md-12">
+  <div class="row">
+    <form [formGroup]="selectDate" (ngSubmit)="onSubmit()">
+      <div class="col-md-12 form-group pandatronik-select">
+        <div class="col-md-2">
+          <select
+            formControlName="selectYear"
+            type="text"
+            id="selectYear"
+            class="form-control pandatronik-input-1"
+          >
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+          </select>
+        </div>
+        <!-- data-toggle="buttons" class="dropdown-toggle"-->
+        <div
+          class="col-md-2 btn-group btn-group-toggle"
+          data-toggle="buttons"
+          appDropdown
+        >
+          <label class="btn btn-success" [class.active]="isGreenActive">
+            <input
+              type="radio"
+              name="selectTask"
+              id="selectTask"
+              formControlName="selectTask"
+              autocomplete="off"
+              value="1"
+              (click)="onRadioButtonClicked(1)"
+            />
+            1
+          </label>
+          <label class="btn btn-warning" [class.active]="isYellowActive">
+            <input
+              type="radio"
+              name="selectTask"
+              id="selectTask"
+              formControlName="selectTask"
+              autocomplete="off"
+              value="2"
+              (click)="onRadioButtonClicked(2)"
+            />
+            2
+          </label>
+          <label class="btn btn-primary" [class.active]="isBlueActive">
+            <input
+              type="radio"
+              name="selectTask"
+              id="selectTask"
+              formControlName="selectTask"
+              autocomplete="off"
+              value="3"
+              (click)="onRadioButtonClicked(3)"
+            />
+            3
+          </label>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3" [chart]="pieChart"></div>
+  <div class="col-md-9" [chart]="columnChart"></div>
+</div>
+<hr [ngStyle]="{ border: '1px solid ' + colors[0] }" />
+<br />
+<br />

@@ -1,1 +1,798 @@
-/* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "https://fonts.googleapis.com/css?family=Open+Sans";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
+/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+
+.mat-tab-body-content {
+  padding-top: 20px;
+}
+
+:root {
+  /* --main-green-bg-color: #97d3a8; */
+  --main-green-bg-color: #8dd4a2; /*#61bc7b;*/
+  --main-green-border-color: #59936a; /*61bc7b*/
+  --main-green-hover-color: #4fb46c; /*#468847;*/
+  --main-yellow-bg-color: #fbcc56;
+  --main-yellow-border-color: #f9b50b;
+  --main-yellow-hover-color: #fac43d;
+  --main-blue-bg-color: #67abcc;
+  --main-blue-border-color: #2c7ac8;
+  --main-blue-hover-color: #54a0c6; /*#3a87ad;*/
+  --main-alert-color: red;
+  --main-padding: 15px;
+  --main-bg-color: white;
+  --main-body-bg-color: #8dd4a2;
+  --main-text-color: white;
+  --nav-color: #055dc7;
+}
+
+body {
+  /* background: #8dd4a2; */
+  /* background: var(--main-body-bg-color); */
+  /* background: #dae1ff; */
+  background: #fff;
+}
+
+/*HEADER*/
+.pandatronik-navbar {
+  background: var(--nav-color);
+  border-bottom: none;
+  color: var(--main-text-color);
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background: #29467d;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
+  background: #29467d;
+}
+
+/*PANDATRONIK-SELECT*/
+.col-xs-2 {
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+.col-md-2 {
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+.col-xs-1 {
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+.pandatronik-select {
+  padding: 10px;
+  background: var(--main-green-bg-color);
+  border-radius: 2px;
+  border: 1px solid var(--main-green-border-color);
+}
+
+/*CONTAINER*/
+
+table {
+  background: var(--main-bg-color);
+}
+
+.pandatronik-new {
+  border: 1px solid var(--main-green-border-color);
+  background: var(--main-green-bg-color);
+}
+
+.pandatronik-detail-1 {
+  border: 1px solid var(--main-green-border-color);
+  background: var(--main-bg-color);
+}
+
+.panel-header-1 {
+  background: var(--main-green-bg-color);
+}
+
+.pandatronik-detail-2 {
+  border: 1px solid var(--main-yellow-border-color);
+  background: var(--main-bg-color);
+}
+
+.panel-header-2 {
+  background: var(--main-yellow-bg-color);
+}
+
+.pandatronik-detail-3 {
+  border: 1px solid var(--main-blue-border-color);
+  background: var(--main-bg-color);
+}
+
+.panel-header-3 {
+  background: var(--main-blue-bg-color);
+}
+
+/*FORMS*/
+input,
+textarea,
+select {
+  border: 1px solid var(--main-green-border-color);
+}
+
+/*ERRORS*/
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border: 1px solid var(--main-alert-color);
+}
+
+/*GREEN*/
+.pandatronik-new-1 {
+  padding: 40px;
+  background: var(--main-green-bg-color);
+  border-radius: 1px;
+  border: 1px solid var(--main-green-border-color);
+}
+
+input.pandatronik-input-1 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+textarea.pandatronik-input-1 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+select.pandatronik-input-1 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+/*YELLOW*/
+.pandatronik-new-2 {
+  border: 1px solid var(--main-green-border-color);
+  background: var(--main-green-bg-color);
+  padding: 40px;
+}
+
+input.pandatronik-input-2 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+textarea.pandatronik-input-2 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+select.pandatronik-input-2 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+/*BLUE*/
+.pandatronik-new-3 {
+  border: 1px solid var(--main-green-border-color);
+  background: var(--main-green-bg-color);
+  padding: 40px;
+}
+
+input.pandatronik-input-3 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+textarea.pandatronik-input-3 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+select.pandatronik-input-3 {
+  border: 1px solid var(--main-green-border-color);
+}
+
+/*INDEX PAGES*/
+/*GREEN*/
+.pandatronik_green_ {
+  background: var(--main-bg-color);
+}
+
+.pandatronik_green_100 :nth-child(1) {
+  display: none;
+}
+
+.pandatronik_green_100:hover :nth-child(1) {
+  display: inherit;
+}
+
+.pandatronik_green_100 {
+  background: var(--main-green-bg-color);
+}
+
+.pandatronik_green_75 :nth-child(1) {
+  display: none;
+}
+
+.pandatronik_green_75:hover :nth-child(1) {
+  display: inherit;
+}
+
+.pandatronik_green_75 {
+  background: var(--main-green-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-green-bg-color)),
+    color-stop(75%, var(--main-green-bg-color)),
+    color-stop(75%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_green_50 :nth-child(1) {
+  display: none;
+}
+
+.pandatronik_green_50:hover :nth-child(1) {
+  display: inherit;
+}
+
+.pandatronik_green_50 {
+  background: var(--main-green-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-green-bg-color)),
+    color-stop(50%, var(--main-green-bg-color)),
+    color-stop(50%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_green_25 :nth-child(1) {
+  display: none;
+}
+
+.pandatronik_green_25:hover :nth-child(1) {
+  display: inherit;
+}
+
+.pandatronik_green_25 {
+  background: var(--main-green-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-green-bg-color)),
+    color-stop(25%, var(--main-green-bg-color)),
+    color-stop(25%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-green-bg-color) 0%,
+    var(--main-green-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_green_0 :nth-child(1) {
+  display: none;
+}
+
+.pandatronik_green_0:hover :nth-child(1) {
+  display: inherit;
+}
+
+.pandatronik_green_0 {
+  background: var(--main-bg-color);
+}
+
+/*YELLOW*/
+.pandatronik_yellow_ {
+  background: var(--main-bg-color);
+}
+
+.pandatronik_yellow_100 {
+  background: var(--main-yellow-bg-color);
+}
+
+.pandatronik_yellow_75 {
+  background: var(--main-yellow-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-yellow-bg-color)),
+    color-stop(75%, var(--main-yellow-bg-color)),
+    color-stop(75%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_yellow_50 {
+  background: var(--main-yellow-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-yellow-bg-color)),
+    color-stop(50%, var(--main-yellow-bg-color)),
+    color-stop(50%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_yellow_25 {
+  background: var(--main-yellow-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-yellow-bg-color)),
+    color-stop(25%, var(--main-yellow-bg-color)),
+    color-stop(25%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-yellow-bg-color) 0%,
+    var(--main-yellow-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_yellow_0 {
+  background: var(--main-bg-color);
+}
+
+/*BLUE*/
+.pandatronik_blue_ {
+  background: var(--main-bg-color);
+}
+
+.pandatronik_blue_100 {
+  background: var(--main-blue-bg-color);
+}
+
+.pandatronik_blue_75 {
+  background: var(--main-blue-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-blue-bg-color)),
+    color-stop(75%, var(--main-blue-bg-color)),
+    color-stop(75%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 75%,
+    transparent 75%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_blue_50 {
+  background: var(--main-blue-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-blue-bg-color)),
+    color-stop(50%, var(--main-blue-bg-color)),
+    color-stop(50%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 50%,
+    transparent 50%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_blue_25 {
+  background: var(--main-blue-bg-color); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, var(--main-blue-bg-color)),
+    color-stop(25%, var(--main-blue-bg-color)),
+    color-stop(25%, transparent),
+    color-stop(100%, transparent)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    left,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to right,
+    var(--main-blue-bg-color) 0%,
+    var(--main-blue-bg-color) 25%,
+    transparent 25%,
+    transparent 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+          endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+}
+
+.pandatronik_blue_0 {
+  background: var(--main-bg-color);
+}
+
+.pandatronik_navigate_green {
+  cursor: pointer;
+}
+
+.pandatronik_navigate_green:hover {
+  background-color: var(--main-green-hover-color);
+}
+
+.pandatronik_navigate_yellow {
+  cursor: pointer;
+}
+
+.pandatronik_navigate_yellow:hover {
+  background-color: var(--main-yellow-hover-color);
+}
+
+.pandatronik_navigate_blue {
+  cursor: pointer;
+}
+
+.pandatronik_navigate_blue:hover {
+  background-color: var(--main-blue-hover-color);
+}
+
+.pandatronik_navigate {
+  cursor: pointer;
+}
+
+/*DETAILS COMPONENTS*/
+.badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: var(--main-text-color);
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.badge:hover {
+  color: var(--main-text-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+.badge-error {
+  background-color: #b94a48;
+}
+.badge-error:hover {
+  background-color: #953b39;
+}
+.badge-warning {
+  background-color: #f89406;
+}
+.badge-warning:hover {
+  background-color: #c67605;
+}
+.badge-success {
+  background-color: #468847;
+}
+.badge-success:hover {
+  background-color: #356635;
+}
+.badge-info {
+  background-color: #3a87ad;
+}
+.badge-info:hover {
+  background-color: #2d6987;
+}
+.badge-inverse {
+  background-color: #333333;
+}
+.badge-inverse:hover {
+  background-color: #1a1a1a;
+}
+
+.alert-danger {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 5px 5px;
+}

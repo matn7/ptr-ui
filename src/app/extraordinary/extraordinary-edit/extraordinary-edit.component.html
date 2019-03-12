@@ -1,0 +1,98 @@
+<div class="col-md-6 col-md-offset-3 pandatronik-important-container">
+  <div class="pandatronik-new-1">
+    <form [formGroup]="extraordinaryForm" (ngSubmit)="onSubmit()">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="form-group">
+            <input
+              placeholder="title"
+              title="title"
+              formControlName="title"
+              type="text"
+              id="title"
+              class="form-control pandatronik-input-1"
+            />
+            <div
+              *ngIf="
+                extraordinaryForm.controls['title'].touched &&
+                extraordinaryForm.controls['title'].hasError('required')
+              "
+              class="alert alert-danger"
+            >
+              Title is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <textarea
+              placeholder="body"
+              title="body"
+              formControlName="body"
+              type="text"
+              id="body"
+              rows="5"
+              class="form-control pandatronik-input-1"
+            ></textarea>
+            <div
+              *ngIf="
+                extraordinaryForm.controls['body'].touched &&
+                extraordinaryForm.controls['body'].hasError('required')
+              "
+              class="alert alert-danger"
+            >
+              Description is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <input
+        type="hidden"
+        formControlName="startDate"
+        class="form-control"
+        [value]="startDate.value"
+        [(ngModel)]="startDate"
+        name="startDate"
+        id="startDate"
+      />
+      <input
+        type="hidden"
+        formControlName="postedOn"
+        class="form-control"
+        [value]="postedOn.value"
+        [(ngModel)]="postedOn"
+        name="postedOn"
+        id="postedOn"
+      />
+      <input
+        type="hidden"
+        formControlName="userProfileId"
+        id="userProfileId"
+        [(ngModel)]="userProfileId"
+        [value]="userProfileId.value"
+      />
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="submit"
+            [disabled]="!extraordinaryForm.valid"
+            class="btn btn-success"
+          >
+            Submit
+          </button>
+          <!-- todo implement confirmation to delete -->
+          <button
+            type="button"
+            class="btn btn-danger pull-right"
+            *ngIf="editMode"
+            (click)="onDelete()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

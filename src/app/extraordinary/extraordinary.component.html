@@ -1,0 +1,29 @@
+<div class="col-md-12">
+  <div class="row">
+    <table
+      class="table table-bordered text-center pandatronik-table"
+      *ngIf="extraordinaryData"
+    >
+      <tr>
+        <th>#</th>
+        <th>date</th>
+        <th>title</th>
+        <th>body</th>
+        <th>actions</th>
+      </tr>
+      <tr *ngFor="let num of records">
+        <td>{{ num + 1 }}</td>
+        <td class="col-xs-2">{{ extraordinaryData[num].startDate }}</td>
+        <td class="col-xs-2">{{ extraordinaryData[num].title }}</td>
+        <td class="col-xs-6">{{ extraordinaryData[num].body }}</td>
+        <td class="col-xs-2">
+          <a
+            (click)="onView(extraordinaryData[num].id)"
+            style="cursor: pointer;"
+            >view</a
+          >
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

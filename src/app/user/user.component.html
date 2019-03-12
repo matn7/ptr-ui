@@ -1,0 +1,28 @@
+<p>
+  user works!
+</p>
+<mat-checkbox
+  #showDetails
+  [value]="2"
+  [checked]="isChecked"
+  (change)="onChange($event)"
+  >Subscribe</mat-checkbox
+>
+
+<div *ngIf="showDetails.checked">Some details...</div>
+
+<mat-form-field>
+  <input
+    ngModel
+    #username="ngModel"
+    name="username"
+    type="text"
+    matInput
+    placeholder="Username"
+    required
+  />
+  <mat-hint>Type a unique username</mat-hint>
+  <mat-error *ngIf="username.invalid && username.errors.required"
+    >Username is required</mat-error
+  >
+</mat-form-field>
