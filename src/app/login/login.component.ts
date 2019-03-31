@@ -57,7 +57,16 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.invalidLogin = true;
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          console.log(error);
+          this.errorMessage = this.handleError.displayErrorMessage(
+            error.errorStatus,
+            error.errorMsg,
+            this.returnUrl
+          );
+
+          this.appInternalMessageService.triggerMsgFromBackend(
+            this.errorMessage
+          );
         }
       );
   }

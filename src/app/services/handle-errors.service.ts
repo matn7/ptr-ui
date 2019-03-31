@@ -22,7 +22,8 @@ export class HandleErrorsService {
 
   displayErrorMessage(errorNumber, errorMsg, redirectUrl) {
     if (errorNumber === 401) {
-      return this.handleTokenExpired(redirectUrl);
+      console.log(errorMsg);
+      return this.handle401Error(redirectUrl, errorMsg);
     }
     if (errorNumber === 404) {
       return "Not found";
@@ -40,7 +41,7 @@ export class HandleErrorsService {
 
   displayDayErrorMessage(errorNumber, year, month, day, redirectUrl) {
     if (errorNumber === 401) {
-      return this.handleTokenExpired(redirectUrl);
+      return this.handle401Error(redirectUrl, null);
     }
     if (errorNumber === 404) {
       return "Record not found in " + year + "/" + month + "/" + day;
@@ -55,7 +56,7 @@ export class HandleErrorsService {
 
   displayRegistrationErrorMessage(errorNumber, errorMsg, redirectUrl) {
     if (errorNumber === 401) {
-      return this.handleTokenExpired(redirectUrl);
+      return this.handle401Error(redirectUrl, errorMsg);
     }
     if (errorNumber === 404) {
       return "404 Record not found";
@@ -88,14 +89,29 @@ export class HandleErrorsService {
     return Observable.throw(new AppError(error));
   }
 
-  private handleTokenExpired(redirectUrl) {
-    this.authService.logout();
+  private handle401Error(redirectUrl, errorMsg) {
+    const stringifyErrMsg = JSON.stringify(errorMsg);
 
-    sessionStorage.setItem(RETURN_URL, redirectUrl);
-    sessionStorage.setItem(TOKEN_EXPIRED, "Token has expired need to log out");
-    this.router.navigate(["login"], {
-      queryParams: { returnUrl: redirectUrl }
-    });
-    return "Token has expired need to log out";
+    console.log(errorMsg);
+
+    const parsedMsg = JSON.parse(stringifyErrMsg);
+
+    if (parsedMsg.tokenExpired) {
+      console.log("Token expired");
+      this.authService.logout();
+
+      sessionStorage.setItem(RETURN_URL, redirectUrl);
+      sessionStorage.setItem(TOKEN_EXPIRED, "Token has expired need to log out");
+      this.router.navigate(["login"], {
+        queryParams: { returnUrl: redirectUrl }
+      });
+      return parsedMsg.tokenExpired;
+    } else if(parsedMsg.username && parsedMsg.password) {
+      console.log("Invalid username or password");
+      return parsedMsg.username + " or " + parsedMsg.password;
+    }else {
+      console.log("Max login attempts");
+      return parsedMsg;
+    }
   }
 }
