@@ -11,21 +11,27 @@
 
 :root {
   /* --main-green-bg-color: #97d3a8; */
-  --main-green-bg-color: #8dd4a2; /*#61bc7b;*/
-  --main-green-border-color: #59936a; /*61bc7b*/
-  --main-green-hover-color: #4fb46c; /*#468847;*/
+  --main-green-bg-color: #8dd4a2; /*#61bc7b; 8dd4a2*/
+  --main-green-border-color: #fff; /*61bc7b 59936a*/
+  --main-green-form-border-color: #61bc7b; /*61bc7b 59936a*/
+  --main-green-hover-color: #4fb46c; /*#468847; 4fb46c*/
+  --main-border-input-color: #ccc;
   --main-yellow-bg-color: #fbcc56;
   --main-yellow-border-color: #f9b50b;
+  --main-yellow-form-border-color: #f9b50b; 
   --main-yellow-hover-color: #fac43d;
   --main-blue-bg-color: #67abcc;
   --main-blue-border-color: #2c7ac8;
+  --main-blue-form-border-color: #2c7ac8; /*61bc7b 59936a*/
   --main-blue-hover-color: #54a0c6; /*#3a87ad;*/
   --main-alert-color: red;
   --main-padding: 15px;
   --main-bg-color: white;
   --main-body-bg-color: #8dd4a2;
   --main-text-color: white;
+  --main-border-color: #fff;
   --nav-color: #055dc7;
+  --main-bg-none-color: #ccc; 
 }
 
 body {
@@ -70,9 +76,10 @@ body {
 
 .pandatronik-select {
   padding: 10px;
-  background: var(--main-green-bg-color);
+  background: var(--main-bg-color);
   border-radius: 2px;
-  border: 1px solid var(--main-green-border-color);
+  /* border: 1px solid var(--main-green-border-color); */
+  /* border-bottom: 2px solid var(--main-green-form-border-color); */
 }
 
 /*CONTAINER*/
@@ -83,7 +90,7 @@ table {
 
 .pandatronik-new {
   border: 1px solid var(--main-green-border-color);
-  background: var(--main-green-bg-color);
+  background: var(--main-bg-color);
 }
 
 .pandatronik-detail-1 {
@@ -96,7 +103,7 @@ table {
 }
 
 .pandatronik-detail-2 {
-  border: 1px solid var(--main-yellow-border-color);
+  border: 1px solid var(--main-border-color);
   background: var(--main-bg-color);
 }
 
@@ -105,7 +112,7 @@ table {
 }
 
 .pandatronik-detail-3 {
-  border: 1px solid var(--main-blue-border-color);
+  border: 1px solid var( --main-border-color);
   background: var(--main-bg-color);
 }
 
@@ -117,7 +124,7 @@ table {
 input,
 textarea,
 select {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 /*ERRORS*/
@@ -129,60 +136,60 @@ select.ng-invalid.ng-touched {
 
 /*GREEN*/
 .pandatronik-new-1 {
-  padding: 40px;
-  background: var(--main-green-bg-color);
+  padding: 20px;
+  background: var(--main-bg-color);
   border-radius: 1px;
-  border: 1px solid var(--main-green-border-color);
+  border-bottom: 2px solid var(--main-green-form-border-color);
 }
 
 input.pandatronik-input-1 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 textarea.pandatronik-input-1 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 select.pandatronik-input-1 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 /*YELLOW*/
 .pandatronik-new-2 {
-  border: 1px solid var(--main-green-border-color);
-  background: var(--main-green-bg-color);
-  padding: 40px;
+  border-bottom: 2px solid var(--main-yellow-form-border-color);
+  background: var(--main-bg-color);
+  padding: 20px;
 }
 
 input.pandatronik-input-2 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 textarea.pandatronik-input-2 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 select.pandatronik-input-2 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 /*BLUE*/
 .pandatronik-new-3 {
-  border: 1px solid var(--main-green-border-color);
-  background: var(--main-green-bg-color);
-  padding: 40px;
+  border-bottom: 2px solid var(--main-blue-form-border-color);
+  background: var(--main-bg-color);
+  padding: 20px;
 }
 
 input.pandatronik-input-3 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 textarea.pandatronik-input-3 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 select.pandatronik-input-3 {
-  border: 1px solid var(--main-green-border-color);
+  border: 1px solid var(--main-border-input-color);
 }
 
 /*INDEX PAGES*/
@@ -386,7 +393,7 @@ select.pandatronik-input-3 {
 }
 
 .pandatronik_green_0 {
-  background: var(--main-bg-color);
+  background: var(--main-bg-none-color);
 }
 
 /*YELLOW*/
@@ -549,7 +556,7 @@ select.pandatronik-input-3 {
 }
 
 .pandatronik_yellow_0 {
-  background: var(--main-bg-color);
+  background: var(--main-bg-none-color);
 }
 
 /*BLUE*/
@@ -712,7 +719,7 @@ select.pandatronik-input-3 {
 }
 
 .pandatronik_blue_0 {
-  background: var(--main-bg-color);
+  background: var(--main-bg-none-color);
 }
 
 .pandatronik_navigate_green {

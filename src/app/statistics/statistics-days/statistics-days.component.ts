@@ -62,6 +62,7 @@ export class StatisticsDaysComponent implements OnInit {
       .retrieveDaysByUsernameAndYear(this.username, this.dateRequest)
       .subscribe(
         count => {
+          console.log(count[25]);
           this.daysTaskCount = count;
           this.pieChart = this.myPieChart.getPieChart(
             this.daysTaskCount,

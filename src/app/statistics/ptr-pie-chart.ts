@@ -41,23 +41,23 @@ export class PtrPieChart {
           data: [
             {
               name: "100%",
-              y: num[0]
+              y: num[100] ? num[100] : 0
             },
             {
               name: "75%",
-              y: num[1]
+              y: num[75] ? num[75] : 0
             },
             {
               name: "50%",
-              y: num[2]
+              y: num[50] ? num[50] : 0
             },
             {
               name: "25%",
-              y: num[3]
+              y: num[25] ? num[25] : 0
             },
             {
               name: "0%",
-              y: num[4]
+              y: num[0] ? num[0] : 0
             }
           ]
         }
