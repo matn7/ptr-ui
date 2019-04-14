@@ -107,6 +107,9 @@ export class LessimportantIndexComponent implements OnInit {
     this.year = this.selectDate.value.selectYear;
     this.month = this.selectDate.value.selectMonth;
 
+    // clear data
+    this.lessImportantIndexData = null;
+
     this.daysInMonth = new Date(this.year, this.month, 0).getDate();
     this.monthDay = Array(this.daysInMonth)
       .fill(0)

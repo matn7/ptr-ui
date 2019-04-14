@@ -67,6 +67,8 @@ export class ImportantEditComponent implements OnInit {
     this.year = this.date.getFullYear();
     this.userProfileId = this.username;
 
+    this.selectedDate = new Date();
+
     this.returnUrl = "/important/" + this.year + "/" + this.month;
 
     // parameters from url
@@ -75,8 +77,8 @@ export class ImportantEditComponent implements OnInit {
       this.editMode = params["id"] != null;
       this.num = +params["num"];
     });
-
     if (!this.editMode) {
+      console.log("TTT");
       this.route.params.subscribe(params => {
         this.day = +params["day"];
         this.month = +params["month"];
@@ -89,24 +91,15 @@ export class ImportantEditComponent implements OnInit {
           new Date(),
           "yyyy-MM-ddTHH:mm:ss"
         );
-        this.currentDayInMonth = this.timeService.getActiveDay(
-          this.month,
-          this.year,
-          this.date
-        );
-
-        this.changedInUrlDayInMonth = this.timeService.checkFutureDate(
-          this.day,
-          this.date
-        );
+      },
+      error => {
+        this.customErrorMsgService.displayMessage(error, this.returnUrl);
       });
+      if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
+        this.redirectMsg();
+        this.router.navigate([this.returnUrl]);
+      }
     }
-
-    if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-      this.redirectMsg();
-      this.router.navigate([this.returnUrl]);
-    }
-
     this.initForm();
   }
 

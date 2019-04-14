@@ -78,28 +78,16 @@ export class LessimportantEditComponent implements OnInit {
             new Date(),
             "yyyy-MM-ddTHH:mm:ss"
           );
-          this.currentDayInMonth = this.timeService.getActiveDay(
-            this.month,
-            this.year,
-            this.date
-          );
-
-          this.changedInUrlDayInMonth = this.timeService.checkFutureDate(
-            this.day,
-            this.date
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
         }
       );
+      if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
+        this.redirectMsg();
+        this.router.navigate([this.returnUrl]);
+      }
     }
-
-    if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-      this.redirectMsg();
-      this.router.navigate([this.returnUrl]);
-    }
-
     this.initForm();
   }
 

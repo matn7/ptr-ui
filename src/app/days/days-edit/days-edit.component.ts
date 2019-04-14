@@ -69,19 +69,25 @@ export class DaysEditComponent implements OnInit {
           this.day = +params["day"];
           this.month = +params["month"];
           this.year = +params["year"];
-          this.startDate = this.datepipe.transform(
-            new Date(this.year, this.month - 1, this.day),
-            "yyyy-MM-dd"
-          );
-          this.postedOn = this.datepipe.transform(
-            new Date(),
-            "yyyy-MM-ddTHH:mm:ss"
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
         }
       );
+
+      this.startDate = this.datepipe.transform(
+        new Date(this.year, this.month - 1, this.day),
+        "yyyy-MM-dd"
+      );
+      this.postedOn = this.datepipe.transform(
+        new Date(),
+        "yyyy-MM-ddTHH:mm:ss"
+      );
+
+      if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
+        this.redirectMsg();
+        this.router.navigate([this.returnUrl]);
+      }
     }
 
     this.date = new Date();
@@ -91,10 +97,6 @@ export class DaysEditComponent implements OnInit {
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
     
-    if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-      this.redirectMsg();
-      this.router.navigate([this.returnUrl]);
-    }
     this.initForm();
   }
 

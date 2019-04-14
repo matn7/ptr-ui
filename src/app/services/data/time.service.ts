@@ -14,9 +14,8 @@ export class TimeService {
     this.selectedDate.setFullYear(year);
     this.selectedDate.setMonth(month-1);
     this.selectedDate.setDate(day);
-
     this.today = Date.now();
-
+    
     return !(this.today >= this.selectedDate.getTime());
   }
 

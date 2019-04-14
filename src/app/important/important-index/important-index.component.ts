@@ -93,6 +93,9 @@ export class ImportantIndexComponent implements OnInit {
     this.year = this.selectDate.value.selectYear;
     this.month = this.selectDate.value.selectMonth;
 
+    // clear index data
+    this.importantIndexData = null;
+
     this.daysInMonth = new Date(this.year, this.month, 0).getDate();
     this.numbers = Array(this.daysInMonth)
       .fill(0)
@@ -113,6 +116,7 @@ export class ImportantIndexComponent implements OnInit {
       .getImportantIndexData(this.username, this.year, this.month)
       .subscribe(
         data => {
+          console.log(data);
           this.importantIndexData = data;
         },
         error => {

@@ -137,6 +137,8 @@ export class StatisticsImportantComponent implements OnInit {
   onSubmit() {
     this.year = this.selectDate.value.selectYear;
     this.num = this.selectDate.value.selectTask;
+    this.myMap.clear();
+    
     this.importantTask1Count = this.statisticsImportantService
       .getImportantTaskCount(this.username, this.num, this.year)
       .subscribe(

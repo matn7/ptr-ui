@@ -61,6 +61,7 @@ import { ImportantComponent } from "./important/important.component";
 import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
 import { ImportantIndexComponent } from "./important/important-index/important-index.component";
+import { UserService } from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { ImportantIndexComponent } from "./important/important-index/important-i
     AuthenticationService,
     TimeService,
     AppInternalMessagesService,
+    UserService,
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
