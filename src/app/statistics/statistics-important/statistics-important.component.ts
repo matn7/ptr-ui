@@ -42,6 +42,8 @@ export class StatisticsImportantComponent implements OnInit {
   errorMessage: string;
   returnUrl: string;
 
+  myMap: Map<number, number>;
+
   @HostBinding("class.is-open")
   isGreenActive = false;
   @HostBinding("class.is-open")
@@ -62,6 +64,8 @@ export class StatisticsImportantComponent implements OnInit {
   ngOnInit() {
     this.toggle();
     this.isGreenActive = true;
+
+    this.myMap = new Map<number, number>();
 
     this.myPieChart = new PtrPieChart();
     this.myColumnChart = new PtrColumnChart();
@@ -103,8 +107,11 @@ export class StatisticsImportantComponent implements OnInit {
       .subscribe(
         avg => {
           this.importantTask1Avg = avg;
+          this.importantTask1Avg.forEach(element => {
+            this.myMap.set(element[0], element[1]);
+          });
           this.columnChart = this.myColumnChart.getColumnChart(
-            this.importantTask1Avg,
+            this.myMap,
             this.title,
             this.colors
           );
@@ -171,8 +178,11 @@ export class StatisticsImportantComponent implements OnInit {
       .subscribe(
         avg => {
           this.importantTask1Avg = avg;
+          this.importantTask1Avg.forEach(element => {
+            this.myMap.set(element[0], element[1]);
+          });
           this.columnChart = this.myColumnChart.getColumnChart(
-            this.importantTask1Avg,
+            this.myMap,
             this.title,
             this.colors
           );

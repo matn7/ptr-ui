@@ -9,6 +9,7 @@ import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { TimeService } from "../../services/data/time.service";
 
 @Component({
   selector: "app-days-edit",
@@ -46,7 +47,9 @@ export class DaysEditComponent implements OnInit {
     private router: Router,
     private handleError: HandleErrorsService,
     private toggleService: ToggleService,
-    private customErrorMsgService: CustomErrorMessageService
+    private customErrorMsgService: CustomErrorMessageService,
+    private timeService: TimeService,
+    private appInternalMessageService: AppInternalMessagesService
   ) {}
 
   ngOnInit() {
@@ -80,12 +83,18 @@ export class DaysEditComponent implements OnInit {
         }
       );
     }
+
     this.date = new Date();
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
     this.userProfileId = this.username;
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
+    
+    if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
+      this.redirectMsg();
+      this.router.navigate([this.returnUrl]);
+    }
     this.initForm();
   }
 
@@ -124,6 +133,10 @@ export class DaysEditComponent implements OnInit {
         }
       );
     }
+  }
+
+  private redirectMsg() {
+    this.appInternalMessageService.triggerDateInFutureMsg();
   }
 
   @HostListener("submit")

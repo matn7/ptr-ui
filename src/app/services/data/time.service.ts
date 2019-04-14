@@ -4,7 +4,21 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class TimeService {
+  selectedDate: Date;
+  today: number;
+
   constructor() {}
+
+  checkDateInFuture(year: number, month: number, day: number) {
+    this.selectedDate = new Date();
+    this.selectedDate.setFullYear(year);
+    this.selectedDate.setMonth(month-1);
+    this.selectedDate.setDate(day);
+
+    this.today = Date.now();
+
+    return !(this.today >= this.selectedDate.getTime());
+  }
 
   getActiveDay(month: number, year: number, date: Date) {
     if (month == date.getMonth() + 1 && year == date.getFullYear()) {

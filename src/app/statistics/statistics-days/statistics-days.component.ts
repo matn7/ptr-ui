@@ -27,6 +27,7 @@ export class StatisticsDaysComponent implements OnInit {
   daysAvg: any;
   green_colors: string[];
   returnUrl: string;
+  myMap: Map<number, number>;
 
   dateRequest: DateRequest;
   myColumnChart: PtrColumnChart;
@@ -46,6 +47,8 @@ export class StatisticsDaysComponent implements OnInit {
     this.myPieChart = new PtrPieChart();
     this.myColumnChart = new PtrColumnChart();
 
+    this.myMap = new Map<number, number>();
+
     this.username = this.authService.getAuthenticatedUser();
     this.green_colors = GREEN_COLORS;
     this.route.params.subscribe(params => {
@@ -62,7 +65,6 @@ export class StatisticsDaysComponent implements OnInit {
       .retrieveDaysByUsernameAndYear(this.username, this.dateRequest)
       .subscribe(
         count => {
-          console.log(count[25]);
           this.daysTaskCount = count;
           this.pieChart = this.myPieChart.getPieChart(
             this.daysTaskCount,
@@ -80,8 +82,13 @@ export class StatisticsDaysComponent implements OnInit {
       .subscribe(
         avg => {
           this.daysAvg = avg;
+        
+          this.daysAvg.forEach(element => {
+            this.myMap.set(element[0], element[1]);
+          });
+
           this.columnChart = this.myColumnChart.getColumnChart(
-            this.daysAvg,
+            this.myMap,
             this.title,
             this.green_colors
           );
@@ -119,8 +126,11 @@ export class StatisticsDaysComponent implements OnInit {
       .subscribe(
         avg => {
           this.daysAvg = avg;
+          this.daysAvg.forEach(element => {
+            this.myMap.set(element[0], element[1]);
+          });
           this.columnChart = this.myColumnChart.getColumnChart(
-            this.daysAvg,
+            this.myMap,
             this.title,
             this.green_colors
           );

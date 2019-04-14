@@ -5,7 +5,8 @@ export class PtrColumnChart {
 
   constructor() {}
 
-  getColumnChart(month: number, title: string, colors: string[]) {
+  getColumnChart(month: Map<number, number>, title: string, colors: string[]) {
+    console.log("getColumnChart: " + month);
     return (this.chart = new Chart({
       chart: {
         style: {
@@ -68,51 +69,51 @@ export class PtrColumnChart {
           data: [
             {
               name: "Jan",
-              y: month[0]
+              y: month.get(1) ? month.get(1) : 0
             },
             {
               name: "Feb",
-              y: month[1]
+              y: month.get(2) ? month.get(2) : 0
             },
             {
               name: "Mar",
-              y: month[2]
+              y: month.get(3) ? month.get(3) : 0
             },
             {
               name: "Apr",
-              y: month[3]
+              y: month.get(4) ? month.get(4) : 0
             },
             {
               name: "May",
-              y: month[4]
+              y: month.get(5) ? month.get(5) : 0
             },
             {
               name: "Jun",
-              y: month[5]
+              y: month.get(6) ? month.get(6) : 0
             },
             {
               name: "Jul",
-              y: month[6]
+              y: month.get(7) ? month.get(7) : 0
             },
             {
               name: "Aug",
-              y: month[7]
+              y: month.get(8) ? month.get(8) : 0
             },
             {
               name: "Sep",
-              y: month[8]
+              y: month.get(9) ? month.get(9) : 0
             },
             {
               name: "Oct",
-              y: month[9]
+              y: month.get(10) ? month.get(10) : 0
             },
             {
               name: "Nov",
-              y: month[10]
+              y: month.get(11) ? month.get(11) : 0
             },
             {
               name: "Dec",
-              y: month[11]
+              y: month.get(12) ? month.get(12) : 0
             }
           ]
         }

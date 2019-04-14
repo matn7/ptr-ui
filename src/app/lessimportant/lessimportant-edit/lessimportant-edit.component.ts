@@ -95,12 +95,7 @@ export class LessimportantEditComponent implements OnInit {
       );
     }
 
-    // validate manipulation in url
-    if (
-      this.currentDayInMonth === -1 ||
-      this.changedInUrlDayInMonth === -1 ||
-      this.currentDayInMonth === -2
-    ) {
+    if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
       this.redirectMsg();
       this.router.navigate([this.returnUrl]);
     }

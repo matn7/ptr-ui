@@ -44,6 +44,8 @@ export class StatisticsLessImportantComponent implements OnInit {
   errorMessage: string;
   returnUrl: string;
 
+  myMap: Map<number, number>;
+
   @HostBinding("class.is-open")
   isGreenActive = false;
   @HostBinding("class.is-open")
@@ -64,6 +66,9 @@ export class StatisticsLessImportantComponent implements OnInit {
     // set statistics route active
     this.toggle();
     this.isGreenActive = true;
+
+    this.myMap = new Map<number, number>();
+    console.log("Mymap:" + this.myMap);
 
     this.myPieChart = new PtrPieChart();
     this.myColumnChart = new PtrColumnChart();
@@ -112,8 +117,11 @@ export class StatisticsLessImportantComponent implements OnInit {
       .subscribe(
         avg => {
           this.lessImportantTaskAvg = avg;
+          this.lessImportantTaskAvg.forEach(element => {
+            this.myMap.set(element[0], element[1]);
+          });
           this.columnChart = this.myColumnChart.getColumnChart(
-            this.lessImportantTaskAvg,
+            this.myMap,
             this.title,
             this.colors
           );
@@ -140,6 +148,7 @@ export class StatisticsLessImportantComponent implements OnInit {
     this.year = this.selectDate.value.selectYear;
     this.num = this.selectDate.value.selectTask;
     this.title = "Less important task " + this.num;
+    this.myMap.clear();
 
     if (this.num == 1) {
       this.isGreenActive = true;
@@ -181,8 +190,12 @@ export class StatisticsLessImportantComponent implements OnInit {
       .subscribe(
         avg => {
           this.lessImportantTaskAvg = avg;
+          this.lessImportantTaskAvg.forEach(element => {
+            this.myMap.set(element[0], element[1]);
+          });
+
           this.columnChart = this.myColumnChart.getColumnChart(
-            this.lessImportantTaskAvg,
+            this.myMap,
             this.title,
             this.colors
           );
