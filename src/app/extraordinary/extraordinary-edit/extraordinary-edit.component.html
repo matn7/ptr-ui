@@ -1,8 +1,7 @@
 <div class="col-md-6 col-md-offset-3 pandatronik-important-container">
-  <div class="pandatronik-new-1">
+  <div class="pandatronik-new-2 col-md-12">
     <form [formGroup]="extraordinaryForm" (ngSubmit)="onSubmit()">
       <div class="row ">
-        <div class="col-md-12">
           <div class="form-group">
             <input
               placeholder="title"
@@ -22,10 +21,8 @@
               Title is required
             </div>
           </div>
-        </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
           <div class="form-group">
             <textarea
               placeholder="body"
@@ -46,7 +43,6 @@
               Description is required
             </div>
           </div>
-        </div>
       </div>
       <input
         type="hidden"
@@ -74,7 +70,6 @@
         [value]="userProfileId.value"
       />
       <div class="row">
-        <div class="col-md-12">
           <button
             type="submit"
             [disabled]="!extraordinaryForm.valid"
@@ -91,7 +86,6 @@
           >
             Delete
           </button>
-        </div>
       </div>
     </form>
   </div>

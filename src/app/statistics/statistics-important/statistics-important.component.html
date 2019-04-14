@@ -64,12 +64,10 @@
       </div>
     </form>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-3" [chart]="pieChart"></div>
-  <div class="col-md-9" [chart]="columnChart"></div>
+  <div class="row">
+    <div class="col-md-3" [chart]="pieChart"></div>
+    <div class="col-md-9" [chart]="columnChart"></div>
+  </div>
+  <hr [ngStyle]="{ border: '1px solid ' + colors[0] }" />
 </div>
-<hr [ngStyle]="{ border: '1px solid ' + colors[0] }" />
-<br />
-<br />

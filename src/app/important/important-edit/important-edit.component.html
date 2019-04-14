@@ -1,8 +1,7 @@
 <div class="col-md-6 col-md-offset-3 pandatronik-important-container">
-  <div class="pandatronik-new-{{ num }}">
+  <div class="pandatronik-new-{{ num }} col-md-12">
     <form [formGroup]="importantForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-md-12">
           <div class="form-group">
             <input
               placeholder="title"
@@ -32,10 +31,8 @@
               Title should not have more than 40 characters
             </div>
           </div>
-        </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
           <div class="form-group">
             <textarea
               placeholder="body"
@@ -56,10 +53,8 @@
               Task description is required
             </div>
           </div>
-        </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
           <div class="form-group">
             <select
               aria-placeholder="made"
@@ -76,7 +71,6 @@
               <option value="0">None :(</option>
             </select>
           </div>
-        </div>
       </div>
       <input
         type="hidden"
@@ -104,7 +98,6 @@
         [value]="userProfileId.value"
       />
       <div class="row">
-        <div class="col-md-12">
           <button
             type="submit"
             [disabled]="!importantForm.valid"
@@ -122,7 +115,6 @@
           >
             Delete
           </button>
-        </div>
       </div>
     </form>
   </div>

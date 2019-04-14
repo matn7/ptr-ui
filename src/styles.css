@@ -75,10 +75,11 @@ body {
 }
 
 .pandatronik-select {
-  padding: 10px;
+  /* padding: 10px; */
   background: var(--main-bg-color);
   border-radius: 2px;
   /* border: 1px solid var(--main-green-border-color); */
+  /* padding-bottom: 10px; */
   /* border-bottom: 2px solid var(--main-green-form-border-color); */
 }
 
@@ -136,7 +137,8 @@ select.ng-invalid.ng-touched {
 
 /*GREEN*/
 .pandatronik-new-1 {
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background: var(--main-bg-color);
   border-radius: 1px;
   border-bottom: 2px solid var(--main-green-form-border-color);
@@ -158,7 +160,8 @@ select.pandatronik-input-1 {
 .pandatronik-new-2 {
   border-bottom: 2px solid var(--main-yellow-form-border-color);
   background: var(--main-bg-color);
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 input.pandatronik-input-2 {
@@ -177,7 +180,8 @@ select.pandatronik-input-2 {
 .pandatronik-new-3 {
   border-bottom: 2px solid var(--main-blue-form-border-color);
   background: var(--main-bg-color);
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 input.pandatronik-input-3 {
