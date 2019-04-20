@@ -28,6 +28,8 @@ import { ActivateUserComponent } from "./registration/activate-user/activate-use
 import { StatisticsDaysComponent } from "./statistics/statistics-days/statistics-days.component";
 import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month/statistics-days-month.component";
 import { UserComponent } from "./user/user.component";
+import { AdminComponent } from "./admin/admin.component";
+import { AdminUserComponent } from "./admin/admin-user/admin-user.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [RouteGuardService] },
@@ -37,6 +39,16 @@ const appRoutes: Routes = [
   { path: "forgotpassword", component: PasswordResetComponent },
   { path: "changeuserpassword", component: PasswordChangeComponent },
   { path: "activateaccount", component: ActivateUserComponent },
+  {
+    path: "admin",
+    component: AdminComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "admin/user",
+    component: AdminUserComponent,
+    canActivate: [RouteGuardService]
+  },
   {
     path: "welcome/:name",
     component: WelcomeComponent,

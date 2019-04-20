@@ -36,6 +36,7 @@ export class ExtraordinaryComponent implements OnInit {
     this.returnUrl = "/extraordinary/all";
     this.extraService.getExtraordinaryAll(this.username).subscribe(
       data => {
+        console.log(data);
         this.extraordinaryData = data;
         this.records = Array(this.extraordinaryData.length)
           .fill(0)

@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <div class="row">
+    <table
+      class="table table-bordered text-center pandatronik-table"
+    >
+      <tr>
+        <th>#</th>
+        <th>id</th>
+      </tr>
+      <tr *ngFor="let num of records">
+        <td>{{ num + 1 }}</td>
+        <td class="col-xs-2">{{ usersData[num].id }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

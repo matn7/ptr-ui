@@ -62,6 +62,9 @@ import { ImportantEditComponent } from "./important/important-edit/important-edi
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
 import { ImportantIndexComponent } from "./important/important-index/important-index.component";
 import { UserService } from "./services/user.service";
+import { AdminComponent } from './admin/admin.component';
+import { AdminUserService } from "./services/admin/admin-user.service";
+import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +100,9 @@ import { UserService } from "./services/user.service";
     ActivateUserComponent,
     StatisticsDaysComponent,
     StatisticsDaysMonthComponent,
-    UserComponent
+    UserComponent,
+    AdminComponent,
+    AdminUserComponent
   ],
   imports: [
     BrowserModule,
@@ -126,6 +131,7 @@ import { UserService } from "./services/user.service";
     TimeService,
     AppInternalMessagesService,
     UserService,
+    AdminUserService,
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
