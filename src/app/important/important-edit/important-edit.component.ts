@@ -148,8 +148,7 @@ export class ImportantEditComponent implements OnInit {
   }
 
   onDelete() {
-    if (this.editMode) {
-      confirm("Press a button!\nEither OK or Cancel.");
+    if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
       this.importantService
         .deleteImportantTask(this.username, this.num, this.id)
         .subscribe(

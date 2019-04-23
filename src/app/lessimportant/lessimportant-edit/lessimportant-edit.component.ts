@@ -135,7 +135,7 @@ export class LessimportantEditComponent implements OnInit {
   }
 
   onDelete() {
-    if (this.editMode) {
+    if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
       this.lessImportantService
         .deleteLessImportantTask(this.username, this.num, this.id)
         .subscribe(

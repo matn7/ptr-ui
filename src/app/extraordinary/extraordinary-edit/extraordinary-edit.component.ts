@@ -125,7 +125,7 @@ export class ExtraordinaryEditComponent implements OnInit {
   }
 
   onDelete() {
-    if (this.editMode) {
+    if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
       this.extraordinaryService
         .deleteExtraordinary(this.username, this.id)
         .subscribe(

@@ -8,6 +8,7 @@ import { NotAuthorizedError } from "../common/not-authorized-error";
 import { AppError } from "../common/app-error";
 import { RETURN_URL, TOKEN_EXPIRED } from "../app.constants";
 import { UnsupportedMediaTypeError } from "../common/unsupported-media-type-error";
+import { ServerError } from "../common/server-error";
 
 export const INTERNAL_APP_ERROR = "internalAppError";
 
@@ -22,8 +23,10 @@ export class HandleErrorsService {
 
   displayErrorMessage(errorNumber, errorMsg, redirectUrl) {
     if (errorNumber === 401) {
-      console.log(errorMsg);
       return this.handle401Error(redirectUrl, errorMsg);
+    }
+    if (errorNumber === 403) {
+      return "Forbidden";
     }
     if (errorNumber === 404) {
       return "Not found";
@@ -35,13 +38,16 @@ export class HandleErrorsService {
       return "Unsupported media type, you should not see this error :?";
     }
     if (errorNumber === 500) {
-      return "Very bad";
+      return "Server error";
     }
   }
 
   displayDayErrorMessage(errorNumber, year, month, day, redirectUrl) {
     if (errorNumber === 401) {
       return this.handle401Error(redirectUrl, null);
+    }
+    if (errorNumber === 403) {
+      return "Forbidden";
     }
     if (errorNumber === 404) {
       return "Record not found in " + year + "/" + month + "/" + day;
@@ -50,13 +56,16 @@ export class HandleErrorsService {
       return "Bad request";
     }
     if (errorNumber === 500) {
-      return "Very bad";
+      return "Server error";
     }
   }
 
   displayRegistrationErrorMessage(errorNumber, errorMsg, redirectUrl) {
     if (errorNumber === 401) {
       return this.handle401Error(redirectUrl, errorMsg);
+    }
+    if (errorNumber === 403) {
+      return "Forbidden";
     }
     if (errorNumber === 404) {
       return "404 Record not found";
@@ -65,7 +74,7 @@ export class HandleErrorsService {
       return errorMsg;
     }
     if (errorNumber === 500) {
-      return "Very bad";
+      return "Server error";
     }
   }
 
@@ -78,12 +87,20 @@ export class HandleErrorsService {
         new NotAuthorizedError(error.status, error["error"])
       );
     }
+    if (error.status === 403) {
+      return Observable.throw(new NotAuthorizedError(error.status, error["error"]));
+    }
     if (error.status === 404) {
       return Observable.throw(new NotFoundError(error.status, error["error"]));
     }
     if (error.status === 415) {
       return Observable.throw(
         new UnsupportedMediaTypeError(error.status, error["error"])
+      );
+    }
+    if (error.status === 500) {
+      return Observable.throw(
+        new ServerError(error.status, error["error"])
       );
     }
     return Observable.throw(new AppError(error));

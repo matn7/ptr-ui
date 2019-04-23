@@ -125,7 +125,7 @@ export class DaysEditComponent implements OnInit {
   }
 
   onDelete() {
-    if (this.editMode) {
+    if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
       this.daysService.deleteDays(this.username, this.id).subscribe(
         response => {
           this.router.navigate(["/important/" + this.year + "/" + this.month]);
