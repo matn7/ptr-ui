@@ -43,7 +43,7 @@ export class LessimportantDetailComponent implements OnInit {
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
     this.returnUrl = "/lessimportant/" + this.year + "/" + this.month;
-    this.service
+    this.lessImportant = this.service
       .getLessImportantTask(this.username, this.num, this.id)
       .subscribe(
         lessImportant => {

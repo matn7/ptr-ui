@@ -25,33 +25,33 @@ export class DaysService {
 
   getDays(username, id) {
     return this.http
-      .get<Days>(`${API_URL}/${API_VERSION}/${username}/days/${id}`)
+      .get<Days>(`${API_URL}/${API_VERSION}/users/${username}/days/${id}`)
       .catch(this.handleErrorService.handleError);
   }
 
   getDaysByYearMonthDay(username, year, month, day) {
     return this.http
       .get<Days>(
-        `${API_URL}/${API_VERSION}/${username}/days/${year}/${month}/${day}`
+        `${API_URL}/${API_VERSION}/users/${username}/days/${year}/${month}/${day}`
       )
       .catch(this.handleErrorService.handleError);
   }
 
   createDays(username, resource) {
     return this.http
-      .post(`${API_URL}/${API_VERSION}/${username}/days`, resource)
+      .post(`${API_URL}/${API_VERSION}/users/${username}/days`, resource)
       .catch(this.handleErrorService.handleError);
   }
 
   updateDays(username, id, resource) {
     return this.http
-      .put<Days>(`${API_URL}/${API_VERSION}/${username}/days/${id}`, resource)
+      .put<Days>(`${API_URL}/${API_VERSION}/users/${username}/days/${id}`, resource)
       .catch(this.handleErrorService.handleError);
   }
 
   deleteDays(username, id) {
     return this.http
-      .delete(`${API_URL}/${API_VERSION}/${username}/days/${id}`)
+      .delete(`${API_URL}/${API_VERSION}/users/${username}/days/${id}`)
       .catch(this.handleErrorService.handleError);
   }
 }

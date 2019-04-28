@@ -28,7 +28,7 @@ export class LessImportantService {
   getLessImportantTask(username, num, id): Observable<LessImportant> {
     return this.http
       .get<LessImportant>(
-        `${API_URL}/${API_VERSION}/${username}/lessimportant/${num}/${id}`
+        `${API_URL}/${API_VERSION}/users/${username}/lessimportant/${num}/${id}`
       )
       .catch(this.handleErrorService.handleError);
   }
@@ -36,7 +36,7 @@ export class LessImportantService {
   createLessImportantTask(username, num, resource) {
     return this.http
       .post(
-        `${API_URL}/${API_VERSION}/${username}/lessimportant/${num}`,
+        `${API_URL}/${API_VERSION}/users/${username}/lessimportant/${num}`,
         resource
       )
       .catch(this.handleErrorService.handleError);
@@ -45,18 +45,19 @@ export class LessImportantService {
   updateLessImportantTask(username, num, id, resource) {
     return this.http
       .put<LessImportant>(
-        `${API_URL}/${API_VERSION}/${username}/lessimportant/${num}/${id}`,
+        `${API_URL}/${API_VERSION}/users/${username}/lessimportant/${num}/${id}`,
         resource
       )
       .catch(this.handleErrorService.handleError);
   }
+
 
   deleteLessImportantTask(username, num, id) {
     this.month = new Date().getMonth() + 1;
     this.year = new Date().getFullYear();
     return this.http
       .delete(
-        `${API_URL}/${API_VERSION}/${username}/lessimportant/${num}/${id}`
+        `${API_URL}/${API_VERSION}/users/${username}/lessimportant/${num}/${id}`
       )
       .catch(this.handleErrorService.handleError);
   }

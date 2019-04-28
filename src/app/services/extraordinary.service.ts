@@ -29,7 +29,7 @@ export class ExtraordinaryService {
   getExtraordinaryByid(username, id) {
     return this.http
       .get<Extraordinary>(
-        `${API_URL}/${API_VERSION}/${username}/extraordinary/${id}`
+        `${API_URL}/${API_VERSION}/users/${username}/extraordinary/${id}`
       )
       .catch(this.handleErrorService.handleError);
   }
@@ -37,21 +37,21 @@ export class ExtraordinaryService {
   getExtraordinaryByYearMonthDay(username, year, month, day) {
     return this.http
       .get<Extraordinary>(
-        `${API_URL}/${API_VERSION}/${username}/extraordinary/${year}/${month}/${day}`
+        `${API_URL}/${API_VERSION}/users/${username}/extraordinary/${year}/${month}/${day}`
       )
       .catch(this.handleErrorService.handleError);
   }
 
   createExtraordinary(username, resource) {
     return this.http
-      .post(`${API_URL}/${API_VERSION}/${username}/extraordinary`, resource)
+      .post(`${API_URL}/${API_VERSION}/users/${username}/extraordinary`, resource)
       .catch(this.handleErrorService.handleError);
   }
 
   updateExtraordinary(username, id, resource) {
     return this.http
       .put<Extraordinary>(
-        `${API_URL}/${API_VERSION}/${username}/extraordinary/${id}`,
+        `${API_URL}/${API_VERSION}/users/${username}/extraordinary/${id}`,
         resource
       )
       .catch(this.handleErrorService.handleError);
@@ -59,7 +59,7 @@ export class ExtraordinaryService {
 
   deleteExtraordinary(username, id) {
     return this.http
-      .delete(`${API_URL}/${API_VERSION}/${username}/extraordinary/${id}`)
+      .delete(`${API_URL}/${API_VERSION}/users/${username}/extraordinary/${id}`)
       .catch(this.handleErrorService.handleError);
   }
 }

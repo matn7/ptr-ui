@@ -123,6 +123,7 @@ export class LessimportantEditComponent implements OnInit {
         )
         .subscribe(
           response => {
+            console.log(response);
             this.router.navigate([
               "/lessimportant/" + this.num + "/" + response["id"] + "/view"
             ]);

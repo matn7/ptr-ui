@@ -28,14 +28,14 @@ export class ImportantService {
   getImportantTask(username, num, id) {
     return this.http
       .get<Important>(
-        `${API_URL}/${API_VERSION}/${username}/important/${num}/${id}`
+        `${API_URL}/${API_VERSION}/users/${username}/important/${num}/${id}`
       )
       .catch(this.handleErrorService.handleError);
   }
 
   createImportantTask(username, num, resource) {
     return this.http
-      .post(`${API_URL}/${API_VERSION}/${username}/important/${num}`, resource)
+      .post(`${API_URL}/${API_VERSION}/users/${username}/important/${num}`, resource)
       .catch(this.handleErrorService.handleError);
   }
 
@@ -46,7 +46,7 @@ export class ImportantService {
 
     return this.http
       .put<Important>(
-        `${API_URL}/${API_VERSION}/${username}/important/${num}/${id}`,
+        `${API_URL}/${API_VERSION}/users/${username}/important/${num}/${id}`,
         resource
       )
       .catch(this.handleErrorService.handleError);
@@ -56,7 +56,7 @@ export class ImportantService {
     this.month = new Date().getMonth() + 1;
     this.year = new Date().getFullYear();
     return this.http
-      .delete(`${API_URL}/${API_VERSION}/${username}/important/${num}/${id}`)
+      .delete(`${API_URL}/${API_VERSION}/users/${username}/important/${num}/${id}`)
       .catch(this.handleErrorService.handleError);
   }
 }

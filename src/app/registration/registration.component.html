@@ -1,183 +1,185 @@
 <div class="col-md-6 col-md-offset-3 pandatronik-important-container">
   <div class="pandatronik-new-1 col-md-12">
     <form [formGroup]="registrationForm" (ngSubmit)="registerNewUser()">
-      <div class="row form-group">
-        <input
-          type="text"
-          name="username"
-          formControlName="username"
-          placeholder="username"
-          [(ngModel)]="username"
-          class="form-control pandatronik-input-1"
-          maxlength="50"
-          [ngStyle]="{
-            border: isDuplicated ? '1px solid red' : ''
-          }"
-        />
-        <div
-          *ngIf="
-            registrationForm.controls['username'].touched &&
-            registrationForm.controls['username'].hasError('required')
-          "
-          class="alert alert-danger"
-        >
-          Username field is required
-        </div>
-        <div
-          *ngIf="
-            registrationForm.controls['username'].touched &&
-            (registrationForm.controls['username'].hasError('minlength') ||
-              registrationForm.controls['username'].hasError('maxlength'))
-          "
-          class="alert alert-danger"
-        >
-          Username field size must be between 6 and 50 characters
-        </div>
-        <div
-          *ngIf="registrationForm.controls['username'].hasError('duplicated')"
-          class="alert alert-danger"
-        >
-          Username already exist
-        </div>
-      </div>
-      <div class="row form-group">
-        <input
-          type="password"
-          name="password"
-          formControlName="password"
-          placeholder="password"
-          class="form-control pandatronik-input-1"
-          [(ngModel)]="password"
-          maxlength="24"
-        />
-        <div
-          *ngIf="
-            registrationForm.controls['password'].touched &&
-            registrationForm.controls['password'].hasError('required')
-          "
-          class="alert alert-danger"
-        >
-          Password field is required
-        </div>
-        <div
-          *ngIf="
-            registrationForm.controls['password'].touched &&
-            (registrationForm.controls['password'].hasError('minlength') ||
-              registrationForm.controls['password'].hasError('maxlength'))
-          "
-          class="alert alert-danger"
-        >
-          Password field size must be between 6 and 24 characters
+      <div class="row">
+        <div class="form-group">
+          <input
+            type="text"
+            name="username"
+            formControlName="username"
+            placeholder="username"
+            [(ngModel)]="username"
+            class="form-control pandatronik-input-1"
+            maxlength="50"
+            [ngStyle]="{
+              border: isDuplicated ? '1px solid red' : ''
+            }"
+          />
+          <div
+            *ngIf="
+              registrationForm.controls['username'].touched &&
+              registrationForm.controls['username'].hasError('required')
+            "
+            class="alert alert-danger"
+          >
+            Username field is required
+          </div>
+          <div
+            *ngIf="
+              registrationForm.controls['username'].touched &&
+              (registrationForm.controls['username'].hasError('minlength') ||
+                registrationForm.controls['username'].hasError('maxlength'))
+            "
+            class="alert alert-danger"
+          >
+            Username field size must be between 6 and 50 characters
+          </div>
+          <div
+            *ngIf="registrationForm.controls['username'].hasError('duplicated')"
+            class="alert alert-danger"
+          >
+            Username already exist
+          </div>
         </div>
       </div>
-      <div class="row form-group">
-        <input
-          type="password"
-          name="confirmPassword"
-          formControlName="confirmPassword"
-          placeholder="confirm password"
-          class="form-control pandatronik-input-1"
-          [(ngModel)]="confirmPassword"
-          maxlength="24"
-        />
-        <div
-          *ngIf="
-            registrationForm.controls['confirmPassword'].touched &&
-            registrationForm.controls['confirmPassword'].hasError('required')
-          "
-          class="alert alert-danger"
-        >
-          ConfirmPassword field is required
-        </div>
-        <!-- <div
-          *ngIf="
-            registrationForm.controls['confirmPassword'].touched &&
-            registrationForm.controls['confirmPassword'].hasError(
-              'validateAreEqual'
-            )
-          "
-          class="alert alert-danger"
-        >
-          ConfirmPassword field must match Password
-        </div> -->
-      </div>
-      <div class="row form-group">
-        <input
-          type="text"
-          name="email"
-          formControlName="email"
-          class="form-control pandatronik-input-1"
-          placeholder="email"
-          [(ngModel)]="email"
-          maxlength="40"
-        />
-        <div
-          *ngIf="
-            registrationForm.controls['email'].touched &&
-            registrationForm.controls['email'].hasError('required')
-          "
-          class="alert alert-danger"
-        >
-          Email field is required
-        </div>
-        <div
-          *ngIf="
-            registrationForm.controls['email'].touched &&
-            registrationForm.controls['email'].hasError('email')
-          "
-          class="alert alert-danger"
-        >
-          This is not a valid email address
+      <div class="row">
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            formControlName="password"
+            placeholder="password"
+            class="form-control pandatronik-input-1"
+            [(ngModel)]="password"
+            maxlength="24"
+          />
+          <div
+            *ngIf="
+              registrationForm.controls['password'].touched &&
+              registrationForm.controls['password'].hasError('required')
+            "
+            class="alert alert-danger"
+          >
+            Password field is required
+          </div>
+          <div
+            *ngIf="
+              registrationForm.controls['password'].touched &&
+              (registrationForm.controls['password'].hasError('minlength') ||
+                registrationForm.controls['password'].hasError('maxlength'))
+            "
+            class="alert alert-danger"
+          >
+            Password field size must be between 6 and 24 characters
+          </div>
         </div>
       </div>
-      <div class="row form-group">
-        <input
-          type="text"
-          name="firstName"
-          formControlName="firstName"
-          class="form-control pandatronik-input-1"
-          placeholder="your first name"
-          [(ngModel)]="firstName"
-          maxlength="50"
-        />
-        <div
-          *ngIf="
-            registrationForm.controls['firstName'].touched &&
-            registrationForm.controls['firstName'].hasError('maxlength')
-          "
-          class="alert alert-danger"
-        >
-          FirstName can have max 50 characters
+      <div class="row">
+        <div class="form-group">
+          <input
+            type="password"
+            name="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="confirm password"
+            class="form-control pandatronik-input-1"
+            [(ngModel)]="confirmPassword"
+            maxlength="24"
+          />
+          <div
+            *ngIf="
+              registrationForm.controls['confirmPassword'].touched &&
+              registrationForm.controls['confirmPassword'].hasError('required')
+            "
+            class="alert alert-danger"
+          >
+            ConfirmPassword field is required
+          </div>
+       </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <input
+            type="text"
+            name="email"
+            formControlName="email"
+            class="form-control pandatronik-input-1"
+            placeholder="email"
+            [(ngModel)]="email"
+            maxlength="40"
+          />
+          <div
+            *ngIf="
+              registrationForm.controls['email'].touched &&
+              registrationForm.controls['email'].hasError('required')
+            "
+            class="alert alert-danger"
+          >
+            Email field is required
+          </div>
+          <div
+            *ngIf="
+              registrationForm.controls['email'].touched &&
+              registrationForm.controls['email'].hasError('email')
+            "
+            class="alert alert-danger"
+          >
+            This is not a valid email address
+          </div>
         </div>
       </div>
-      <div class="row form-group">
-        <input
-          type="text"
-          name="lastName"
-          formControlName="lastName"
-          class="form-control pandatronik-input-1"
-          placeholder="your last name"
-          [(ngModel)]="lastName"
-          maxlength="50"
-        />
-        <div
-          *ngIf="
-            registrationForm.controls['lastName'].touched &&
-            registrationForm.controls['lastName'].hasError('maxlength')
-          "
-          class="alert alert-danger"
-        >
-          LastName can have max 50 characters
+      <div class="row">
+        <div class="form-group">
+          <input
+            type="text"
+            name="firstName"
+            formControlName="firstName"
+            class="form-control pandatronik-input-1"
+            placeholder="your first name"
+            [(ngModel)]="firstName"
+            maxlength="50"
+          />
+          <div
+            *ngIf="
+              registrationForm.controls['firstName'].touched &&
+              registrationForm.controls['firstName'].hasError('maxlength')
+            "
+            class="alert alert-danger"
+          >
+            FirstName can have max 50 characters
+          </div>          
         </div>
       </div>
-      <div class="row form-group">
-        <button
-          type="submit"
-          [disabled]="!registrationForm.valid"
-          class="btn btn-success"
-        >
-          Register
-        </button>
+      <div class="row">
+        <div class="form-group">
+          <input
+            type="text"
+            name="lastName"
+            formControlName="lastName"
+            class="form-control pandatronik-input-1"
+            placeholder="your last name"
+            [(ngModel)]="lastName"
+            maxlength="50"
+          />
+          <div
+            *ngIf="
+              registrationForm.controls['lastName'].touched &&
+              registrationForm.controls['lastName'].hasError('maxlength')
+            "
+            class="alert alert-danger"
+          >
+            LastName can have max 50 characters
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <button
+            type="submit"
+            [disabled]="!registrationForm.valid"
+            class="btn btn-success">
+            Register
+          </button>
+        </div>
       </div>
     </form>
   </div>
