@@ -16,7 +16,7 @@ export class StatisticsImportantService {
   getImportantTaskCount(username, num, year) {
     return this.http
       .get(
-        `${API_URL}/${API_VERSION}/${username}/statistics/important/${num}/count/${year}`
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/important/${num}/count/${year}`
       )
       .catch(this.handleErrorService.handleError);
   }
@@ -24,7 +24,7 @@ export class StatisticsImportantService {
   getImportantTaskAvg(username, num, year) {
     return this.http
       .get(
-        `${API_URL}/${API_VERSION}/${username}/statistics/important/${num}/avg/${year}`
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/important/${num}/avg/${year}`
       )
       .catch(this.handleErrorService.handleError);
   }

@@ -19,7 +19,7 @@ export class StatisticsDaysService {
   retrieveDaysByUsernameAndYear(username, resource) {
     return this.http
       .post(
-        `${API_URL}/${API_VERSION}/${username}/statistics/days/yearData`,
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/days/yearData`,
         resource
       )
       .catch(this.handleErrorService.handleError);
@@ -28,7 +28,7 @@ export class StatisticsDaysService {
   retrieveDaysByUsernameMonthAndYear(username, resource) {
     return this.http
       .post(
-        `${API_URL}/${API_VERSION}/${username}/statistics/days/monthData`,
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/days/monthData`,
         resource
       )
       .catch(this.handleErrorService.handleError);
@@ -37,7 +37,7 @@ export class StatisticsDaysService {
   retrieveMonthWeekDaysByUsernameMonthAndYear(username, resource) {
     return this.http
       .post(
-        `${API_URL}/${API_VERSION}/${username}/statistics/days/monthDaysData`,
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/days/monthDaysData`,
         resource
       )
       .catch(this.handleErrorService.handleError);
@@ -46,7 +46,7 @@ export class StatisticsDaysService {
   retrieveAvgDaysByUsernameAndYear(username, resource) {
     return this.http
       .post(
-        `${API_URL}/${API_VERSION}/${username}/statistics/days/yearAvgData`,
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/days/yearAvgData`,
         resource
       )
       .catch(this.handleErrorService.handleError);

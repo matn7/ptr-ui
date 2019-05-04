@@ -16,7 +16,7 @@ export class StatisticsLessImportantService {
   getLessImportantTaskCount(username, num, year) {
     return this.http
       .get(
-        `${API_URL}/${API_VERSION}/${username}/statistics/lessimportant/${num}/count/${year}`
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/lessimportant/${num}/count/${year}`
       )
       .catch(this.handleErrorService.handleError);
   }
@@ -24,7 +24,7 @@ export class StatisticsLessImportantService {
   getLessImportantTaskAvg(username, num, year) {
     return this.http
       .get(
-        `${API_URL}/${API_VERSION}/${username}/statistics/lessimportant/${num}/avg/${year}`
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/lessimportant/${num}/avg/${year}`
       )
       .catch(this.handleErrorService.handleError);
   }
