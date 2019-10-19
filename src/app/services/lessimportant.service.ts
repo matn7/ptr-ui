@@ -20,7 +20,7 @@ export class LessImportantService {
   getLessImportantIndexData(username, year, month) {
     return this.http
       .get<LessImportant[]>(
-        `${API_URL}/${API_VERSION}/${username}/lessimportant/${year}/${month}`
+        `${API_URL}/${API_VERSION}/users/${username}/lessimportant/${year}/${month}`
       )
       .catch(this.handleErrorService.handleError);
   }

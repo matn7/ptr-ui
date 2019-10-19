@@ -20,7 +20,7 @@ export class ImportantService {
   getImportantIndexData(username, year, month) {
     return this.http
       .get<Important[]>(
-        `${API_URL}/${API_VERSION}/${username}/important/${year}/${month}`
+        `${API_URL}/${API_VERSION}/users/${username}/important/${year}/${month}`
       )
       .catch(this.handleErrorService.handleError);
   }

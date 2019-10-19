@@ -21,7 +21,7 @@ export class ExtraordinaryService {
   getExtraordinaryAll(username) {
     return this.http
       .get<Extraordinary[]>(
-        `${API_URL}/${API_VERSION}/${username}/extraordinary/all`
+        `${API_URL}/${API_VERSION}/users/${username}/extraordinary/all`
       )
       .catch(this.handleErrorService.handleError);
   }
