@@ -97,7 +97,12 @@ export class DaysEditComponent implements OnInit {
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
     
-    this.initForm();
+    this.initForm(this.startDate, this.postedOn, this.userProfileId);
+
+    console.log("<<<<<<<<<<" + this.daysForm.value["id"]);
+    console.log("<<<<<<<<<<" + this.daysForm.value["startDate"]);
+    console.log("<<<<<<<<<<" + this.daysForm.value["postedOn"]);
+    console.log("<<<<<<<<<<" + this.daysForm.value["userProfileId"]);
   }
 
   onSubmit() {
@@ -146,13 +151,10 @@ export class DaysEditComponent implements OnInit {
     this.toggleService.toggleDays();
   }
 
-  private initForm() {
+  private initForm(startDate: string, postedOn: string, userProfileId: string) {
     const id = "";
     const body = "";
     const rateDay = +"";
-    const startDate = "";
-    const postedOn = "";
-    const userProfileId = "";
 
     if (this.editMode) {
       this.days = this.daysService.getDays(this.username, this.id).subscribe(

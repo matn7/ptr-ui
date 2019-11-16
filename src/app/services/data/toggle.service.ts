@@ -7,7 +7,6 @@ export class ToggleService {
   isUserActive;
   isImportantActive;
   isLessImportantActive;
-  isDaysActive;
   isStatisticsActive;
 
   isGreenActive;
@@ -48,7 +47,6 @@ export class ToggleService {
 
   toggleDays() {
     this.deActivateAll();
-    this.isDaysActive = true;
     this.emitAll();
   }
 
@@ -60,7 +58,6 @@ export class ToggleService {
 
   toggleExtraordinary() {
     this.deActivateAll();
-    this.isDaysActive = true;
     this.emitAll();
   }
 
@@ -68,7 +65,6 @@ export class ToggleService {
     this.changeUser.emit(this.isUserActive);
     this.changeImportant.emit(this.isImportantActive);
     this.changeLessImportant.emit(this.isLessImportantActive);
-    this.changeDays.emit(this.isDaysActive);
     this.changeStatistics.emit(this.isStatisticsActive);
   }
 
@@ -76,7 +72,6 @@ export class ToggleService {
     this.isUserActive = false;
     this.isImportantActive = false;
     this.isLessImportantActive = false;
-    this.isDaysActive = false;
     this.isStatisticsActive = false;
   }
 

@@ -1,0 +1,44 @@
+<div class="col-md-12">
+  <div class="row">
+    <form [formGroup]="selectDateRange" (ngSubmit)="onSubmit()">
+      <div class="col-md-12 form-group pandatronik-select">
+        <div class="col-md-2">
+          <select
+            formControlName="selectComponent"
+            type="text"
+            id="selectComponent"
+            class="form-control pandatronik-input-1"
+          >
+            <option value="important">Important</option>
+            <option value="lessimportant">Less important</option>
+            <option value="days">Days</option>
+          </select>
+        </div>
+        <input
+              placeholder="start-date"
+              title="start-date"
+              formControlName="selectStartDate"
+              type="text"
+              id="selectStartDate"
+              class="form-control pandatronik-input-1"
+              maxlength="10"
+            />
+          <input
+            placeholder="end-date"
+            title="end-date"
+            formControlName="selectEndDate"
+            type="text"
+            id="selectEndDate"
+            class="form-control pandatronik-input-1"
+            maxlength="10"
+          />
+
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+        <hr>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-12" [chart]="columnChart"></div>
+    </div>
+  </div>

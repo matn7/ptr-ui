@@ -28,4 +28,15 @@ export class StatisticsImportantService {
       )
       .catch(this.handleErrorService.handleError);
   }
+
+  getImportantStartEnd(username, num, resource) {
+    console.log("Resource - startDate: " + resource.startDate);
+    console.log("Resource - endDate: " + resource.endDate);
+    return this.http
+    .post(
+      `${API_URL}/${API_VERSION}/users/${username}/statistics/important/${num}/startEnd`,
+      resource
+    )
+    .catch(this.handleErrorService.handleError);
+  }
 }

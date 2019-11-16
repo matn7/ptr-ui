@@ -65,6 +65,7 @@ import { UserService } from "./services/user.service";
 import { AdminComponent } from './admin/admin.component';
 import { AdminUserService } from "./services/admin/admin-user.service";
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
+import { StatisticsStartEndComponent } from './statistics/statistics-start-end/statistics-start-end.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { AdminUserComponent } from './admin/admin-user/admin-user.component';
     StatisticsDaysMonthComponent,
     UserComponent,
     AdminComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    StatisticsStartEndComponent
   ],
   imports: [
     BrowserModule,

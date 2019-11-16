@@ -35,9 +35,6 @@ export class HeaderComponent implements OnInit {
   isLessImportantActive = false;
 
   @HostBinding("class.is-open")
-  isDaysActive = false;
-
-  @HostBinding("class.is-open")
   isStatisticsActive = false;
 
   constructor(
@@ -65,10 +62,6 @@ export class HeaderComponent implements OnInit {
 
     this.toggleService.changeLessImportant.subscribe(isActive => {
       this.isLessImportantActive = isActive;
-    });
-
-    this.toggleService.changeDays.subscribe(isActive => {
-      this.isDaysActive = isActive;
     });
 
     this.toggleService.changeStatistics.subscribe(isActive => {

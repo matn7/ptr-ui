@@ -120,4 +120,85 @@ export class PtrColumnChart {
       ]
     }));
   }
+
+  getStartEndColumnChart(startEndData: Map<number, number>, title: string, colors: string[]) {
+    console.log("getStartEndColumnChart: " + startEndData);
+    console.log("getStartEndColumnChart: " + startEndData.get(1));
+
+    return (this.chart = new Chart({
+      chart: {
+        style: {
+          fontFamily: "'Unica One', sans-serif"
+        },
+        type: "column"
+      },
+      title: {
+        text: title,
+        style: {
+          fontWeight: "bold",
+          fontSize: "14px"
+        }
+      },
+      plotOptions: {
+        column: {
+          allowPointSelect: true,
+          cursor: "pointer",
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      credits: {
+        enabled: false
+      },
+      subtitle: {
+        style: {}
+      },
+      colors: [colors[0]],
+      xAxis: {
+        categories: [
+          "100",
+          "75",
+          "50",
+          "25",
+          "0"
+        ],
+        crosshair: true
+      },
+      yAxis: {
+        title: {
+          text: "Percent (%)"
+        },
+        gridLineColor: "#ccc"
+      },
+      series: [
+        {
+          name: "Start End combined",
+          data: [
+            {
+              name: "100",
+              y: startEndData.get(0) ? startEndData.get(0) : 0
+            },
+            {
+              name: "75",
+              y: startEndData.get(1) ? startEndData.get(1) : 0
+            },
+            {
+              name: "50",
+              y: startEndData.get(2) ? startEndData.get(2) : 0
+            },
+            {
+              name: "25",
+              y: startEndData.get(3) ? startEndData.get(3) : 0
+            },
+            {
+              name: "0",
+              y: startEndData.get(4) ? startEndData.get(4) : 0
+            }
+          ]
+        }
+      ]
+    }));
+  }
 }

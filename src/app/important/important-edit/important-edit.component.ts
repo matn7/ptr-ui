@@ -7,7 +7,7 @@ import {
   HostListener
 } from "@angular/core";
 import { Subscription } from "rxjs";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { ImportantService } from "../../services/important.service";
@@ -58,7 +58,8 @@ export class ImportantEditComponent implements OnInit {
     private appInternalMessageService: AppInternalMessagesService,
     private timeService: TimeService,
     private customErrorMsgService: CustomErrorMessageService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.username = this.authService.getAuthenticatedUser();
@@ -78,7 +79,6 @@ export class ImportantEditComponent implements OnInit {
       this.num = +params["num"];
     });
     if (!this.editMode) {
-      console.log("TTT");
       this.route.params.subscribe(params => {
         this.day = +params["day"];
         this.month = +params["month"];
@@ -100,7 +100,7 @@ export class ImportantEditComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     }
-    this.initForm();
+    this.initForm(this.startDate);
   }
 
   private redirectMsg() {
@@ -164,12 +164,11 @@ export class ImportantEditComponent implements OnInit {
     }
   }
 
-  private initForm() {
+  private initForm(startDate: string) {
     const id = "";
     const title = "";
     const body = "";
     const made = +"";
-    const startDate = "";
     const postedOn = "";
     const userProfileId = "";
 
@@ -202,20 +201,30 @@ export class ImportantEditComponent implements OnInit {
       this.userProfileId = this.username;
     }
 
-    this.importantForm = new FormGroup({
-      id: new FormControl(id),
-      title: new FormControl(title, [
-        Validators.required,
-        Validators.maxLength(40)
-      ]),
-      body: new FormControl(body, [
-        Validators.required,
-        Validators.maxLength(255)
-      ]),
-      made: new FormControl(made, Validators.required),
-      startDate: new FormControl(startDate, Validators.required),
-      postedOn: new FormControl(postedOn, Validators.required),
-      userProfileId: new FormControl(userProfileId, Validators.required)
+    this.importantForm = new FormBuilder().group({
+      "id": this.id,
+      "title": [title, Validators.required, Validators.maxLength(40)],
+      "body": [body, Validators.required, Validators.maxLength(255)],
+      "made": made,
+      "startDate": [startDate, Validators.required],
+      "postedOn": [postedOn, Validators.required],
+      "userProfileId": [userProfileId, Validators.required]
     });
+
+    // this.importantForm = new FormGroup({
+    //   id: new FormControl(id),
+    //   title: new FormControl(title, [
+    //     Validators.required,
+    //     Validators.maxLength(40)
+    //   ]),
+    //   body: new FormControl(body, [
+    //     Validators.required,
+    //     Validators.maxLength(255)
+    //   ]),
+    //   made: new FormControl(made, Validators.required),
+    //   startDate: new FormControl(startDate, Validators.required),
+    //   postedOn: new FormControl(postedOn, Validators.required),
+    //   userProfileId: new FormControl(userProfileId, Validators.required)
+    // });
   }
 }

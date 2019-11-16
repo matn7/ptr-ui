@@ -30,6 +30,7 @@ import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month
 import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
 import { AdminUserComponent } from "./admin/admin-user/admin-user.component";
+import { StatisticsStartEndComponent } from "./statistics/statistics-start-end/statistics-start-end.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [RouteGuardService] },
@@ -162,6 +163,11 @@ const appRoutes: Routes = [
   {
     path: "statistics/days/:year/:month",
     component: StatisticsDaysMonthComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "statistics/startend/:component/:num/:startDate/:endDate",
+    component: StatisticsStartEndComponent,
     canActivate: [RouteGuardService]
   },
   { path: "**", component: ErrorComponent }
