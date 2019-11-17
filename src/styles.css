@@ -807,3 +807,6 @@ select.pandatronik-input-3 {
   border-color: transparent;
   padding: 5px 5px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }

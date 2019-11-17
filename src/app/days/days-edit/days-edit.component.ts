@@ -3,13 +3,12 @@ import { DaysService } from "../../services/days.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
-import { Subscription } from "rxjs";
 import { AuthenticationService } from "../../services/authentication.service";
-import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { TimeService } from "../../services/data/time.service";
+import { START_DATE_PATTERN, POSTED_ON_PATTERN } from "../../app.constants";
 
 @Component({
   selector: "app-days-edit",
@@ -17,25 +16,18 @@ import { TimeService } from "../../services/data/time.service";
   styleUrls: ["./days-edit.component.css"]
 })
 export class DaysEditComponent implements OnInit {
-  subscription: Subscription;
+
   editMode = false;
-  editedItemIndex: number;
-  editedItem: any;
-
-  days: any;
-  id: number;
   username: string;
+  id: number;
   date: Date;
-
   daysForm: FormGroup;
-
   startDate: string;
   postedOn: string;
   userProfileId: string;
   day: number;
   month: number;
   year: number;
-
   errorMessage: string;
   returnUrl: string;
 
@@ -45,7 +37,6 @@ export class DaysEditComponent implements OnInit {
     private authService: AuthenticationService,
     private datepipe: DatePipe,
     private router: Router,
-    private handleError: HandleErrorsService,
     private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService,
     private timeService: TimeService,
@@ -53,7 +44,6 @@ export class DaysEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // set important route active
     this.toggle();
 
     this.username = this.authService.getAuthenticatedUser();
@@ -75,19 +65,19 @@ export class DaysEditComponent implements OnInit {
         }
       );
 
-      this.startDate = this.datepipe.transform(
-        new Date(this.year, this.month - 1, this.day),
-        "yyyy-MM-dd"
-      );
-      this.postedOn = this.datepipe.transform(
-        new Date(),
-        "yyyy-MM-ddTHH:mm:ss"
-      );
-
       if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
         this.redirectMsg();
         this.router.navigate([this.returnUrl]);
       }
+
+      this.startDate = this.datepipe.transform(
+        new Date(this.year, this.month - 1, this.day),
+        START_DATE_PATTERN
+      );
+      this.postedOn = this.datepipe.transform(
+        new Date(),
+        POSTED_ON_PATTERN
+      );
     }
 
     this.date = new Date();
@@ -96,13 +86,7 @@ export class DaysEditComponent implements OnInit {
     this.userProfileId = this.username;
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
-    
     this.initForm(this.startDate, this.postedOn, this.userProfileId);
-
-    console.log("<<<<<<<<<<" + this.daysForm.value["id"]);
-    console.log("<<<<<<<<<<" + this.daysForm.value["startDate"]);
-    console.log("<<<<<<<<<<" + this.daysForm.value["postedOn"]);
-    console.log("<<<<<<<<<<" + this.daysForm.value["userProfileId"]);
   }
 
   onSubmit() {
@@ -157,7 +141,7 @@ export class DaysEditComponent implements OnInit {
     const rateDay = +"";
 
     if (this.editMode) {
-      this.days = this.daysService.getDays(this.username, this.id).subscribe(
+      this.daysService.getDays(this.username, this.id).subscribe(
         days => {
           this.daysForm.get("id").setValue(days.id);
           this.daysForm.get("body").setValue(days.body);
@@ -166,7 +150,7 @@ export class DaysEditComponent implements OnInit {
           this.daysForm
             .get("postedOn")
             .setValue(
-              this.datepipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss")
+              this.datepipe.transform(new Date(), POSTED_ON_PATTERN)
             );
         },
         error => {
@@ -174,10 +158,10 @@ export class DaysEditComponent implements OnInit {
         }
       );
 
-      this.startDate = this.datepipe.transform(new Date(), "yyyy-MM-dd");
+      this.startDate = this.datepipe.transform(new Date(), START_DATE_PATTERN);
       this.postedOn = this.datepipe.transform(
         new Date(),
-        "yyyy-MM-ddTHH:mm:ss"
+        POSTED_ON_PATTERN
       );
       this.userProfileId = this.username;
     }

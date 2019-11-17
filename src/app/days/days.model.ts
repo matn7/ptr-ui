@@ -5,7 +5,7 @@ export class Days {
   public postedOn: number;
   public startDate: number;
   public userProfileId: string;
-
+  
   constructor(
     id: number,
     body: string,

@@ -4,8 +4,8 @@ import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { Days } from "../days.model";
 
 @Component({
   selector: "app-days-detail",
@@ -15,7 +15,7 @@ import { CustomErrorMessageService } from "../../services/data/custom-error-mess
 export class DaysDetailComponent implements OnInit {
   id: number;
   username: string;
-  days: any;
+  days: Days;
 
   date: Date;
   day: number;
@@ -29,17 +29,18 @@ export class DaysDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private service: DaysService,
     private authService: AuthenticationService,
-    private handleError: HandleErrorsService,
     private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
     // set important route active
+    // this.days = new DaysModel();
 
     this.route.params.subscribe(params => {
       this.id = +params["id"];
     });
+    
     this.username = this.authService.getAuthenticatedUser();
     this.date = new Date();
     this.day = this.date.getDay();
@@ -47,9 +48,11 @@ export class DaysDetailComponent implements OnInit {
     this.year = this.date.getFullYear();
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
-    this.days = this.service.getDays(this.username, this.id).subscribe(
-      days => {
-        this.days = days;
+
+    this.service.getDays(this.username, this.id).subscribe(
+      values => {
+        console.log(values.id);
+        this.days = new Days(values.id, values.body, values.rateDay, values.postedOn, values.startDate, values.userProfileId);
       },
       error => {
         this.customErrorMsgService.displayMessage(error, this.returnUrl);

@@ -5,6 +5,10 @@ export const AUTHENTICATED_USER = "authenticatedUser";
 export const TOKEN_EXPIRED = "tokenExpired";
 export const RETURN_URL = "returnUrl";
 export const TEST_USERNAME = "AvHGfC2k2RtpCpA2Qc115crNDpuf2P";
+
+export const START_DATE_PATTERN = "yyyy-MM-dd";
+export const POSTED_ON_PATTERN = "yyyy-MM-ddTHH:mm:ss";
+
 export const USER_CREATED_MSG =
   "User was created. On email activated email was sent. Please follow description in email message";
 export const MONTH_NAMES = [
