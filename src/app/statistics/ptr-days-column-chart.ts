@@ -62,6 +62,7 @@ export class PtrDaysColumnChart {
       series: [
         {
           name: "Daily average",
+          type: "map",
           data: this.daysData
         }
       ]

@@ -56,7 +56,7 @@ import { UserComponent } from "./user/user.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatComponentsModule } from "src/app/mat-components.module";
-import { MatFormFieldModule } from "@angular/material";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { ImportantComponent } from "./important/important.component";
 import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";

@@ -38,6 +38,7 @@ export class PtrPieChart {
       series: [
         {
           name: "Task1",
+          type: "xrange",
           data: [
             {
               name: "100%",

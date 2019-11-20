@@ -66,6 +66,7 @@ export class PtrColumnChart {
       series: [
         {
           name: "Monthly average",
+          type: "xrange",
           data: [
             {
               name: "Jan",
@@ -175,6 +176,7 @@ export class PtrColumnChart {
       series: [
         {
           name: "Start End combined",
+          type: "xrange",
           data: [
             {
               name: "100",
