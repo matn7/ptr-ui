@@ -13,6 +13,7 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatToolbarModule, MatMenuModule } from "@angular/material";
 
 @NgModule({
   exports: [
@@ -29,7 +30,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatTooltipModule,
     MatTabsModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatMenuModule
   ]
 })
 export class MatComponentsModule {}

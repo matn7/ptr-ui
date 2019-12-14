@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, Inject, InjectionToken } from "@angular/core";
 import { ToggleService } from "../services/data/toggle.service";
 import { ExtraordinaryService } from "../services/extraordinary.service";
 import { AuthenticationService } from "../services/authentication.service";
@@ -7,6 +7,8 @@ import { HandleErrorsService } from "../services/handle-errors.service";
 import { Router } from "@angular/router";
 import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
+import { MAT_DIALOG_DATA } from "@angular/material";
+
 
 @Component({
   selector: "app-extraordinary",
@@ -27,8 +29,11 @@ export class ExtraordinaryComponent implements OnInit {
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
     private router: Router,
-    private customErrorMsgService: CustomErrorMessageService
-  ) {}
+    private customErrorMsgService: CustomErrorMessageService,
+    @Inject(MAT_DIALOG_DATA) data: any
+  ) {
+    console.log("Data", data);
+  }
 
   ngOnInit() {
     this.toggle();

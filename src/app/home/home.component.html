@@ -1,3 +1,110 @@
+<!-- CHECKOUT BUTTON -->
+
+<mat-checkbox
+  #showDetails
+  [value]=""
+  [checked]="isChecked"
+  (change)="onChange($event)"
+>Show details</mat-checkbox>
+
+<div *ngIf="showDetails.checked">Some details ...</div>
+
+<br/>
+<!-- RADIO BUTTON  -->
+
+<mat-radio-group>
+  <mat-radio-button value="1">Male</mat-radio-button>
+  <mat-radio-button value="0" [checked]="isChecked">Femail</mat-radio-button>
+</mat-radio-group>
+
+<br/><br/>
+<!-- SELECT -->
+<mat-select [(ngModel)]="color">
+  <mat-option 
+    *ngFor="let color of colors"
+    [value]="color.id">{{ color.name }}</mat-option>
+</mat-select>
+
+<br/><br/>
+<!-- INPUTS -->
+<form>
+  <mat-form-field>
+    <input 
+      ngModel
+      #username="ngModel"
+      name="username"
+      type="text" matInput placeholder="Username" required>
+  </mat-form-field>
+  <span matSuffix>@domain.com</span>
+  <span matPrefix>admin.</span>
+  <mat-hint>Type a unique username</mat-hint>
+  <mat-error *ngIf="username.invalid && username.errors.required">
+    The username field is required
+  </mat-error>
+</form>
+<br/>
+<br/>
+<!-- TEXTAREA-->
+<mat-form-field>
+  <textarea matInput matTextareaAutosize rows="2"></textarea>
+</mat-form-field>
+<!-- DATE PICKER -->
+<mat-form-field>
+  <input 
+  (focus)="birthdate.open()"
+  [min]="minDate"
+  [max]="maxDate"
+  matInput [matDatepicker]="birthdate">
+  <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+  <mat-datepicker #birthdate></mat-datepicker>
+</mat-form-field>
+<!--ICON-->
+<mat-icon>add_alert</mat-icon>
+<!--BUTTON-->
+<button mat-button>Button 1</button>
+<button color="primary" mat-raised-button>Primary</button>
+<button color="accent" mat-raised-button>Accent</button>
+<button color="warn" mat-raised-button>Warn</button>
+<button color="primary" mat-fab><mat-icon>check</mat-icon></button>
+<!--CHIPS-->
+<mat-chip-list>
+  <mat-chip selected="true" color="accent">One</mat-chip>
+  <mat-chip>Two</mat-chip>
+  <mat-chip 
+    (click)="selectCategory(category)"
+    [selected]="category.selected"
+    *ngFor="let category of categories">{{ category.name }}</mat-chip>
+</mat-chip-list>
+<!--PROGRESS SPINNER-->
+<mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+<!-- <mat-progress-spinner mode="indeterminate" [value]="progress"></mat-progress-spinner> -->
+<!-- <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner> -->
+<!--TOOLTIP-->
+<span 
+  matTooltip="Here is my tooltip"
+  matTooltipPosition="right">Some text</span>
+<!--TABS-->
+<!-- <mat-tab-group>
+  <mat-tab label="Billing">
+    Content of the billing tab
+  </mat-tab>
+  <mat-tab label="Shipping">
+    Content of the shipping tab
+  </mat-tab>
+</mat-tab-group>
+<br/><br/> -->
+<!--MAT DIALOG-->
+<button 
+  (click)="openDialog()"
+  mat-raised-button>Open Dialog</button>
+
+<!--THEMES-->
+
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
 <p>
-  home works!
+  majkowy majkowy
 </p>
+
+<br/>
+<br/>

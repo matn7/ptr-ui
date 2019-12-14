@@ -53,10 +53,12 @@ import { StatisticsDaysComponent } from "./statistics/statistics-days/statistics
 import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month/statistics-days-month.component";
 import { UserComponent } from "./user/user.component";
 
+// Angular material
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+// ***
+
 import { MatComponentsModule } from "src/app/mat-components.module";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { ImportantComponent } from "./important/important.component";
 import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
@@ -68,6 +70,9 @@ import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { StatisticsStartEndComponent } from './statistics/statistics-start-end/statistics-start-end.component';
 
 @NgModule({
+  // entryComponents: [
+  //   ExtraordinaryComponent
+  // ],
   declarations: [
     AppComponent,
     HomeComponent,
