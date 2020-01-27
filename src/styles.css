@@ -2,6 +2,118 @@
 /* @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"; */
 @import "https://fonts.googleapis.com/css?family=Open+Sans";
 
+:root {
+  /* --main-green-bg-color: #97d3a8; */
+  --main-green-bg-color: #8dd4a2; /*#61bc7b; 8dd4a2*/
+  --main-green-border-color: #fff; /*61bc7b 59936a*/
+  --main-green-form-border-color: #61bc7b; /*61bc7b 59936a*/
+  --main-green-hover-color: #4fb46c; /*#468847; 4fb46c*/
+  --main-border-input-color: #ccc;
+  --main-yellow-bg-color: #fbcc56;
+  --main-yellow-border-color: #f9b50b;
+  --main-yellow-form-border-color: #f9b50b; 
+  --main-yellow-hover-color: #fac43d;
+  --main-blue-bg-color: #67abcc;
+  --main-blue-border-color: #2c7ac8;
+  --main-blue-form-border-color: #2c7ac8; /*61bc7b 59936a*/
+  --main-blue-hover-color: #54a0c6; /*#3a87ad;*/
+  --main-alert-color: red;
+  --main-padding: 15px;
+  --main-bg-color: white;
+  --main-body-bg-color: #8dd4a2;
+  --main-text-color: white;
+  --main-border-color: #fff;
+  --nav-color: #055dc7;
+  --main-bg-none-color: #ccc; 
+}
+
 .mat-tab-body-content {
     padding-top: 20px;
+}
+
+.pull-right {
+    justify-content: flex-end;
+}
+
+.flex-spacer {
+    flex-grow: 1;
+}
+
+.form-field-padding {
+    padding: 10px 10px 10px 0;
+}
+
+.pandatronik_navigate_green {
+  cursor: pointer;
+}
+
+.pandatronik_navigate_green:hover {
+  background-color: var(--main-green-hover-color);
+}
+
+.pandatronik_navigate_yellow {
+  cursor: pointer;
+}
+
+.pandatronik_navigate_yellow:hover {
+  background-color: var(--main-yellow-hover-color);
+}
+
+.pandatronik_navigate_blue {
+  cursor: pointer;
+}
+
+.pandatronik_navigate_blue:hover {
+  background-color: var(--main-blue-hover-color);
+}
+
+.pandatronik_navigate {
+  cursor: pointer;
+}
+
+.login-container {
+  /* display: flex;
+  flex-direction: column;  */
+  width: 100%;
+}
+
+.login-container > * {
+  width: 100%;
+}
+
+.choose-date-form {
+  display: inline-block;
+}
+
+.mat-grid-tile {
+  display: inline;
+}
+
+.mat-list-item-content {
+  /* background: yellow; */
+  flex-direction: column !important;
+}
+
+.mat-grid-tile {
+  outline: 1px solid #ccc;
+}
+
+.mat-grid-list {
+  outline: 1px solid #ccc;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.pandatronik-mat-card {
+  padding-top: 50px;
+}
+
+.yellow {
+  background: #ffc107 !important; 
+}
+
+.mat-list-base {
+  padding-top: 0px !important;
 }

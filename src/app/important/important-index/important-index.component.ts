@@ -10,6 +10,7 @@ import { ToggleService } from "../../services/data/toggle.service";
 import { TimeService } from "../../services/data/time.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { GREEN_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "../../app.constants";
 
 @Component({
   selector: "app-important-index",
@@ -31,6 +32,10 @@ export class ImportantIndexComponent implements OnInit {
   errorNumber: number;
   errorMessage: string;
   returnUrl: string;
+
+  readonly green_completion_styles = GREEN_COMPLETION_STYLES;
+  readonly yellow_completion_styles = YELLOW_COMPLETION_STYLES;
+  readonly blue_completion_styles = BLUE_COMPLETION_STYLES;
 
   constructor(
     private route: ActivatedRoute,

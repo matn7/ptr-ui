@@ -1,116 +1,86 @@
-<div class="col-md-6 col-md-offset-3 pandatronik-important-container">
-  <div class="pandatronik-new-{{ num }} col-md-12">
-    <form [formGroup]="importantForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-          <div class="form-group">
-            <input
-              placeholder="title"
-              title="title"
-              formControlName="title"
-              type="text"
-              id="title"
-              class="form-control pandatronik-input-{{ num }}"
-              maxlength="40"
-            />
-            <div
-              *ngIf="
-                importantForm.controls['title'].touched &&
-                importantForm.controls['title'].hasError('required')
-              "
-              class="alert alert-danger"
-            >
-              Task title is required
-            </div>
-            <div
-              *ngIf="
-                importantForm.controls['title'].touched &&
-                importantForm.controls['title'].hasError('maxlength')
-              "
-              class="alert alert-danger"
-            >
-              Title should not have more than 40 characters
-            </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="form-group">
-            <textarea
-              placeholder="body"
-              title="body"
-              formControlName="body"
-              type="text"
-              id="body"
-              rows="5"
-              class="form-control pandatronik-input-{{ num }}"
-            ></textarea>
-            <div
-              *ngIf="
-                importantForm.controls['body'].touched &&
-                importantForm.controls['body'].hasError('required')
-              "
-              class="alert alert-danger"
-            >
-              Task description is required
-            </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="form-group">
-            <select
-              aria-placeholder="made"
-              title="made"
-              formControlName="made"
-              type="text"
-              id="made"
-              class="form-control pandatronik-input-{{ num }}"
-            >
-              <option value="100">100</option>
-              <option value="75">75</option>
-              <option value="50">50</option>
-              <option value="25">25</option>
-              <option value="0">None :(</option>
-            </select>
-          </div>
-      </div>
-      <input
-        type="hidden"
-        formControlName="startDate"
-        class="form-control"
-        [value]="startDate.value"
-        id="startDate"
-      />
-      <input
-        type="hidden"
-        formControlName="postedOn"
-        class="form-control"
-        [value]="postedOn.value"
-        id="postedOn"
-      />
-      <input
-        type="hidden"
-        formControlName="userProfileId"
-        [value]="userProfileId.value"
-        id="userProfileId"
-      />
-      <div class="row">
-          <button
-            type="submit"
-            [disabled]="!importantForm.valid"
-            class="btn btn-success"
-          >
-            Submit
-          </button>
-          <!-- todo implement confirmation to delete -->
-          <button
-            type="button"
-            class="btn btn-danger pull-right"
-            *ngIf="editMode"
-            ng-confirm-click="Confirm unfavorite?"
-            (click)="onDelete()"
-          >
-            Delete
-          </button>
-      </div>
-    </form>
-  </div>
-</div>
+<mat-card class="pandatronik-mat-card">
+  <form [formGroup]="importantForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input 
+        matInput 
+        placeholder="title" 
+        formControlName="title"
+        type="text"
+        id="title"
+        name="title"
+        maxlength="40">
+    </mat-form-field>
+    <mat-error *ngIf="
+      importantForm.controls['title'].touched &&
+      importantForm.controls['title'].hasError('maxlength')">
+      {{ title_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      importantForm.controls['title'].touched &&
+      importantForm.controls['title'].hasError('required')">
+      {{ title_required_validator }}
+    </mat-error>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Body</mat-label>
+      <textarea
+        matInput
+        placeholder="body"
+        title="body"
+        formControlName="body"
+        type="text"
+        id="body"
+        name="body"
+        rows="5"
+        maxlength="255"
+      ></textarea>
+    </mat-form-field>
+    <mat-error *ngIf="
+      importantForm.controls['body'].touched &&
+      importantForm.controls['body'].hasError('maxlength')">
+      {{ body_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      importantForm.controls['body'].touched &&
+      importantForm.controls['body'].hasError('required')">
+      {{ body_required_validator }}
+    </mat-error>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Made</mat-label>
+        <mat-select formControlName="made" id="made">
+          <mat-option [value]="0">100</mat-option>
+          <mat-option [value]="1">75</mat-option>
+          <mat-option [value]="2">50</mat-option>
+          <mat-option [value]="3">25</mat-option>
+          <mat-option [value]="4">0</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <input
+      type="hidden"
+      formControlName="startDate"
+      class="form-control"
+      id="startDate"
+    />
+    <input
+      type="hidden"
+      formControlName="postedOn"
+      class="form-control"
+      id="postedOn"
+    />
+    <input
+      type="hidden"
+      formControlName="userProfileId"
+      id="userProfileId"
+    />
+    <button type="submit" color="primary" mat-raised-button [disabled]="!importantForm.valid">Submit</button>
+    <button
+      type="button"
+      color="warn" mat-raised-button
+      *ngIf="editMode"
+      ng-confirm-click="Confirm unfavorite?"
+      (click)="onDelete()">Delete</button>
+  </form>  
+</mat-card>

@@ -17,6 +17,7 @@ import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { TimeService } from "../../services/data/time.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR } from "../../app.constants";
 
 @Component({
   selector: "app-important-edit",
@@ -27,8 +28,18 @@ export class ImportantEditComponent implements OnInit {
   editMode = false;
 
   id: number;
+  title: string;
+  body: string;
+  made: number;
+  readonly made_codes = MADE_CODES;
+  readonly title_length_validator = TITLE_LENGTH_VALIDATOR;
+  readonly title_required_validator = TITLE_REQUIRED_VALIDATOR;
+  readonly body_length_validator = BODY_LENGTH_VALIDATOR;
+  readonly body_required_validator = BODY_REQUIRED_VALIDATOR;
+
   importantForm: FormGroup;
   num: number;
+  target: string;
 
   date: Date;
   username: string;
@@ -70,6 +81,8 @@ export class ImportantEditComponent implements OnInit {
 
     this.selectedDate = new Date();
 
+    console.log("Username: " + this.username);
+
     this.returnUrl = "/important/" + this.year + "/" + this.month;
 
     // parameters from url
@@ -77,6 +90,7 @@ export class ImportantEditComponent implements OnInit {
       this.id = +params["id"];
       this.editMode = params["id"] != null;
       this.num = +params["num"];
+      // this.target = params["target"];
     });
     if (!this.editMode) {
       this.route.params.subscribe(params => {
@@ -100,7 +114,7 @@ export class ImportantEditComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     }
-    this.initForm(this.startDate);
+    this.initForm(this.startDate, this.postedOn, this.username);
   }
 
   private redirectMsg() {
@@ -109,6 +123,7 @@ export class ImportantEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
+      console.log("ID: " + this.id);
       this.importantService
         .updateImportantTask(
           this.username,
@@ -127,6 +142,7 @@ export class ImportantEditComponent implements OnInit {
           }
         );
     } else {
+      console.log("MPORTANT VALUE: " + this.importantForm.value);
       this.importantService
         .createImportantTask(this.username, this.num, this.importantForm.value)
         .subscribe(
@@ -164,29 +180,36 @@ export class ImportantEditComponent implements OnInit {
     }
   }
 
-  private initForm(startDate: string) {
-    const id = "";
-    const title = "";
-    const body = "";
-    const made = +"";
-    const postedOn = "";
-    const userProfileId = "";
+  private initForm(startDate: string, postedOn: string, username: string) {
+    const id = this.id;
+    const title = this.title;
+    const body = this.body;
+    const made = this.made;
+
+    this.importantForm = new FormGroup({
+      id: new FormControl(id),
+      title: new FormControl(title, [Validators.required, Validators.maxLength(40)]),
+      body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
+      made: new FormControl(made, Validators.required),
+      startDate: new FormControl(startDate, Validators.required),
+      postedOn: new FormControl(postedOn, Validators.required),
+      userProfileId: new FormControl(username, Validators.required)
+    });
 
     if (this.editMode) {
       this.importantService
         .getImportantTask(this.username, this.num, this.id)
         .subscribe(
           important => {
-            this.importantForm.get("id").setValue(important.id);
-            this.importantForm.get("title").setValue(important.title);
-            this.importantForm.get("body").setValue(important.body);
-            this.importantForm.get("made").setValue(important.made);
-            this.importantForm.get("startDate").setValue(important.startDate);
-            this.importantForm
-              .get("postedOn")
-              .setValue(
-                this.datepipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss")
-              );
+            this.importantForm.setValue({
+              "id": this.id,
+              "title": important.title,
+              "body": important.body,
+              "made": this.made_codes[important.made],
+              "startDate": important.startDate,
+              "postedOn": this.datepipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss"),
+              "userProfileId": this.username
+            });
           },
           error => {
             this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -200,31 +223,5 @@ export class ImportantEditComponent implements OnInit {
       );
       this.userProfileId = this.username;
     }
-
-    this.importantForm = new FormBuilder().group({
-      "id": this.id,
-      "title": [title, Validators.required, Validators.maxLength(40)],
-      "body": [body, Validators.required, Validators.maxLength(255)],
-      "made": made,
-      "startDate": [startDate, Validators.required],
-      "postedOn": [postedOn, Validators.required],
-      "userProfileId": [userProfileId, Validators.required]
-    });
-
-    // this.importantForm = new FormGroup({
-    //   id: new FormControl(id),
-    //   title: new FormControl(title, [
-    //     Validators.required,
-    //     Validators.maxLength(40)
-    //   ]),
-    //   body: new FormControl(body, [
-    //     Validators.required,
-    //     Validators.maxLength(255)
-    //   ]),
-    //   made: new FormControl(made, Validators.required),
-    //   startDate: new FormControl(startDate, Validators.required),
-    //   postedOn: new FormControl(postedOn, Validators.required),
-    //   userProfileId: new FormControl(userProfileId, Validators.required)
-    // });
   }
 }

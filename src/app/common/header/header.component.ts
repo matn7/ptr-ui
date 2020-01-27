@@ -3,14 +3,10 @@ import {
   OnInit,
   HostListener,
   HostBinding,
-  EventEmitter,
-  Output
 } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
 import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material';
 
 @Component({
   selector: "app-header",

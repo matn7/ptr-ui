@@ -40,6 +40,11 @@ export class LoginComponent implements OnInit {
   }
 
   handleJWTAuthLogin() {
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+
+    console.log(">>>>> username: " + this.username);
+
     this.authenticationService
       .executeJWTAuthenticationService(this.username, this.password)
       .subscribe(
@@ -72,8 +77,8 @@ export class LoginComponent implements OnInit {
   }
 
   private initForm() {
-    const username = "";
-    const password = "";
+    const username = this.username;
+    const password = this.password;
 
     this.loginForm = new FormGroup({
       username: new FormControl(username, Validators.required),

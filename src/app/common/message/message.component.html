@@ -1,4 +1,4 @@
-<div class="alert alert-warning" *ngIf="isDateInFutureMsg || isMsgFromBackend">
-  {{ errorMessage }}
-  <span class="pull-right" style="cursor: pointer" (click)="reset()">x</span>
-</div>
+<mat-card class="yellow" *ngIf="isDateInFutureMsg || isMsgFromBackend">
+        {{ errorMessage }} <mat-icon style="position: right" (click)="reset()">close</mat-icon>
+</mat-card>
+

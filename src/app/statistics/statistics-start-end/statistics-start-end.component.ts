@@ -21,10 +21,6 @@ export class StatisticsStartEndComponent implements OnInit {
   columnChart: Chart;
   myColumnChart: PtrColumnChart;
   startEndDateRequest: StartEndDateRequest;
-  // {
-  //   "startDate": "2019-10-01",
-  //   "endDate": "2019-11-01"
-  // }
   num: number;
   returnUrl: string;
   startDate: string;
