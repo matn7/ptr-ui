@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, Output, EventEmitter  } from "@angular
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from "@angular/router";
 import { WeekDay } from "@angular/common";
-import { ImportantService } from "../../services/important.service";
+import { TaskService } from "../../services/task.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { Important } from "../important.model";
 import { HandleErrorsService } from "../../services/handle-errors.service";
@@ -14,10 +14,9 @@ import { GREEN_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, BLUE_COMPLETION_STYL
 
 @Component({
   selector: "app-important-index",
-  templateUrl: "./important-index.component.html",
-  styleUrls: ["./important-index.component.css"]
+  templateUrl: "./task-index.component.html"
 })
-export class ImportantIndexComponent implements OnInit {
+export class TaskIndexComponent implements OnInit {
   selectDate: FormGroup;
   month: number;
   year: number;
@@ -41,7 +40,7 @@ export class ImportantIndexComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private importantIndexService: ImportantService,
+    private importantIndexService: TaskService,
     private handleError: HandleErrorsService,
     private authService: AuthenticationService,
     private toggleService: ToggleService,

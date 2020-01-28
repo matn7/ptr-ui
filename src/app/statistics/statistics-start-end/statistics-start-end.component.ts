@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsImportantService } from "../../services/statistics.important.service";
+import { StatisticsTaskService } from "../../services/statistics.important.service";
 import { Chart } from "angular-highcharts";
 import { PtrColumnChart } from "../ptr-column-chart";
 import { AuthenticationService } from "../../services/authentication.service";
@@ -36,7 +36,7 @@ export class StatisticsStartEndComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private statisticsImportantService: StatisticsImportantService,
+    private statisticsTaskService: StatisticsTaskService,
     private authService: AuthenticationService,
     private datepipe: DatePipe,
     private customErrorMsgService: CustomErrorMessageService,
@@ -70,7 +70,7 @@ export class StatisticsStartEndComponent implements OnInit {
 
     this.startEndDateRequest = new StartEndDateRequest(this.startDate, this.endDate);
 
-    this.statisticsImportantService
+    this.statisticsTaskService
       .getImportantStartEnd(this.username, this.num,
         this.startEndDateRequest)
         .subscribe(
@@ -113,7 +113,7 @@ export class StatisticsStartEndComponent implements OnInit {
     this.startEndDateRequest.startDate = this.startDate;
     this.startEndDateRequest.endDate = this.endDate;
 
-    this.statisticsImportantService
+    this.statisticsTaskService
       .getImportantStartEnd(this.username, this.num,
       this.startEndDateRequest)
       .subscribe(

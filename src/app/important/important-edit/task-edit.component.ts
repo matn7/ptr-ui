@@ -10,7 +10,7 @@ import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
-import { ImportantService } from "../../services/important.service";
+import { TaskService } from "../../services/task.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
@@ -21,10 +21,9 @@ import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENG
 
 @Component({
   selector: "app-important-edit",
-  templateUrl: "./important-edit.component.html",
-  styleUrls: ["./important-edit.component.css"]
+  templateUrl: "./task-edit.component.html"
 })
-export class ImportantEditComponent implements OnInit {
+export class TaskEditComponent implements OnInit {
   editMode = false;
 
   id: number;
@@ -60,7 +59,7 @@ export class ImportantEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private importantService: ImportantService,
+    private TaskService: TaskService,
     private datepipe: DatePipe,
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
@@ -116,7 +115,7 @@ export class ImportantEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       console.log("ID: " + this.id);
-      this.importantService
+      this.TaskService
         .updateImportantTask(
           this.username,
           this.target,
@@ -135,7 +134,7 @@ export class ImportantEditComponent implements OnInit {
           }
         );
     } else {
-      this.importantService
+      this.TaskService
         .createImportantTask(this.username, this.target, this.num, this.importantForm.value)
         .subscribe(
           response => {
@@ -157,7 +156,7 @@ export class ImportantEditComponent implements OnInit {
 
   onDelete() {
     if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
-      this.importantService
+      this.TaskService
         .deleteImportantTask(this.username, this.target, this.num, this.id)
         .subscribe(
           response => {
@@ -189,7 +188,7 @@ export class ImportantEditComponent implements OnInit {
     });
 
     if (this.editMode) {
-      this.importantService
+      this.TaskService
         .getImportantTask(this.username, this.target, this.num, this.id)
         .subscribe(
           important => {

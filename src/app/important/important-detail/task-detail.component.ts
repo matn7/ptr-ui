@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ImportantService } from "../../services/important.service";
+import { TaskService } from "../../services/task.service";
 import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
@@ -8,10 +8,9 @@ import { CustomErrorMessageService } from "../../services/data/custom-error-mess
 
 @Component({
   selector: "app-important-detail",
-  templateUrl: "./important-detail.component.html",
-  styleUrls: ["./important-detail.component.css"]
+  templateUrl: "./task-detail.component.html"
 })
-export class ImportantDetailComponent implements OnInit {
+export class TaskDetailComponent implements OnInit {
   id: number;
   num: number;
   username: string;
@@ -26,7 +25,7 @@ export class ImportantDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ImportantService,
+    private service: TaskService,
     private handleError: HandleErrorsService,
     private authService: AuthenticationService,
     private appInternalMessageService: AppInternalMessagesService,

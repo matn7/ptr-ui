@@ -4,7 +4,7 @@ import { API_URL, API_VERSION } from "../app.constants";
 import { HandleErrorsService } from "./handle-errors.service";
 
 @Injectable()
-export class StatisticsImportantService {
+export class StatisticsTaskService {
   month: number;
   year: number;
 

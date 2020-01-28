@@ -10,8 +10,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ImportantService } from "./services/important.service";
-import { ImportantModule } from "./important/important.module";
+import { TaskService } from "./services/task.service";
 import { ExtraordinaryComponent } from "./extraordinary/extraordinary.component";
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
 import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
@@ -19,14 +18,14 @@ import { ExtraordinaryService } from "./services/extraordinary.service";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
 import { ChartModule } from "angular-highcharts";
-import { StatisticsImportantService } from "./services/statistics.important.service";
+import { StatisticsTaskService } from "./services/statistics.important.service";
 import { LoginComponent } from "./login/login.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { StatisticsLessImportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
-import { StatisticsLessImportantService } from "./services/statistics.lessimportant.service";
+import { StatisticsLessTaskService } from "./services/statistics.lessimportant.service";
 import { LogoutComponent } from "./logout/logout.component";
 import { HandleErrorsService } from "./services/handle-errors.service";
 import { RegistrationComponent } from "./registration/registration.component";
@@ -55,9 +54,9 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MatComponentsModule } from "src/app/mat-components.module";
 import { ImportantComponent } from "./important/important.component";
-import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
-import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
-import { ImportantIndexComponent } from "./important/important-index/important-index.component";
+import { TaskEditComponent } from "./important/important-edit/task-edit.component";
+import { TaskDetailComponent } from "./important/important-detail/task-detail.component";
+import { TaskIndexComponent } from "./important/important-index/task-index.component";
 import { UserService } from "./services/user.service";
 import { AdminComponent } from './admin/admin.component';
 import { AdminUserService } from "./services/admin/admin-user.service";
@@ -78,9 +77,9 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
     ExtraordinaryEditComponent,
     ExtraordinaryDetailComponent,
     ImportantComponent,
-    ImportantIndexComponent,
-    ImportantEditComponent,
-    ImportantDetailComponent,
+    TaskIndexComponent,
+    TaskEditComponent,
+    TaskDetailComponent,
     StatisticsComponent,
     StatisticsImportantComponent,
     LoginComponent,
@@ -117,10 +116,10 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
   ],
   providers: [
     DaysService,
-    ImportantService,
+    TaskService,
     ExtraordinaryService,
-    StatisticsImportantService,
-    StatisticsLessImportantService,
+    StatisticsTaskService,
+    StatisticsLessTaskService,
     RegistrationService,
     HandleErrorsService,
     ToggleService,

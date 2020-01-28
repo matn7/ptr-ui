@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, HostBinding } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { StatisticsImportantService } from "../../services/statistics.important.service";
+import { StatisticsTaskService } from "../../services/statistics.important.service";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "../../services/authentication.service";
@@ -54,7 +54,7 @@ export class StatisticsImportantComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private statisticsImportantService: StatisticsImportantService,
+    private statisticsTaskService: StatisticsTaskService,
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
     private toggleService: ToggleService,
@@ -86,7 +86,7 @@ export class StatisticsImportantComponent implements OnInit {
 
     this.initForm();
 
-    this.statisticsImportantService
+    this.statisticsTaskService
       .getImportantTaskCount(this.username, 1, this.year)
       .subscribe(
         count => {
@@ -102,7 +102,7 @@ export class StatisticsImportantComponent implements OnInit {
         }
       );
 
-    this.importantTask1Avg = this.statisticsImportantService
+    this.importantTask1Avg = this.statisticsTaskService
       .getImportantTaskAvg(this.username, 1, this.year)
       .subscribe(
         avg => {
@@ -139,7 +139,7 @@ export class StatisticsImportantComponent implements OnInit {
     this.num = this.selectDate.value.selectTask;
     this.myMap.clear();
     
-    this.importantTask1Count = this.statisticsImportantService
+    this.importantTask1Count = this.statisticsTaskService
       .getImportantTaskCount(this.username, this.num, this.year)
       .subscribe(
         count => {
@@ -175,7 +175,7 @@ export class StatisticsImportantComponent implements OnInit {
       this.colors = this.blue_colors;
     }
 
-    this.statisticsImportantService
+    this.statisticsTaskService
       .getImportantTaskAvg(this.username, this.num, this.year)
       .subscribe(
         avg => {

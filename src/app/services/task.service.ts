@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { RequestOptions, Headers } from "@angular/http";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
+
 import { Important } from "../important/important.model";
 import { HandleErrorsService } from "./handle-errors.service";
 
 @Injectable({
   providedIn: "root"
 })
-export class ImportantService {
+export class TaskService {
   month: number;
   year: number;
 

@@ -4,9 +4,9 @@ import { NgModule, Component } from "@angular/core";
 import { DaysComponent } from "./days/days.component";
 import { DaysDetailComponent } from "./days/days-detail/days-detail.component";
 import { DaysEditComponent } from "./days/days-edit/days-edit.component";
-import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
-import { ImportantIndexComponent } from "./important/important-index/important-index.component";
-import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
+import { TaskEditComponent } from "./important/important-edit/task-edit.component";
+import { TaskIndexComponent } from "./important/important-index/task-index.component";
+import { TaskDetailComponent } from "./important/important-detail/task-detail.component";
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
 import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
@@ -59,22 +59,22 @@ const appRoutes: Routes = [
   },
   {
     path: ":target/:year/:month",
-    component: ImportantIndexComponent,
+    component: TaskIndexComponent,
     canActivate: [RouteGuardService]
   },
   {
     path: ":target/:num/:year/:month/:day/new",
-    component: ImportantEditComponent,
+    component: TaskEditComponent,
     canActivate: [RouteGuardService]
   },
   {
     path: ":target/:num/:id/edit",
-    component: ImportantEditComponent,
+    component: TaskEditComponent,
     canActivate: [RouteGuardService]
   },
   {
     path: ":target/:num/:id/view",
-    component: ImportantDetailComponent,
+    component: TaskDetailComponent,
     canActivate: [RouteGuardService]
   },
   {

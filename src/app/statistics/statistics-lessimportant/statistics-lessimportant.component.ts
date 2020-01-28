@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "../../services/authentication.service";
-import { StatisticsLessImportantService } from "../../services/statistics.lessimportant.service";
+import { StatisticsLessTaskService } from "../../services/statistics.lessimportant.service";
 import { ToggleService } from "../../services/data/toggle.service";
 import { PtrPieChart } from "../ptr-pie-chart";
 import { PtrColumnChart } from "../ptr-column-chart";
@@ -56,7 +56,7 @@ export class StatisticsLessImportantComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private statisticsLessImportantService: StatisticsLessImportantService,
+    private statisticsLessTaskService: StatisticsLessTaskService,
     private authService: AuthenticationService,
     private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService
@@ -96,7 +96,7 @@ export class StatisticsLessImportantComponent implements OnInit {
 
     this.initForm();
 
-    this.statisticsLessImportantService
+    this.statisticsLessTaskService
       .getLessImportantTaskCount(this.username, 1, this.year)
       .subscribe(
         count => {
@@ -112,7 +112,7 @@ export class StatisticsLessImportantComponent implements OnInit {
         }
       );
 
-    this.statisticsLessImportantService
+    this.statisticsLessTaskService
       .getLessImportantTaskAvg(this.username, 1, this.year)
       .subscribe(
         avg => {
@@ -169,7 +169,7 @@ export class StatisticsLessImportantComponent implements OnInit {
       this.colors = this.blue_colors;
     }
 
-    this.statisticsLessImportantService
+    this.statisticsLessTaskService
       .getLessImportantTaskCount(this.username, this.num, this.year)
       .subscribe(
         count => {
@@ -185,7 +185,7 @@ export class StatisticsLessImportantComponent implements OnInit {
         }
       );
 
-    this.statisticsLessImportantService
+    this.statisticsLessTaskService
       .getLessImportantTaskAvg(this.username, this.num, this.year)
       .subscribe(
         avg => {
