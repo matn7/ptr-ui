@@ -16,11 +16,6 @@ import { ExtraordinaryComponent } from "./extraordinary/extraordinary.component"
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
 import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
 import { ExtraordinaryService } from "./services/extraordinary.service";
-import { LessimportantComponent } from "./lessimportant/lessimportant.component";
-import { LessimportantIndexComponent } from "./lessimportant/lessimportant-index/lessimportant-index.component";
-import { LessimportantEditComponent } from "./lessimportant/lessimportant-edit/lessimportant-edit.component";
-import { LessimportantDetailComponent } from "./lessimportant/lessimportant-detail/lessimportant-detail.component";
-import { LessImportantService } from "./services/lessimportant.service";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
 import { ChartModule } from "angular-highcharts";
@@ -82,10 +77,6 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
     ExtraordinaryComponent,
     ExtraordinaryEditComponent,
     ExtraordinaryDetailComponent,
-    LessimportantComponent,
-    LessimportantIndexComponent,
-    LessimportantEditComponent,
-    LessimportantDetailComponent,
     ImportantComponent,
     ImportantIndexComponent,
     ImportantEditComponent,
@@ -127,7 +118,6 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
   providers: [
     DaysService,
     ImportantService,
-    LessImportantService,
     ExtraordinaryService,
     StatisticsImportantService,
     StatisticsLessImportantService,

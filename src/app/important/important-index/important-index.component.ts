@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, Output, EventEmitter  } from "@angular/core";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from "@angular/router";
 import { WeekDay } from "@angular/common";
 import { ImportantService } from "../../services/important.service";
 import { AuthenticationService } from "../../services/authentication.service";
@@ -21,6 +21,7 @@ export class ImportantIndexComponent implements OnInit {
   selectDate: FormGroup;
   month: number;
   year: number;
+  target: string;
   day: number;
   daysInMonth: number;
   date: Date;
@@ -47,7 +48,14 @@ export class ImportantIndexComponent implements OnInit {
     private timeService: TimeService,
     private appInternalMessageService: AppInternalMessagesService,
     private customErrorMsgService: CustomErrorMessageService
-  ) {}
+  ) {
+    router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        console.log("NAVIGATION");
+        this.ngOnInit();
+      }
+    })
+  }
 
   ngOnInit() {
     // set important route active
@@ -56,9 +64,12 @@ export class ImportantIndexComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.month = +params["month"];
       this.year = +params["year"];
+      this.target = params["target"];
     });
 
-    this.returnUrl = "/important/" + this.year + "/" + this.month;
+    console.log("TARGET: " + this.target);
+
+    this.returnUrl = "/" + this.target + "/" + this.year + "/" + this.month;
 
     this.daysInMonth = new Date(this.year, this.month, 0).getDate();
     this.today = new Date().getDay();
@@ -81,7 +92,7 @@ export class ImportantIndexComponent implements OnInit {
       );
 
     this.importantIndexService
-      .getImportantIndexData(this.username, this.year, this.month)
+      .getImportantIndexData(this.username, this.target, this.year, this.month)
       .subscribe(
         data => {
           this.importantIndexData = data;
@@ -118,7 +129,7 @@ export class ImportantIndexComponent implements OnInit {
     );
 
     this.importantIndexService
-      .getImportantIndexData(this.username, this.year, this.month)
+      .getImportantIndexData(this.username, this.target, this.year, this.month)
       .subscribe(
         data => {
           console.log(data);
@@ -147,14 +158,14 @@ export class ImportantIndexComponent implements OnInit {
     this.router.navigate(["/extraordinary/" + id + "/edit"]);
   }
 
-  onAddNewClick(num, year, month, day) {
+  onAddNewClick(target, num, year, month, day) {
     this.router.navigate([
-      "/important/" + num + "/" + year + "/" + month + "/" + day + "/new"
+      "/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
     ]);
   }
 
-  onEditClick(num, id) {
-    this.router.navigate(["/important/" + num + "/" + id + "/edit"]);
+  onEditClick(target, num, id) {
+    this.router.navigate(["/" + target + "/" + num + "/" + id + "/edit"]);
   }
 
   onAddDayClick(year, month, day) {

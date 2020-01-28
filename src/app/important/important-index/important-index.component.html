@@ -25,7 +25,6 @@
   </mat-form-field>
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
-
 <mat-grid-list cols="5" rowHeight="2:1" *ngIf="importantIndexData">
   <ng-container *ngFor="let num of numbers">
     <mat-grid-tile [style.background]="today === num + 1 ? '#B0DDBD' : ''"
@@ -39,9 +38,9 @@
     <mat-grid-tile (click)="
       !importantIndexData[num][2]
         ? num + 1 <= today || today == -1
-        ? onAddNewClick(1, year, month, num + 1)
+        ? onAddNewClick(target, 1, year, month, num + 1)
         : ''
-        : onEditClick(1, importantIndexData[num][2])"
+        : onEditClick(target, 1, importantIndexData[num][2])"
         [style.background]="green_completion_styles[importantIndexData[num][3]]"
         [ngClass]="{pandatronik_navigate_green: num + 1 <= today || today == -1}"
         title="{{ importantIndexData[num][4] }}">
@@ -50,9 +49,9 @@
     <mat-grid-tile (click)="
       !importantIndexData[num][5]
         ? num + 1 <= today || today == -1
-        ? onAddNewClick(2, year, month, num + 1)
+        ? onAddNewClick(target, 2, year, month, num + 1)
         : ''
-        : onEditClick(2, importantIndexData[num][5])"
+        : onEditClick(target, 2, importantIndexData[num][5])"
         [style.background]="yellow_completion_styles[importantIndexData[num][6]]"
         [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}"
         title="{{ importantIndexData[num][7] }}">
@@ -62,7 +61,7 @@
         ? num + 1 <= today || today == -1
         ? onAddNewClick(3, year, month, num + 1)
         : ''
-        : onEditClick(3, importantIndexData[num][8])"
+        : onEditClick(target, 3, importantIndexData[num][8])"
         [style.background]="blue_completion_styles[importantIndexData[num][9]]"
         [ngClass]="{pandatronik_navigate_blue: num + 1 <= today || today == -1}"
         title="{{ importantIndexData[num][10] }}">

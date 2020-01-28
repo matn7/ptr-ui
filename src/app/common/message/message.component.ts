@@ -41,7 +41,6 @@ export class MessageComponent implements OnInit {
   }
 
   reset() {
-    console.log("CLICKED");
     this.isDateInFutureMsg = false;
     this.isMsgFromBackend = false;
   }

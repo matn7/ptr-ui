@@ -9,9 +9,6 @@ import { ImportantIndexComponent } from "./important/important-index/important-i
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
 import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
-import { LessimportantIndexComponent } from "./lessimportant/lessimportant-index/lessimportant-index.component";
-import { LessimportantEditComponent } from "./lessimportant/lessimportant-edit/lessimportant-edit.component";
-import { LessimportantDetailComponent } from "./lessimportant/lessimportant-detail/lessimportant-detail.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
 import { LoginComponent } from "./login/login.component";
 import { RouteGuardService } from "./services/route-guard.service";
@@ -61,43 +58,23 @@ const appRoutes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: "important/:year/:month",
+    path: ":target/:year/:month",
     component: ImportantIndexComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: "important/:num/:year/:month/:day/new",
+    path: ":target/:num/:year/:month/:day/new",
     component: ImportantEditComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: "important/:num/:id/edit",
+    path: ":target/:num/:id/edit",
     component: ImportantEditComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: "important/:num/:id/view",
+    path: ":target/:num/:id/view",
     component: ImportantDetailComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "lessimportant/:year/:month",
-    component: LessimportantIndexComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "lessimportant/:num/:year/:month/:day/new",
-    component: LessimportantEditComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "lessimportant/:num/:id/edit",
-    component: LessimportantEditComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "lessimportant/:num/:id/view",
-    component: LessimportantDetailComponent,
     canActivate: [RouteGuardService]
   },
   {

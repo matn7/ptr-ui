@@ -20,6 +20,7 @@ export class ImportantDetailComponent implements OnInit {
   year: number;
   date: Date;
   errorMessage: string;
+  target: string;
 
   important: any;
 
@@ -37,13 +38,14 @@ export class ImportantDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params["id"];
       this.num = +params["num"];
+      this.target = params["target"];
     });
     this.date = new Date();
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
     this.returnUrl = "/important/" + this.year + "/" + this.month;
     this.important = this.service
-      .getImportantTask(this.username, this.num, this.id)
+      .getImportantTask(this.username, this.target, this.num, this.id)
       .subscribe(
         important => {
           this.important = important;

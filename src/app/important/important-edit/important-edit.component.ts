@@ -17,7 +17,7 @@ import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { TimeService } from "../../services/data/time.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
-import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR } from "../../app.constants";
+import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";
 
 @Component({
   selector: "app-important-edit",
@@ -81,30 +81,22 @@ export class ImportantEditComponent implements OnInit {
 
     this.selectedDate = new Date();
 
-    console.log("Username: " + this.username);
-
-    this.returnUrl = "/important/" + this.year + "/" + this.month;
+    this.returnUrl = "/" + this.target + "/" + this.year + "/" + this.month;
 
     // parameters from url
     this.route.params.subscribe((params: Params) => {
       this.id = +params["id"];
       this.editMode = params["id"] != null;
       this.num = +params["num"];
-      // this.target = params["target"];
+      this.target = params["target"];
     });
     if (!this.editMode) {
       this.route.params.subscribe(params => {
         this.day = +params["day"];
         this.month = +params["month"];
         this.year = +params["year"];
-        this.startDate = this.datepipe.transform(
-          new Date(this.year, this.month - 1, this.day),
-          "yyyy-MM-dd"
-        );
-        this.postedOn = this.datepipe.transform(
-          new Date(),
-          "yyyy-MM-ddTHH:mm:ss"
-        );
+        this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
+        this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
       },
       error => {
         this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -127,6 +119,7 @@ export class ImportantEditComponent implements OnInit {
       this.importantService
         .updateImportantTask(
           this.username,
+          this.target,
           this.num,
           this.id,
           this.importantForm.value
@@ -134,7 +127,7 @@ export class ImportantEditComponent implements OnInit {
         .subscribe(
           response => {
             this.router.navigate([
-              "/important/" + this.num + "/" + response["id"] + "/view"
+              "/" + this.target + "/" + this.num + "/" + response["id"] + "/view"
             ]);
           },
           error => {
@@ -142,13 +135,12 @@ export class ImportantEditComponent implements OnInit {
           }
         );
     } else {
-      console.log("MPORTANT VALUE: " + this.importantForm.value);
       this.importantService
-        .createImportantTask(this.username, this.num, this.importantForm.value)
+        .createImportantTask(this.username, this.target, this.num, this.importantForm.value)
         .subscribe(
           response => {
             this.router.navigate([
-              "/important/" + this.num + "/" + response["id"] + "/view"
+              "/" + this.target + "/" + this.num + "/" + response["id"] + "/view"
             ]);
           },
           error => {
@@ -166,11 +158,11 @@ export class ImportantEditComponent implements OnInit {
   onDelete() {
     if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
       this.importantService
-        .deleteImportantTask(this.username, this.num, this.id)
+        .deleteImportantTask(this.username, this.target, this.num, this.id)
         .subscribe(
           response => {
             this.router.navigate([
-              "/important/" + this.year + "/" + this.month
+              "/" + this.target + "/" + this.year + "/" + this.month
             ]);
           },
           error => {
@@ -198,7 +190,7 @@ export class ImportantEditComponent implements OnInit {
 
     if (this.editMode) {
       this.importantService
-        .getImportantTask(this.username, this.num, this.id)
+        .getImportantTask(this.username, this.target, this.num, this.id)
         .subscribe(
           important => {
             this.importantForm.setValue({
@@ -207,7 +199,7 @@ export class ImportantEditComponent implements OnInit {
               "body": important.body,
               "made": this.made_codes[important.made],
               "startDate": important.startDate,
-              "postedOn": this.datepipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss"),
+              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT),
               "userProfileId": this.username
             });
           },
@@ -216,11 +208,8 @@ export class ImportantEditComponent implements OnInit {
           }
         );
 
-      this.startDate = this.datepipe.transform(new Date(), "yyyy-MM-dd");
-      this.postedOn = this.datepipe.transform(
-        new Date(),
-        "yyyy-MM-ddTHH:mm:ss"
-      );
+      this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+      this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
       this.userProfileId = this.username;
     }
   }

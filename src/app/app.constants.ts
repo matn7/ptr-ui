@@ -95,3 +95,6 @@ export const TITLE_LENGTH_VALIDATOR = "The title field max length is 40 characte
 export const TITLE_REQUIRED_VALIDATOR = "The title field is required";
 export const BODY_LENGTH_VALIDATOR = "The body field max length is 255 characters";
 export const BODY_REQUIRED_VALIDATOR = "The body field is required";
+
+export const DETAIL_DATE_FORMAT = "yyyy-MM-ddTHH:mm:ss";
+export const DATE_FORMAT = "yyyy-MM-dd";
