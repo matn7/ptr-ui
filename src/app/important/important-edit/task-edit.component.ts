@@ -116,7 +116,7 @@ export class TaskEditComponent implements OnInit {
     if (this.editMode) {
       console.log("ID: " + this.id);
       this.TaskService
-        .updateImportantTask(
+        .updateTask(
           this.username,
           this.target,
           this.num,
@@ -135,7 +135,7 @@ export class TaskEditComponent implements OnInit {
         );
     } else {
       this.TaskService
-        .createImportantTask(this.username, this.target, this.num, this.importantForm.value)
+        .createTask(this.username, this.target, this.num, this.importantForm.value)
         .subscribe(
           response => {
             this.router.navigate([
@@ -157,7 +157,7 @@ export class TaskEditComponent implements OnInit {
   onDelete() {
     if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
       this.TaskService
-        .deleteImportantTask(this.username, this.target, this.num, this.id)
+        .deleteTask(this.username, this.target, this.num, this.id)
         .subscribe(
           response => {
             this.router.navigate([
@@ -189,7 +189,7 @@ export class TaskEditComponent implements OnInit {
 
     if (this.editMode) {
       this.TaskService
-        .getImportantTask(this.username, this.target, this.num, this.id)
+        .getTask(this.username, this.target, this.num, this.id)
         .subscribe(
           important => {
             this.importantForm.setValue({

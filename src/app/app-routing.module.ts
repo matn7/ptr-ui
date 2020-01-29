@@ -13,7 +13,6 @@ import { StatisticsImportantComponent } from "./statistics/statistics-important/
 import { LoginComponent } from "./login/login.component";
 import { RouteGuardService } from "./services/route-guard.service";
 import { ErrorComponent } from "./error/error.component";
-import { StatisticsLessImportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { ExtraordinaryComponent } from "./extraordinary/extraordinary.component";
@@ -123,13 +122,8 @@ const appRoutes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: "statistics/important/:num/:year",
+    path: "statistics/:target/:num/:year",
     component: StatisticsImportantComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "statistics/lessimportant/:num/:year",
-    component: StatisticsLessImportantComponent,
     canActivate: [RouteGuardService]
   },
   {

@@ -44,7 +44,7 @@ export class TaskDetailComponent implements OnInit {
     this.year = this.date.getFullYear();
     this.returnUrl = "/important/" + this.year + "/" + this.month;
     this.important = this.service
-      .getImportantTask(this.username, this.target, this.num, this.id)
+      .getTask(this.username, this.target, this.num, this.id)
       .subscribe(
         important => {
           this.important = important;

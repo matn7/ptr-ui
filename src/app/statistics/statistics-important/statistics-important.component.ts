@@ -41,6 +41,7 @@ export class StatisticsImportantComponent implements OnInit {
 
   errorMessage: string;
   returnUrl: string;
+  target: string;
 
   myMap: Map<number, number>;
 
@@ -74,6 +75,7 @@ export class StatisticsImportantComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.year = +params["year"];
       this.num = +params["num"];
+      this.target = params["target"];
     });
 
     this.title = "Important task " + this.num;
@@ -87,7 +89,7 @@ export class StatisticsImportantComponent implements OnInit {
     this.initForm();
 
     this.statisticsTaskService
-      .getImportantTaskCount(this.username, 1, this.year)
+      .getImportantTaskCount(this.username, this.target, 1, this.year)
       .subscribe(
         count => {
           this.importantTask1Count = count;
@@ -103,7 +105,7 @@ export class StatisticsImportantComponent implements OnInit {
       );
 
     this.importantTask1Avg = this.statisticsTaskService
-      .getImportantTaskAvg(this.username, 1, this.year)
+      .getImportantTaskAvg(this.username, this.target, 1, this.year)
       .subscribe(
         avg => {
           this.importantTask1Avg = avg;
@@ -140,7 +142,7 @@ export class StatisticsImportantComponent implements OnInit {
     this.myMap.clear();
     
     this.importantTask1Count = this.statisticsTaskService
-      .getImportantTaskCount(this.username, this.num, this.year)
+      .getImportantTaskCount(this.username, this.target, this.num, this.year)
       .subscribe(
         count => {
           this.importantTask1Count = count;
@@ -176,7 +178,7 @@ export class StatisticsImportantComponent implements OnInit {
     }
 
     this.statisticsTaskService
-      .getImportantTaskAvg(this.username, this.num, this.year)
+      .getImportantTaskAvg(this.username, this.target, this.num, this.year)
       .subscribe(
         avg => {
           this.importantTask1Avg = avg;

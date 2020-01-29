@@ -13,28 +13,28 @@ export class StatisticsTaskService {
     private handleErrorService: HandleErrorsService
   ) {}
 
-  getImportantTaskCount(username, num, year) {
+  getImportantTaskCount(username, target, num, year) {
     return this.http
       .get(
-        `${API_URL}/${API_VERSION}/users/${username}/statistics/important/${num}/count/${year}`
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/${target}/${num}/count/${year}`
       )
       .catch(this.handleErrorService.handleError);
   }
 
-  getImportantTaskAvg(username, num, year) {
+  getImportantTaskAvg(username, target, num, year) {
     return this.http
       .get(
-        `${API_URL}/${API_VERSION}/users/${username}/statistics/important/${num}/avg/${year}`
+        `${API_URL}/${API_VERSION}/users/${username}/statistics/${target}/${num}/avg/${year}`
       )
       .catch(this.handleErrorService.handleError);
   }
 
-  getImportantStartEnd(username, num, resource) {
+  getImportantStartEnd(username, component, num, resource) {
     console.log("Resource - startDate: " + resource.startDate);
     console.log("Resource - endDate: " + resource.endDate);
     return this.http
     .post(
-      `${API_URL}/${API_VERSION}/users/${username}/statistics/important/${num}/startEnd`,
+      `${API_URL}/${API_VERSION}/users/${username}/statistics/${component}/${num}/startEnd`,
       resource
     )
     .catch(this.handleErrorService.handleError);

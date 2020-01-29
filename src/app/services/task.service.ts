@@ -18,7 +18,7 @@ export class TaskService {
     private handleErrorService: HandleErrorsService
   ) {}
 
-  getImportantIndexData(username, target, year, month) {
+  getTaskIndexData(username, target, year, month) {
     return this.http
       .get<Important[]>(
         `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
@@ -26,7 +26,7 @@ export class TaskService {
       .catch(this.handleErrorService.handleError);
   }
 
-  getImportantTask(username, target, num, id) {
+  getTask(username, target, num, id) {
     return this.http
       .get<Important>(
         `${API_URL}/${API_VERSION}/users/${username}/${target}/${num}/${id}`
@@ -34,13 +34,13 @@ export class TaskService {
       .catch(this.handleErrorService.handleError);
   }
 
-  createImportantTask(username, target, num, resource) {
+  createTask(username, target, num, resource) {
     return this.http
       .post(`${API_URL}/${API_VERSION}/users/${username}/${target}/${num}`, resource)
       .catch(this.handleErrorService.handleError);
   }
 
-  updateImportantTask(username, target, num, id, resource) {
+  updateTask(username, target, num, id, resource) {
     // JSON.stringify({ isRead: true })
     const headers = new Headers({ "Content-Type": "application/json" });
     const options = new RequestOptions({ headers: headers });
@@ -53,7 +53,7 @@ export class TaskService {
       .catch(this.handleErrorService.handleError);
   }
 
-  deleteImportantTask(username, target, num, id) {
+  deleteTask(username, target, num, id) {
     this.month = new Date().getMonth() + 1;
     this.year = new Date().getFullYear();
     return this.http

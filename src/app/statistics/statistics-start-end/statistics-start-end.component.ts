@@ -71,7 +71,7 @@ export class StatisticsStartEndComponent implements OnInit {
     this.startEndDateRequest = new StartEndDateRequest(this.startDate, this.endDate);
 
     this.statisticsTaskService
-      .getImportantStartEnd(this.username, this.num,
+      .getImportantStartEnd(this.username, this.component, this.num,
         this.startEndDateRequest)
         .subscribe(
           data => {
@@ -114,7 +114,7 @@ export class StatisticsStartEndComponent implements OnInit {
     this.startEndDateRequest.endDate = this.endDate;
 
     this.statisticsTaskService
-      .getImportantStartEnd(this.username, this.num,
+      .getImportantStartEnd(this.username, this.component, this.num,
       this.startEndDateRequest)
       .subscribe(
         data => {

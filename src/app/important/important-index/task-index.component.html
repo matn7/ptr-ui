@@ -25,7 +25,7 @@
   </mat-form-field>
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
-<mat-grid-list cols="5" rowHeight="2:1" *ngIf="importantIndexData">
+<mat-grid-list cols="5" rowHeight="2:1" *ngIf="taskIndexData">
   <ng-container *ngFor="let num of numbers">
     <mat-grid-tile [style.background]="today === num + 1 ? '#B0DDBD' : ''"
         [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}">

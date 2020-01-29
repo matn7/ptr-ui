@@ -24,8 +24,6 @@ import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";
 import { AuthenticationService } from "./services/authentication.service";
-import { StatisticsLessImportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
-import { StatisticsLessTaskService } from "./services/statistics.lessimportant.service";
 import { LogoutComponent } from "./logout/logout.component";
 import { HandleErrorsService } from "./services/handle-errors.service";
 import { RegistrationComponent } from "./registration/registration.component";
@@ -53,7 +51,6 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 // ***
 
 import { MatComponentsModule } from "src/app/mat-components.module";
-import { ImportantComponent } from "./important/important.component";
 import { TaskEditComponent } from "./important/important-edit/task-edit.component";
 import { TaskDetailComponent } from "./important/important-detail/task-detail.component";
 import { TaskIndexComponent } from "./important/important-index/task-index.component";
@@ -76,7 +73,6 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
     ExtraordinaryComponent,
     ExtraordinaryEditComponent,
     ExtraordinaryDetailComponent,
-    ImportantComponent,
     TaskIndexComponent,
     TaskEditComponent,
     TaskDetailComponent,
@@ -85,7 +81,6 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
     LoginComponent,
     WelcomeComponent,
     ErrorComponent,
-    StatisticsLessImportantComponent,
     LogoutComponent,
     RegistrationComponent,
     PasswordResetComponent,
@@ -119,7 +114,6 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
     TaskService,
     ExtraordinaryService,
     StatisticsTaskService,
-    StatisticsLessTaskService,
     RegistrationService,
     HandleErrorsService,
     ToggleService,

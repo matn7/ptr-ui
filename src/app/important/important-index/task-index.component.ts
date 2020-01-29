@@ -27,7 +27,7 @@ export class TaskIndexComponent implements OnInit {
   today: number;
   numbers: Array<number>;
   weekDayArr: Array<string>;
-  importantIndexData: Important[];
+  taskIndexData: Important[];
   username: string;
   errorNumber: number;
   errorMessage: string;
@@ -91,10 +91,10 @@ export class TaskIndexComponent implements OnInit {
       );
 
     this.importantIndexService
-      .getImportantIndexData(this.username, this.target, this.year, this.month)
+      .getTaskIndexData(this.username, this.target, this.year, this.month)
       .subscribe(
         data => {
-          this.importantIndexData = data;
+          this.taskIndexData = data;
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -109,7 +109,7 @@ export class TaskIndexComponent implements OnInit {
     this.month = this.selectDate.value.selectMonth;
 
     // clear index data
-    this.importantIndexData = null;
+    this.taskIndexData = null;
 
     this.daysInMonth = new Date(this.year, this.month, 0).getDate();
     this.numbers = Array(this.daysInMonth)
@@ -128,11 +128,11 @@ export class TaskIndexComponent implements OnInit {
     );
 
     this.importantIndexService
-      .getImportantIndexData(this.username, this.target, this.year, this.month)
+      .getTaskIndexData(this.username, this.target, this.year, this.month)
       .subscribe(
         data => {
           console.log(data);
-          this.importantIndexData = data;
+          this.taskIndexData = data;
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
