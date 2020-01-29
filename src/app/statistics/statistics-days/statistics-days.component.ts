@@ -3,12 +3,10 @@ import { ActivatedRoute, Route, Router } from "@angular/router";
 import { StatisticsDaysService } from "../../services/statistics-days.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
-import { PtrPieChart } from "../ptr-pie-chart";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Chart } from "angular-highcharts";
 import { ToggleService } from "../../services/data/toggle.service";
 import { DateRequest } from "../date-request";
-import { PtrColumnChart } from "../ptr-column-chart";
 import { GREEN_COLORS } from "../../app.constants";
 
 @Component({
@@ -20,8 +18,6 @@ export class StatisticsDaysComponent implements OnInit {
   year: number;
   username: string;
   title: string;
-  myPieChart: PtrPieChart;
-  pieChart: Chart;
   selectDate: FormGroup;
   daysTaskCount: any;
   daysAvg: any;
@@ -30,7 +26,6 @@ export class StatisticsDaysComponent implements OnInit {
   myMap: Map<number, number>;
 
   dateRequest: DateRequest;
-  myColumnChart: PtrColumnChart;
   columnChart: Chart;
 
   constructor(
@@ -44,8 +39,6 @@ export class StatisticsDaysComponent implements OnInit {
 
   ngOnInit() {
     this.toggle();
-    this.myPieChart = new PtrPieChart();
-    this.myColumnChart = new PtrColumnChart();
 
     this.myMap = new Map<number, number>();
 
@@ -66,11 +59,6 @@ export class StatisticsDaysComponent implements OnInit {
       .subscribe(
         count => {
           this.daysTaskCount = count;
-          this.pieChart = this.myPieChart.getPieChart(
-            this.daysTaskCount,
-            this.title,
-            this.green_colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -86,12 +74,6 @@ export class StatisticsDaysComponent implements OnInit {
           this.daysAvg.forEach(element => {
             this.myMap.set(element[0], element[1]);
           });
-
-          this.columnChart = this.myColumnChart.getColumnChart(
-            this.myMap,
-            this.title,
-            this.green_colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -110,11 +92,6 @@ export class StatisticsDaysComponent implements OnInit {
       .subscribe(
         count => {
           this.daysTaskCount = count;
-          this.pieChart = this.myPieChart.getPieChart(
-            this.daysTaskCount,
-            this.title,
-            this.green_colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -129,11 +106,6 @@ export class StatisticsDaysComponent implements OnInit {
           this.daysAvg.forEach(element => {
             this.myMap.set(element[0], element[1]);
           });
-          this.columnChart = this.myColumnChart.getColumnChart(
-            this.myMap,
-            this.title,
-            this.green_colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);

@@ -1,15 +1,12 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { ToggleService } from "../../services/data/toggle.service";
-import { PtrPieChart } from "../ptr-pie-chart";
 import { AuthenticationService } from "../../services/authentication.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DateRequest } from "../date-request";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { StatisticsDaysService } from "../../services/statistics-days.service";
-import { Chart } from "angular-highcharts";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { MONTH_NAMES, GREEN_COLORS } from "../../app.constants";
-import { PtrDaysColumnChart } from "../ptr-days-column-chart";
 import { WeekDay } from "@angular/common";
 
 @Component({
@@ -18,8 +15,6 @@ import { WeekDay } from "@angular/common";
   styleUrls: ["./statistics-days-month.component.css"]
 })
 export class StatisticsDaysMonthComponent implements OnInit {
-  myPieChart: PtrPieChart;
-  myColumnChart: PtrDaysColumnChart;
   username: string;
   green_colors: string[];
   month_names: string[];
@@ -31,8 +26,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
   selectDate: FormGroup;
   daysTaskCount: any;
   daysMonthWeekdays: any;
-  pieChart: Chart;
-  columnChart: Chart;
   monthDay: Array<number>;
   daysInMonth: number;
   weekDayArr: Array<string>;
@@ -52,8 +45,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       this.year = +params["year"];
       this.month = +params["month"];
     });
-    this.myPieChart = new PtrPieChart();
-    this.myColumnChart = new PtrDaysColumnChart();
 
     this.username = this.authService.getAuthenticatedUser();
     this.green_colors = GREEN_COLORS;
@@ -86,11 +77,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
       .subscribe(
         count => {
           this.daysTaskCount = count;
-          this.pieChart = this.myPieChart.getPieChart(
-            this.daysTaskCount,
-            this.title,
-            this.green_colors
-          );
+
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -105,12 +92,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
       .subscribe(
         avg => {
           this.daysMonthWeekdays = avg;
-          this.columnChart = this.myColumnChart.getColumnChart(
-            this.daysMonthWeekdays,
-            this.title,
-            this.green_colors,
-            this.weekDayArr
-          );
+
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -148,11 +130,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
       .subscribe(
         count => {
           this.daysTaskCount = count;
-          this.pieChart = this.myPieChart.getPieChart(
-            this.daysTaskCount,
-            this.title,
-            this.green_colors
-          );
+
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -167,12 +145,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
       .subscribe(
         avg => {
           this.daysMonthWeekdays = avg;
-          this.columnChart = this.myColumnChart.getColumnChart(
-            this.daysMonthWeekdays,
-            this.title,
-            this.green_colors,
-            this.weekDayArr
-          );
+
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticsTaskService } from "../../services/statistics.important.service";
 import { Chart } from "angular-highcharts";
-import { PtrColumnChart } from "../ptr-column-chart";
 import { AuthenticationService } from "../../services/authentication.service";
 import { StartEndDateRequest } from "../start-end-date-request";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -18,8 +17,6 @@ import { GREEN_COLORS } from "../../app.constants";
 export class StatisticsStartEndComponent implements OnInit {
 
   username: string;
-  columnChart: Chart;
-  myColumnChart: PtrColumnChart;
   startEndDateRequest: StartEndDateRequest;
   num: number;
   returnUrl: string;
@@ -61,7 +58,6 @@ export class StatisticsStartEndComponent implements OnInit {
     // "statistics/startend/:component/:num/:startDate/:endDate",
     this.returnUrl = "/statistics/startend/important/1/";
 
-    this.myColumnChart = new PtrColumnChart();
     this.title = this.component;
     this.myMap = new Map<number, number>();
     this.colors = GREEN_COLORS;
@@ -92,11 +88,6 @@ export class StatisticsStartEndComponent implements OnInit {
 
             console.log("myMap >>>>>> " + this.myMap);
 
-            this.columnChart = this.myColumnChart.getStartEndColumnChart(
-              this.myMap,
-              this.title,
-              this.colors
-            );
           },
           error => {
             this.customErrorMsgService.displayMessage(error, this.returnUrl);

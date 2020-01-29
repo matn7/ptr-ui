@@ -6,8 +6,6 @@ import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
-import { PtrPieChart } from "../ptr-pie-chart";
-import { PtrColumnChart } from "../ptr-column-chart";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
 
@@ -29,11 +27,6 @@ export class StatisticsImportantComponent implements OnInit {
   importantTask1Avg: any;
   selectDate: FormGroup;
   selectImportantTask: FormGroup;
-
-  pieChart: Chart;
-  myPieChart: PtrPieChart;
-  columnChart: Chart;
-  myColumnChart: PtrColumnChart;
 
   selectTask: number;
   selectTask2: number;
@@ -68,9 +61,6 @@ export class StatisticsImportantComponent implements OnInit {
 
     this.myMap = new Map<number, number>();
 
-    this.myPieChart = new PtrPieChart();
-    this.myColumnChart = new PtrColumnChart();
-
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe(params => {
       this.year = +params["year"];
@@ -78,13 +68,15 @@ export class StatisticsImportantComponent implements OnInit {
       this.target = params["target"];
     });
 
+    console.log("TARGET: " + this.target);
+
     this.title = "Important task " + this.num;
     this.green_colors = GREEN_COLORS;
     this.yellow_colors = YELLOW_COLORS;
     this.blue_colors = BLUE_COLORS;
     this.colors = this.green_colors;
 
-    this.returnUrl = "/statistics/important/1/" + this.year + "/";
+    this.returnUrl = "/statistics/" + this.target + "/1/" + this.year + "/";
 
     this.initForm();
 
@@ -92,12 +84,8 @@ export class StatisticsImportantComponent implements OnInit {
       .getImportantTaskCount(this.username, this.target, 1, this.year)
       .subscribe(
         count => {
+          console.log("DATA: " + count);
           this.importantTask1Count = count;
-          this.pieChart = this.myPieChart.getPieChart(
-            this.importantTask1Count,
-            this.title,
-            this.colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -112,11 +100,6 @@ export class StatisticsImportantComponent implements OnInit {
           this.importantTask1Avg.forEach(element => {
             this.myMap.set(element[0], element[1]);
           });
-          this.columnChart = this.myColumnChart.getColumnChart(
-            this.myMap,
-            this.title,
-            this.colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -146,11 +129,6 @@ export class StatisticsImportantComponent implements OnInit {
       .subscribe(
         count => {
           this.importantTask1Count = count;
-          this.pieChart = this.myPieChart.getPieChart(
-            this.importantTask1Count,
-            this.title,
-            this.colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -185,11 +163,6 @@ export class StatisticsImportantComponent implements OnInit {
           this.importantTask1Avg.forEach(element => {
             this.myMap.set(element[0], element[1]);
           });
-          this.columnChart = this.myColumnChart.getColumnChart(
-            this.myMap,
-            this.title,
-            this.colors
-          );
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
