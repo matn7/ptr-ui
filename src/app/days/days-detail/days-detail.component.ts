@@ -9,8 +9,7 @@ import { Days } from "../days.model";
 
 @Component({
   selector: "app-days-detail",
-  templateUrl: "./days-detail.component.html",
-  styleUrls: ["./days-detail.component.css"]
+  templateUrl: "./days-detail.component.html"
 })
 export class DaysDetailComponent implements OnInit {
   id: number;

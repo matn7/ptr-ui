@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   date: Date;
   isLoggedInUser: boolean;
   name: string;
+  isActive: boolean;
 
   isMsgFromBackend;
 

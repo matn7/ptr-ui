@@ -8,12 +8,11 @@ import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { TimeService } from "../../services/data/time.service";
-import { START_DATE_PATTERN, POSTED_ON_PATTERN } from "../../app.constants";
+import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
 
 @Component({
   selector: "app-days-edit",
-  templateUrl: "./days-edit.component.html",
-  styleUrls: ["./days-edit.component.css"]
+  templateUrl: "./days-edit.component.html"
 })
 export class DaysEditComponent implements OnInit {
 
@@ -25,11 +24,15 @@ export class DaysEditComponent implements OnInit {
   startDate: string;
   postedOn: string;
   userProfileId: string;
+  body: string;
+  rateDay: number;
   day: number;
   month: number;
   year: number;
   errorMessage: string;
   returnUrl: string;
+
+  readonly made_codes = MADE_CODES;
 
   constructor(
     private route: ActivatedRoute,
@@ -135,50 +138,42 @@ export class DaysEditComponent implements OnInit {
     this.toggleService.toggleDays();
   }
 
-  private initForm(startDate: string, postedOn: string, userProfileId: string) {
-    const id = "";
-    const body = "";
-    const rateDay = +"";
-
-    if (this.editMode) {
-      this.daysService.getDays(this.username, this.id).subscribe(
-        days => {
-          this.daysForm.get("id").setValue(days.id);
-          this.daysForm.get("body").setValue(days.body);
-          this.daysForm.get("rateDay").setValue(days.rateDay);
-          this.daysForm.get("startDate").setValue(days.startDate);
-          this.daysForm
-            .get("postedOn")
-            .setValue(
-              this.datepipe.transform(new Date(), POSTED_ON_PATTERN)
-            );
-        },
-        error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
-        }
-      );
-
-      this.startDate = this.datepipe.transform(new Date(), START_DATE_PATTERN);
-      this.postedOn = this.datepipe.transform(
-        new Date(),
-        POSTED_ON_PATTERN
-      );
-      this.userProfileId = this.username;
-    }
+  private initForm(startDate: string, postedOn: string, username: string) {
+    const id = this.id;
+    const body = this.body;
+    const rateDay = this.rateDay;
 
     this.daysForm = new FormGroup({
       id: new FormControl(id),
-      body: new FormControl(body, [
-        Validators.required,
-        Validators.maxLength(40)
-      ]),
-      rateDay: new FormControl(rateDay, [
-        Validators.required,
-        Validators.maxLength(255)
-      ]),
+      body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
+      rateDay: new FormControl(rateDay, Validators.required),
       startDate: new FormControl(startDate, Validators.required),
       postedOn: new FormControl(postedOn, Validators.required),
-      userProfileId: new FormControl(userProfileId, Validators.required)
+      userProfileId: new FormControl(username, Validators.required)
     });
+
+    if (this.editMode) {
+      this.daysService
+        .getDays(this.username, this.id)
+        .subscribe(
+          days => {
+            this.daysForm.setValue({
+              "id": this.id,
+              "body": days.body,
+              "rateDay": this.made_codes[days.rateDay],
+              "startDate": days.startDate,
+              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT),
+              "userProfileId": this.username
+            });
+          },
+          error => {
+            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          }
+        );
+
+      this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+      this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
+      this.userProfileId = this.username;
+    }
   }
 }

@@ -4,12 +4,11 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { HandleErrorsService } from "../services/handle-errors.service";
 import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
-import { USER_CREATED_MSG } from "../app.constants";
+import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR } from "../app.constants";
 
 @Component({
   selector: "app-registration",
-  templateUrl: "./registration.component.html",
-  styleUrls: ["./registration.component.css"]
+  templateUrl: "./registration.component.html"
 })
 export class RegistrationComponent implements OnInit {
   username: string;
@@ -23,6 +22,19 @@ export class RegistrationComponent implements OnInit {
   isDuplicated: boolean;
 
   registrationForm: FormGroup;
+
+  readonly username_length_validator = USERNAME_LENGTH_VALIDATOR;
+  readonly username_required_validator = USERNAME_REQUIRED_VALIDATOR;
+  readonly username_duplicated_validator = USERNAME_DUPLICATED_VALIDATOR;
+
+  readonly password_length_validator = PASSWORD_LENGTH_VALIDATOR;
+  readonly password_required_validator = PASSWORD_REQUIRED_VALIDATOR;
+
+  readonly email_required_validator = EMAIL_REQUIRED_VALIDATOR;
+  readonly email_invalid_validator = EMAIL_INVALID_VALIDATOR;
+
+  readonly firstname_required_validator = FIRSTNAME_REQUIRED_VALIDATOR;
+  readonly lastname_required_validator = LASTNAME_REQUIRED_VALIDATOR;
 
   constructor(
     private registrationService: RegistrationService,

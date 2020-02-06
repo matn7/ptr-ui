@@ -48,12 +48,7 @@ export class TaskIndexComponent implements OnInit {
     private appInternalMessageService: AppInternalMessagesService,
     private customErrorMsgService: CustomErrorMessageService
   ) {
-    router.events.forEach((event) => {
-      if (event instanceof NavigationEnd) {
-        console.log("NAVIGATION");
-        this.ngOnInit();
-      }
-    })
+
   }
 
   ngOnInit() {
@@ -139,11 +134,17 @@ export class TaskIndexComponent implements OnInit {
         }
       );
 
-    this.router.navigate(["/important/" + this.year + "/" + this.month]);
+    this.router.navigate(["/task/" + this.target + "/" + this.year + "/" + this.month]);
   }
 
   @HostListener("submit")
   private toggle() {
+        // router.events.forEach((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     console.log("NAVIGATION");
+    //     this.ngOnInit();
+    //   }
+    // })
     this.toggleService.toggleImportant();
   }
 
@@ -154,17 +155,18 @@ export class TaskIndexComponent implements OnInit {
   }
 
   onEditExtraordinaryClick(id) {
+    console.log("onEditClicked");
     this.router.navigate(["/extraordinary/" + id + "/edit"]);
   }
 
   onAddNewClick(target, num, year, month, day) {
     this.router.navigate([
-      "/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
+      "/task/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
     ]);
   }
 
   onEditClick(target, num, id) {
-    this.router.navigate(["/" + target + "/" + num + "/" + id + "/edit"]);
+    this.router.navigate(["/task/" + target + "/" + num + "/" + id + "/edit"]);
   }
 
   onAddDayClick(year, month, day) {

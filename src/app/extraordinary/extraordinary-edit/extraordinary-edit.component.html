@@ -1,92 +1,74 @@
-<div class="col-md-6 col-md-offset-3 pandatronik-important-container">
-  <div class="pandatronik-new-2 col-md-12">
-    <form [formGroup]="extraordinaryForm" (ngSubmit)="onSubmit()">
-      <div class="row ">
-          <div class="form-group">
-            <input
-              placeholder="title"
-              title="title"
-              formControlName="title"
-              type="text"
-              id="title"
-              class="form-control pandatronik-input-1"
-            />
-            <div
-              *ngIf="
-                extraordinaryForm.controls['title'].touched &&
-                extraordinaryForm.controls['title'].hasError('required')
-              "
-              class="alert alert-danger"
-            >
-              Title is required
-            </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="form-group">
-            <textarea
-              placeholder="body"
-              title="body"
-              formControlName="body"
-              type="text"
-              id="body"
-              rows="5"
-              class="form-control pandatronik-input-1"
-            ></textarea>
-            <div
-              *ngIf="
-                extraordinaryForm.controls['body'].touched &&
-                extraordinaryForm.controls['body'].hasError('required')
-              "
-              class="alert alert-danger"
-            >
-              Description is required
-            </div>
-          </div>
-      </div>
-      <input
-        type="hidden"
-        formControlName="startDate"
-        class="form-control"
-        [value]="startDate.value"
-        [(ngModel)]="startDate"
-        name="startDate"
-        id="startDate"
-      />
-      <input
-        type="hidden"
-        formControlName="postedOn"
-        class="form-control"
-        [value]="postedOn.value"
-        [(ngModel)]="postedOn"
-        name="postedOn"
-        id="postedOn"
-      />
-      <input
-        type="hidden"
-        formControlName="userProfileId"
-        id="userProfileId"
-        [(ngModel)]="userProfileId"
-        [value]="userProfileId.value"
-      />
-      <div class="row">
-          <button
-            type="submit"
-            [disabled]="!extraordinaryForm.valid"
-            class="btn btn-success"
-          >
-            Submit
-          </button>
-          <!-- todo implement confirmation to delete -->
-          <button
-            type="button"
-            class="btn btn-danger pull-right"
-            *ngIf="editMode"
-            (click)="onDelete()"
-          >
-            Delete
-          </button>
-      </div>
-    </form>
-  </div>
-</div>
+<mat-card class="pandatronik-mat-card">
+  <form [formGroup]="extraordinaryForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input 
+        matInput 
+        placeholder="title" 
+        formControlName="title"
+        type="text"
+        id="title"
+        name="title"
+        maxlength="40">
+    </mat-form-field>
+    <mat-error *ngIf="
+      extraordinaryForm.controls['title'].touched &&
+      extraordinaryForm.controls['title'].hasError('maxlength')">
+      {{ title_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      extraordinaryForm.controls['title'].touched &&
+      extraordinaryForm.controls['title'].hasError('required')">
+      {{ title_required_validator }}
+    </mat-error>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Body</mat-label>
+      <textarea
+        matInput
+        placeholder="body"
+        title="body"
+        formControlName="body"
+        type="text"
+        id="body"
+        name="body"
+        rows="5"
+        maxlength="255"
+      ></textarea>
+    </mat-form-field>
+    <mat-error *ngIf="
+      extraordinaryForm.controls['body'].touched &&
+      extraordinaryForm.controls['body'].hasError('maxlength')">
+      {{ body_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      extraordinaryForm.controls['body'].touched &&
+      extraordinaryForm.controls['body'].hasError('required')">
+      {{ body_required_validator }}
+    </mat-error>
+    <input
+      type="hidden"
+      formControlName="startDate"
+      class="form-control"
+      id="startDate"
+    />
+    <input
+      type="hidden"
+      formControlName="postedOn"
+      class="form-control"
+      id="postedOn"
+    />
+    <input
+      type="hidden"
+      formControlName="userProfileId"
+      id="userProfileId"
+    />
+    <button type="submit" color="primary" mat-raised-button [disabled]="!extraordinaryForm.valid">Submit</button>
+    <button
+      type="button"
+      color="warn" mat-raised-button
+      *ngIf="editMode"
+      ng-confirm-click="Confirm unfavorite?"
+      (click)="onDelete()">Delete</button>
+  </form>  
+</mat-card>

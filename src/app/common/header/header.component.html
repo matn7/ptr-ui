@@ -2,11 +2,12 @@
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
       routerLinkActive="mat-accent"
-      routerLink="/important/{{ year }}/{{ month }}">Important</button>
+      routerLink="/task/important/{{ year }}/{{ month }}">Important</button>
   <button mat-button  
       *ngIf="authService.isUserLoggedIn()"
       routerLinkActive="mat-accent"
-      routerLink="/lessimportant/{{ year }}/{{ month }}">Less Important</button>  
+      [style.color]="'#B0DDBD'"
+      routerLink="/task/lessimportant/{{ year }}/{{ month }}">Less Important</button>  
 
   <button mat-button [matMenuTriggerFor]="statSubMenu"
       *ngIf="authService.isUserLoggedIn()">Statistics</button>

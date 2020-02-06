@@ -96,5 +96,18 @@ export const TITLE_REQUIRED_VALIDATOR = "The title field is required";
 export const BODY_LENGTH_VALIDATOR = "The body field max length is 255 characters";
 export const BODY_REQUIRED_VALIDATOR = "The body field is required";
 
+export const USERNAME_LENGTH_VALIDATOR = "The username field should be between 6 and 50 characters";
+export const USERNAME_REQUIRED_VALIDATOR = "The username field is required";
+export const USERNAME_DUPLICATED_VALIDATOR = "Username already exists";
+
+export const PASSWORD_LENGTH_VALIDATOR = "The password field should be between 6 and 60 characters";
+export const PASSWORD_REQUIRED_VALIDATOR = "The password field is required";
+
+export const EMAIL_REQUIRED_VALIDATOR = "The email field is required";
+export const EMAIL_INVALID_VALIDATOR = "This is not a valid email address";
+
+export const FIRSTNAME_REQUIRED_VALIDATOR = "The first name field is required";
+export const LASTNAME_REQUIRED_VALIDATOR = "The last name field is required";
+
 export const DETAIL_DATE_FORMAT = "yyyy-MM-ddTHH:mm:ss";
 export const DATE_FORMAT = "yyyy-MM-dd";

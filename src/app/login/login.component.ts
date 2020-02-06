@@ -2,15 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { TOKEN_EXPIRED, RETURN_URL } from "../app.constants";
+import { TOKEN_EXPIRED, RETURN_URL, USERNAME_LENGTH_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR } from "../app.constants";
 import { HandleErrorsService } from "../services/handle-errors.service";
 import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
 
 @Component({
   selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  templateUrl: "./login.component.html"
 })
 export class LoginComponent implements OnInit {
   username: string;
@@ -21,6 +20,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   expiredToken = false;
   returnUrl: string;
+
+  readonly username_length_validator = USERNAME_LENGTH_VALIDATOR;
+  readonly username_required_validator = USERNAME_REQUIRED_VALIDATOR;
+  readonly password_length_validator = PASSWORD_LENGTH_VALIDATOR;
+  readonly password_required_validator = PASSWORD_REQUIRED_VALIDATOR;
 
   constructor(
     private router: Router,
@@ -81,8 +85,8 @@ export class LoginComponent implements OnInit {
     const password = this.password;
 
     this.loginForm = new FormGroup({
-      username: new FormControl(username, Validators.required),
-      password: new FormControl(password, Validators.required)
+      username: new FormControl(username, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      password: new FormControl(password, [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
     });
   }
 }

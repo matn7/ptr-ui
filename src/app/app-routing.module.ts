@@ -57,22 +57,22 @@ const appRoutes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: ":target/:year/:month",
+    path: "task/:target/:year/:month",
     component: TaskIndexComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: ":target/:num/:year/:month/:day/new",
+    path: "task/:target/:num/:year/:month/:day/new",
     component: TaskEditComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: ":target/:num/:id/edit",
+    path: "task/:target/:num/:id/edit",
     component: TaskEditComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: ":target/:num/:id/view",
+    path: "task/:target/:num/:id/view",
     component: TaskDetailComponent,
     canActivate: [RouteGuardService]
   },
@@ -106,7 +106,7 @@ const appRoutes: Routes = [
     component: ExtraordinaryEditComponent,
     canActivate: [RouteGuardService]
   },
-  {
+  {   
     path: "extraordinary/:id/edit",
     component: ExtraordinaryEditComponent,
     canActivate: [RouteGuardService]

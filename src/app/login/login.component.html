@@ -1,73 +1,54 @@
-<!-- <div class="alert alert-warning" *ngIf="authenticationService.isTokenExpired()">
-  {{ tokenExpiredMessage }}
-</div> -->
-<!-- <div class="alert alert-warning" *ngIf="invalidLogin">{{ errorMessage }}</div> -->
-<!-- <div class="col-md-6 col-md-offset-3 pandatronik-important-container">
-  <div class="pandatronik-new-1 col-md-12">
-    <form [formGroup]="loginForm" (ngSubmit)="handleJWTAuthLogin()">
-      <div class="row form-group">
-        <input
-          type="text"
-          name="username"
-          formControlName="username"
-          class="form-control pandatronik-input-1"
-          placeholder="username"
-          [(ngModel)]="username"
-        />
-      </div>
-      <div class="row form-group">
-        <input
-          type="password"
-          name="password"
-          formControlName="password"
-          placeholder="password"
-          class="form-control pandatronik-input-1"
-          [(ngModel)]="password"
-        />
-      </div>
-      <div class="row form-group">
-        <button
-          type="submit"
-          [disabled]="!loginForm.valid"
-          class="btn btn-success"
-        >
-          Login
-        </button>
-      </div>
-    </form>
+<mat-card class="pandatronik-mat-card">
+  <form [formGroup]="loginForm" (ngSubmit)="handleJWTAuthLogin()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Username</mat-label>
+      <input 
+        matInput 
+        placeholder="username" 
+        formControlName="username"
+        type="text"
+        id="username"
+        name="username"
+        maxlength="40">
+    </mat-form-field>
+    <mat-error *ngIf="
+      loginForm.controls['username'].touched &&
+      loginForm.controls['username'].hasError('maxlength')">
+      {{ username_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      loginForm.controls['username'].touched &&
+      loginForm.controls['username'].hasError('required')">
+      {{ username_required_validator }}
+    </mat-error>
 
-    <div class="row form-group pull-right">
-      <span routerLink="/forgotpassword" style="cursor: pointer;">
-        Forgot password
-      </span>
-    </div>
-  </div>
-</div> -->
-
-<div class="login-container">
-    <form [formGroup]="loginForm" (ngSubmit)="handleJWTAuthLogin()">
-        <mat-form-field class="form-field-padding">
-          <input 
-            formControlName="username"
-            id="username"
-            type="text"
-            name="username"
-            matInput placeholder="Username" required>
-        </mat-form-field>
-        <mat-form-field class="form-field-padding">
-            <input 
-              formControlName="password"
-              id="password"
-              type="password"
-              name="password"
-              matInput placeholder="Password" required>
-          </mat-form-field>     
-          <button type="submit" color="primary" mat-raised-button [disabled]="!loginForm.valid">Login</button>     
-      </form>
-</div>
-
-<div class="row form-group pull-right">
-    <span routerLink="/forgotpassword" style="cursor: pointer;">
-      Forgot password
-    </span>
-  </div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input 
+        matInput 
+        placeholder="password" 
+        formControlName="password"
+        type="password"
+        id="password"
+        name="password"
+        maxlength="40">
+    </mat-form-field>
+    <mat-error *ngIf="
+      loginForm.controls['password'].touched &&
+      loginForm.controls['password'].hasError('maxlength')">
+      {{ password_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      loginForm.controls['password'].touched &&
+      loginForm.controls['password'].hasError('required')">
+      {{ password_required_validator }}
+    </mat-error> 
+    <button type="submit" color="primary" mat-raised-button [disabled]="!loginForm.valid">Submit</button>
+  </form>  
+  <br>
+  <button
+    type="button"
+    color="accent" mat-raised-button
+    routerLink="/forgotpassword"
+    >Forgot password</button>
+</mat-card>  

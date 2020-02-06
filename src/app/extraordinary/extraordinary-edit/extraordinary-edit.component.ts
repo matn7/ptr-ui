@@ -9,11 +9,11 @@ import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";
 
 @Component({
   selector: "app-extraordinary-edit",
-  templateUrl: "./extraordinary-edit.component.html",
-  styleUrls: ["./extraordinary-edit.component.css"]
+  templateUrl: "./extraordinary-edit.component.html"
 })
 export class ExtraordinaryEditComponent implements OnInit {
   editMode = false;
@@ -24,6 +24,9 @@ export class ExtraordinaryEditComponent implements OnInit {
   username: string;
   date: Date;
 
+  title: string;
+  body: string;
+
   id: number;
   extraordinaryForm: FormGroup;
 
@@ -33,6 +36,11 @@ export class ExtraordinaryEditComponent implements OnInit {
   day: number;
   month: number;
   year: number;
+
+  readonly title_length_validator = TITLE_LENGTH_VALIDATOR;
+  readonly title_required_validator = TITLE_REQUIRED_VALIDATOR;
+  readonly body_length_validator = BODY_LENGTH_VALIDATOR;
+  readonly body_required_validator = BODY_REQUIRED_VALIDATOR;
 
   errorMessage: string;
   returnUrl: string;
@@ -49,6 +57,7 @@ export class ExtraordinaryEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log("Tutaj");
     this.toggle();
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe((params: Params) => {
@@ -64,11 +73,11 @@ export class ExtraordinaryEditComponent implements OnInit {
           this.year = +params["year"];
           this.startDate = this.datepipe.transform(
             new Date(this.year, this.month - 1, this.day),
-            "yyyy-MM-dd"
+            DATE_FORMAT
           );
           this.postedOn = this.datepipe.transform(
             new Date(),
-            "yyyy-MM-ddTHH:mm:ss"
+            DETAIL_DATE_FORMAT
           );
         },
         error => {
@@ -82,7 +91,8 @@ export class ExtraordinaryEditComponent implements OnInit {
     this.userProfileId = this.username;
 
     this.returnUrl = "/important/" + this.year + "/" + this.month;
-    this.initForm();
+    this.initForm(this.startDate, this.postedOn, this.username);
+
   }
 
   @HostListener("submit")
@@ -141,55 +151,42 @@ export class ExtraordinaryEditComponent implements OnInit {
     }
   }
 
-  private initForm() {
-    const id = "";
-    const title = "";
-    const body = "";
-    const startDate = "";
-    const postedOn = "";
-    const userProfileId = "";
+  private initForm(startDate: string, postedOn: string, username: string) {
+    const id = this.id;
+    const title = this.title;
+    const body = this.body;
+
+    this.extraordinaryForm = new FormGroup({
+      id: new FormControl(id),
+      title: new FormControl(title, [Validators.required, Validators.maxLength(40)]),
+      body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
+      startDate: new FormControl(startDate, Validators.required),
+      postedOn: new FormControl(postedOn, Validators.required),
+      userProfileId: new FormControl(username, Validators.required)
+    });
 
     if (this.editMode) {
-      this.extraordinaryData = this.extraordinaryService
+      this.extraordinaryService
         .getExtraordinaryByid(this.username, this.id)
         .subscribe(
-          extra => {
-            this.extraordinaryForm.get("id").setValue(extra.id);
-            this.extraordinaryForm.get("title").setValue(extra.title);
-            this.extraordinaryForm.get("body").setValue(extra.body);
-            this.extraordinaryForm.get("startDate").setValue(extra.startDate);
-            this.extraordinaryForm
-              .get("postedOn")
-              .setValue(
-                this.datepipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss")
-              );
+          important => {
+            this.extraordinaryForm.setValue({
+              "id": this.id,
+              "title": important.title,
+              "body": important.body,
+              "startDate": important.startDate,
+              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT),
+              "userProfileId": this.username
+            });
           },
           error => {
             this.customErrorMsgService.displayMessage(error, this.returnUrl);
           }
         );
 
-      this.startDate = this.datepipe.transform(new Date(), "yyyy-MM-dd");
-      this.postedOn = this.datepipe.transform(
-        new Date(),
-        "yyyy-MM-ddTHH:mm:ss"
-      );
-      this.userProfileId = this.userProfileId;
+      this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+      this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
+      this.userProfileId = this.username;
     }
-
-    this.extraordinaryForm = new FormGroup({
-      id: new FormControl(id),
-      title: new FormControl(title, [
-        Validators.required,
-        Validators.maxLength(40)
-      ]),
-      body: new FormControl(body, [
-        Validators.required,
-        Validators.maxLength(255)
-      ]),
-      startDate: new FormControl(startDate, Validators.required),
-      postedOn: new FormControl(postedOn, Validators.required),
-      userProfileId: new FormControl(userProfileId, Validators.required)
-    });
   }
 }

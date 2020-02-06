@@ -1,81 +1,64 @@
-<div class="col-md-6 col-md-offset-3 pandatronik-important-container">
-  <div class="pandatronik-new-1 col-md-12">
-    <form [formGroup]="daysForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-          <div class="form-group">
-            <textarea
-              placeholder="body"
-              title="body"
-              formControlName="body"
-              type="text"
-              id="body"
-              rows="5"
-              class="form-control pandatronik-input-1"
-            ></textarea>
-            <div
-              *ngIf="
-                daysForm.controls['body'].touched &&
-                daysForm.controls['body'].hasError('required')
-              "
-              class="alert alert-danger"
-            >
-              Task description is required
-            </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="form-group">
-            <select
-              aria-placeholder="rate day"
-              title="rate day"
-              formControlName="rateDay"
-              type="text"
-              id="rateDay"
-              class="form-control pandatronik-input-1"
-            >
-              <option value="100">Very good</option>
-              <option value="75">Good</option>
-              <option value="50">OK</option>
-              <option value="25">Bad</option>
-              <option value="0">Very bad</option>
-            </select>
-          </div>
-      </div>
-      <input
-        type="hidden"
-        formControlName="startDate"
-        [value]="startDate"
-        id="startDate"
-      />
-      <input
-        type="hidden"
-        formControlName="postedOn"
-        [value]="postedOn"
-        id="postedOn"
-      />
-      <input
-        type="hidden"
-        formControlName="userProfileId"
-        id="userProfileId"
-        [value]="userProfileId"
-      />
-      <div class="row">
-          <button
-            type="submit"
-            [disabled]="!daysForm.valid"
-            class="btn btn-success"
-          >
-            Submit
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger pull-right"
-            *ngIf="editMode"
-            (click)="onDelete()"
-          >
-            Delete
-          </button>
-      </div>
-    </form>
-  </div>
-</div>
+<mat-card class="pandatronik-mat-card">
+  <form [formGroup]="daysForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Body</mat-label>
+      <textarea
+        matInput
+        placeholder="body"
+        title="body"
+        formControlName="body"
+        type="text"
+        id="body"
+        name="body"
+        rows="5"
+        maxlength="255"
+      ></textarea>
+    </mat-form-field>
+    <mat-error *ngIf="
+      daysForm.controls['body'].touched &&
+      daysForm.controls['body'].hasError('maxlength')">
+      {{ body_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      daysForm.controls['body'].touched &&
+      daysForm.controls['body'].hasError('required')">
+      {{ body_required_validator }}
+    </mat-error>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Made</mat-label>
+        <mat-select formControlName="rateDay" id="rateDay">
+          <mat-option [value]="4">100</mat-option>
+          <mat-option [value]="3">75</mat-option>
+          <mat-option [value]="2">50</mat-option>
+          <mat-option [value]="1">25</mat-option>
+          <mat-option [value]="0">0</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <input
+      type="hidden"
+      formControlName="startDate"
+      class="form-control"
+      id="startDate"
+    />
+    <input
+      type="hidden"
+      formControlName="postedOn"
+      class="form-control"
+      id="postedOn"
+    />
+    <input
+      type="hidden"
+      formControlName="userProfileId"
+      id="userProfileId"
+    />
+    <button type="submit" color="primary" mat-raised-button [disabled]="!daysForm.valid">Submit</button>
+    <button
+      type="button"
+      color="warn" mat-raised-button
+      *ngIf="editMode"
+      ng-confirm-click="Confirm unfavorite?"
+      (click)="onDelete()">Delete</button>
+  </form>  
+</mat-card>

@@ -25,10 +25,18 @@
   </mat-form-field>
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
+
 <mat-grid-list cols="5" rowHeight="2:1" *ngIf="taskIndexData">
   <ng-container *ngFor="let num of numbers">
-    <mat-grid-tile [style.background]="today === num + 1 ? '#B0DDBD' : ''"
-        [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}">
+    <mat-grid-tile (click)="
+      !taskIndexData[num][1]
+        ? num + 1 <= today || today == -1
+        ? onAddExtraordinaryClick(year, month, num + 1)
+        : ''
+        : onEditExtraordinaryClick(taskIndexData[num][0])"
+        [style.background]="today === num + 1 ? '#B0DDBD' : taskIndexData[num][1] ? yellow_completion_styles[100] : ''"
+        [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}"
+        title="{{ taskIndexData[num][1] }}">
         <mat-list>
             <mat-list-item [style.flex-direction]="column"><h1>{{ num + 1 }}</h1></mat-list-item>
             <mat-list-item [style.height]="0">{{ weekDayArr[num] ? weekDayArr[num] : '0' }}</mat-list-item>
