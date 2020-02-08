@@ -11,8 +11,7 @@ import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
 
 @Component({
   selector: "app-statistics-important",
-  templateUrl: "./statistics-important.component.html",
-  styleUrls: ["./statistics-important.component.css"]
+  templateUrl: "./statistics-important.component.html"
 })
 export class StatisticsImportantComponent implements OnInit {
   year: number;

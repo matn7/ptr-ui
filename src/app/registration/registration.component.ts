@@ -74,28 +74,20 @@ export class RegistrationComponent implements OnInit {
   }
 
   private initForm() {
-    const username = "";
-    const password = "";
-    const confirmPassword = "";
-    const email = "";
-    const firstName = "";
-    const lastName = "";
+    const username = this.username;
+    const password = this.password;
+    const confirmPassword = this.confirmPassword;
+    const email = this.email;
+    const firstName = this.firstName;
+    const lastName = this.lastName;
 
     this.registrationForm = new FormGroup({
-      username: new FormControl(username, [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(50)
-      ]),
-      password: new FormControl(password, [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(24)
-      ]),
-      confirmPassword: new FormControl(confirmPassword, [Validators.required]),
+      username: new FormControl(username, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      password: new FormControl(password, [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
+      confirmPassword: new FormControl(confirmPassword, [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
       email: new FormControl(email, [Validators.required, Validators.email]),
-      firstName: new FormControl(firstName, Validators.maxLength(50)),
-      lastName: new FormControl(lastName, Validators.maxLength(50))
+      firstName: new FormControl(firstName, Validators.required),
+      lastName: new FormControl(lastName, Validators.required)
     });
   }
 

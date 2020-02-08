@@ -51,19 +51,19 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 // ***
 
 import { MatComponentsModule } from "src/app/mat-components.module";
-import { TaskEditComponent } from "./important/important-edit/task-edit.component";
-import { TaskDetailComponent } from "./important/important-detail/task-detail.component";
-import { TaskIndexComponent } from "./important/important-index/task-index.component";
 import { UserService } from "./services/user.service";
 import { AdminComponent } from './admin/admin.component';
 import { AdminUserService } from "./services/admin/admin-user.service";
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { StatisticsStartEndComponent } from './statistics/statistics-start-end/statistics-start-end.component';
+import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
+import { ImportantIndexComponent } from "./important/important-index/important-index.component";
+import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
+import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index/less-important-index.component";
+import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
+import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 
 @NgModule({
-  // entryComponents: [
-  //   ExtraordinaryComponent
-  // ],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -73,9 +73,12 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
     ExtraordinaryComponent,
     ExtraordinaryEditComponent,
     ExtraordinaryDetailComponent,
-    TaskIndexComponent,
-    TaskEditComponent,
-    TaskDetailComponent,
+    ImportantIndexComponent,
+    ImportantEditComponent,
+    ImportantDetailComponent,
+    LessImportantIndexComponent,
+    LessImportantEditComponent,
+    LessImportantDetailComponent,
     StatisticsComponent,
     StatisticsImportantComponent,
     LoginComponent,

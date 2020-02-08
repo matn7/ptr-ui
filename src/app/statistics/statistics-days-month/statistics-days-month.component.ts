@@ -11,8 +11,7 @@ import { WeekDay } from "@angular/common";
 
 @Component({
   selector: "app-statistics-days-month",
-  templateUrl: "./statistics-days-month.component.html",
-  styleUrls: ["./statistics-days-month.component.css"]
+  templateUrl: "./statistics-days-month.component.html"
 })
 export class StatisticsDaysMonthComponent implements OnInit {
   username: string;

@@ -3,7 +3,7 @@ import { RequestOptions, Headers } from "@angular/http";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
 
-import { Important } from "../important/important.model";
+import { Task } from "../task.model";
 import { HandleErrorsService } from "./handle-errors.service";
 
 @Injectable({
@@ -20,7 +20,7 @@ export class TaskService {
 
   getTaskIndexData(username, target, year, month) {
     return this.http
-      .get<Important[]>(
+      .get<Task[]>(
         `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
       )
       .catch(this.handleErrorService.handleError);
@@ -28,7 +28,7 @@ export class TaskService {
 
   getTask(username, target, num, id) {
     return this.http
-      .get<Important>(
+      .get<Task>(
         `${API_URL}/${API_VERSION}/users/${username}/${target}/${num}/${id}`
       )
       .catch(this.handleErrorService.handleError);
@@ -46,7 +46,7 @@ export class TaskService {
     const options = new RequestOptions({ headers: headers });
 
     return this.http
-      .put<Important>(
+      .put<Task>(
         `${API_URL}/${API_VERSION}/users/${username}/${target}/${num}/${id}`,
         resource
       )

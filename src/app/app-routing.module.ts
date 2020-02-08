@@ -4,9 +4,9 @@ import { NgModule, Component } from "@angular/core";
 import { DaysComponent } from "./days/days.component";
 import { DaysDetailComponent } from "./days/days-detail/days-detail.component";
 import { DaysEditComponent } from "./days/days-edit/days-edit.component";
-import { TaskEditComponent } from "./important/important-edit/task-edit.component";
-import { TaskIndexComponent } from "./important/important-index/task-index.component";
-import { TaskDetailComponent } from "./important/important-detail/task-detail.component";
+import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
+import { ImportantIndexComponent } from "./important/important-index/important-index.component";
+import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
 import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
@@ -27,6 +27,9 @@ import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
 import { AdminUserComponent } from "./admin/admin-user/admin-user.component";
 import { StatisticsStartEndComponent } from "./statistics/statistics-start-end/statistics-start-end.component";
+import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index/less-important-index.component";
+import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
+import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [RouteGuardService] },
@@ -57,23 +60,43 @@ const appRoutes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: "task/:target/:year/:month",
-    component: TaskIndexComponent,
+    path: "important/:year/:month",
+    component: ImportantIndexComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: "task/:target/:num/:year/:month/:day/new",
-    component: TaskEditComponent,
+    path: "important/:num/:year/:month/:day/new",
+    component: ImportantEditComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: "task/:target/:num/:id/edit",
-    component: TaskEditComponent,
+    path: "important/:num/:id/edit",
+    component: ImportantEditComponent,
     canActivate: [RouteGuardService]
   },
   {
-    path: "task/:target/:num/:id/view",
-    component: TaskDetailComponent,
+    path: "important/:num/:id/view",
+    component: ImportantDetailComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "lessimportant/:year/:month",
+    component: LessImportantIndexComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "lessimportant/:num/:year/:month/:day/new",
+    component: LessImportantEditComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "lessimportant/:num/:id/edit",
+    component: LessImportantEditComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "lessimportant/:num/:id/view",
+    component: LessImportantDetailComponent,
     canActivate: [RouteGuardService]
   },
   {

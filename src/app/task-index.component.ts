@@ -1,21 +1,17 @@
-import { Component, OnInit, HostListener, Output, EventEmitter  } from "@angular/core";
-import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
-import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from "@angular/router";
+import { Component, OnInit, HostListener } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { WeekDay } from "@angular/common";
-import { TaskService } from "../../services/task.service";
-import { AuthenticationService } from "../../services/authentication.service";
-import { Important } from "../important.model";
-import { HandleErrorsService } from "../../services/handle-errors.service";
-import { ToggleService } from "../../services/data/toggle.service";
-import { TimeService } from "../../services/data/time.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
-import { GREEN_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "../../app.constants";
+import { TaskService } from "./services/task.service";
+import { AuthenticationService } from "./services/authentication.service";
+import { Task } from "./task.model"
+import { HandleErrorsService } from "./services/handle-errors.service";
+import { ToggleService } from "./services/data/toggle.service";
+import { TimeService } from "./services/data/time.service";
+import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
+import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { GREEN_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
 
-@Component({
-  selector: "app-important-index",
-  templateUrl: "./task-index.component.html"
-})
 export class TaskIndexComponent implements OnInit {
   selectDate: FormGroup;
   month: number;
@@ -27,7 +23,7 @@ export class TaskIndexComponent implements OnInit {
   today: number;
   numbers: Array<number>;
   weekDayArr: Array<string>;
-  taskIndexData: Important[];
+  taskIndexData: Task[];
   username: string;
   errorNumber: number;
   errorMessage: string;
@@ -46,9 +42,10 @@ export class TaskIndexComponent implements OnInit {
     private toggleService: ToggleService,
     private timeService: TimeService,
     private appInternalMessageService: AppInternalMessagesService,
-    private customErrorMsgService: CustomErrorMessageService
+    private customErrorMsgService: CustomErrorMessageService,
+    target: string
   ) {
-
+    this.target = target;
   }
 
   ngOnInit() {
@@ -58,7 +55,6 @@ export class TaskIndexComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.month = +params["month"];
       this.year = +params["year"];
-      this.target = params["target"];
     });
 
     console.log("TARGET: " + this.target);
@@ -175,6 +171,10 @@ export class TaskIndexComponent implements OnInit {
 
   onEditDayClick(id) {
     this.router.navigate(["/days/" + id + "/edit"]);
+  }
+
+  setTarget(target: string) {
+      this.target = target;
   }
 
   private initForm() {

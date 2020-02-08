@@ -1,28 +1,21 @@
 import {
   Component,
   OnInit,
-  Input,
-  Output,
-  HostBinding,
   HostListener
 } from "@angular/core";
-import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
-import { TaskService } from "../../services/task.service";
-import { AuthenticationService } from "../../services/authentication.service";
-import { HandleErrorsService } from "../../services/handle-errors.service";
-import { ToggleService } from "../../services/data/toggle.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { TimeService } from "../../services/data/time.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
-import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";
+import { TaskService } from "./services/task.service";
+import { AuthenticationService } from "./services/authentication.service";
+import { HandleErrorsService } from "./services/handle-errors.service";
+import { ToggleService } from "./services/data/toggle.service";
+import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
+import { TimeService } from "./services/data/time.service";
+import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, 
+  BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "./app.constants";
 
-@Component({
-  selector: "app-important-edit",
-  templateUrl: "./task-edit.component.html"
-})
 export class TaskEditComponent implements OnInit {
   editMode = false;
 

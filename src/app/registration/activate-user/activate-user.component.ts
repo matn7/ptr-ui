@@ -7,8 +7,7 @@ import { CustomErrorMessageService } from "../../services/data/custom-error-mess
 
 @Component({
   selector: "app-activate-user",
-  templateUrl: "./activate-user.component.html",
-  styleUrls: ["./activate-user.component.css"]
+  templateUrl: "./activate-user.component.html"
 })
 export class ActivateUserComponent implements OnInit {
   errorMessage: string;

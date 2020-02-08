@@ -11,8 +11,7 @@ import { GREEN_COLORS } from "../../app.constants";
 
 @Component({
   selector: "app-statistics-days",
-  templateUrl: "./statistics-days.component.html",
-  styleUrls: ["./statistics-days.component.css"]
+  templateUrl: "./statistics-days.component.html"
 })
 export class StatisticsDaysComponent implements OnInit {
   year: number;
@@ -119,7 +118,7 @@ export class StatisticsDaysComponent implements OnInit {
   private toggle() {
     this.toggleService.toggleStatistics();
   }
-
+  
   private initForm() {
     const selectYear = this.year;
 

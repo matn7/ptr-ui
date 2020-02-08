@@ -1,0 +1,88 @@
+<form [formGroup]="selectDate" class="choose-date-form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field-padding" appearance="outline">
+    <mat-select formControlName="selectYear" id="selectYear">
+      <mat-option [value]="2020">2020</mat-option>
+      <mat-option [value]="2019">2019</mat-option>
+      <mat-option [value]="2018">2018</mat-option>
+      <mat-option [value]="2017">2017</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-field-padding" appearance="outline">
+    <mat-select formControlName="selectMonth" id="selectMonth">
+      <mat-option [value]="1">January</mat-option>
+      <mat-option [value]="2">February</mat-option>
+      <mat-option [value]="3">March</mat-option>
+      <mat-option [value]="4">April</mat-option>
+      <mat-option [value]="5">May</mat-option>
+      <mat-option [value]="6">June</mat-option>
+      <mat-option [value]="7">July</mat-option>
+      <mat-option [value]="8">August</mat-option>
+      <mat-option [value]="9">September</mat-option>
+      <mat-option [value]="10">October</mat-option>
+      <mat-option [value]="11">November</mat-option>
+      <mat-option [value]="12">December</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="submit" color="primary" mat-raised-button>Submit</button>
+</form>
+
+<mat-grid-list cols="5" rowHeight="2:1" *ngIf="taskIndexData">
+  <ng-container *ngFor="let num of numbers">
+    <mat-grid-tile (click)="
+      !taskIndexData[num][1]
+        ? num + 1 <= today || today == -1
+        ? onAddExtraordinaryClick(year, month, num + 1)
+        : ''
+        : onEditExtraordinaryClick(taskIndexData[num][0])"
+        [style.background]="today === num + 1 ? '#B0DDBD' : taskIndexData[num][1] ? yellow_completion_styles[100] : ''"
+        [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}"
+        title="{{ taskIndexData[num][1] }}">
+        <mat-list>
+            <mat-list-item [style.flex-direction]="column"><h1>{{ num + 1 }}</h1></mat-list-item>
+            <mat-list-item [style.height]="0">{{ weekDayArr[num] ? weekDayArr[num] : '0' }}</mat-list-item>
+          </mat-list>
+    </mat-grid-tile>
+
+    <mat-grid-tile (click)="
+      !taskIndexData[num][2]
+        ? num + 1 <= today || today == -1
+        ? onAddNewClick(target, 1, year, month, num + 1)
+        : ''
+        : onEditClick(target, 1, taskIndexData[num][2])"
+        [style.background]="green_completion_styles[taskIndexData[num][3]]"
+        [ngClass]="{pandatronik_navigate_green: num + 1 <= today || today == -1}"
+        title="{{ taskIndexData[num][4] }}">
+    </mat-grid-tile>
+
+    <mat-grid-tile (click)="
+      !taskIndexData[num][5]
+        ? num + 1 <= today || today == -1
+        ? onAddNewClick(target, 2, year, month, num + 1)
+        : ''
+        : onEditClick(target, 2, taskIndexData[num][5])"
+        [style.background]="yellow_completion_styles[taskIndexData[num][6]]"
+        [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}"
+        title="{{ taskIndexData[num][7] }}">
+    </mat-grid-tile>
+    <mat-grid-tile (click)="
+      !taskIndexData[num][8]
+        ? num + 1 <= today || today == -1
+        ? onAddNewClick(3, year, month, num + 1)
+        : ''
+        : onEditClick(target, 3, taskIndexData[num][8])"
+        [style.background]="blue_completion_styles[taskIndexData[num][9]]"
+        [ngClass]="{pandatronik_navigate_blue: num + 1 <= today || today == -1}"
+        title="{{ taskIndexData[num][10] }}">
+    </mat-grid-tile>
+    <mat-grid-tile (click)="
+      !taskIndexData[num][11]
+        ? num + 1 <= today || today == -1
+        ? onAddDayClick(year, month, num + 1)
+        : ''
+        : onEditDayClick(taskIndexData[num][11])"
+        [style.background]="green_completion_styles[taskIndexData[num][12]]"
+        [ngClass]="{pandatronik_navigate_green: num + 1 <= today || today == -1}"
+        title="Days">
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>
