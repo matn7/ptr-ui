@@ -13,7 +13,8 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { MatToolbarModule, MatMenuModule, MatGridListModule, MatTableModule, MatDividerModule, MatListModule, MatCardModule } from "@angular/material";
+import { MatToolbarModule, MatMenuModule, MatGridListModule, MatTableModule, 
+  MatDividerModule, MatListModule, MatCardModule, MatButtonToggleModule } from "@angular/material";
 
 @NgModule({
   exports: [
@@ -37,7 +38,8 @@ import { MatToolbarModule, MatMenuModule, MatGridListModule, MatTableModule, Mat
     MatTableModule,
     MatDividerModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonToggleModule
   ]
 })
 export class MatComponentsModule {}

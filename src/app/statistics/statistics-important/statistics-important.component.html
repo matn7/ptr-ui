@@ -7,18 +7,22 @@
       <mat-option [value]="2017">2017</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="form-field-padding" appearance="outline">
-    <mat-select formControlName="selectTask" id="selectTask">
-      <mat-option [value]="1" (click)="onRadioButtonClicked(1)">1</mat-option>
-      <mat-option [value]="2" (click)="onRadioButtonClicked(2)">2</mat-option>
-      <mat-option [value]="3" (click)="onRadioButtonClicked(3)">3</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-button-toggle-group formControlName="selectTask" id="selectTask" aria-label="Font Style">
+      <mat-button-toggle [value]="1">1</mat-button-toggle>
+      <mat-button-toggle [value]="2">2</mat-button-toggle>
+      <mat-button-toggle [value]="3">3</mat-button-toggle>
+    </mat-button-toggle-group>
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
 
-{{ importantTask1Count }}
+<!-- {{ importantTask1Count['100'] ? importantTask1Count['100'] : 'NIC'  }} -->
 
 <!-- <div class="col-md-3" [chart]="pieChart"></div>
 <div class="col-md-9" [chart]="columnChart"></div> -->
+
+<highcharts-chart
+   [Highcharts] = "highcharts" 
+   [options] = "chartOptions" 
+   style = "width: 100%; height: 400px; display: block;">
+</highcharts-chart>
 

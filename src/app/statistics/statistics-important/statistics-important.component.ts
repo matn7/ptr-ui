@@ -2,12 +2,15 @@ import { Component, OnInit, HostListener, HostBinding } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "../../services/statistics.important.service";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
-import { Chart } from "angular-highcharts";
+// import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ToggleService } from "../../services/data/toggle.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
+import * as Highcharts from 'highcharts';
+import { Stat } from "../../stat-data.component";
+import { element } from "protractor";
 
 @Component({
   selector: "app-statistics-important",
@@ -22,10 +25,12 @@ export class StatisticsImportantComponent implements OnInit {
   green_colors: string[];
   yellow_colors: string[];
   blue_colors: string[];
-  importantTask1Count: any;
+  importantTask1Count: Map<string, number>;
   importantTask1Avg: any;
   selectDate: FormGroup;
   selectImportantTask: FormGroup;
+
+  highcharts = Highcharts;
 
   selectTask: number;
   selectTask2: number;
@@ -36,13 +41,6 @@ export class StatisticsImportantComponent implements OnInit {
   target: string;
 
   myMap: Map<number, number>;
-
-  @HostBinding("class.is-open")
-  isGreenActive = false;
-  @HostBinding("class.is-open")
-  isYellowActive = false;
-  @HostBinding("class.is-open")
-  isBlueActive = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +54,8 @@ export class StatisticsImportantComponent implements OnInit {
 
   ngOnInit() {
     this.toggle();
-    this.isGreenActive = true;
+
+    this.importantTask1Count = new Map<string, number>();
 
     this.myMap = new Map<number, number>();
 
@@ -79,24 +78,76 @@ export class StatisticsImportantComponent implements OnInit {
 
     this.initForm();
 
-    this.statisticsTaskService
+  //   {
+  //     "100": 2,
+  //     "25": 2,
+  //     "50": 3,
+  //     "75": 1
+  // }
+      this.statisticsTaskService
       .getImportantTaskCount(this.username, this.target, 1, this.year)
       .subscribe(
         count => {
-          console.log("DATA: " + count);
-          this.importantTask1Count = count;
+          this.pieChart(count);
+          //   this.chartOptions = {   
+          //     chart : {
+          //        plotBorderWidth: null,
+          //        plotShadow: false
+          //     },
+          //     title : {
+          //        text: 'Important ' + this.num + ', ' + this.year + ' summary'    
+          //     },
+          //     tooltip : {
+          //        pointFormat: '{point.y}'
+          //     },
+          //     plotOptions : {
+          //        pie: {
+          //           allowPointSelect: true,
+          //           cursor: 'pointer',
+          //           dataLabels: {
+          //              enabled: true,
+          //              format: '<b>{point.name}</b>',
+          //              style: {
+          //                 color: 'black'
+          //              }
+          //           }
+          //        }
+          //     },
+          //     series : [{
+          //        type: 'pie',
+          //        name: 'Task ' + this.num,
+          //        data: [
+          //         ['100', count["100"]],
+          //         ['75', count["75"]],
+          //         ['50', count["50"]],
+          //         ['25', count["25"]],
+          //         ['0', count["0"]]
+          //      ]
+          //     }]
+          //  };
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
         }
       );
 
-    this.importantTask1Avg = this.statisticsTaskService
+    //   [
+    //     [
+    //         1,
+    //         2.0
+    //     ],
+    //     [
+    //         2,
+    //         0.5
+    //     ]
+    // ]
+    this.statisticsTaskService
       .getImportantTaskAvg(this.username, this.target, 1, this.year)
       .subscribe(
         avg => {
           this.importantTask1Avg = avg;
           this.importantTask1Avg.forEach(element => {
+            console.log("-----> " + element[0]);
             this.myMap.set(element[0], element[1]);
           });
         },
@@ -105,17 +156,7 @@ export class StatisticsImportantComponent implements OnInit {
         }
       );
 
-    this.toggleService.changeGreenActive.subscribe(isActive => {
-      this.isGreenActive = isActive;
-    });
-
-    this.toggleService.changeYellowActive.subscribe(isActive => {
-      this.isYellowActive = isActive;
-    });
-
-    this.toggleService.changeBlueActive.subscribe(isActive => {
-      this.isBlueActive = isActive;
-    });
+      console.log("end of onInit: " + this.importantTask1Count.get("100"));
   }
 
   onSubmit() {
@@ -123,7 +164,7 @@ export class StatisticsImportantComponent implements OnInit {
     this.num = this.selectDate.value.selectTask;
     this.myMap.clear();
     
-    this.importantTask1Count = this.statisticsTaskService
+    this.statisticsTaskService
       .getImportantTaskCount(this.username, this.target, this.num, this.year)
       .subscribe(
         count => {
@@ -135,24 +176,6 @@ export class StatisticsImportantComponent implements OnInit {
       );
 
     this.title = "Important task " + this.num;
-    if (this.num == 1) {
-      this.isGreenActive = true;
-      this.isYellowActive = false;
-      this.isBlueActive = false;
-      this.colors = this.green_colors;
-    }
-    if (this.num == 2) {
-      this.isGreenActive = false;
-      this.isYellowActive = true;
-      this.isBlueActive = false;
-      this.colors = this.yellow_colors;
-    }
-    if (this.num == 3) {
-      this.isGreenActive = false;
-      this.isYellowActive = false;
-      this.isBlueActive = true;
-      this.colors = this.blue_colors;
-    }
 
     this.statisticsTaskService
       .getImportantTaskAvg(this.username, this.target, this.num, this.year)
@@ -172,18 +195,6 @@ export class StatisticsImportantComponent implements OnInit {
     ]);
   }
 
-  onRadioButtonClicked(num: number) {
-    if (num === 1) {
-      this.toggleService.toggleGreen();
-    }
-    if (num === 2) {
-      this.toggleService.toggleYellow();
-    }
-    if (num === 3) {
-      this.toggleService.toggleBlue();
-    }
-  }
-
   @HostListener("submit")
   private toggle() {
     this.toggleService.toggleStatistics();
@@ -198,5 +209,58 @@ export class StatisticsImportantComponent implements OnInit {
       selectYear: new FormControl(selectYear, Validators.required),
       selectTask: new FormControl(selectTask)
     });
+  }
+
+  chartOptions = {   
+      chart : {
+      },
+      title : { 
+      },
+      tooltip : {
+      },
+      plotOptions : {
+         pie: {}
+      },
+      series : [{
+      }]
+   };
+
+  private pieChart(count) {
+    this.chartOptions = {   
+      chart : {
+          plotBorderWidth: null,
+          plotShadow: false
+      },
+      title : {
+          text: 'Important ' + this.num + ', ' + this.year + ' summary'    
+      },
+      tooltip : {
+          pointFormat: '{point.y}'
+      },
+      plotOptions : {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>',
+                style: {
+                  color: 'black'
+                }
+            }
+          }
+      },
+      series : [{
+          type: 'pie',
+          name: 'Task ' + this.num,
+          data: [
+          ['100', count["100"]],
+          ['75', count["75"]],
+          ['50', count["50"]],
+          ['25', count["25"]],
+          ['0', count["0"]]
+        ]
+      }]
+    };
   }
 }

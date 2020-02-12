@@ -62,6 +62,7 @@ import { ImportantDetailComponent } from "./important/important-detail/important
 import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index/less-important-index.component";
 import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { LessImportantDetailComponent } from "./lessimportant/lessimportant-deta
     ReactiveFormsModule,
     ChartModule,
     BrowserAnimationsModule,
-    MatComponentsModule
+    MatComponentsModule,
+    HighchartsChartModule
   ],
   providers: [
     DaysService,
