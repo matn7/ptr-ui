@@ -15,14 +15,18 @@
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
 
-<!-- {{ importantTask1Count['100'] ? importantTask1Count['100'] : 'NIC'  }} -->
+<mat-card class="pandatronik-mat-card">
+  <highcharts-chart
+    [Highcharts] = "highcharts" 
+    [options] = "chartOptions" 
+    style = "width: 100%; height: 400px; display: block;">
+  </highcharts-chart>
 
-<!-- <div class="col-md-3" [chart]="pieChart"></div>
-<div class="col-md-9" [chart]="columnChart"></div> -->
+  <mat-divider></mat-divider>
 
-<highcharts-chart
-   [Highcharts] = "highcharts" 
-   [options] = "chartOptions" 
-   style = "width: 100%; height: 400px; display: block;">
-</highcharts-chart>
-
+  <highcharts-chart
+    [Highcharts] = "highcharts" 
+    [options] = "columnChartOptions" 
+    style = "width: 100%; height: 400px; display: block;">
+  </highcharts-chart>
+</mat-card>

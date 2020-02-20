@@ -25,15 +25,17 @@ export class TaskDetailComponent implements OnInit {
     private handleError: HandleErrorsService,
     private authService: AuthenticationService,
     private appInternalMessageService: AppInternalMessagesService,
-    private customErrorMsgService: CustomErrorMessageService
-  ) {}
+    private customErrorMsgService: CustomErrorMessageService,
+    target: string
+  ) {
+    this.target = target;
+  }
 
   ngOnInit() {
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe(params => {
       this.id = +params["id"];
       this.num = +params["num"];
-      this.target = params["target"];
     });
     this.date = new Date();
     this.month = this.date.getMonth() + 1;

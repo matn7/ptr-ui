@@ -9,8 +9,6 @@ import { ToggleService } from "../../services/data/toggle.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
 import * as Highcharts from 'highcharts';
-import { Stat } from "../../stat-data.component";
-import { element } from "protractor";
 
 @Component({
   selector: "app-statistics-important",
@@ -26,7 +24,6 @@ export class StatisticsImportantComponent implements OnInit {
   yellow_colors: string[];
   blue_colors: string[];
   importantTask1Count: Map<string, number>;
-  importantTask1Avg: any;
   selectDate: FormGroup;
   selectImportantTask: FormGroup;
 
@@ -78,78 +75,23 @@ export class StatisticsImportantComponent implements OnInit {
 
     this.initForm();
 
-  //   {
-  //     "100": 2,
-  //     "25": 2,
-  //     "50": 3,
-  //     "75": 1
-  // }
       this.statisticsTaskService
       .getImportantTaskCount(this.username, this.target, 1, this.year)
       .subscribe(
         count => {
           this.pieChart(count);
-          //   this.chartOptions = {   
-          //     chart : {
-          //        plotBorderWidth: null,
-          //        plotShadow: false
-          //     },
-          //     title : {
-          //        text: 'Important ' + this.num + ', ' + this.year + ' summary'    
-          //     },
-          //     tooltip : {
-          //        pointFormat: '{point.y}'
-          //     },
-          //     plotOptions : {
-          //        pie: {
-          //           allowPointSelect: true,
-          //           cursor: 'pointer',
-          //           dataLabels: {
-          //              enabled: true,
-          //              format: '<b>{point.name}</b>',
-          //              style: {
-          //                 color: 'black'
-          //              }
-          //           }
-          //        }
-          //     },
-          //     series : [{
-          //        type: 'pie',
-          //        name: 'Task ' + this.num,
-          //        data: [
-          //         ['100', count["100"]],
-          //         ['75', count["75"]],
-          //         ['50', count["50"]],
-          //         ['25', count["25"]],
-          //         ['0', count["0"]]
-          //      ]
-          //     }]
-          //  };
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
         }
       );
 
-    //   [
-    //     [
-    //         1,
-    //         2.0
-    //     ],
-    //     [
-    //         2,
-    //         0.5
-    //     ]
-    // ]
     this.statisticsTaskService
       .getImportantTaskAvg(this.username, this.target, 1, this.year)
       .subscribe(
         avg => {
-          this.importantTask1Avg = avg;
-          this.importantTask1Avg.forEach(element => {
-            console.log("-----> " + element[0]);
-            this.myMap.set(element[0], element[1]);
-          });
+          console.log("AVG -----> " + avg);
+          this.columnChart(avg);
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -168,7 +110,7 @@ export class StatisticsImportantComponent implements OnInit {
       .getImportantTaskCount(this.username, this.target, this.num, this.year)
       .subscribe(
         count => {
-          this.importantTask1Count = count;
+          this.pieChart(count);
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -181,10 +123,7 @@ export class StatisticsImportantComponent implements OnInit {
       .getImportantTaskAvg(this.username, this.target, this.num, this.year)
       .subscribe(
         avg => {
-          this.importantTask1Avg = avg;
-          this.importantTask1Avg.forEach(element => {
-            this.myMap.set(element[0], element[1]);
-          });
+          this.columnChart(avg);
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
@@ -225,6 +164,24 @@ export class StatisticsImportantComponent implements OnInit {
       }]
    };
 
+   columnChartOptions = {   
+    chart : {
+    },
+    title : { 
+    },
+    xAxis: {
+    },
+    yAxis: {
+    },
+    tooltip : {
+    },
+    plotOptions : {
+       column: {}
+    },
+    series : [{
+    }]
+  };
+
   private pieChart(count) {
     this.chartOptions = {   
       chart : {
@@ -253,6 +210,7 @@ export class StatisticsImportantComponent implements OnInit {
       series : [{
           type: 'pie',
           name: 'Task ' + this.num,
+          colors: this.green_colors,
           data: [
           ['100', count["100"]],
           ['75', count["75"]],
@@ -260,6 +218,76 @@ export class StatisticsImportantComponent implements OnInit {
           ['25', count["25"]],
           ['0', count["0"]]
         ]
+      }]
+    };
+  }
+
+  private columnChart(avg) {
+    // Calculate values
+    // f(x) = ax + b
+    // f(0) = 100
+    // f(4) = 0
+    // 100 = a * 0 + b ===> b = 100
+    // 0 = 4 * a + 100 ===> a = -25
+    // f(x) = -25x + 100
+    this.columnChartOptions = {
+      chart: {
+        type: 'column',
+        renderTo: 'container'
+      },
+      title: {
+        text: 'Título Column'
+      },
+      xAxis: {
+        categories: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ]
+      },
+      yAxis: {
+        min: 0,
+        max: 100,
+        title: {
+          text: 'Average'
+        }
+      },
+      tooltip: {
+        formatter: function () {
+          return '' +
+            this.x + ': ' + this.y;
+        }
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: 'Série 1',
+        data: [avg[0] ? (-25 * avg[0][1] + 100) : '',
+               avg[1] ? (-25 * avg[1][1] + 100) : '',
+               avg[2] ? (-25 * avg[2][1] + 100) : '',
+               avg[3] ? (-25 * avg[3][1] + 100) : '',
+               avg[4] ? (-25 * avg[4][1] + 100) : '',
+               avg[5] ? (-25 * avg[5][1] + 100) : '',
+               avg[6] ? (-25 * avg[6][1] + 100) : '',
+               avg[7] ? (-25 * avg[7][1] + 100) : '',
+               avg[8] ? (-25 * avg[8][1] + 100) : '',
+               avg[9] ? (-25 * avg[9][1] + 100) : '',
+               avg[10] ? (-25 * avg[10][1] + 100) : '',
+               avg[11] ? (-25 * avg[11][1] + 100) : '']
+  
       }]
     };
   }

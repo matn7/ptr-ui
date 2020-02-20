@@ -67,7 +67,7 @@
     <mat-grid-tile (click)="
       !taskIndexData[num][8]
         ? num + 1 <= today || today == -1
-        ? onAddNewClick(3, year, month, num + 1)
+        ? onAddNewClick(target, 3, year, month, num + 1)
         : ''
         : onEditClick(target, 3, taskIndexData[num][8])"
         [style.background]="blue_completion_styles[taskIndexData[num][9]]"

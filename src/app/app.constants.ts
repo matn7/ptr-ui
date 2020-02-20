@@ -59,11 +59,11 @@ export const BLUE_COMPLETION_STYLES = {
 // };
 
 export const MADE_CODES = {
-  0: 0,
-  25: 1,
+  100: 0,
+  75: 1,
   50: 2,
-  75: 3,
-  100: 4
+  25: 3,
+  0: 4
 };
 
 

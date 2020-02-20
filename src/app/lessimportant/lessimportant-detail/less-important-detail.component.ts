@@ -21,7 +21,7 @@ export class LessImportantDetailComponent extends TaskDetailComponent {
     appInternalMessageService: AppInternalMessagesService,
     customErrorMsgService: CustomErrorMessageService
   ) {
-    super(route, service, handleError, authService, appInternalMessageService, customErrorMsgService);
+    super(route, service, handleError, authService, appInternalMessageService, customErrorMsgService, "lessimportant");
   }
 
 }

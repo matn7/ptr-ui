@@ -130,7 +130,7 @@ export class TaskIndexComponent implements OnInit {
         }
       );
 
-    this.router.navigate(["/task/" + this.target + "/" + this.year + "/" + this.month]);
+    this.router.navigate(["/" + this.target + "/" + this.year + "/" + this.month]);
   }
 
   @HostListener("submit")
@@ -157,12 +157,12 @@ export class TaskIndexComponent implements OnInit {
 
   onAddNewClick(target, num, year, month, day) {
     this.router.navigate([
-      "/task/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
+      "/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
     ]);
   }
 
   onEditClick(target, num, id) {
-    this.router.navigate(["/task/" + target + "/" + num + "/" + id + "/edit"]);
+    this.router.navigate(["/" + target + "/" + num + "/" + id + "/edit"]);
   }
 
   onAddDayClick(year, month, day) {

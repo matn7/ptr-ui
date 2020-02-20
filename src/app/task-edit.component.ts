@@ -60,8 +60,10 @@ export class TaskEditComponent implements OnInit {
     private toggleService: ToggleService,
     private appInternalMessageService: AppInternalMessagesService,
     private timeService: TimeService,
-    private customErrorMsgService: CustomErrorMessageService
+    private customErrorMsgService: CustomErrorMessageService,
+    target: string
   ) {
+    this.target = target;
   }
 
   ngOnInit() {
@@ -80,7 +82,6 @@ export class TaskEditComponent implements OnInit {
       this.id = +params["id"];
       this.editMode = params["id"] != null;
       this.num = +params["num"];
-      this.target = params["target"];
     });
     if (!this.editMode) {
       this.route.params.subscribe(params => {
@@ -127,6 +128,9 @@ export class TaskEditComponent implements OnInit {
           }
         );
     } else {
+
+      console.log("Co wysylamy: " + this.importantForm.value.made);
+
       this.TaskService
         .createTask(this.username, this.target, this.num, this.importantForm.value)
         .subscribe(

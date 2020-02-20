@@ -31,7 +31,7 @@ export class ImportantEditComponent extends TaskEditComponent {
     customErrorMsgService: CustomErrorMessageService
   ) {
     super(route, TaskService, datepipe, authService, handleError, router, toggleService, appInternalMessageService,
-    timeService, customErrorMsgService);
+    timeService, customErrorMsgService, "important");
   }
 
 
