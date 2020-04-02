@@ -122,7 +122,7 @@ export class TaskIndexComponent implements OnInit {
       .getTaskIndexData(this.username, this.target, this.year, this.month)
       .subscribe(
         data => {
-          console.log(data);
+          console.log("#######" + data);
           this.taskIndexData = data;
         },
         error => {

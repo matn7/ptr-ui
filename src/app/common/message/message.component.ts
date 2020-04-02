@@ -4,8 +4,7 @@ import { ToggleService } from "../../services/data/toggle.service";
 
 @Component({
   selector: "app-message",
-  templateUrl: "./message.component.html",
-  styleUrls: ["./message.component.css"]
+  templateUrl: "./message.component.html"
 })
 export class MessageComponent implements OnInit {
   errorMessage: string;
