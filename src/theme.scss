@@ -3,9 +3,17 @@
 @include mat-core();
 
 // Define a custom theme
+// $app-primary: mat-palette($mat-blue, 600);
 $app-primary: mat-palette($mat-blue, 600);
-$app-accent: mat-palette($mat-yellow, 700);
+// $app-accent: mat-palette($mat-yellow, 700);
+$app-accent: mat-palette($mat-cyan, 500);
 $app-warn: mat-palette($mat-red);
+
+
+$app-yellow: mat-palette($mat-yellow);
+$app-green: mat-palette($mat-green);
+$app-blue: mat-palette($mat-blue);
+$app-cyan: mat-palette($mat-cyan);
 
 // $app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
@@ -19,6 +27,22 @@ $app-typography: mat-typography-config(
 );
 
 @include angular-material-typography($app-typography);
+
+.pandatronik_navigate_yellow:hover {
+    background-color: mat-color($app-yellow);
+}
+
+.pandatronik_navigate_green:hover {
+    background-color: mat-color($app-green);
+}
+
+.pandatronik_navigate_blue:hover {
+    background-color: mat-color($app-blue);
+}
+
+.pandatronik_cyan {
+    background-color: mat-color($app-cyan);
+}
 
 // $color: blue;
 

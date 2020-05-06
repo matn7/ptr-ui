@@ -28,26 +28,26 @@ export const MONTH_NAMES = [
 
 export const GREEN_COMPLETION_STYLES = {
   0:"linear-gradient(to right, white 0% 100%)",
-  25:"linear-gradient(to right, #4fb46c 0% 25%, white 25% 100%)",
-  50:"linear-gradient(to right, #4fb46c 0% 50%, white 50% 100%)",
-  75:"linear-gradient(to right, #4fb46c 0% 75%, white 75% 100%)",
-  100:"linear-gradient(to right, #4fb46c 0% 100%)"
+  25:"linear-gradient(to right, #4caf50 0% 25%, white 25% 100%)",
+  50:"linear-gradient(to right, #4caf50 0% 50%, white 50% 100%)",
+  75:"linear-gradient(to right, #4caf50 0% 75%, white 75% 100%)",
+  100:"linear-gradient(to right, #4caf50 0% 100%)"
 };
 
 export const YELLOW_COMPLETION_STYLES = {
   0:"linear-gradient(to right, white 0% 100%)",
-  25:"linear-gradient(to right, #fbcc56 0% 25%, white 25% 100%)",
-  50:"linear-gradient(to right, #fbcc56 0% 50%, white 50% 100%)",
-  75:"linear-gradient(to right, #fbcc56 0% 75%, white 75% 100%)",
-  100:"linear-gradient(to right, #fbcc56 0% 100%)"
+  25:"linear-gradient(to right, #ffeb3b 0% 25%, white 25% 100%)",
+  50:"linear-gradient(to right, #ffeb3b 0% 50%, white 50% 100%)",
+  75:"linear-gradient(to right, #ffeb3b 0% 75%, white 75% 100%)",
+  100:"linear-gradient(to right, #ffeb3b 0% 100%)"
 };
 
 export const BLUE_COMPLETION_STYLES = {
   0:"linear-gradient(to right, white 0% 100%)",
-  25:"linear-gradient(to right, #67abcc 0% 25%, white 25% 100%)",
-  50:"linear-gradient(to right, #67abcc 0% 50%, white 50% 100%)",
-  75:"linear-gradient(to right, #67abcc 0% 75%, white 75% 100%)",
-  100:"linear-gradient(to right, #67abcc 0% 100%)"
+  25:"linear-gradient(to right, #2196f3 0% 25%, white 25% 100%)",
+  50:"linear-gradient(to right, #2196f3 0% 50%, white 50% 100%)",
+  75:"linear-gradient(to right, #2196f3 0% 75%, white 75% 100%)",
+  100:"linear-gradient(to right, #2196f3 0% 100%)"
 };
 
 // export const MADE_CODES = {
