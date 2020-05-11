@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { ToggleService } from "../services/data/toggle.service";
 import { UserService } from "../services/user.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { User } from "./user.model";
@@ -17,13 +16,12 @@ export class UserComponent implements OnInit {
   // userData2: User;
   returnUrl: string;
 
-  constructor(private toggleService: ToggleService, 
+  constructor(
     private userService: UserService,
     private authService: AuthenticationService,
     private customErrorMsgService: CustomErrorMessageService) {}
 
   ngOnInit() {
-    this.toggle();
     this.isChecked = true;
 
     this.username = this.authService.getAuthenticatedUser();
@@ -41,11 +39,6 @@ export class UserComponent implements OnInit {
         this.customErrorMsgService.displayMessage(error, this.returnUrl);
       }
     );
-  }
-
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleUser();
   }
 
   onChange($event) {

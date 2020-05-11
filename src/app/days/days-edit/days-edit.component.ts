@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../services/authentication.service";
-import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { TimeService } from "../../services/data/time.service";
@@ -40,14 +39,12 @@ export class DaysEditComponent implements OnInit {
     private authService: AuthenticationService,
     private datepipe: DatePipe,
     private router: Router,
-    private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService,
     private timeService: TimeService,
     private appInternalMessageService: AppInternalMessagesService
   ) {}
 
   ngOnInit() {
-    this.toggle();
 
     this.username = this.authService.getAuthenticatedUser();
 
@@ -133,10 +130,6 @@ export class DaysEditComponent implements OnInit {
     this.appInternalMessageService.triggerDateInFutureMsg();
   }
 
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleDays();
-  }
 
   private initForm(startDate: string, postedOn: string, username: string) {
     const id = this.id;

@@ -1,29 +1,33 @@
 <mat-toolbar color="primary">
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
-      routerLinkActive="mat-accent"
+      routerLinkActive="active"
+      [style.background]="isImportantActive ? '#0d47a1' : ''"
       routerLink="important/{{ year }}/{{ month }}">Important</button>
+      
   <button mat-button  
       *ngIf="authService.isUserLoggedIn()"
-      routerLinkActive="mat-accent"
-      [style.color]="'#B0DDBD'"
+      routerLinkActive="active"
+      [style.background]="isLessImportantActive ? '#0d47a1' : ''"
       routerLink="lessimportant/{{ year }}/{{ month }}">Less Important</button>  
 
   <button mat-button [matMenuTriggerFor]="statSubMenu"
+      routerLinkActive="active"
+      [style.background]="isStatisticsActive ? '#0d47a1' : ''"
       *ngIf="authService.isUserLoggedIn()">Statistics</button>
 
   <mat-menu #statSubMenu="matMenu" >
     <button mat-menu-item 
-      routerLinkActive="mat-accent"
+      routerLinkActive="active"
       routerLink="/statistics/important/1/{{ year }}">Important</button>
     <button mat-menu-item
-      routerLinkActive="mat-accent"
+      routerLinkActive="active"
       routerLink="/statistics/lessimportant/1/{{ year }}">Less Important</button>
     <button mat-menu-item 
-      routerLinkActive="mat-accent"
+      routerLinkActive="active"
       routerLink="/statistics/days/{{ year }}">Days {{ year }}</button>
     <button mat-menu-item
-      routerLinkActive="mat-accent"
+      routerLinkActive="active"
       routerLink="/statistics/days/{{ year }}/{{ month }}">Days {{ year }} / {{ month }}</button>        
   </mat-menu>
 

@@ -6,7 +6,6 @@ import { TaskService } from "./services/task.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { Task } from "./task.model"
 import { HandleErrorsService } from "./services/handle-errors.service";
-import { ToggleService } from "./services/data/toggle.service";
 import { TimeService } from "./services/data/time.service";
 import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
@@ -39,7 +38,6 @@ export class TaskIndexComponent implements OnInit {
     private importantIndexService: TaskService,
     private handleError: HandleErrorsService,
     private authService: AuthenticationService,
-    private toggleService: ToggleService,
     private timeService: TimeService,
     private appInternalMessageService: AppInternalMessagesService,
     private customErrorMsgService: CustomErrorMessageService,
@@ -49,8 +47,6 @@ export class TaskIndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    // set important route active
-    this.toggle();
 
     this.route.params.subscribe(params => {
       this.month = +params["month"];
@@ -131,17 +127,6 @@ export class TaskIndexComponent implements OnInit {
       );
 
     this.router.navigate(["/" + this.target + "/" + this.year + "/" + this.month]);
-  }
-
-  @HostListener("submit")
-  private toggle() {
-        // router.events.forEach((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     console.log("NAVIGATION");
-    //     this.ngOnInit();
-    //   }
-    // })
-    this.toggleService.toggleImportant();
   }
 
   onAddExtraordinaryClick(year, month, day) {

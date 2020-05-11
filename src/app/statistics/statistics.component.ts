@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { ToggleService } from "../services/data/toggle.service";
 
 @Component({
   selector: "app-statistics",
@@ -7,14 +6,10 @@ import { ToggleService } from "../services/data/toggle.service";
   styleUrls: ["./statistics.component.css"]
 })
 export class StatisticsComponent implements OnInit {
-  constructor(private toggleService: ToggleService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.toggle();
   }
 
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleStatistics();
-  }
+
 }

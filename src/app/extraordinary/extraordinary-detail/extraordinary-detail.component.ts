@@ -3,7 +3,6 @@ import { ActivatedRoute } from "@angular/router";
 import { ExtraordinaryService } from "../../services/extraordinary.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
-import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 
@@ -29,12 +28,10 @@ export class ExtraordinaryDetailComponent implements OnInit {
     private authService: AuthenticationService,
     private service: ExtraordinaryService,
     private handleError: HandleErrorsService,
-    private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
-    this.toggle();
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe(params => {
       this.id = +params["id"];
@@ -56,8 +53,4 @@ export class ExtraordinaryDetailComponent implements OnInit {
       );
   }
 
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleDays();
-  }
 }

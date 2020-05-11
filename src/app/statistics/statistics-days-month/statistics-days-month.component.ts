@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { ToggleService } from "../../services/data/toggle.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DateRequest } from "../date-request";
@@ -30,7 +29,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
   weekDayArr: Array<string>;
 
   constructor(
-    private toggleService: ToggleService,
     private authService: AuthenticationService,
     private route: ActivatedRoute,
     private statisticsDaysService: StatisticsDaysService,
@@ -39,7 +37,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.toggle();
     this.route.params.subscribe(params => {
       this.year = +params["year"];
       this.month = +params["month"];
@@ -100,7 +97,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
   }
 
   onSubmit() {
-    this.toggle();
     this.year = this.selectDate.value.selectYear;
     this.month = this.selectDate.value.selectMonth;
     this.title = "Mood for " + this.year + " / " + MONTH_NAMES[this.month - 1];
@@ -152,11 +148,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       );
 
     this.router.navigate(["/statistics/days/" + this.month + "/" + this.year]);
-  }
-
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleStatistics();
   }
 
   private initForm() {

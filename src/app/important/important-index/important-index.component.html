@@ -1,5 +1,5 @@
 <form [formGroup]="selectDate" class="choose-date-form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="form-field-padding" appearance="outline">
+  <mat-form-field class="pandatronik-select-date" appearance="outline">
     <mat-select formControlName="selectYear" id="selectYear">
       <mat-option [value]="2020">2020</mat-option>
       <mat-option [value]="2019">2019</mat-option>
@@ -7,7 +7,7 @@
       <mat-option [value]="2017">2017</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="form-field-padding" appearance="outline">
+  <mat-form-field class="pandatronik-select-date" appearance="outline">
     <mat-select formControlName="selectMonth" id="selectMonth">
       <mat-option [value]="1">January</mat-option>
       <mat-option [value]="2">February</mat-option>

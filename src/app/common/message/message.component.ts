@@ -1,6 +1,5 @@
 import { Component, OnInit, HostBinding } from "@angular/core";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { ToggleService } from "../../services/data/toggle.service";
 
 @Component({
   selector: "app-message",
@@ -19,8 +18,7 @@ export class MessageComponent implements OnInit {
   isHeaderClicked = false;
 
   constructor(
-    private appInternalMessageService: AppInternalMessagesService,
-    private toggleService: ToggleService
+    private appInternalMessageService: AppInternalMessagesService
   ) {}
 
   ngOnInit() {
@@ -34,9 +32,6 @@ export class MessageComponent implements OnInit {
       this.errorMessage = isActive.msg;
     });
 
-    this.toggleService.changeClickedHeader.subscribe(isActive => {
-      this.reset();
-    });
   }
 
   reset() {

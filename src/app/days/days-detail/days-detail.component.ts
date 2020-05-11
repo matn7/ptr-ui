@@ -3,7 +3,6 @@ import { DaysService } from "src/app/services/days.service";
 import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
-import { ToggleService } from "../../services/data/toggle.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { Days } from "../days.model";
 
@@ -28,7 +27,6 @@ export class DaysDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private service: DaysService,
     private authService: AuthenticationService,
-    private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
@@ -57,10 +55,5 @@ export class DaysDetailComponent implements OnInit {
         this.customErrorMsgService.displayMessage(error, this.returnUrl);
       }
     );
-  }
-
-  @HostListener("click")
-  private toggle() {
-    this.toggleService.toggleDays();
   }
 }

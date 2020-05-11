@@ -28,7 +28,6 @@ import { LogoutComponent } from "./logout/logout.component";
 import { HandleErrorsService } from "./services/handle-errors.service";
 import { RegistrationComponent } from "./registration/registration.component";
 import { RegistrationService } from "./services/registration.service";
-import { ToggleService } from "./services/data/toggle.service";
 import { TimeService } from "./services/data/time.service";
 import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 import { PasswordResetComponent } from "./registration/password-reset/password-reset.component";
@@ -121,7 +120,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
     StatisticsTaskService,
     RegistrationService,
     HandleErrorsService,
-    ToggleService,
     AuthenticationService,
     TimeService,
     AppInternalMessagesService,

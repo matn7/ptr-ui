@@ -5,8 +5,8 @@ import {
   HostBinding,
 } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
-import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -23,23 +23,18 @@ export class HeaderComponent implements OnInit {
 
   isMsgFromBackend;
 
-  @HostBinding("class.is-open")
   isUserActive = false;
-
-  @HostBinding("class.is-open")
   isImportantActive = false;
-
-  @HostBinding("class.is-open")
   isLessImportantActive = false;
-
-  @HostBinding("class.is-open")
   isStatisticsActive = false;
 
   constructor(
     private authService: AuthenticationService,
-    private toggleService: ToggleService,
-    private appInternalMessageService: AppInternalMessagesService
-  ) {}
+    private appInternalMessageService: AppInternalMessagesService,
+    private router: Router
+  ) {
+    console.log(">>>>>>>>>>." + this.router.url);
+  }
 
   ngOnInit() {
     this.toggle();
@@ -49,26 +44,15 @@ export class HeaderComponent implements OnInit {
     this.year = this.date.getFullYear();
     this.isLoggedInUser = this.authService.isUserLoggedIn();
     this.name = this.authService.getAuthenticatedUser();
-
-    this.toggleService.changeUser.subscribe(isActive => {
-      this.isUserActive = isActive;
-    });
-
-    this.toggleService.changeImportant.subscribe(isActive => {
-      this.isImportantActive = isActive;
-    });
-
-    this.toggleService.changeLessImportant.subscribe(isActive => {
-      this.isLessImportantActive = isActive;
-    });
-
-    this.toggleService.changeStatistics.subscribe(isActive => {
-      this.isStatisticsActive = isActive;
-    });
   }
 
   @HostListener("click")
   private toggle() {
-    this.toggleService.toggleHeaderClicked();
+    console.log(">>>>>>>>>>." + this.router.url.split("/")[1]);
+    this.isImportantActive = this.router.url.split("/")[1] === "important";
+    this.isLessImportantActive = this.router.url.split("/")[1] === "lessimportant";
+    this.isStatisticsActive = this.router.url.split("/")[1] === "statistics";
+
+
   }
 }

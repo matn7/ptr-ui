@@ -6,7 +6,6 @@ import { DatePipe } from "@angular/common";
 import { ExtraordinaryService } from "../../services/extraordinary.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
-import { ToggleService } from "../../services/data/toggle.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";
@@ -51,14 +50,11 @@ export class ExtraordinaryEditComponent implements OnInit {
     private datepipe: DatePipe,
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
-    private toggleService: ToggleService,
     private router: Router,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
-    console.log("Tutaj");
-    this.toggle();
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe((params: Params) => {
       this.id = +params["id"];
@@ -93,11 +89,6 @@ export class ExtraordinaryEditComponent implements OnInit {
     this.returnUrl = "/important/" + this.year + "/" + this.month;
     this.initForm(this.startDate, this.postedOn, this.username);
 
-  }
-
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleDays();
   }
 
   onSubmit() {

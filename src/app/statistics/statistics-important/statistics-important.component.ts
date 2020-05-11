@@ -5,7 +5,6 @@ import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 // import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
-import { ToggleService } from "../../services/data/toggle.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
 import * as Highcharts from 'highcharts';
@@ -45,13 +44,10 @@ export class StatisticsImportantComponent implements OnInit {
     private statisticsTaskService: StatisticsTaskService,
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
-    private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
-    this.toggle();
-
     this.importantTask1Count = new Map<string, number>();
 
     this.myMap = new Map<number, number>();
@@ -132,11 +128,6 @@ export class StatisticsImportantComponent implements OnInit {
     this.router.navigate([
       "/statistics/important/" + this.num + "/" + this.year
     ]);
-  }
-
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleStatistics();
   }
 
   private initForm() {

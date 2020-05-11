@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener, Inject, InjectionToken } from "@angular/core";
-import { ToggleService } from "../services/data/toggle.service";
 import { ExtraordinaryService } from "../services/extraordinary.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { Extraordinary } from "./extraordinary.model";
@@ -24,7 +23,6 @@ export class ExtraordinaryComponent implements OnInit {
   records: Array<number>;
 
   constructor(
-    private toggleService: ToggleService,
     private extraService: ExtraordinaryService,
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
@@ -36,7 +34,6 @@ export class ExtraordinaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.toggle();
     this.username = this.authService.getAuthenticatedUser();
     this.returnUrl = "/extraordinary/all";
     this.extraService.getExtraordinaryAll(this.username).subscribe(
@@ -57,8 +54,4 @@ export class ExtraordinaryComponent implements OnInit {
     this.router.navigate(["/extraordinary/" + id + "/edit"]);
   }
 
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleDays();
-  }
 }

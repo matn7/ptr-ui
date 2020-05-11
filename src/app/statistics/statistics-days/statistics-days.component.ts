@@ -5,7 +5,6 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Chart } from "angular-highcharts";
-import { ToggleService } from "../../services/data/toggle.service";
 import { DateRequest } from "../date-request";
 import { GREEN_COLORS } from "../../app.constants";
 
@@ -32,13 +31,10 @@ export class StatisticsDaysComponent implements OnInit {
     private router: Router,
     private statisticsDaysService: StatisticsDaysService,
     private authService: AuthenticationService,
-    private toggleService: ToggleService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
-    this.toggle();
-
     this.myMap = new Map<number, number>();
 
     this.username = this.authService.getAuthenticatedUser();
@@ -81,7 +77,6 @@ export class StatisticsDaysComponent implements OnInit {
   }
 
   onSubmit() {
-    this.toggle();
     this.year = this.selectDate.value.selectYear;
     this.title = "Mood for " + this.year;
     this.dateRequest.year = this.year;
@@ -114,11 +109,6 @@ export class StatisticsDaysComponent implements OnInit {
     this.router.navigate(["/statistics/days/" + this.year]);
   }
 
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleStatistics();
-  }
-  
   private initForm() {
     const selectYear = this.year;
 

@@ -44,6 +44,10 @@ $app-typography: mat-typography-config(
     background-color: mat-color($app-cyan);
 }
 
+.active {
+    background-color: #0d47a1;
+  }
+
 // $color: blue;
 
 // h1 {

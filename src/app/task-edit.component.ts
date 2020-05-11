@@ -9,7 +9,6 @@ import { DatePipe } from "@angular/common";
 import { TaskService } from "./services/task.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
-import { ToggleService } from "./services/data/toggle.service";
 import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 import { TimeService } from "./services/data/time.service";
 import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
@@ -57,7 +56,6 @@ export class TaskEditComponent implements OnInit {
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
     private router: Router,
-    private toggleService: ToggleService,
     private appInternalMessageService: AppInternalMessagesService,
     private timeService: TimeService,
     private customErrorMsgService: CustomErrorMessageService,
@@ -144,11 +142,6 @@ export class TaskEditComponent implements OnInit {
           }
         );
     }
-  }
-
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleImportant();
   }
 
   onDelete() {

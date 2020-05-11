@@ -4,7 +4,6 @@ import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
 import { HandleErrorsService } from "../services/handle-errors.service";
-import { ToggleService } from "../services/data/toggle.service";
 import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
 
@@ -36,14 +35,11 @@ export class DaysComponent implements OnInit {
     private router: Router,
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
-    private toggleService: ToggleService,
     private appInternalMessageService: AppInternalMessagesService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
-    this.toggle();
-
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe(params => {
       this.day = +params["day"];
@@ -110,11 +106,6 @@ export class DaysComponent implements OnInit {
           );
         }
       );
-  }
-
-  @HostListener("submit")
-  private toggle() {
-    this.toggleService.toggleDays();
   }
 
   private initForm() {
