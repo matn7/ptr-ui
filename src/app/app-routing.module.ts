@@ -30,6 +30,7 @@ import { StatisticsStartEndComponent } from "./statistics/statistics-start-end/s
 import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index/less-important-index.component";
 import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
+import { StatisticsLessimportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [RouteGuardService] },
@@ -145,8 +146,13 @@ const appRoutes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: "statistics/:target/:num/:year",
+    path: "statistics/important/:num/:year",
     component: StatisticsImportantComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "statistics/lessimportant/:num/:year",
+    component: StatisticsLessimportantComponent,
     canActivate: [RouteGuardService]
   },
   {

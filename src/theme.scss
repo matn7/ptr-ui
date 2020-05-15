@@ -48,6 +48,10 @@ $app-typography: mat-typography-config(
     background-color: #0d47a1;
   }
 
+  .pandatronik-toggle-button.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 36px !important;
+  }  
+
 // $color: blue;
 
 // h1 {

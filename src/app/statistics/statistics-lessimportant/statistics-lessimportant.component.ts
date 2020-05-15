@@ -7,10 +7,10 @@ import { CustomErrorMessageService } from "../../services/data/custom-error-mess
 import { TaskStatisticsComponent } from "../../task-statistics-component";
 
 @Component({
-  selector: "app-statistics-important",
-  templateUrl: "./statistics-important.component.html"
+  selector: 'app-statistics-lessimportant',
+  templateUrl: './statistics-lessimportant.component.html'
 })
-export class StatisticsImportantComponent extends TaskStatisticsComponent {
+export class StatisticsLessimportantComponent extends TaskStatisticsComponent {
 
 
   constructor(
@@ -22,7 +22,7 @@ export class StatisticsImportantComponent extends TaskStatisticsComponent {
     customErrorMsgService: CustomErrorMessageService,
 
   ) {
-    super(route, router, statisticsTaskService, authService, handleError, customErrorMsgService, "important");
+    super(route, router, statisticsTaskService, authService, handleError, customErrorMsgService, "lessimportant");
   }
 
 }

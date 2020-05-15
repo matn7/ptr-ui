@@ -68,27 +68,27 @@ export const MADE_CODES = {
 
 
 export const GREEN_COLORS = [
-  "#61bc7b",
-  "#80c995",
-  "#a0d6af",
-  "#bfe4ca",
-  "#dff1e4"
+  "#4caf50",
+  "#66bb6a",
+  "#81c784",
+  "#a5d6a7",
+  "#c8e6c9"
 ];
 
 export const YELLOW_COLORS = [
-  "#fbcc56",
-  "#fbd677",
-  "#fce099",
-  "#fdeabb",
-  "#fef4dd"
+  "#ffeb3b",
+  "#ffee58",
+  "#fff176",
+  "#fff59d",
+  "#fff9c4"
 ];
 
 export const BLUE_COLORS = [
-  "#63a0dd",
-  "#82b3e3",
-  "#a1c6ea",
-  "#c0d9f1",
-  "#dfecf8"
+  "#2196f3",
+  "#42a5f5",
+  "#64b5f6",
+  "#90caf9",
+  "#bbdefb"
 ];
 
 export const TITLE_LENGTH_VALIDATOR = "The title field max length is 40 characters";

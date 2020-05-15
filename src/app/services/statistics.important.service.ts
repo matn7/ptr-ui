@@ -31,7 +31,7 @@ export class StatisticsTaskService {
 
   getImportantTaskAvg(username, target, num, year) {
     return this.http
-      .get(
+      .get<Map<string, number>>(
         `${API_URL}/${API_VERSION}/users/${username}/statistics/${target}/${num}/avg/${year}`
       )
       .catch(this.handleErrorService.handleError);

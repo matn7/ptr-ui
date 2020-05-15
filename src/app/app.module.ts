@@ -62,6 +62,7 @@ import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index
 import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 import { HighchartsChartModule } from 'highcharts-angular';
+import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     UserComponent,
     AdminComponent,
     AdminUserComponent,
-    StatisticsStartEndComponent
+    StatisticsStartEndComponent,
+    StatisticsLessimportantComponent
   ],
   imports: [
     BrowserModule,

@@ -18,16 +18,12 @@
 
   <mat-menu #statSubMenu="matMenu" >
     <button mat-menu-item 
-      routerLinkActive="active"
       routerLink="/statistics/important/1/{{ year }}">Important</button>
     <button mat-menu-item
-      routerLinkActive="active"
       routerLink="/statistics/lessimportant/1/{{ year }}">Less Important</button>
     <button mat-menu-item 
-      routerLinkActive="active"
       routerLink="/statistics/days/{{ year }}">Days {{ year }}</button>
     <button mat-menu-item
-      routerLinkActive="active"
       routerLink="/statistics/days/{{ year }}/{{ month }}">Days {{ year }} / {{ month }}</button>        
   </mat-menu>
 

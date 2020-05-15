@@ -157,3 +157,8 @@
 .pandatronik-select-date.mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0.2em 0 0.8em 0 !important;
 }
+
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 36px !important;
+}
