@@ -17,8 +17,6 @@ import { CustomErrorMessageService } from "../../services/data/custom-error-mess
 })
 export class LessImportantEditComponent extends TaskEditComponent {
 
-  isActive;
-
   constructor(
     route: ActivatedRoute,
     TaskService: TaskService,
@@ -32,7 +30,6 @@ export class LessImportantEditComponent extends TaskEditComponent {
   ) {
     super(route, TaskService, datepipe, authService, handleError, router, appInternalMessageService,
     timeService, customErrorMsgService, "lessimportant");
-    this.isActive = true;
 
   }
 

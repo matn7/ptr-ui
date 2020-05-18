@@ -37,4 +37,11 @@ export class TimeService {
       return -1;
     }
   }
+
+  checkNumber(num: number) {
+    if (num === 1 || num === 2 || num === 3) {
+      return 0;
+    } 
+    return -1;
+  }
 }

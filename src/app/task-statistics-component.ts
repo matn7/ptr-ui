@@ -2,12 +2,13 @@ import { Component, OnInit, HostListener, HostBinding } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "./services/statistics.important.service";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
-// import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "./services/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
 import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "./app.constants";
 import * as Highcharts from 'highcharts';
+import { TimeService } from "./services/data/time.service";
+import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 
 export class TaskStatisticsComponent implements OnInit {
   year: number;
@@ -15,10 +16,6 @@ export class TaskStatisticsComponent implements OnInit {
   title: string;
   username: string;
   colors: string[][];
-  green_colors: string[];
-  yellow_colors: string[];
-  blue_colors: string[];
-  importantTask1Count: Map<number, number>;
   selectDate: FormGroup;
   selectImportantTask: FormGroup;
 
@@ -43,17 +40,14 @@ export class TaskStatisticsComponent implements OnInit {
     private authService: AuthenticationService,
     private handleError: HandleErrorsService,
     private customErrorMsgService: CustomErrorMessageService,
+    private timeService: TimeService,
+    private appInternalMessageService: AppInternalMessagesService,
     target: string
   ) {
     this.target = target;
   }
 
   ngOnInit() {
-    this.importantTask1Count = new Map<number, number>();
-
-    for (let i = 1; i <= 12; i++) {
-      this.importantTask1Count.set(i, null);
-    }
 
     // this.myMap = new Map<number, number>();
     this.averageMap = new Map<string, number>();
@@ -65,13 +59,15 @@ export class TaskStatisticsComponent implements OnInit {
       this.num = +params["num"];
     });
 
-    this.title = "Important task " + this.num;
-    this.green_colors = GREEN_COLORS;
-    this.yellow_colors = YELLOW_COLORS;
-    this.blue_colors = BLUE_COLORS;
-    this.colors = [this.green_colors, this.yellow_colors, this.blue_colors];
-
     this.returnUrl = "/statistics/" + this.target + "/1/" + this.year + "/";
+
+    if (this.timeService.checkNumber(this.num) === -1) {
+      this.redirectMsg();
+      this.router.navigate([this.returnUrl]);
+    }
+
+    this.title = "Important task " + this.num;
+    this.colors = [GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS];
 
     this.initForm();
 
@@ -99,8 +95,6 @@ export class TaskStatisticsComponent implements OnInit {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
         }
       );
-
-      console.log("end of onInit: " + this.importantTask1Count.get(1));
   }
 
   onSubmit() {
@@ -137,6 +131,10 @@ export class TaskStatisticsComponent implements OnInit {
     this.router.navigate([
       "/statistics/" + this.target + "/" + this.num + "/" + this.year
     ]);
+  }
+
+  private redirectMsg() {
+    this.appInternalMessageService.triggerDateInFutureMsg();
   }
 
   private populateAverageMap(avg) {

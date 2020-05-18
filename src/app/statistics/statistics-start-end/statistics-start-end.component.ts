@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticsTaskService } from "../../services/statistics.important.service";
-import { Chart } from "angular-highcharts";
 import { AuthenticationService } from "../../services/authentication.service";
 import { StartEndDateRequest } from "../start-end-date-request";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -11,8 +10,7 @@ import { GREEN_COLORS } from "../../app.constants";
 
 @Component({
   selector: 'app-statistics-start-end',
-  templateUrl: './statistics-start-end.component.html',
-  styleUrls: ['./statistics-start-end.component.css']
+  templateUrl: './statistics-start-end.component.html'
 })
 export class StatisticsStartEndComponent implements OnInit {
 
@@ -49,8 +47,8 @@ export class StatisticsStartEndComponent implements OnInit {
       this.startDate = params["startDate"];
       this.endDate = params["endDate"];
       // this.startDate = this.datepipe.transform(
-      //   new Date(this.year, this.month - 1, this.day),
-      //   "yyyy-MM-dd"
+        // new Date(this.year, this.month - 1, this.day),
+        // "yyyy-MM-dd"
       // );
       this.num = +params["num"];
     });

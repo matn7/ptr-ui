@@ -24,7 +24,11 @@
     <button mat-menu-item 
       routerLink="/statistics/days/{{ year }}">Days {{ year }}</button>
     <button mat-menu-item
-      routerLink="/statistics/days/{{ year }}/{{ month }}">Days {{ year }} / {{ month }}</button>        
+      routerLink="/statistics/days/{{ year }}/{{ month }}">Days {{ year }} / {{ month }}</button>    
+    <button mat-menu-item
+      routerLink="/statistics/startend/important/1/{{ startDate }}/{{ endDate }}">Date range</button>   
+      <!-- statistics/startend/:component/:num/:startDate/:endDate yyyy-MM-dd-->
+      <!-- http://localhost:4200/statistics/startend/important/1/2020-05-18/2020-05-18 -->
   </mat-menu>
 
   <div class="flex-spacer"></div>

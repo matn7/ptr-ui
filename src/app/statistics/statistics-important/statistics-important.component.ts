@@ -5,6 +5,8 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { TaskStatisticsComponent } from "../../task-statistics-component";
+import { TimeService } from "../../services/data/time.service";
+import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 
 @Component({
   selector: "app-statistics-important",
@@ -20,9 +22,11 @@ export class StatisticsImportantComponent extends TaskStatisticsComponent {
     authService: AuthenticationService,
     handleError: HandleErrorsService,
     customErrorMsgService: CustomErrorMessageService,
-
+    timeService: TimeService,
+    appInternalMessageService: AppInternalMessagesService
   ) {
-    super(route, router, statisticsTaskService, authService, handleError, customErrorMsgService, "important");
+    super(route, router, statisticsTaskService, authService, handleError, customErrorMsgService, 
+      timeService, appInternalMessageService, "important");
   }
 
 }

@@ -42,7 +42,6 @@
             <mat-list-item [style.height]="0">{{ weekDayArr[num] ? weekDayArr[num] : '0' }}</mat-list-item>
           </mat-list>
     </mat-grid-tile>
-
     <mat-grid-tile (click)="
       !taskIndexData[num][2]
         ? num + 1 <= today || today == -1
