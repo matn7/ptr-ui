@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { DatePipe } from "@angular/common";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { GREEN_COLORS } from "../../app.constants";
+import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-statistics-start-end',
@@ -23,9 +24,11 @@ export class StatisticsStartEndComponent implements OnInit {
 
   selectDateRange: FormGroup;
   component: string;
-  myMap: Map<number, number>;
+  countMap: Map<string, number>;
   startEndData: any;
-  colors: string[];
+  colors: string[][];
+
+  highcharts = Highcharts;
 
   title: string;
 
@@ -39,6 +42,7 @@ export class StatisticsStartEndComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.countMap = new Map<string, number>();
 
     this.username = this.authService.getAuthenticatedUser();
 
@@ -46,21 +50,13 @@ export class StatisticsStartEndComponent implements OnInit {
       this.component = params["component"];
       this.startDate = params["startDate"];
       this.endDate = params["endDate"];
-      // this.startDate = this.datepipe.transform(
-        // new Date(this.year, this.month - 1, this.day),
-        // "yyyy-MM-dd"
-      // );
       this.num = +params["num"];
     });
-    // this.startEndDateRequest = new StartEndDateRequest(this.startDate, this.endDate);
-    // "statistics/startend/:component/:num/:startDate/:endDate",
     this.returnUrl = "/statistics/startend/important/1/";
 
     this.title = this.component;
-    this.myMap = new Map<number, number>();
-    this.colors = GREEN_COLORS;
-
-    this.initForm();
+    
+    this.colors = [GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS];
 
     this.startEndDateRequest = new StartEndDateRequest(this.startDate, this.endDate);
 
@@ -68,60 +64,56 @@ export class StatisticsStartEndComponent implements OnInit {
       .getImportantStartEnd(this.username, this.component, this.num,
         this.startEndDateRequest)
         .subscribe(
-          data => {
-            console.log("ngInit[0] 100 >>>>>> " + data[0]);
-            console.log("ngInit[1] 75  >>>>>> " + data[1]);
-            console.log("ngInit[2] 50  >>>>>> " + data[2]);
-            console.log("ngInit[3] 25  >>>>>> " + data[3]);
-            console.log("ngInit[4] 0   >>>>>> " + data[4]);
-            
-            this.startEndData = data;
-
-            this.myMap.set(0, data[0]);
-            this.myMap.set(1, data[1]);
-            this.myMap.set(2, data[2]);
-            this.myMap.set(3, data[3]);
-            this.myMap.set(4, data[4]);
-
-
-            console.log("myMap >>>>>> " + this.myMap);
+          count => {
+            // this.countMap.set("0", count[0]);
+            // this.countMap.set("1", count[1]);
+            // this.countMap.set("2", count[2]);
+            // this.countMap.set("3", count[3]);
+            // this.countMap.set("4", count[4]);
+            this.populateCountMap(count);
+            this.columnChart();
 
           },
           error => {
             this.customErrorMsgService.displayMessage(error, this.returnUrl);
           }
         );
+        this.initForm();
 
   }
 
-  onSumbit() {
-    this.component = this.selectDateRange.value.component;
-    this.startDate = this.selectDateRange.value.startDate;
-    this.endDate = this.selectDateRange.value.endDate;
+  onSubmit() {
+    console.log("...............................................");
+    this.countMap.clear();
+    this.component = this.selectDateRange.value.selectComponent;
+    this.startDate = this.selectDateRange.value.selectStartDate;
+    this.endDate = this.selectDateRange.value.selectEndDate;
 
     this.startEndDateRequest.startDate = this.startDate;
     this.startEndDateRequest.endDate = this.endDate;
+
+    console.log("component: " + this.component);
 
     this.statisticsTaskService
       .getImportantStartEnd(this.username, this.component, this.num,
       this.startEndDateRequest)
       .subscribe(
-        data => {
-          console.log("onSubmit >>>>>>> " + data);
+        count => {
+          this.populateCountMap(count);
+          this.columnChart();
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);
         }
       );
-    // navigate to this data
-    // "statistics/startend/:component/:num/:startDate/:endDate"
-    this.router.navigate(["/statistics/startend/important/" + this.num +"/" + this.startDate + "/" + this.endDate]);
+    this.router.navigate(["/statistics/startend/" + this.component + "/" + this.num +"/" + this.startDate + "/" + this.endDate]);
   }
 
   private initForm() {
     const selectComponent = this.component;
     const selectStartDate = this.startDate;
     const selectEndDate = this.endDate;
+
     this.selectDateRange = new FormGroup({
       selectComponent: new FormControl(selectComponent, Validators.required),
       selectStartDate: new FormControl(selectStartDate, Validators.required),
@@ -129,4 +121,82 @@ export class StatisticsStartEndComponent implements OnInit {
     });
   }
 
+  private populateCountMap(count) {
+    this.countMap.set("0", count[0] ? count[0] : 0);
+    this.countMap.set("1", count[1] ? count[1] : 0);
+    this.countMap.set("2", count[2] ? count[2] : 0);
+    this.countMap.set("3", count[3] ? count[3] : 0);
+    this.countMap.set("4", count[4] ? count[4] : 0);
+  }
+
+
+  columnChartOptions = {   
+    chart : {
+    },
+    title : { 
+    },
+    xAxis: {
+    },
+    yAxis: {
+    },
+    tooltip : {
+    },
+    plotOptions : {
+       column: {}
+    },
+    series : [{
+    }]
+  };
+
+
+  private columnChart() {
+    this.columnChartOptions = {
+      chart: {
+        type: 'column',
+        renderTo: 'container'
+      },
+      title: {
+        text: 'Month Average'  
+      },
+      xAxis: {
+        categories: [
+          '100',
+          '75',
+          '50',
+          '25',
+          '0'
+        ]
+      },
+      yAxis: {
+        min: 0,
+        max: 100,
+        title: {
+          text: 'Average'
+        }
+      },
+      tooltip: {
+        formatter: function () {
+          return '' +
+            this.x + ': ' + this.y;
+        }
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: 'Important ',
+        color: this.colors[this.num - 1][0],
+        data: [
+          this.countMap.get("0"), 
+          this.countMap.get("1"), 
+          this.countMap.get("2"), 
+          this.countMap.get("3"), 
+          this.countMap.get("4")
+        ]
+      }]
+    };
+  }
 }

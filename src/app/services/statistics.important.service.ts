@@ -38,8 +38,6 @@ export class StatisticsTaskService {
   }
 
   getImportantStartEnd(username, component, num, resource) {
-    console.log("Resource - startDate: " + resource.startDate);
-    console.log("Resource - endDate: " + resource.endDate);
     return this.http
     .post(
       `${API_URL}/${API_VERSION}/users/${username}/statistics/${component}/${num}/startEnd`,

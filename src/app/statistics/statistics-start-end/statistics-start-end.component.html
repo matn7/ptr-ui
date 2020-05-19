@@ -1,11 +1,19 @@
-<form [formGroup]="selectDateRange" class="choose-date-form" (ngSubmit)="onSubmit()">
+<form [formGroup]="selectDateRange" (ngSubmit)="onSubmit()">
   <mat-form-field class="pandatronik-select-date" appearance="outline">
     <mat-select formControlName="selectComponent" id="selectComponent">
-      <mat-option [value]="important">Important</mat-option>
-      <mat-option [value]="lessimportant">Less important</mat-option>
-      <mat-option [value]="days">Days</mat-option>
+      <mat-option value="important">important</mat-option>
+      <mat-option value="lessimportant">lessimportant</mat-option>
+      <mat-option value="days">days</mat-option>
     </mat-select>
   </mat-form-field>
+  {{ component }}
+  <mat-button-toggle-group formControlName="selectTask" aria-label="Font Style" 
+  *ngIf="component === 'important' || component === 'lessimportant'">
+    <mat-button-toggle [value]="1">1</mat-button-toggle>
+    <mat-button-toggle [value]="2">2</mat-button-toggle>
+    <mat-button-toggle [value]="3">3</mat-button-toggle>
+  </mat-button-toggle-group>
+
   <mat-form-field class="pandatronik-select-date" appearance="outline">
     <mat-label>Select Start Date</mat-label>
       <input 
@@ -33,11 +41,6 @@
 </form>
 
 <mat-card class="pandatronik-mat-card">
-  <highcharts-chart
-    [Highcharts] = "highcharts" 
-    [options] = "chartOptions" 
-    style = "width: 100%; height: 350px; display: block;">
-  </highcharts-chart>
   <highcharts-chart
     [Highcharts] = "highcharts" 
     [options] = "columnChartOptions" 
