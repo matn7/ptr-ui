@@ -27,7 +27,7 @@ export const MONTH_NAMES = [
 ];
 
 export const GREEN_COMPLETION_STYLES = {
-  0:"linear-gradient(to right, white 0% 100%)",
+  0:"linear-gradient(to right, #ccc 0% 100%)",
   25:"linear-gradient(to right, #4caf50 0% 25%, white 25% 100%)",
   50:"linear-gradient(to right, #4caf50 0% 50%, white 50% 100%)",
   75:"linear-gradient(to right, #4caf50 0% 75%, white 75% 100%)",
@@ -35,7 +35,7 @@ export const GREEN_COMPLETION_STYLES = {
 };
 
 export const YELLOW_COMPLETION_STYLES = {
-  0:"linear-gradient(to right, white 0% 100%)",
+  0:"linear-gradient(to right, #ccc 0% 100%)",
   25:"linear-gradient(to right, #ffeb3b 0% 25%, white 25% 100%)",
   50:"linear-gradient(to right, #ffeb3b 0% 50%, white 50% 100%)",
   75:"linear-gradient(to right, #ffeb3b 0% 75%, white 75% 100%)",
@@ -43,7 +43,7 @@ export const YELLOW_COMPLETION_STYLES = {
 };
 
 export const BLUE_COMPLETION_STYLES = {
-  0:"linear-gradient(to right, white 0% 100%)",
+  0:"linear-gradient(to right, #ccc 0% 100%)",
   25:"linear-gradient(to right, #2196f3 0% 25%, white 25% 100%)",
   50:"linear-gradient(to right, #2196f3 0% 50%, white 50% 100%)",
   75:"linear-gradient(to right, #2196f3 0% 75%, white 75% 100%)",
@@ -102,6 +102,7 @@ export const USERNAME_DUPLICATED_VALIDATOR = "Username already exists";
 
 export const PASSWORD_LENGTH_VALIDATOR = "The password field should be between 6 and 60 characters";
 export const PASSWORD_REQUIRED_VALIDATOR = "The password field is required";
+export const PASSWORD_PATTERN_VALIDATOR = "Password must contain at least one number, one special character, one upper and lower case letter";
 
 export const EMAIL_REQUIRED_VALIDATOR = "The email field is required";
 export const EMAIL_INVALID_VALIDATOR = "This is not a valid email address";

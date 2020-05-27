@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   isLoggedInUser: boolean;
   name: string;
   isActive: boolean;
+  username: string;
 
   isMsgFromBackend;
 
@@ -48,6 +49,8 @@ export class HeaderComponent implements OnInit {
 
     console.log("Daaaaaaaaay -> " + this.startDate);
 
+    this.username = this.authService.getAuthenticatedUser();
+
     this.day = this.date.getDate();
     
     this.month = this.date.getMonth() + 1;
@@ -62,11 +65,10 @@ export class HeaderComponent implements OnInit {
 
   @HostListener("click")
   private toggle() {
+    this.username = this.authService.getAuthenticatedUser();
     console.log(">>>>>>>>>>." + this.router.url.split("/")[1]);
     this.isImportantActive = this.router.url.split("/")[1] === "important";
     this.isLessImportantActive = this.router.url.split("/")[1] === "lessimportant";
     this.isStatisticsActive = this.router.url.split("/")[1] === "statistics";
-
-
   }
 }

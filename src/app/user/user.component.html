@@ -1,10 +1,38 @@
 <mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile>email</mat-grid-tile>
+  <mat-grid-tile>
+    <mat-list role="list">
+      <mat-list-item role="listitem" style="display: inline-block;">
+        <mat-icon aria-hidden="true" aria-label="User email">email</mat-icon> {{ userData.email }}
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon aria-hidden="false" aria-label="User account">person</mat-icon> {{ userData.firstName }} {{ userData.lastName }}
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon aria-hidden="false" aria-label="User account">account_circle</mat-icon> {{ userData.username }}
+      </mat-list-item>
+      <mat-list-item role="listitem">
+         <mat-icon aria-hidden="false" aria-label="Active Account">favorite</mat-icon> {{ userData.enabled }}
+      </mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
   <mat-grid-tile>{{ userData.email }}</mat-grid-tile>
-  <mat-grid-tile>Name</mat-grid-tile>
-  <mat-grid-tile>{{ userData.firstName }} {{ userData.lastName }}</mat-grid-tile>
-  <mat-grid-tile>Username</mat-grid-tile>
-  <mat-grid-tile>{{ userData.username }}</mat-grid-tile>
-  <mat-grid-tile>Enabled</mat-grid-tile>
-  <mat-grid-tile>{{ userData.enabled }}</mat-grid-tile>
 </mat-grid-list>
+
+<!-- <table mat-table class="mat-elevation-z8">
+<tr>
+<td mat-cell> 1 </td>
+<td mat-cell> 2 </td>
+</tr>
+<tr>
+<td mat-cell> 1 </td>
+<td mat-cell> 2 </td>
+</tr>
+<tr>
+<td mat-cell> 1 </td>
+<td mat-cell> 2 </td>
+</tr>
+<tr>
+<td mat-cell> 1 </td>
+<td mat-cell> 2 </td>
+</tr>
+</table> -->

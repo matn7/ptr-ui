@@ -169,7 +169,7 @@ export class StatisticsStartEndComponent implements OnInit {
       },
       yAxis: {
         min: 0,
-        max: 100,
+        // max: 100,
         title: {
           text: 'Average'
         }

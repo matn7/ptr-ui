@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { HandleErrorsService } from "../services/handle-errors.service";
 import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
-import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR } from "../app.constants";
+import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../app.constants";
 
 @Component({
   selector: "app-registration",
@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
 
   readonly password_length_validator = PASSWORD_LENGTH_VALIDATOR;
   readonly password_required_validator = PASSWORD_REQUIRED_VALIDATOR;
+  readonly password_pattern_validator = PASSWORD_PATTERN_VALIDATOR;
 
   readonly email_required_validator = EMAIL_REQUIRED_VALIDATOR;
   readonly email_invalid_validator = EMAIL_INVALID_VALIDATOR;
@@ -82,9 +83,21 @@ export class RegistrationComponent implements OnInit {
     const lastName = this.lastName;
 
     this.registrationForm = new FormGroup({
-      username: new FormControl(username, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
-      password: new FormControl(password, [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
-      confirmPassword: new FormControl(confirmPassword, [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
+      username: new FormControl(username, [Validators.required, 
+        Validators.minLength(6), 
+        Validators.maxLength(50)
+      ]),
+      password: new FormControl(password, [Validators.required, 
+        Validators.minLength(6), 
+        Validators.maxLength(60)
+        // Validators.pattern("^(?=.*?\\p{Lu})(?=.*?\\p{Ll})(?=.*?\\d)(?=.*?[`~!@#$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).*$")]
+      ]),
+      confirmPassword: new FormControl(confirmPassword, [Validators.required, 
+        Validators.minLength(6), 
+        Validators.maxLength(60)
+        // Validators.pattern('[a-zA-Z ]*')
+        // Validators.pattern("^(?=.*?\\p{Lu})(?=.*?\\p{Ll})(?=.*?\\d)(?=.*?[`~!@#$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).*$")
+      ]),
       email: new FormControl(email, [Validators.required, Validators.email]),
       firstName: new FormControl(firstName, Validators.required),
       lastName: new FormControl(lastName, Validators.required)

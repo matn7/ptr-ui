@@ -2,6 +2,13 @@
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
       routerLinkActive="active"
+      title="{{ username }}"
+      routerLink="user/{{ username }}">
+      <mat-icon aria-hidden="false" aria-label="User account">account_circle</mat-icon></button>
+
+  <button mat-button 
+      *ngIf="authService.isUserLoggedIn()"
+      routerLinkActive="active"
       [style.background]="isImportantActive ? '#0d47a1' : ''"
       routerLink="important/{{ year }}/{{ month }}">Important</button>
       

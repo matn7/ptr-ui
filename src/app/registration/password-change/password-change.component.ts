@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../../app.constants";
 
 @Component({
   selector: "app-password-change",
@@ -17,6 +18,10 @@ export class PasswordChangeComponent implements OnInit {
   returnUrl: string;
   id: string;
   token: string;
+
+  readonly password_length_validator = PASSWORD_LENGTH_VALIDATOR;
+  readonly password_required_validator = PASSWORD_REQUIRED_VALIDATOR;
+  readonly password_pattern_validator = PASSWORD_PATTERN_VALIDATOR;
 
   constructor(
     private registrationService: RegistrationService,

@@ -21,6 +21,11 @@
     </mat-error>
     <mat-error *ngIf="
       registrationForm.controls['username'].touched &&
+      registrationForm.controls['username'].hasError('minlength')">
+      {{ username_length_validator }}
+    </mat-error>
+    <mat-error *ngIf="
+      registrationForm.controls['username'].touched &&
       registrationForm.controls['username'].hasError('required')">
       {{ username_required_validator }}
     </mat-error>
@@ -53,6 +58,11 @@
       registrationForm.controls['password'].touched &&
       registrationForm.controls['password'].hasError('required')">
       {{ password_required_validator }}
+    </mat-error>
+        <mat-error *ngIf="
+      registrationForm.controls['password'].touched &&
+      registrationForm.controls['password'].hasError('pattern')">
+      {{ password_pattern_validator }}
     </mat-error>
 
     <!-- ##### CONFIRM PASSWORD ##### -->

@@ -5,6 +5,7 @@ import { HandleErrorsService } from "../../services/handle-errors.service";
 import { Router } from "@angular/router";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR } from "../../app.constants";
 
 @Component({
   selector: "app-password-reset",
@@ -15,6 +16,9 @@ export class PasswordResetComponent implements OnInit {
   passwordResetForm: FormGroup;
   errorMessage: string;
   returnUrl: string;
+
+  readonly email_required_validator = EMAIL_REQUIRED_VALIDATOR;
+  readonly email_invalid_validator = EMAIL_INVALID_VALIDATOR;
 
   constructor(
     private registrationService: RegistrationService,

@@ -52,6 +52,11 @@ $app-typography: mat-typography-config(
     line-height: 36px !important;
   }  
 
+.pandatronik_warning_message {
+    background: mat-color($app-yellow) !important; 
+    cursor: pointer;
+}
+
 // $color: blue;
 
 // h1 {

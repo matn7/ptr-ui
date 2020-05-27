@@ -52,7 +52,6 @@
         [ngClass]="{pandatronik_navigate_green: num + 1 <= today || today == -1}"
         title="{{ taskIndexData[num][4] }}">
     </mat-grid-tile>
-
     <mat-grid-tile (click)="
       !taskIndexData[num][5]
         ? num + 1 <= today || today == -1
