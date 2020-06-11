@@ -19,7 +19,10 @@ import { AppError } from "../common/app-error";
   providedIn: "root"
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+
+  }
 
   executeJWTAuthenticationService(username, password) {
     return this.http

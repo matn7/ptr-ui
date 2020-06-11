@@ -82,6 +82,8 @@ export class TaskIndexComponent implements OnInit {
       .subscribe(
         data => {
           this.taskIndexData = data;
+          console.log("*****************************");
+          console.log(data);
         },
         error => {
           this.customErrorMsgService.displayMessage(error, this.returnUrl);

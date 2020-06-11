@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   month: number;
   year: number;
   date: Date;
-  isLoggedInUser: boolean;
   name: string;
   isActive: boolean;
   username: string;
@@ -56,7 +55,6 @@ export class HeaderComponent implements OnInit {
     this.month = this.date.getMonth() + 1;
     console.log("Moooooonth -> " + this.month);
     this.year = this.date.getFullYear();
-    this.isLoggedInUser = this.authService.isUserLoggedIn();
     this.name = this.authService.getAuthenticatedUser();
 
     this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
