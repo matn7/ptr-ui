@@ -1,8 +1,6 @@
 import {
   Component,
-  OnInit,
-  HostListener,
-  HostBinding,
+  OnInit
 } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
@@ -19,54 +17,22 @@ export class HeaderComponent implements OnInit {
   month: number;
   year: number;
   date: Date;
-  name: string;
-  isActive: boolean;
   username: string;
-
-  isMsgFromBackend;
-
-  isUserActive = false;
-  isImportantActive = false;
-  isLessImportantActive = false;
-  isStatisticsActive = false;
-
   startDate: string;
   endDate: string;
 
   constructor(
     private authService: AuthenticationService,
-    private appInternalMessageService: AppInternalMessagesService,
-    private datepipe: DatePipe,
-    private router: Router
-  ) {
-    console.log(">>>>>>>>>>." + this.router.url);
-  }
+    private datepipe: DatePipe
+  ) {}
 
   ngOnInit() {
-    this.toggle();
     this.date = new Date();
-
-    console.log("Daaaaaaaaay -> " + this.startDate);
-
     this.username = this.authService.getAuthenticatedUser();
-
     this.day = this.date.getDate();
-    
     this.month = this.date.getMonth() + 1;
-    console.log("Moooooonth -> " + this.month);
     this.year = this.date.getFullYear();
-    this.name = this.authService.getAuthenticatedUser();
-
     this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
     this.endDate = this.datepipe.transform(new Date(), DATE_FORMAT);
-  }
-
-  @HostListener("click")
-  private toggle() {
-    this.username = this.authService.getAuthenticatedUser();
-    console.log(">>>>>>>>>>." + this.router.url.split("/")[1]);
-    this.isImportantActive = this.router.url.split("/")[1] === "important";
-    this.isLessImportantActive = this.router.url.split("/")[1] === "lessimportant";
-    this.isStatisticsActive = this.router.url.split("/")[1] === "statistics";
   }
 }

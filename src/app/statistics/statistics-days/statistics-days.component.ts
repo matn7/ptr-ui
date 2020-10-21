@@ -1,10 +1,9 @@
-import { Component, OnInit, HostListener } from "@angular/core";
-import { ActivatedRoute, Route, Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsDaysService } from "../../services/statistics-days.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Chart } from "angular-highcharts";
 import { DateRequest } from "../date-request";
 import { GREEN_COLORS } from "../../app.constants";
 import * as Highcharts from 'highcharts';
@@ -124,6 +123,7 @@ export class StatisticsDaysComponent implements OnInit {
   }
 
   private populateCountMap(count) {
+    console.log(count["1"]);
     this.countMap.set("100", count["0"]);
     this.countMap.set("75", count["1"]);
     this.countMap.set("50", count["2"]);
@@ -215,6 +215,18 @@ export class StatisticsDaysComponent implements OnInit {
       ['0', this.countMap.get("0")]
     ]
   }]
+  //   series : [{
+  //     type: 'pie',
+  //     name: 'Task ',
+  //     colors: GREEN_COLORS,
+  //     data: [
+  //       ['100', this.countMap.get("100")],
+  //       ['75', this.countMap.get("75")],
+  //       ['50', this.countMap.get("50")],
+  //       ['25', this.countMap.get("25")],
+  //       ['0', this.countMap.get("0")]
+  //     ]
+  // }]
   };
 }
 

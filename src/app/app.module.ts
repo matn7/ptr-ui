@@ -63,6 +63,7 @@ import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/l
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { StatisticsLessimportantComponent } from './statistics/statistics-lessim
     ChartModule,
     BrowserAnimationsModule,
     MatComponentsModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    SharedModule
   ],
   providers: [
     DaysService,

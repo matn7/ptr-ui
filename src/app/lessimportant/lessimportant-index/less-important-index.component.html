@@ -28,58 +28,62 @@
 
 <mat-grid-list cols="5" rowHeight="2:1" *ngIf="taskIndexData">
   <ng-container *ngFor="let num of numbers">
+    <!-- Extraordinary -->
     <mat-grid-tile (click)="
-      !taskIndexData[num][1]
+      !taskIndexData[num].extraordinaryResponse.id
         ? num + 1 <= today || today == -1
         ? onAddExtraordinaryClick(year, month, num + 1)
         : ''
-        : onEditExtraordinaryClick(taskIndexData[num][0])"
-        [style.background]="today === num + 1 ? '#00bcd4' : taskIndexData[num][1] ? yellow_completion_styles[100] : ''"
+        : onEditExtraordinaryClick(taskIndexData[num].extraordinaryResponse.id)"
+        [style.background]="today === num + 1 ? '#00bcd4' : taskIndexData[num].extraordinaryResponse.id ? yellow_completion_styles[100] : ''"
         [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}"
-        title="{{ taskIndexData[num][1] }}">
+        title="{{ taskIndexData[num].extraordinaryResponse.title }}">
         <mat-list>
             <mat-list-item [style.flex-direction]="column"><h1>{{ num + 1 }}</h1></mat-list-item>
             <mat-list-item [style.height]="0">{{ weekDayArr[num] ? weekDayArr[num] : '0' }}</mat-list-item>
           </mat-list>
     </mat-grid-tile>
+    <!-- Less Important -->
     <mat-grid-tile (click)="
-      !taskIndexData[num][2]
+      !taskIndexData[num].lessImportantResponse.id
         ? num + 1 <= today || today == -1
         ? onAddNewClick(target, 1, year, month, num + 1)
         : ''
-        : onEditClick(target, 1, taskIndexData[num][2])"
-        [style.background]="green_completion_styles[taskIndexData[num][3]]"
+        : onEditClick(target, 1, taskIndexData[num].lessImportantResponse.id)"
+        [style.background]="green_completion_styles[taskIndexData[num].lessImportantResponse.made]"
         [ngClass]="{pandatronik_navigate_green: num + 1 <= today || today == -1}"
-        title="{{ taskIndexData[num][4] }}">
+        title="{{ taskIndexData[num].lessImportantResponse.title }}">
     </mat-grid-tile>
-
+    <!-- Less Important 2 -->
     <mat-grid-tile (click)="
-      !taskIndexData[num][5]
+      !taskIndexData[num].lessImportantResponse2.id
         ? num + 1 <= today || today == -1
         ? onAddNewClick(target, 2, year, month, num + 1)
         : ''
-        : onEditClick(target, 2, taskIndexData[num][5])"
-        [style.background]="yellow_completion_styles[taskIndexData[num][6]]"
+        : onEditClick(target, 2, taskIndexData[num].lessImportantResponse2.id)"
+        [style.background]="yellow_completion_styles[taskIndexData[num].lessImportantResponse2.made]"
         [ngClass]="{pandatronik_navigate_yellow: num + 1 <= today || today == -1}"
-        title="{{ taskIndexData[num][7] }}">
+        title="{{ taskIndexData[num].lessImportantResponse2.title }}">
     </mat-grid-tile>
+    <!-- Less Important 3 -->
     <mat-grid-tile (click)="
-      !taskIndexData[num][8]
+      !taskIndexData[num].lessImportantResponse3.id
         ? num + 1 <= today || today == -1
         ? onAddNewClick(target, 3, year, month, num + 1)
         : ''
-        : onEditClick(target, 3, taskIndexData[num][8])"
-        [style.background]="blue_completion_styles[taskIndexData[num][9]]"
+        : onEditClick(target, 3, taskIndexData[num].lessImportantResponse3.id)"
+        [style.background]="blue_completion_styles[taskIndexData[num].lessImportantResponse3.made]"
         [ngClass]="{pandatronik_navigate_blue: num + 1 <= today || today == -1}"
-        title="{{ taskIndexData[num][10] }}">
+        title="{{ taskIndexData[num].lessImportantResponse3.title }}">
     </mat-grid-tile>
+    <!-- Days -->
     <mat-grid-tile (click)="
-      !taskIndexData[num][11]
+      !taskIndexData[num].daysResponse.id
         ? num + 1 <= today || today == -1
         ? onAddDayClick(year, month, num + 1)
         : ''
-        : onEditDayClick(taskIndexData[num][11])"
-        [style.background]="green_completion_styles[taskIndexData[num][12]]"
+        : onEditDayClick(taskIndexData[num].daysResponse.id)"
+        [style.background]="green_completion_styles[taskIndexData[num].daysResponse.rateDay]"
         [ngClass]="{pandatronik_navigate_green: num + 1 <= today || today == -1}"
         title="Days">
     </mat-grid-tile>

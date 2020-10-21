@@ -1,0 +1,45 @@
+<!-- <mat-form-field class="full-width" appearance="outline"> -->
+    
+    <mat-form-field class="full-width" appearance="outline"> 
+        <mat-label>{{ label }}</mat-label>
+        <input 
+            matInput
+            *ngIf="controlType === 'input'" [type]="inputType" [formControl]="control" />
+
+        <textarea
+            matInput
+            *ngIf="controlType === 'textarea'" 
+            placeholder="{{ placeholder }}"
+            title="{{ title }}"
+            [formControl]="control"
+            rows="5"
+            maxlength="255"
+        ></textarea>
+
+        <mat-select 
+            *ngIf="controlType === 'select'"
+            [formControl]="control">
+            <mat-option [value]="0">100</mat-option>
+            <mat-option [value]="1">75</mat-option>
+            <mat-option [value]="2">50</mat-option>
+            <mat-option [value]="3">25</mat-option>
+            <mat-option [value]="4">0</mat-option>
+        </mat-select>
+        
+        <input
+            matInput
+            *ngIf="controlType === 'hidden'"
+            [hidden]="hidden"
+            [formControl]="control"
+        />
+    </mat-form-field>
+    
+
+<div *ngIf="showErrors()">
+    <mat-error *ngIf="control.errors.maxlength">
+    Length
+    </mat-error>
+    <mat-error *ngIf="control.errors.required">
+    Value is required
+    </mat-error>
+</div>

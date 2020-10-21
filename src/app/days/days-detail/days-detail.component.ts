@@ -25,15 +25,12 @@ export class DaysDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: DaysService,
+    private daysService: DaysService,
     private authService: AuthenticationService,
     private customErrorMsgService: CustomErrorMessageService
   ) {}
 
   ngOnInit() {
-    // set important route active
-    // this.days = new DaysModel();
-
     this.route.params.subscribe(params => {
       this.id = +params["id"];
     });
@@ -46,9 +43,8 @@ export class DaysDetailComponent implements OnInit {
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
 
-    this.service.getDays(this.username, this.id).subscribe(
+    this.daysService.getDays(this.username, this.id).subscribe(
       values => {
-        console.log(values.id);
         this.days = new Days(values.id, values.body, values.rateDay, values.postedOn, values.startDate, values.userProfileId);
       },
       error => {

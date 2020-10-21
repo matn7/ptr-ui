@@ -5,22 +5,19 @@
       title="{{ username }}"
       routerLink="user/{{ username }}">
       <mat-icon aria-hidden="false" aria-label="User account">account_circle</mat-icon></button>
-
+      
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
       routerLinkActive="active"
-      [style.background]="isImportantActive ? '#0d47a1' : ''"
       routerLink="important/{{ year }}/{{ month }}">Important</button>
       
   <button mat-button  
       *ngIf="authService.isUserLoggedIn()"
       routerLinkActive="active"
-      [style.background]="isLessImportantActive ? '#0d47a1' : ''"
       routerLink="lessimportant/{{ year }}/{{ month }}">Less Important</button>  
 
   <button mat-button [matMenuTriggerFor]="statSubMenu"
       routerLinkActive="active"
-      [style.background]="isStatisticsActive ? '#0d47a1' : ''"
       *ngIf="authService.isUserLoggedIn()">Statistics</button>
 
   <mat-menu #statSubMenu="matMenu" >
@@ -34,8 +31,6 @@
       routerLink="/statistics/days/{{ year }}/{{ month }}">Days {{ year }} / {{ month }}</button>    
     <button mat-menu-item
       routerLink="/statistics/startend/important/1/{{ startDate }}/{{ endDate }}">Date range</button>   
-      <!-- statistics/startend/:component/:num/:startDate/:endDate yyyy-MM-dd-->
-      <!-- http://localhost:4200/statistics/startend/important/1/2020-05-18/2020-05-18 -->
   </mat-menu>
 
   <div class="flex-spacer"></div>

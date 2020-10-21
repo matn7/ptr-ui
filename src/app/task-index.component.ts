@@ -145,7 +145,7 @@ export class TaskIndexComponent implements OnInit {
   onAddNewClick(target, num, year, month, day) {
     this.router.navigate([
       "/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
-    ]);
+    ], {replaceUrl: false});
   }
 
   onEditClick(target, num, id) {

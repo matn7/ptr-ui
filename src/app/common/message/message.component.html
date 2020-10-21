@@ -1,4 +1,5 @@
-<mat-card class="pandatronik_warning_message" *ngIf="isDateInFutureMsg || isMsgFromBackend">
+<mat-card class="pandatronik_warning_message" 
+  *ngIf="isDateInFutureMsg || isMsgFromBackend">
   <mat-card-content>{{ errorMessage }}<mat-icon style="float: right" (click)="reset()">close</mat-icon></mat-card-content>
 </mat-card>
 

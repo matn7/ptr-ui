@@ -19,7 +19,9 @@ export class DaysEditComponent implements OnInit {
   username: string;
   id: number;
   date: Date;
+
   daysForm: FormGroup;
+  
   startDate: string;
   postedOn: string;
   userProfileId: string;
