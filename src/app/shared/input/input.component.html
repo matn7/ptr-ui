@@ -2,9 +2,14 @@
     
     <mat-form-field class="full-width" appearance="outline"> 
         <mat-label>{{ label }}</mat-label>
+        <!-- todo: consider add maxlength, max allowed number of character that form field can accept? --->
         <input 
             matInput
             *ngIf="controlType === 'input'" [type]="inputType" [formControl]="control" />
+
+        <input 
+            matInput
+            *ngIf="controlType === 'password'" [type]="inputType" [formControl]="control" />
 
         <textarea
             matInput
@@ -25,6 +30,33 @@
             <mat-option [value]="3">25</mat-option>
             <mat-option [value]="4">0</mat-option>
         </mat-select>
+
+        <mat-select 
+            *ngIf="controlType === 'selectyear'"
+            [formControl]="control">
+            <mat-option [value]="2021">2021</mat-option>
+            <mat-option [value]="2020">2020</mat-option>
+            <mat-option [value]="2019">2019</mat-option>
+            <mat-option [value]="2018">2018</mat-option>
+            <mat-option [value]="2017">2017</mat-option>
+        </mat-select>
+
+        <mat-select 
+            *ngIf="controlType === 'selectmonth'"
+            [formControl]="control">
+            <mat-option [value]="1">January</mat-option>
+            <mat-option [value]="2">February</mat-option>
+            <mat-option [value]="3">March</mat-option>
+            <mat-option [value]="4">April</mat-option>
+            <mat-option [value]="5">May</mat-option>
+            <mat-option [value]="6">June</mat-option>
+            <mat-option [value]="7">July</mat-option>
+            <mat-option [value]="8">August</mat-option>
+            <mat-option [value]="9">September</mat-option>
+            <mat-option [value]="10">October</mat-option>
+            <mat-option [value]="11">November</mat-option>
+            <mat-option [value]="12">December</mat-option>
+        </mat-select>
         
         <input
             matInput
@@ -37,8 +69,25 @@
 
 <div *ngIf="showErrors()">
     <mat-error *ngIf="control.errors.maxlength">
-    Length
+        Max Length
     </mat-error>
+
+    <mat-error *ngIf="control.errors.minlength">
+        Min Length
+    </mat-error>
+
+    <mat-error *ngIf="control.errors.duplicated">
+        Duplicated
+    </mat-error>
+
+    <mat-error *ngIf="control.errors.pattern">
+        Pattern
+    </mat-error>
+
+    <mat-error *ngIf="control.errors.email">
+        Email
+    </mat-error>
+
     <mat-error *ngIf="control.errors.required">
     Value is required
     </mat-error>

@@ -1,48 +1,22 @@
 <mat-card class="pandatronik-mat-card">
   <form [formGroup]="loginForm" (ngSubmit)="handleJWTAuthLogin()">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Username</mat-label>
-      <input 
-        matInput 
-        placeholder="username" 
-        formControlName="username"
-        type="text"
-        id="username"
-        name="username"
-        maxlength="40">
-    </mat-form-field>
-    <mat-error *ngIf="
-      loginForm.controls['username'].touched &&
-      loginForm.controls['username'].hasError('maxlength')">
-      {{ username_length_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      loginForm.controls['username'].touched &&
-      loginForm.controls['username'].hasError('required')">
-      {{ username_required_validator }}
-    </mat-error>
+    <app-input 
+      controlType="input" 
+      [control]="loginForm.get('username')" 
+      placeholder="username"
+      title="username"
+      label="Username">
+    </app-input>
 
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Password</mat-label>
-      <input 
-        matInput 
-        placeholder="password" 
-        formControlName="password"
-        type="password"
-        id="password"
-        name="password"
-        maxlength="40">
-    </mat-form-field>
-    <mat-error *ngIf="
-      loginForm.controls['password'].touched &&
-      loginForm.controls['password'].hasError('maxlength')">
-      {{ password_length_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      loginForm.controls['password'].touched &&
-      loginForm.controls['password'].hasError('required')">
-      {{ password_required_validator }}
-    </mat-error> 
+    <app-input 
+      controlType="password" 
+      inputType="password"
+      [control]="loginForm.get('password')" 
+      placeholder="password"
+      title="password"
+      label="Password">
+    </app-input>
+    
     <button type="submit" color="primary" mat-raised-button [disabled]="!loginForm.valid">Submit</button>
   </form>  
   <br>

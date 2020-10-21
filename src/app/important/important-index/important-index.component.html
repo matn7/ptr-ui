@@ -1,28 +1,16 @@
 <form [formGroup]="selectDate" class="choose-date-form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="pandatronik-select-date" appearance="outline">
-    <mat-select formControlName="selectYear" id="selectYear">
-      <mat-option [value]="2020">2020</mat-option>
-      <mat-option [value]="2019">2019</mat-option>
-      <mat-option [value]="2018">2018</mat-option>
-      <mat-option [value]="2017">2017</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="pandatronik-select-date" appearance="outline">
-    <mat-select formControlName="selectMonth" id="selectMonth">
-      <mat-option [value]="1">January</mat-option>
-      <mat-option [value]="2">February</mat-option>
-      <mat-option [value]="3">March</mat-option>
-      <mat-option [value]="4">April</mat-option>
-      <mat-option [value]="5">May</mat-option>
-      <mat-option [value]="6">June</mat-option>
-      <mat-option [value]="7">July</mat-option>
-      <mat-option [value]="8">August</mat-option>
-      <mat-option [value]="9">September</mat-option>
-      <mat-option [value]="10">October</mat-option>
-      <mat-option [value]="11">November</mat-option>
-      <mat-option [value]="12">December</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <app-input 
+    controlType="selectyear" 
+    [control]="selectDate.get('selectYear')"
+    label="Select year">
+  </app-input>
+
+  <app-input 
+    controlType="selectmonth" 
+    [control]="selectDate.get('selectMonth')"
+    label="Select month">
+  </app-input>
+
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
 

@@ -1,163 +1,56 @@
 <mat-card class="pandatronik-mat-card">
   <form [formGroup]="registrationForm" (ngSubmit)="registerNewUser()">
-
-    <!-- ##### USERNAME ##### -->
     
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Username</mat-label>
-      <input 
-        matInput 
-        placeholder="username" 
-        formControlName="username"
-        type="text"
-        id="username"
-        name="username"
-        maxlength="40">
-    </mat-form-field>
-    <mat-error *ngIf="
-      registrationForm.controls['username'].touched &&
-      registrationForm.controls['username'].hasError('maxlength')">
-      {{ username_length_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      registrationForm.controls['username'].touched &&
-      registrationForm.controls['username'].hasError('minlength')">
-      {{ username_length_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      registrationForm.controls['username'].touched &&
-      registrationForm.controls['username'].hasError('required')">
-      {{ username_required_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      registrationForm.controls['username'].hasError('duplicated')">
-      {{ username_duplicated_validator }}
-    </mat-error>
+    <app-input 
+      controlType="input" 
+      [control]="registrationForm.get('username')" 
+      placeholder="username"
+      title="username"
+      label="Username">
+    </app-input>
 
-    <!-- ##### PASSWORD ##### -->
+    <app-input 
+      controlType="password" 
+      inputType="password"
+      [control]="registrationForm.get('password')" 
+      placeholder="password"
+      title="password"
+      label="Password">
+    </app-input>
 
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Password</mat-label>
-      <input 
-        matInput 
-        placeholder="password" 
-        formControlName="password"
-        type="password"
-        id="password"
-        name="password"
-        maxlength="60">
-    </mat-form-field>
-    <mat-error *ngIf="
-      registrationForm.controls['password'].touched && (
-        registrationForm.controls['password'].hasError('minlength') ||
-        registrationForm.controls['password'].hasError('maxlength')
-      )">
-      {{ password_length_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      registrationForm.controls['password'].touched &&
-      registrationForm.controls['password'].hasError('required')">
-      {{ password_required_validator }}
-    </mat-error>
-        <mat-error *ngIf="
-      registrationForm.controls['password'].touched &&
-      registrationForm.controls['password'].hasError('pattern')">
-      {{ password_pattern_validator }}
-    </mat-error>
-
-    <!-- ##### CONFIRM PASSWORD ##### -->
-
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Confirm password</mat-label>
-      <input 
-        matInput 
-        placeholder="confirmPassword" 
-        formControlName="confirmPassword"
-        type="password"
-        id="confirmPassword"
-        name="confirmPassword"
-        maxlength="60">
-    </mat-form-field>
-    <mat-error *ngIf="
-        registrationForm.controls['confirmPassword'].touched && (
-        registrationForm.controls['confirmPassword'].hasError('minlength') ||
-        registrationForm.controls['confirmPassword'].hasError('maxlength')
-      )">
-      {{ password_length_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      registrationForm.controls['confirmPassword'].touched &&
-      registrationForm.controls['confirmPassword'].hasError('required')">
-      {{ password_required_validator }}
-    </mat-error>
+    <app-input 
+      controlType="password" 
+      inputType="password"
+      [control]="registrationForm.get('confirmPassword')" 
+      placeholder="confirm password"
+      title="confirm password"
+      label="Confirm password">
+    </app-input>
     <!-- TODO: password and confirm password must match-->
-    <!-- <mat-error *ngIf="
-      registrationForm.controls['confirmPassword'].touched &&
-      registrationForm.controls['confirmPassword'].hasError('required')">
-      {{ password_required_validator }}
-    </mat-error> -->
 
-    <!-- ##### EMAIL ##### -->
+    <app-input 
+      controlType="input" 
+      [control]="registrationForm.get('email')" 
+      placeholder="email"
+      title="email"
+      label="Email">
+    </app-input>
 
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Email</mat-label>
-      <input 
-        matInput 
-        placeholder="email" 
-        formControlName="email"
-        type="text"
-        id="email"
-        name="email"
-        maxlength="40">
-    </mat-form-field>
-    <mat-error *ngIf="
-      registrationForm.controls['email'].touched &&
-      registrationForm.controls['email'].hasError('required')">
-      {{ email_required_validator }}
-    </mat-error>
-    <mat-error *ngIf="
-      registrationForm.controls['email'].touched &&
-      registrationForm.controls['email'].hasError('email')">
-      {{ email_invalid_validator }}
-    </mat-error>
+    <app-input 
+      controlType="input" 
+      [control]="registrationForm.get('firstName')" 
+      placeholder="first name"
+      title="first name"
+      label="First name">
+    </app-input>
 
-    <!-- ##### FIRSTNAME ##### -->
-
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>First name</mat-label>
-      <input 
-        matInput 
-        placeholder="firstName" 
-        formControlName="firstName"
-        type="text"
-        id="firstName"
-        name="firstName"
-        maxlength="10">
-    </mat-form-field>
-    <mat-error *ngIf="
-      registrationForm.controls['firstName'].touched &&
-      registrationForm.controls['firstName'].hasError('required')">
-      {{ firstname_required_validator }}
-    </mat-error>
-
-    <!-- ##### LASTNAME ##### -->
-
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Last name</mat-label>
-      <input 
-        matInput 
-        placeholder="lastName" 
-        formControlName="lastName"
-        type="text"
-        id="lastName"
-        name="lastName"
-        maxlength="10">
-    </mat-form-field>
-    <mat-error *ngIf="
-      registrationForm.controls['lastName'].touched &&
-      registrationForm.controls['lastName'].hasError('required')">
-      {{ lastname_required_validator }}
-    </mat-error>    
+    <app-input 
+      controlType="input" 
+      [control]="registrationForm.get('lastName')" 
+      placeholder="last name"
+      title="last name"
+      label="Last name">
+    </app-input>
 
     <button type="submit" color="primary" mat-raised-button [disabled]="!registrationForm.valid">Submit</button>
   </form>
