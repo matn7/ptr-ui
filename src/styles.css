@@ -72,6 +72,34 @@
   display: inline-block;
 }
 
+/* .example-container {
+  display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+} */
+/* some style that does not apply to first element 
+(no-space) [] <--space--> [] <--space--> []*/
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-container .mat-form-field {
+  width: 220px;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+  justify-content: space-between;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
 .mat-grid-tile {
   display: inline;
 }
@@ -92,10 +120,10 @@
 .full-width {
   width: 100%;
 }
-
+/* 
 .pandatronik-mat-card {
   padding-top: 50px;
-}
+} */
 
 .mat-list-base {
   padding-top: 0px !important;
@@ -140,21 +168,21 @@
   padding: 0.25em 0 0.75em 0.25em !important;
 } */
 
-.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+/* .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
   transform: translateY(0%) !important;
-}
+} */
 
 .pandatronik-select-date {
   /* top: 0.75em !important; */
-  padding: 0.25em 0.25em 0.5em 0 !important;
+  /* padding: 0.25em 0.25em 0.5em 0 !important; */
   /* bottom: 0.5em !important;  */
 }
 
-.pandatronik-select-date.mat-form-field-appearance-outline .mat-form-field-infix {
+/* .pandatronik-select-date.mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0.2em 0 0.8em 0 !important;
 }
 
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
   line-height: 36px !important;
-}
+} */

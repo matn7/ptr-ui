@@ -1,0 +1,17 @@
+
+<div *ngIf="importantIndex">
+    YEEP
+    <div *ngFor="let num of numbers" >
+        <!-- {{ importantIndex['daysDTO'][num].startDate[2] === num }} -->
+        <!-- {{ num + 1 }} -->
+        <!-- now data starts from day 15 -->
+        <p *ngIf="importantIndex['daysDTO'][num] && importantIndex['daysDTO'][num].startDate[2] === num">
+            {{ importantIndex['daysDTO'][num].body }} | {{ importantIndex['daysDTO'][num].startDate[2] }}
+        </p>
+    </div>    
+</div>
+
+
+<!-- <div *ngFor="let day of importantIndex['daysDTO']">
+    <p>{{ day.body }}</p>
+</div> -->
