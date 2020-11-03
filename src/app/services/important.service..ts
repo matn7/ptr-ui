@@ -4,12 +4,34 @@ import { API_URL, API_VERSION } from "../app.constants";
 import { HandleErrorsService } from "./handle-errors.service";
 import { Index } from "../index.model.";
 
+export class ImportantIndexClass {
+  _daysDTO: DaysDTO;
+  _extraordinaryDTO: ExtraordinaryDTO;
+
+  set daysDTO(daysDTO: DaysDTO) {
+    this._daysDTO = daysDTO;
+  }
+
+  set extraordinaryDTO(extraordinaryDTO: ExtraordinaryDTO) {
+    this._extraordinaryDTO = extraordinaryDTO;
+  }
+
+  get daysDTO() {
+    return this._daysDTO;
+  }
+
+  get extraordinaryDTO() {
+    return this._extraordinaryDTO;
+  }
+
+}
+
 export interface ImportantIndex {
   daysDTO: DaysDTO;
   extraordinaryDTO: ExtraordinaryDTO;
 }
 
-interface DaysDTO {
+export interface DaysDTO {
   id: number;
   body: string;
   rateDay: number;
@@ -17,7 +39,7 @@ interface DaysDTO {
   postedOn: number[];
 }
 
-interface ExtraordinaryDTO {
+export interface ExtraordinaryDTO {
   id: number;
   title: string;
   body: string;

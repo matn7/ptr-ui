@@ -1,13 +1,31 @@
 
 <div *ngIf="importantIndex">
-    YEEP
+
+    YEEP 0
+    <div *ngFor="let final of importantIndexFinal" >
+        {{ final.daysDTO ? final.daysDTO.body : 'MIK' }}
+    </div>
+
+
+    <!-- YEEP 1
+    <div *ngFor="let index of importantIndex['daysDTO']" >
+        {{ index.startDate[2] }} | {{ index.body }}
+    </div> -->
+
+    YEEP 2
     <div *ngFor="let num of numbers" >
-        <!-- {{ importantIndex['daysDTO'][num].startDate[2] === num }} -->
+        <!-- {{ importantIndex['daysDTO'][num].startDate[2] }} -->
         <!-- {{ num + 1 }} -->
         <!-- now data starts from day 15 -->
-        <p *ngIf="importantIndex['daysDTO'][num] && importantIndex['daysDTO'][num].startDate[2] === num">
-            {{ importantIndex['daysDTO'][num].body }} | {{ importantIndex['daysDTO'][num].startDate[2] }}
-        </p>
+        <!-- <p *ngIf="importantIndex['daysDTO'][num].startDate[2] !== num">{{ num }}</p> -->
+        <!-- for num=8 elementIndex=0-->
+        <!-- num = 0 -->
+        <!-- <p *ngIf="num === firstElement && importantIndex['daysDTO'][indexElement] &&  -->
+        <!-- importantIndex['daysDTO'][num].startDate[2] === num"> -->
+        <!-- <p *ngIf="num + 1 === importantIndex['daysDTO'][indexElement].startDate[2]"> -->
+            <!-- {{ importantIndex['daysDTO'][num].body }} | {{ importantIndex['daysDTO'][num].startDate[2] }} -->
+            <!-- {{ importantIndex['daysDTO'][indexElement].body }} -->
+        <!-- </p> -->
     </div>    
 </div>
 
