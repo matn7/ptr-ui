@@ -5,30 +5,65 @@ import { HandleErrorsService } from "./handle-errors.service";
 import { Index } from "../index.model.";
 
 export class ImportantIndexClass {
-  _daysDTO: DaysDTO;
   _extraordinaryDTO: ExtraordinaryDTO;
-
-  set daysDTO(daysDTO: DaysDTO) {
-    this._daysDTO = daysDTO;
-  }
+  _daysDTO: DaysDTO;
+  _importantDTO: ImportantDTO;
+  _important2DTO: Important2DTO;
+  _important3DTO: Important3DTO;
 
   set extraordinaryDTO(extraordinaryDTO: ExtraordinaryDTO) {
     this._extraordinaryDTO = extraordinaryDTO;
   }
 
-  get daysDTO() {
-    return this._daysDTO;
+  set daysDTO(daysDTO: DaysDTO) {
+    this._daysDTO = daysDTO;
+  }
+
+  set importantDTO(importantDTO: ImportantDTO) {
+    this._importantDTO = importantDTO;
+  }
+
+  set important2DTO(important2DTO: Important2DTO) {
+    this._important2DTO = important2DTO;
+  }
+
+  set important3DTO(important3DTO: Important3DTO) {
+    this._important3DTO = important3DTO;
   }
 
   get extraordinaryDTO() {
     return this._extraordinaryDTO;
   }
 
+  get daysDTO() {
+    return this._daysDTO;
+  }
+
+  get importantDTO() {
+    return this._importantDTO;
+  }
+
+  get important2DTO() {
+    return this._important2DTO;
+  }
+
+  get important3DTO() {
+    return this._important3DTO;
+  }
 }
 
 export interface ImportantIndex {
-  daysDTO: DaysDTO;
   extraordinaryDTO: ExtraordinaryDTO;
+  daysDTO: DaysDTO;
+  importantDTO: ImportantDTO;
+  important2DTO: Important2DTO;
+  important3DTO: Important3DTO;
+}
+
+export interface ExtraordinaryDTO {
+  id: number;
+  title: string;
+  body: string;
 }
 
 export interface DaysDTO {
@@ -39,10 +74,31 @@ export interface DaysDTO {
   postedOn: number[];
 }
 
-export interface ExtraordinaryDTO {
+export interface ImportantDTO {
   id: number;
   title: string;
   body: string;
+  made: number;
+  postedOn: number[];
+  startDate: number[];
+}
+
+export interface Important2DTO {
+  id: number;
+  title: string;
+  body: string;
+  made: number;
+  postedOn: number[];
+  startDate: number[];
+}
+
+export interface Important3DTO {
+  id: number;
+  title: string;
+  body: string;
+  made: number;
+  postedOn: number[];
+  startDate: number[];
 }
 
 @Injectable({

@@ -3,7 +3,9 @@
 
     YEEP 0
     <div *ngFor="let final of importantIndexFinal" >
-        {{ final.daysDTO ? final.daysDTO.body : 'MIK' }}
+        {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'NO'}} | 
+        {{ final.daysDTO ? final.daysDTO.body : 'MIK' }} |
+        {{ final.important3DTO ? final.important3DTO.body : 'Imp3'}}
     </div>
 
 
