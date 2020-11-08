@@ -65,6 +65,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
 import { SharedModule } from "./shared/shared.module";
 import { ImportantIndexNewComponent } from "./important/important-index-new/important-index-new.component";
+import { LessImportantIndexNewComponent } from "./lessimportant/less-important-index-new/less-important-index-new.component";
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ImportantIndexNewComponent } from "./important/important-index-new/impo
     ExtraordinaryEditComponent,
     ExtraordinaryDetailComponent,
     ImportantIndexNewComponent,
+    LessImportantIndexNewComponent,
     ImportantIndexComponent,
     ImportantEditComponent,
     ImportantDetailComponent,

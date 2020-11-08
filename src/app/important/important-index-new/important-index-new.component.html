@@ -1,37 +1,77 @@
 
 <div *ngIf="importantIndex">
-
-    YEEP 0
-    <div *ngFor="let final of importantIndexFinal" >
-        {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'NO'}} | 
-        {{ final.daysDTO ? final.daysDTO.body : 'MIK' }} |
+    <!-- ADD spinner -->
+    <div *ngFor="let final of importantIndexFinal; let i = index" >
+        {{ i + 1 }} | 
+        {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'Extra'}} | 
+        {{ final.daysDTO ? final.daysDTO.body : 'Day' }} |
+        {{ final.importantDTO ? final.importantDTO.body : 'Imp1'}}
+        {{ final.important2DTO ? final.important2DTO.body : 'Imp2'}}
         {{ final.important3DTO ? final.important3DTO.body : 'Imp3'}}
     </div>
 
-
-    <!-- YEEP 1
-    <div *ngFor="let index of importantIndex['daysDTO']" >
-        {{ index.startDate[2] }} | {{ index.body }}
-    </div> -->
-
-    YEEP 2
-    <div *ngFor="let num of numbers" >
-        <!-- {{ importantIndex['daysDTO'][num].startDate[2] }} -->
-        <!-- {{ num + 1 }} -->
-        <!-- now data starts from day 15 -->
-        <!-- <p *ngIf="importantIndex['daysDTO'][num].startDate[2] !== num">{{ num }}</p> -->
-        <!-- for num=8 elementIndex=0-->
-        <!-- num = 0 -->
-        <!-- <p *ngIf="num === firstElement && importantIndex['daysDTO'][indexElement] &&  -->
-        <!-- importantIndex['daysDTO'][num].startDate[2] === num"> -->
-        <!-- <p *ngIf="num + 1 === importantIndex['daysDTO'][indexElement].startDate[2]"> -->
-            <!-- {{ importantIndex['daysDTO'][num].body }} | {{ importantIndex['daysDTO'][num].startDate[2] }} -->
-            <!-- {{ importantIndex['daysDTO'][indexElement].body }} -->
-        <!-- </p> -->
-    </div>    
 </div>
 
+<mat-grid-list cols="5" rowHeight="2:1" *ngIf="importantIndex">
+    <ng-container *ngFor="let final of importantIndexFinal; let day = index">
+        <mat-grid-tile (click)="
+            !final.extraordinaryDTO
+                ? day + 1 <= today || today == -1
+                ? onAddExtraordinaryClick(year, month, day + 1)
+                : ''
+                : onEditExtraordinaryClick(final.extraordinaryDTO.id)"
+            [style.background]="today === day + 1 ? '#B0DDBD' : final.extraordinaryDTO ? yellow_completion_styles[100] : ''"
+            [ngClass]="{pandatronik_navigate_yellow: day + 1 <= today || today == -1}"
+            [title]="final.extraordinaryDTO ? final.extraordinaryDTO.title : ''">
+            <mat-list>
+                <mat-list-item><h1>{{ day + 1 }}</h1></mat-list-item>
+                <mat-list-item [style.height]="0">{{ weekDayArr[day] ? weekDayArr[day] : '0' }}</mat-list-item>
+              </mat-list>
+        </mat-grid-tile>
 
-<!-- <div *ngFor="let day of importantIndex['daysDTO']">
-    <p>{{ day.body }}</p>
-</div> -->
+        <mat-grid-tile (click)="
+            !final.importantDTO
+                ? day + 1 <= today || today == -1
+                ? onAddNewClick(target, 1, year, month, day + 1)
+                : ''
+                : onEditClick(target, 1, final.importantDTO.id)"
+            [style.background]="final.importantDTO ? green_completion_styles[final.importantDTO.made] : ''"
+            [ngClass]="{pandatronik_navigate_green: day + 1 <= today || today == -1}"
+            [title]="final.importantDTO ? final.importantDTO.title : ''">
+        </mat-grid-tile>
+
+        <mat-grid-tile (click)="
+            !final.important2DTO
+                ? day + 1 <= today || today == -1
+                ? onAddNewClick(target, 2, year, month, day + 1)
+                : ''
+                : onEditClick(target, 2, final.important2DTO.id)"
+            [style.background]="final.important2DTO ? yellow_completion_styles[final.important2DTO.made] : ''"
+            [ngClass]="{pandatronik_navigate_yellow: day + 1 <= today || today == -1}"
+            [title]="final.important2DTO ? final.important2DTO.title : ''">
+        </mat-grid-tile>
+
+
+        <mat-grid-tile (click)="
+            !final.important3DTO
+                ? day + 1 <= today || today == -1
+                ? onAddNewClick(target, 3, year, month, day + 1)
+                : ''
+                : onEditClick(target, 3, final.important3DTO.id)"
+            [style.background]="final.important3DTO ? blue_completion_styles[final.important3DTO.made] : ''"
+            [ngClass]="{pandatronik_navigate_blue: day + 1 <= today || today == -1}"
+            [title]="final.important3DTO ? final.important3DTO.title : ''">
+        </mat-grid-tile>
+
+        <mat-grid-tile (click)="
+            !final.daysDTO
+                ? day + 1 <= today || today == -1
+                ? onAddDayClick(year, month, day + 1)
+                : ''
+                : onEditDayClick(final.daysDTO.id)"
+            [style.background]="final.daysDTO ? green_completion_styles[final.daysDTO.rateDay] : ''"
+            [ngClass]="{pandatronik_navigate_green: day + 1 <= today || today == -1}"
+            [title]="final.daysDTO ? final.daysDTO.rateDay : ''">
+        </mat-grid-tile>
+    </ng-container>
+</mat-grid-list>

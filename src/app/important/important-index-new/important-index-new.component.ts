@@ -3,8 +3,11 @@ import { TaskService } from 'src/app/services/task.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Index } from 'src/app/index.model.';
 import { ImportantService, ImportantIndex, DaysDTO, ExtraordinaryDTO, ImportantIndexClass, ImportantDTO } from 'src/app/services/important.service.';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomErrorMessageService } from 'src/app/services/data/custom-error-message.service';
+import { WeekDay } from "@angular/common";
+import { TimeService } from 'src/app/services/data/time.service';
+import { GREEN_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "../../app.constants";
 
 @Component({
   selector: 'app-important-index-new',
@@ -23,14 +26,24 @@ export class ImportantIndexNewComponent implements OnInit {
   year: number;
   returnUrl: string;
   numbers: Array<number>;
+  weekDayArr: Array<string>;
   daysInMonth: number;
   firstElement: number;
   indexElement: number = 0;
+  today: number;
+  date: Date;
+  target: string;
+
+  readonly yellow_completion_styles = YELLOW_COMPLETION_STYLES;
+  readonly green_completion_styles = GREEN_COMPLETION_STYLES;
+  readonly blue_completion_styles = BLUE_COMPLETION_STYLES;
 
   constructor(
     private route: ActivatedRoute,
     private importantIndexService: ImportantService, 
     private authService: AuthenticationService,
+    private timeService: TimeService,
+    private router: Router,
     private customErrorMsgService: CustomErrorMessageService) { }
 
   ngOnInit() {
@@ -43,8 +56,25 @@ export class ImportantIndexNewComponent implements OnInit {
     this.daysInMonth = new Date(this.year, this.month, 0).getDate();
 
     this.numbers = Array(this.daysInMonth)
-    .fill(0)
-    .map((x, i) => i + 1);
+      .fill(0)
+      .map((x, i) => i + 1);
+
+    this.weekDayArr = Array(this.daysInMonth)
+      .fill(0)
+      .map(
+        (x, i) => WeekDay[new Date(this.year, this.month - 1, i + 1).getDay()]
+    );
+
+    this.today = new Date().getDay();
+    this.date = new Date();
+
+    this.today = this.timeService.getActiveDay(
+      this.month,
+      this.year,
+      this.date
+    );
+
+    this.target = "important";
 
     this.username = this.authService.getAuthenticatedUser();
     this.returnUrl = "/important/" + this.year + "/" + this.month;
@@ -125,5 +155,34 @@ export class ImportantIndexNewComponent implements OnInit {
     console.log("Important Index Final =====================>");
     console.log(this.importantIndexFinal);
   }
+
+  onAddExtraordinaryClick(year, month, day) {
+    this.router.navigate([
+      "/extraordinary/" + year + "/" + month + "/" + day + "/new"
+    ]);
+  }
+
+  onEditExtraordinaryClick(id) {
+    this.router.navigate(["/extraordinary/" + id + "/edit"]);
+  }
+
+  onAddNewClick(target, num, year, month, day) {
+    this.router.navigate([
+      "/" + target + "/" + num + "/" + year + "/" + month + "/" + day + "/new"
+    ], {replaceUrl: false});
+  }
+
+  onEditClick(target, num, id) {
+    this.router.navigate(["/" + target + "/" + num + "/" + id + "/edit"]);
+  }
+
+  onAddDayClick(year, month, day) {
+    this.router.navigate(["/days/" + year + "/" + month + "/" + day + "/new"]);
+  }
+
+  onEditDayClick(id) {
+    this.router.navigate(["/days/" + id + "/edit"]);
+  }
+
 
 }

@@ -32,6 +32,7 @@ import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/l
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 import { StatisticsLessimportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
 import { ImportantIndexNewComponent } from "./important/important-index-new/important-index-new.component";
+import { LessImportantIndexNewComponent } from "./lessimportant/less-important-index-new/less-important-index-new.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [RouteGuardService] },
@@ -89,6 +90,11 @@ const appRoutes: Routes = [
   {
     path: "lessimportant/:year/:month",
     component: LessImportantIndexComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: "lessimportant/new/:year/:month",
+    component: LessImportantIndexNewComponent,
     canActivate: [RouteGuardService]
   },
   {
