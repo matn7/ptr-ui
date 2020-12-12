@@ -1,1 +1,11 @@
-<p>less-important-index-new works!</p>
+<div *ngIf="indexData">
+    <!-- ADD spinner -->
+    <div *ngFor="let final of indexDataFinal; let i = index" >
+        {{ i + 1 }} | 
+        {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'Extra'}} | 
+        {{ final.daysDTO ? final.daysDTO.body : 'Day' }} |
+        {{ final.lessImportantDTO ? final.lessImportantDTO.body : 'Less 1'}}
+        {{ final.lessImportant2DTO ? final.lessImportant2DTO.body : 'Less 2'}}
+        {{ final.lessImportant3DTO ? final.lessImportant3DTO.body : 'Less 3'}}
+    </div>
+</div>

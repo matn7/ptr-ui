@@ -1,7 +1,7 @@
 
-<div *ngIf="importantIndex">
+<div *ngIf="indexData">
     <!-- ADD spinner -->
-    <div *ngFor="let final of importantIndexFinal; let i = index" >
+    <div *ngFor="let final of indexDataFinal; let i = index" >
         {{ i + 1 }} | 
         {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'Extra'}} | 
         {{ final.daysDTO ? final.daysDTO.body : 'Day' }} |
@@ -9,11 +9,10 @@
         {{ final.important2DTO ? final.important2DTO.body : 'Imp2'}}
         {{ final.important3DTO ? final.important3DTO.body : 'Imp3'}}
     </div>
-
 </div>
 
-<mat-grid-list cols="5" rowHeight="2:1" *ngIf="importantIndex">
-    <ng-container *ngFor="let final of importantIndexFinal; let day = index">
+<mat-grid-list cols="5" rowHeight="2:1" *ngIf="indexData">
+    <ng-container *ngFor="let final of indexDataFinal; let day = index">
         <mat-grid-tile (click)="
             !final.extraordinaryDTO
                 ? day + 1 <= today || today == -1
