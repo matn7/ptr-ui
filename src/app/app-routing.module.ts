@@ -5,7 +5,6 @@ import { DaysComponent } from "./days/days.component";
 import { DaysDetailComponent } from "./days/days-detail/days-detail.component";
 import { DaysEditComponent } from "./days/days-edit/days-edit.component";
 import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
-import { ImportantIndexComponent } from "./important/important-index/important-index.component";
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
 import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
@@ -27,7 +26,6 @@ import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
 import { AdminUserComponent } from "./admin/admin-user/admin-user.component";
 import { StatisticsStartEndComponent } from "./statistics/statistics-start-end/statistics-start-end.component";
-import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index/less-important-index.component";
 import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 import { StatisticsLessimportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
@@ -64,11 +62,6 @@ const appRoutes: Routes = [
   },
   {
     path: "important/:year/:month",
-    component: ImportantIndexComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "important/new/:year/:month",
     component: ImportantIndexNewComponent,
     canActivate: [RouteGuardService]
   },
@@ -89,11 +82,6 @@ const appRoutes: Routes = [
   },
   {
     path: "lessimportant/:year/:month",
-    component: LessImportantIndexComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "lessimportant/new/:year/:month",
     component: LessImportantIndexNewComponent,
     canActivate: [RouteGuardService]
   },

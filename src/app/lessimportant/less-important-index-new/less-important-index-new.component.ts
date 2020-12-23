@@ -13,6 +13,8 @@ import { TaskIndexNewComponent } from 'src/app/task-index-new.component ';
 })
 export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
 
+  indexDataFinal: LessImportantIndexClass[] = [];
+
   constructor(
     route: ActivatedRoute,
     indexService: LessImportantService, 

@@ -1,6 +1,21 @@
+<form [formGroup]="selectDate" (ngSubmit)="onSubmit()">
+    <app-input 
+        controlType="selectyear" 
+        [control]="selectDate.get('selectYear')"
+        label="Select year">
+    </app-input>
 
-<div *ngIf="indexData">
-    <!-- ADD spinner -->
+    <app-input 
+        controlType="selectmonth" 
+        [control]="selectDate.get('selectMonth')"
+        label="Select month">
+    </app-input>
+
+    <button type="submit" color="primary" mat-raised-button>Submit</button>
+</form>
+
+<!-- <div *ngIf="indexData">
+    ADD spinner 
     <div *ngFor="let final of indexDataFinal; let i = index" >
         {{ i + 1 }} | 
         {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'Extra'}} | 
@@ -9,7 +24,7 @@
         {{ final.important2DTO ? final.important2DTO.body : 'Imp2'}}
         {{ final.important3DTO ? final.important3DTO.body : 'Imp3'}}
     </div>
-</div>
+</div> -->
 
 <mat-grid-list cols="5" rowHeight="2:1" *ngIf="indexData">
     <ng-container *ngFor="let final of indexDataFinal; let day = index">

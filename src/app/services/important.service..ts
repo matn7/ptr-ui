@@ -119,7 +119,7 @@ export class ImportantService implements TaskServiceInterface {
 
   getTaskIndexData(username: string, target: string, year: number, month: number) {
     return this.http.get<ImportantIndex[]>(
-      `${API_URL}/${API_VERSION}/users/${username}/${target}/new/${year}/${month}`
+      `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
     );
   }
 }

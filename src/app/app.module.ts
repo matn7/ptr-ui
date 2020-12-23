@@ -56,9 +56,7 @@ import { AdminUserService } from "./services/admin/admin-user.service";
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { StatisticsStartEndComponent } from './statistics/statistics-start-end/statistics-start-end.component';
 import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
-import { ImportantIndexComponent } from "./important/important-index/important-index.component";
 import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
-import { LessImportantIndexComponent } from "./lessimportant/lessimportant-index/less-important-index.component";
 import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
 import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -79,10 +77,8 @@ import { LessImportantIndexNewComponent } from "./lessimportant/less-important-i
     ExtraordinaryDetailComponent,
     ImportantIndexNewComponent,
     LessImportantIndexNewComponent,
-    ImportantIndexComponent,
     ImportantEditComponent,
     ImportantDetailComponent,
-    LessImportantIndexComponent,
     LessImportantEditComponent,
     LessImportantDetailComponent,
     StatisticsComponent,

@@ -9,14 +9,17 @@ import { CustomErrorMessageService } from "./services/data/custom-error-message.
 import { WeekDay } from "@angular/common";
 import { TaskServiceInterface } from "./services/task.service-interface";
 import { IndexClassInterface } from "./services/index-class-interface";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 export abstract class TaskIndexNewComponent implements OnInit {
   @Input() index: number = 0;
 
+  selectDate: FormGroup;
   username: string;
   indexData: IndexClassInterface[];
-  // indexDataFinal: ImportantIndexClass[] = [];
   indexDataFinal: IndexClassInterface[] = [];
+  // indexDataFinal: ImportantIndexClass[] = [];
+  // indexDataFinal: IndexClassInterface[] = [];
   // oneObject: ImportantIndexClass;
   // oneObject: IndexClassInterface;
   month: number;
@@ -90,9 +93,48 @@ export abstract class TaskIndexNewComponent implements OnInit {
           this.processData();
         }
     );
+
+    this.initForm();
   }
 
   abstract processData();
+
+  onSubmit() {
+    this.year = this.selectDate.value.selectYear;
+    this.month = this.selectDate.value.selectMonth;
+
+    // clear index data
+    this.indexDataFinal = null;
+
+    this.daysInMonth = new Date(this.year, this.month, 0).getDate();
+    this.numbers = Array(this.daysInMonth)
+      .fill(0)
+      .map((x, i) => i);
+    this.weekDayArr = Array(this.daysInMonth)
+      .fill(0)
+      .map(
+        (x, i) => WeekDay[new Date(this.year, this.month - 1, i + 1).getDay()]
+      );
+
+    this.today = this.timeService.getActiveDay(
+      this.month,
+      this.year,
+      this.date
+    );
+
+    this.taskServiceInterface
+      .getTaskIndexData(this.username, this.target, this.year, this.month)
+      .subscribe(
+        data => {
+          this.processData();
+        },
+        error => {
+          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+        }
+      );
+
+    this.router.navigate(["/" + this.target + "/" + this.year + "/" + this.month]);
+  }
 
   onAddExtraordinaryClick(year, month, day) {
     this.router.navigate([
@@ -120,5 +162,15 @@ export abstract class TaskIndexNewComponent implements OnInit {
 
   onEditDayClick(id) {
     this.router.navigate(["/days/" + id + "/edit"]);
+  }
+
+  private initForm() {
+    const selectYear = this.year;
+    const selectMonth = this.month;
+
+    this.selectDate = new FormGroup({
+      selectYear: new FormControl(selectYear, Validators.required),
+      selectMonth: new FormControl(selectMonth, Validators.required)
+    });
   }
 }

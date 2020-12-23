@@ -12,6 +12,7 @@ import { TaskIndexNewComponent } from 'src/app/task-index-new.component ';
 import { HandleErrorsService } from 'src/app/services/handle-errors.service';
 import { AppInternalMessagesService } from 'src/app/services/data/app-internal-messages.service';
 import { TaskServiceInterface } from 'src/app/services/task.service-interface';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-important-index-new',
@@ -20,12 +21,14 @@ import { TaskServiceInterface } from 'src/app/services/task.service-interface';
 })
 export class ImportantIndexNewComponent extends TaskIndexNewComponent {
 
+  indexDataFinal: ImportantIndexClass[] = [];
+
   constructor(
     route: ActivatedRoute,
     importantIndexService: ImportantService, 
     authService: AuthenticationService,
     timeService: TimeService,
-    router: Router,
+    router : Router,
     customErrorMsgService: CustomErrorMessageService
     ) { 
       super(route, importantIndexService, authService, timeService, router, 
@@ -94,5 +97,4 @@ export class ImportantIndexNewComponent extends TaskIndexNewComponent {
   
       }
     }
-
 }
