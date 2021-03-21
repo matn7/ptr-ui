@@ -31,7 +31,6 @@ export class ExtraordinaryEditComponent implements OnInit {
 
   startDate: string;
   postedOn: string;
-  userProfileId: string;
   day: number;
   month: number;
   year: number;
@@ -84,7 +83,6 @@ export class ExtraordinaryEditComponent implements OnInit {
     this.date = new Date();
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
-    this.userProfileId = this.username;
 
     this.returnUrl = "/important/" + this.year + "/" + this.month;
     this.initForm(this.startDate, this.postedOn, this.username);
@@ -152,8 +150,7 @@ export class ExtraordinaryEditComponent implements OnInit {
       title: new FormControl(title, [Validators.required, Validators.maxLength(40)]),
       body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
       startDate: new FormControl(startDate, Validators.required),
-      postedOn: new FormControl(postedOn, Validators.required),
-      userProfileId: new FormControl(username, Validators.required)
+      postedOn: new FormControl(postedOn, Validators.required)
     });
 
     if (this.editMode) {
@@ -166,8 +163,7 @@ export class ExtraordinaryEditComponent implements OnInit {
               "title": important.title,
               "body": important.body,
               "startDate": important.startDate,
-              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT),
-              "userProfileId": this.username
+              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT)
             });
           },
           error => {
@@ -177,7 +173,6 @@ export class ExtraordinaryEditComponent implements OnInit {
 
       this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
       this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
-      this.userProfileId = this.username;
     }
   }
 }

@@ -30,13 +30,6 @@
       [control]="extraordinaryForm.get('postedOn')">
     </app-input>
 
-    <app-input 
-      controlType="hidden" 
-      inputType="hidden"
-      hidden="true"
-      [control]="extraordinaryForm.get('userProfileId')">
-    </app-input>
-
     <button type="submit" color="primary" mat-raised-button [disabled]="!extraordinaryForm.valid">Submit</button>
     <button
       type="button"

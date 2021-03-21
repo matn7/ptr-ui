@@ -24,7 +24,6 @@ export class DaysEditComponent implements OnInit {
   
   startDate: string;
   postedOn: string;
-  userProfileId: string;
   body: string;
   rateDay: number;
   day: number;
@@ -85,10 +84,9 @@ export class DaysEditComponent implements OnInit {
     this.date = new Date();
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
-    this.userProfileId = this.username;
 
     this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
-    this.initForm(this.startDate, this.postedOn, this.userProfileId);
+    this.initForm(this.startDate, this.postedOn);
   }
 
   onSubmit() {
@@ -133,7 +131,7 @@ export class DaysEditComponent implements OnInit {
   }
 
 
-  private initForm(startDate: string, postedOn: string, username: string) {
+  private initForm(startDate: string, postedOn: string) {
     const id = this.id;
     const body = this.body;
     const rateDay = this.rateDay;
@@ -143,8 +141,7 @@ export class DaysEditComponent implements OnInit {
       body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
       rateDay: new FormControl(rateDay, Validators.required),
       startDate: new FormControl(startDate, Validators.required),
-      postedOn: new FormControl(postedOn, Validators.required),
-      userProfileId: new FormControl(username, Validators.required)
+      postedOn: new FormControl(postedOn, Validators.required)
     });
 
     if (this.editMode) {
@@ -157,8 +154,7 @@ export class DaysEditComponent implements OnInit {
               "body": days.body,
               "rateDay": this.made_codes[days.rateDay],
               "startDate": days.startDate,
-              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT),
-              "userProfileId": this.username
+              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT)
             });
           },
           error => {
@@ -168,7 +164,6 @@ export class DaysEditComponent implements OnInit {
 
       this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
       this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
-      this.userProfileId = this.username;
     }
   }
 }

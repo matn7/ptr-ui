@@ -83,6 +83,7 @@ export class HandleErrorsService {
       return Observable.throw(new BadInput(error.status, error["error"]));
     }
     if (error.status === 401) {
+      console.log("TTTTTTTUUUUTAJ");
       return Observable.throw(
         new NotAuthorizedError(error.status, error["error"])
       );
@@ -109,7 +110,7 @@ export class HandleErrorsService {
   private handle401Error(redirectUrl, errorMsg) {
     const stringifyErrMsg = JSON.stringify(errorMsg);
 
-    console.log(errorMsg);
+    console.log("handle401Error" + errorMsg);
 
     const parsedMsg = JSON.parse(stringifyErrMsg);
 

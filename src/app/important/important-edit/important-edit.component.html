@@ -36,13 +36,6 @@
       [control]="importantForm.get('postedOn')">
     </app-input>
 
-    <app-input 
-      controlType="hidden" 
-      inputType="hidden"
-      hidden="true"
-      [control]="importantForm.get('userProfileId')">
-    </app-input>
-
     <button type="submit" color="primary" mat-raised-button [disabled]="!importantForm.valid">Submit</button>
     <button
       type="button"

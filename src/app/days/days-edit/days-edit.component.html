@@ -27,13 +27,6 @@
       [control]="daysForm.get('postedOn')">
     </app-input>
 
-    <app-input 
-      controlType="hidden" 
-      inputType="hidden"
-      hidden="true"
-      [control]="daysForm.get('userProfileId')">
-    </app-input>
-
     <button type="submit" color="primary" mat-raised-button [disabled]="!daysForm.valid">Submit</button>
     <button
       type="button"

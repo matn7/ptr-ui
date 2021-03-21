@@ -1,2 +1,2 @@
-export interface IndexClassInterface {
+export interface IndexData {
 }

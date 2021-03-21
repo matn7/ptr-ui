@@ -14,29 +14,17 @@
     <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
 
-<!-- <div *ngIf="indexData">
-    ADD spinner 
-    <div *ngFor="let final of indexDataFinal; let i = index" >
-        {{ i + 1 }} | 
-        {{ final.extraordinaryDTO ? final.extraordinaryDTO.body : 'Extra'}} | 
-        {{ final.daysDTO ? final.daysDTO.body : 'Day' }} |
-        {{ final.importantDTO ? final.importantDTO.body : 'Imp1'}}
-        {{ final.important2DTO ? final.important2DTO.body : 'Imp2'}}
-        {{ final.important3DTO ? final.important3DTO.body : 'Imp3'}}
-    </div>
-</div> -->
-
 <mat-grid-list cols="5" rowHeight="2:1" *ngIf="indexData">
-    <ng-container *ngFor="let final of indexDataFinal; let day = index">
+    <ng-container *ngFor="let entry of dataToDisplay; let day = index">
         <mat-grid-tile (click)="
-            !final.extraordinaryDTO
+            !entry.extraordinaryDTO
                 ? day + 1 <= today || today == -1
                 ? onAddExtraordinaryClick(year, month, day + 1)
                 : ''
-                : onEditExtraordinaryClick(final.extraordinaryDTO.id)"
-            [style.background]="today === day + 1 ? '#B0DDBD' : final.extraordinaryDTO ? yellow_completion_styles[100] : ''"
+                : onEditExtraordinaryClick(entry.extraordinaryDTO.id)"
+            [style.background]="today === day + 1 ? '#B0DDBD' : entry.extraordinaryDTO ? yellow_completion_styles[100] : ''"
             [ngClass]="{pandatronik_navigate_yellow: day + 1 <= today || today == -1}"
-            [title]="final.extraordinaryDTO ? final.extraordinaryDTO.title : ''">
+            [title]="entry.extraordinaryDTO ? entry.extraordinaryDTO.title : ''">
             <mat-list>
                 <mat-list-item><h1>{{ day + 1 }}</h1></mat-list-item>
                 <mat-list-item [style.height]="0">{{ weekDayArr[day] ? weekDayArr[day] : '0' }}</mat-list-item>
@@ -44,48 +32,48 @@
         </mat-grid-tile>
 
         <mat-grid-tile (click)="
-            !final.lessImportantDTO
+            !entry.lessImportantDTO
                 ? day + 1 <= today || today == -1
                 ? onAddNewClick(target, 1, year, month, day + 1)
                 : ''
-                : onEditClick(target, 1, final.lessImportantDTO.id)"
-            [style.background]="final.lessImportantDTO ? green_completion_styles[final.lessImportantDTO.made] : ''"
+                : onEditClick(target, 1, entry.lessImportantDTO.id)"
+            [style.background]="entry.lessImportantDTO ? green_completion_styles[entry.lessImportantDTO.made] : ''"
             [ngClass]="{pandatronik_navigate_green: day + 1 <= today || today == -1}"
-            [title]="final.lessImportantDTO ? final.lessImportantDTO.title : ''">
+            [title]="entry.lessImportantDTO ? entry.lessImportantDTO.title : ''">
         </mat-grid-tile>
 
         <mat-grid-tile (click)="
-            !final.lessImportant2DTO
+            !entry.lessImportant2DTO
                 ? day + 1 <= today || today == -1
                 ? onAddNewClick(target, 2, year, month, day + 1)
                 : ''
-                : onEditClick(target, 2, final.lessImportant2DTO.id)"
-            [style.background]="final.lessImportant2DTO ? yellow_completion_styles[final.lessImportant2DTO.made] : ''"
+                : onEditClick(target, 2, entry.lessImportant2DTO.id)"
+            [style.background]="entry.lessImportant2DTO ? yellow_completion_styles[entry.lessImportant2DTO.made] : ''"
             [ngClass]="{pandatronik_navigate_yellow: day + 1 <= today || today == -1}"
-            [title]="final.lessImportant2DTO ? final.lessImportant2DTO.title : ''">
+            [title]="entry.lessImportant2DTO ? entry.lessImportant2DTO.title : ''">
         </mat-grid-tile>
 
 
         <mat-grid-tile (click)="
-            !final.lessImportant3DTO
+            !entry.lessImportant3DTO
                 ? day + 1 <= today || today == -1
                 ? onAddNewClick(target, 3, year, month, day + 1)
                 : ''
-                : onEditClick(target, 3, final.lessImportant3DTO.id)"
-            [style.background]="final.lessImportant3DTO ? blue_completion_styles[final.lessImportant3DTO.made] : ''"
+                : onEditClick(target, 3, entry.lessImportant3DTO.id)"
+            [style.background]="entry.lessImportant3DTO ? blue_completion_styles[entry.lessImportant3DTO.made] : ''"
             [ngClass]="{pandatronik_navigate_blue: day + 1 <= today || today == -1}"
-            [title]="final.lessImportant3DTO ? final.lessImportant3DTO.title : ''">
+            [title]="entry.lessImportant3DTO ? entry.lessImportant3DTO.title : ''">
         </mat-grid-tile>
 
         <mat-grid-tile (click)="
-            !final.daysDTO
+            !entry.daysDTO
                 ? day + 1 <= today || today == -1
                 ? onAddDayClick(year, month, day + 1)
                 : ''
-                : onEditDayClick(final.daysDTO.id)"
-            [style.background]="final.daysDTO ? green_completion_styles[final.daysDTO.rateDay] : ''"
+                : onEditDayClick(entry.daysDTO.id)"
+            [style.background]="entry.daysDTO ? green_completion_styles[entry.daysDTO.rateDay] : ''"
             [ngClass]="{pandatronik_navigate_green: day + 1 <= today || today == -1}"
-            [title]="final.daysDTO ? final.daysDTO.rateDay : ''">
+            [title]="entry.daysDTO ? entry.daysDTO.rateDay : ''">
         </mat-grid-tile>
     </ng-container>
 </mat-grid-list>

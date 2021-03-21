@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
 import { HandleErrorsService } from "./handle-errors.service";
-import { Index } from "../index.model.";
 import { TaskServiceInterface } from "./task.service-interface";
-import { IndexClassInterface } from "./index-class-interface";
+import { IndexData } from "./index-class-interface";
 
-export class ImportantIndexClass implements IndexClassInterface {
+// Data structure representing each day entry in INDEX page.
+export class ImportantIndexDayData {
   _extraordinaryDTO: ExtraordinaryDTO;
   _daysDTO: DaysDTO;
   _importantDTO: ImportantDTO;
@@ -54,7 +54,8 @@ export class ImportantIndexClass implements IndexClassInterface {
   }
 }
 
-export class ImportantIndex implements IndexClassInterface {
+// Data Structure stored each table entry - displayed on INDEX page.
+export class ImportantIndex implements IndexData {
   extraordinaryDTO: ExtraordinaryDTO;
   daysDTO: DaysDTO;
   importantDTO: ImportantDTO;
@@ -120,6 +121,6 @@ export class ImportantService implements TaskServiceInterface {
   getTaskIndexData(username: string, target: string, year: number, month: number) {
     return this.http.get<ImportantIndex[]>(
       `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
-    );
+    ).catch(this.handleErrorService.handleError);;
   }
 }

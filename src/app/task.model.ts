@@ -5,7 +5,6 @@ export class Task {
   public made: number;
   public postedOn: number;
   public startDate: number;
-  public userProfileId: string;
 
   constructor(
     id: number,
@@ -13,8 +12,7 @@ export class Task {
     body: string,
     made: number,
     postedOn: number,
-    startDate: number,
-    userProfileId: string
+    startDate: number
   ) {
     this.id = id;
     this.title = title;
@@ -22,6 +20,5 @@ export class Task {
     this.made = made;
     this.postedOn = postedOn;
     this.startDate = startDate;
-    this.userProfileId = userProfileId;
   }
 }

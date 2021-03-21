@@ -4,21 +4,18 @@ export class Days {
   public rateDay: number;
   public postedOn: number;
   public startDate: number;
-  public userProfileId: string;
   
   constructor(
     id: number,
     body: string,
     rateDay: number,
     postedOn: number,
-    startDate: number,
-    userProfileId: string
+    startDate: number
   ) {
     this.id = id;
     this.body = body;
     this.rateDay = rateDay;
     this.postedOn = postedOn;
     this.startDate = startDate;
-    this.userProfileId = userProfileId;
   }
 }

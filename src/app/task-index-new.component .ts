@@ -1,14 +1,12 @@
-import { Component, OnInit, HostListener, Input } from "@angular/core";
-import { ImportantIndex, ImportantIndexClass, ImportantService } from "./services/important.service.";
+import { OnInit, Input } from "@angular/core";
 import { YELLOW_COMPLETION_STYLES, GREEN_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "./services/authentication.service";
 import { TimeService } from "./services/data/time.service";
-import { Route } from "@angular/compiler/src/core";
 import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
 import { WeekDay } from "@angular/common";
 import { TaskServiceInterface } from "./services/task.service-interface";
-import { IndexClassInterface } from "./services/index-class-interface";
+import { IndexData } from "./services/index-class-interface";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 export abstract class TaskIndexNewComponent implements OnInit {
@@ -16,20 +14,13 @@ export abstract class TaskIndexNewComponent implements OnInit {
 
   selectDate: FormGroup;
   username: string;
-  indexData: IndexClassInterface[];
-  indexDataFinal: IndexClassInterface[] = [];
-  // indexDataFinal: ImportantIndexClass[] = [];
-  // indexDataFinal: IndexClassInterface[] = [];
-  // oneObject: ImportantIndexClass;
-  // oneObject: IndexClassInterface;
+  indexData: IndexData[];
   month: number;
   year: number;
   returnUrl: string;
-  numbers: Array<number>;
+  monthDaysArr: Array<number>;
   weekDayArr: Array<string>;
-  daysInMonth: number;
-  firstElement: number;
-  indexElement: number = 0;
+  lengthOfMonth: number;
   today: number;
   date: Date;
   target: string;
@@ -46,30 +37,21 @@ export abstract class TaskIndexNewComponent implements OnInit {
     private router: Router,
     private customErrorMsgService: CustomErrorMessageService,
     target: string,
-    indexData: IndexClassInterface[]
+    indexData: IndexData[]
     ) { 
       this.target = target;
       this.indexData = indexData;
     }
 
   ngOnInit() {
-
+    // Get date from URL
     this.route.params.subscribe(params => {
       this.month = +params["month"];
       this.year = +params["year"];
     });
 
-    this.daysInMonth = new Date(this.year, this.month, 0).getDate();
-
-    this.numbers = Array(this.daysInMonth)
-      .fill(0)
-      .map((x, i) => i + 1);
-
-    this.weekDayArr = Array(this.daysInMonth)
-      .fill(0)
-      .map(
-        (x, i) => WeekDay[new Date(this.year, this.month - 1, i + 1).getDay()]
-    );
+    // Prepare day number and week day arrays
+    this.prepareMonthDaysArray();
 
     this.today = new Date().getDay();
     this.date = new Date();
@@ -88,8 +70,6 @@ export abstract class TaskIndexNewComponent implements OnInit {
       .subscribe(
         (data) => {
           this.indexData = data;
-          console.log("===========================================");
-          console.log(this.indexData);
           this.processData();
         }
     );
@@ -103,19 +83,9 @@ export abstract class TaskIndexNewComponent implements OnInit {
     this.year = this.selectDate.value.selectYear;
     this.month = this.selectDate.value.selectMonth;
 
+    this.prepareMonthDaysArray()
+
     // clear index data
-    this.indexDataFinal = null;
-
-    this.daysInMonth = new Date(this.year, this.month, 0).getDate();
-    this.numbers = Array(this.daysInMonth)
-      .fill(0)
-      .map((x, i) => i);
-    this.weekDayArr = Array(this.daysInMonth)
-      .fill(0)
-      .map(
-        (x, i) => WeekDay[new Date(this.year, this.month - 1, i + 1).getDay()]
-      );
-
     this.today = this.timeService.getActiveDay(
       this.month,
       this.year,
@@ -126,6 +96,7 @@ export abstract class TaskIndexNewComponent implements OnInit {
       .getTaskIndexData(this.username, this.target, this.year, this.month)
       .subscribe(
         data => {
+          this.indexData = data;
           this.processData();
         },
         error => {
@@ -134,6 +105,20 @@ export abstract class TaskIndexNewComponent implements OnInit {
       );
 
     this.router.navigate(["/" + this.target + "/" + this.year + "/" + this.month]);
+  }
+
+  private prepareMonthDaysArray() {
+    this.lengthOfMonth = new Date(this.year, this.month, 0).getDate();
+
+    this.monthDaysArr = Array(this.lengthOfMonth)
+      .fill(0)
+      .map((x, i) => i + 1);
+
+    this.weekDayArr = Array(this.lengthOfMonth)
+      .fill(0)
+      .map(
+        (x, i) => WeekDay[new Date(this.year, this.month - 1, i + 1).getDay()]
+    );
   }
 
   onAddExtraordinaryClick(year, month, day) {

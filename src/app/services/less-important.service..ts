@@ -2,11 +2,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
 import { HandleErrorsService } from "./handle-errors.service";
-import { Index } from "../index.model.";
 import { TaskServiceInterface } from "./task.service-interface"
-import { IndexClassInterface } from "./index-class-interface";;
+import { IndexData } from "./index-class-interface";
 
-export class LessImportantIndexClass {
+export class LessImportantIndexDayData {
   _extraordinaryDTO: ExtraordinaryDTO;
   _daysDTO: DaysDTO;
   _lessImportantDTO: LessImportantDTO;
@@ -54,7 +53,7 @@ export class LessImportantIndexClass {
   }
 }
 
-export class LessImportantIndex implements IndexClassInterface {
+export class LessImportantIndex implements IndexData {
   extraordinaryDTO: ExtraordinaryDTO;
   daysDTO: DaysDTO;
   importantDTO: LessImportantDTO;

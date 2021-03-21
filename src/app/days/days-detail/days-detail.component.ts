@@ -2,7 +2,6 @@ import { Component, OnInit, Input, HostListener } from "@angular/core";
 import { DaysService } from "src/app/services/days.service";
 import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
-import { HandleErrorsService } from "../../services/handle-errors.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
 import { Days } from "../days.model";
 
@@ -45,7 +44,7 @@ export class DaysDetailComponent implements OnInit {
 
     this.daysService.getDays(this.username, this.id).subscribe(
       values => {
-        this.days = new Days(values.id, values.body, values.rateDay, values.postedOn, values.startDate, values.userProfileId);
+        this.days = new Days(values.id, values.body, values.rateDay, values.postedOn, values.startDate);
       },
       error => {
         this.customErrorMsgService.displayMessage(error, this.returnUrl);

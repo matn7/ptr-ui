@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LessImportantService, LessImportantIndex, LessImportantIndexClass } from 'src/app/services/less-important.service.';
+import { Component } from '@angular/core';
+import { LessImportantService, LessImportantIndex, LessImportantIndexDayData } from 'src/app/services/less-important.service.';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TimeService } from 'src/app/services/data/time.service';
@@ -13,7 +13,7 @@ import { TaskIndexNewComponent } from 'src/app/task-index-new.component ';
 })
 export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
 
-  indexDataFinal: LessImportantIndexClass[] = [];
+  dataToDisplay: LessImportantIndexDayData[] = [];
 
   constructor(
     route: ActivatedRoute,
@@ -33,58 +33,61 @@ export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
       let impIndex = 0;
       let imp2Index = 0;
       let imp3Index = 0;
-      let oneObject: LessImportantIndexClass;
+      let oneDay: LessImportantIndexDayData;
+
+      this.dataToDisplay = null;
+      this.dataToDisplay = [];
   
-      for (let entry of this.numbers) {
+      for (let day of this.monthDaysArr) {
         
-        oneObject = new LessImportantIndexClass();
+        oneDay = new LessImportantIndexDayData();
   
         if (this.indexData['extraordinaryDTO'][extraIndex]) {
-          if (entry === this.indexData['extraordinaryDTO'][extraIndex].startDate[2]) {
-            oneObject.extraordinaryDTO = this.indexData['extraordinaryDTO'][extraIndex];
+          if (day === this.indexData['extraordinaryDTO'][extraIndex].startDate[2]) {
+            oneDay.extraordinaryDTO = this.indexData['extraordinaryDTO'][extraIndex];
             extraIndex++;
           } else {
-            oneObject.extraordinaryDTO = null;
+            oneDay.extraordinaryDTO = null;
           }
         }
   
         if (this.indexData['daysDTO'][dayIndex]) {
-          if (entry === this.indexData['daysDTO'][dayIndex].startDate[2]) {
-            oneObject.daysDTO = this.indexData['daysDTO'][dayIndex];
+          if (day === this.indexData['daysDTO'][dayIndex].startDate[2]) {
+            oneDay.daysDTO = this.indexData['daysDTO'][dayIndex];
             dayIndex++;
           } else {
-            oneObject.daysDTO = null;
+            oneDay.daysDTO = null;
           }
         }
   
         if (this.indexData['lessImportantDTO'][impIndex]) {
-          if (entry === this.indexData['lessImportantDTO'][impIndex].startDate[2]) {
-            oneObject.lessImportantDTO = this.indexData['lessImportantDTO'][impIndex];
+          if (day === this.indexData['lessImportantDTO'][impIndex].startDate[2]) {
+            oneDay.lessImportantDTO = this.indexData['lessImportantDTO'][impIndex];
             impIndex++;
           } else {
-            oneObject.lessImportantDTO = null;
+            oneDay.lessImportantDTO = null;
           }
         }
   
         if (this.indexData['lessImportant2DTO'][imp2Index]) {
-          if (entry === this.indexData['lessImportant2DTO'][imp2Index].startDate[2]) {
-            oneObject.lessImportant2DTO = this.indexData['lessImportant2DTO'][imp2Index];
+          if (day === this.indexData['lessImportant2DTO'][imp2Index].startDate[2]) {
+            oneDay.lessImportant2DTO = this.indexData['lessImportant2DTO'][imp2Index];
             imp2Index++;
           } else {
-            oneObject.lessImportant2DTO = null;
+            oneDay.lessImportant2DTO = null;
           }
         }
   
         if (this.indexData['lessImportant3DTO'][imp3Index]) {
-          if (entry === this.indexData['lessImportant3DTO'][imp3Index].startDate[2]) {
-            oneObject.lessImportant3DTO = this.indexData['lessImportant3DTO'][imp3Index];
+          if (day === this.indexData['lessImportant3DTO'][imp3Index].startDate[2]) {
+            oneDay.lessImportant3DTO = this.indexData['lessImportant3DTO'][imp3Index];
             imp3Index++;
           } else {
-            oneObject.lessImportant3DTO = null;
+            oneDay.lessImportant3DTO = null;
           }
         }
   
-        this.indexDataFinal.push(oneObject);
+        this.dataToDisplay.push(oneDay);
   
       }
     }

@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../services/authentication.service";
-import { HandleErrorsService } from "../../services/handle-errors.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { TimeService } from "../../services/data/time.service";
 import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
@@ -22,13 +21,12 @@ export class ImportantEditComponent extends TaskEditComponent {
     TaskService: TaskService,
     datepipe: DatePipe,
     authService: AuthenticationService,
-    handleError: HandleErrorsService,
     router: Router,
     appInternalMessageService: AppInternalMessagesService,
     timeService: TimeService,
     customErrorMsgService: CustomErrorMessageService
   ) {
-    super(route, TaskService, datepipe, authService, handleError, router, appInternalMessageService,
+    super(route, TaskService, datepipe, authService, router, appInternalMessageService,
     timeService, customErrorMsgService, "important");
   }
 
