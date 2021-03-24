@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ImportantService, ImportantIndex, ImportantIndexDayData } from 'src/app/services/important.service.';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomErrorMessageService } from 'src/app/services/data/custom-error-message.service';
+import { ErrorService } from 'src/app/services/data/error.service';
 import { TimeService } from 'src/app/services/data/time.service';
 import { TaskIndexNewComponent } from 'src/app/task-index-new.component ';
 
@@ -21,10 +21,10 @@ export class ImportantIndexNewComponent extends TaskIndexNewComponent {
     authService: AuthenticationService,
     timeService: TimeService,
     router : Router,
-    customErrorMsgService: CustomErrorMessageService
+    errorService: ErrorService
     ) { 
       super(route, importantIndexService, authService, timeService, router, 
-        customErrorMsgService, "important", new ImportantIndex()[31]);
+        errorService, "important", new ImportantIndex()[31]);
     }
 
     processData() {

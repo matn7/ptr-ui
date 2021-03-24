@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsDaysService } from "../../services/statistics-days.service";
 import { AuthenticationService } from "../../services/authentication.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateRequest } from "../date-request";
 import { GREEN_COLORS } from "../../app.constants";
@@ -33,7 +33,7 @@ export class StatisticsDaysComponent implements OnInit {
     private router: Router,
     private statisticsDaysService: StatisticsDaysService,
     private authService: AuthenticationService,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -63,7 +63,8 @@ export class StatisticsDaysComponent implements OnInit {
           this.pieChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          // TODO: fix error handle. This is how we redirect
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -75,7 +76,7 @@ export class StatisticsDaysComponent implements OnInit {
           this.columnChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }
@@ -95,7 +96,7 @@ export class StatisticsDaysComponent implements OnInit {
           this.pieChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -107,7 +108,7 @@ export class StatisticsDaysComponent implements OnInit {
           this.columnChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 

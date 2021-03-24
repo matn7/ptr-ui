@@ -1,10 +1,8 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ExtraordinaryService } from "../../services/extraordinary.service";
 import { AuthenticationService } from "../../services/authentication.service";
-import { HandleErrorsService } from "../../services/handle-errors.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 
 @Component({
   selector: "app-extraordinary-detail",
@@ -27,8 +25,7 @@ export class ExtraordinaryDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthenticationService,
     private service: ExtraordinaryService,
-    private handleError: HandleErrorsService,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -48,7 +45,7 @@ export class ExtraordinaryDetailComponent implements OnInit {
           this.extraordinary = extra;
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }

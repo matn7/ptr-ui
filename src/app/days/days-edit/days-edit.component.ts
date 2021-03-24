@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../services/authentication.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { TimeService } from "../../services/data/time.service";
 import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
 
@@ -40,7 +40,7 @@ export class DaysEditComponent implements OnInit {
     private authService: AuthenticationService,
     private datepipe: DatePipe,
     private router: Router,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     private timeService: TimeService,
     private appInternalMessageService: AppInternalMessagesService
   ) {}
@@ -62,7 +62,7 @@ export class DaysEditComponent implements OnInit {
           this.year = +params["year"];
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -98,7 +98,7 @@ export class DaysEditComponent implements OnInit {
             this.router.navigate(["/days/" + +response["id"] + "/view"]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     } else {
@@ -107,7 +107,7 @@ export class DaysEditComponent implements OnInit {
           this.router.navigate(["/days/" + +response["id"] + "/view"]);
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
     }
@@ -120,7 +120,7 @@ export class DaysEditComponent implements OnInit {
           this.router.navigate(["/important/" + this.year + "/" + this.month]);
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
     }
@@ -158,7 +158,7 @@ export class DaysEditComponent implements OnInit {
             });
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
 

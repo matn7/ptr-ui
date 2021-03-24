@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "pandatronik-rest"
+  "defaultProject": "pandatronik-rest",
+  "cli": {
+    "analytics": false
+  }
 }

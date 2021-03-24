@@ -2,7 +2,7 @@ import { OnInit } from "@angular/core";
 import { TaskService } from "./services/task.service";
 import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "./services/authentication.service";
-import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { ErrorService } from "./services/data/error.service";
 import { Task } from "./task.model";
 
 export class TaskDetailComponent implements OnInit {
@@ -22,7 +22,7 @@ export class TaskDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private service: TaskService,
     private authService: AuthenticationService,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     target: string
   ) {
     this.target = target;
@@ -45,7 +45,7 @@ export class TaskDetailComponent implements OnInit {
           this.task = data;
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }

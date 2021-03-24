@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RegistrationService } from "../../services/registration.service";
-import { HandleErrorsService } from "../../services/handle-errors.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../../app.constants";
 
 @Component({
@@ -25,10 +23,9 @@ export class PasswordChangeComponent implements OnInit {
 
   constructor(
     private registrationService: RegistrationService,
-    private handleError: HandleErrorsService,
     private router: Router,
     private route: ActivatedRoute,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -49,7 +46,7 @@ export class PasswordChangeComponent implements OnInit {
           this.router.navigate(["/login"]);
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }

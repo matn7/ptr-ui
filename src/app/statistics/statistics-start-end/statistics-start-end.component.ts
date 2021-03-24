@@ -3,7 +3,7 @@ import { StatisticsTaskService } from "../../services/statistics.important.servi
 import { AuthenticationService } from "../../services/authentication.service";
 import { StartEndDateRequest } from "../start-end-date-request";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { DatePipe } from "@angular/common";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
@@ -37,7 +37,7 @@ export class StatisticsStartEndComponent implements OnInit {
     private statisticsTaskService: StatisticsTaskService,
     private authService: AuthenticationService,
     private datepipe: DatePipe,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     private router: Router
   ) { }
 
@@ -75,7 +75,7 @@ export class StatisticsStartEndComponent implements OnInit {
 
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
         this.initForm();
@@ -103,7 +103,7 @@ export class StatisticsStartEndComponent implements OnInit {
           this.columnChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
     this.router.navigate(["/statistics/startend/" + this.component + "/" + this.num +"/" + this.startDate + "/" + this.endDate]);

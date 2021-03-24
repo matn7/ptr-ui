@@ -4,9 +4,10 @@ import {
 } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute, RouterEvent } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { DATE_FORMAT, DETAIL_DATE_FORMAT } from "../../app.constants";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: "app-header",
@@ -20,11 +21,24 @@ export class HeaderComponent implements OnInit {
   username: string;
   startDate: string;
   endDate: string;
+  activeUrl: string;
 
   constructor(
     private authService: AuthenticationService,
-    private datepipe: DatePipe
-  ) {}
+    private datepipe: DatePipe,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.router.events.pipe(
+      filter(event => event instanceof RouterEvent)
+    ).subscribe((event: RouterEvent) => {
+      if(event) {
+          // console.log("Event: " + event.url);
+          // console.log(event.url.includes("important"));
+          this.activeUrl = "active";
+      }
+    });
+  }
 
   ngOnInit() {
     this.date = new Date();
@@ -34,5 +48,9 @@ export class HeaderComponent implements OnInit {
     this.year = this.date.getFullYear();
     this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
     this.endDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+  }
+
+  toActivate(url: string) {
+    return this.activeUrl.includes(url) ? "active" : "";
   }
 }

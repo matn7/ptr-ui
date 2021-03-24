@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { TOKEN_EXPIRED, RETURN_URL, USERNAME_LENGTH_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR } from "../app.constants";
 import { HandleErrorsService } from "../services/handle-errors.service";
 import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
+import { ErrorService } from "../services/data/error.service";
 
 @Component({
   selector: "app-login",
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private handleError: HandleErrorsService,
     private appInternalMessageService: AppInternalMessagesService,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {

@@ -81,6 +81,7 @@ export class AuthenticationService {
       return Observable.throw(new NotFoundError(error.status, error["error"]));
     }
     if (error.status === 401) {
+      console.log("TTTTTTTUUUUTAJ 5");
       return Observable.throw(
         new NotAuthorizedError(error.status, error["error"])
       );

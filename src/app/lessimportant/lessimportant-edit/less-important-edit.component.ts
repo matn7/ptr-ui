@@ -8,7 +8,7 @@ import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../services/authentication.service";
 import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { TimeService } from "../../services/data/time.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 
 @Component({
   selector: "app-less-important-edit",
@@ -18,16 +18,16 @@ export class LessImportantEditComponent extends TaskEditComponent {
 
   constructor(
     route: ActivatedRoute,
-    TaskService: TaskService,
+    taskService: TaskService,
     datepipe: DatePipe,
     authService: AuthenticationService,
     router: Router,
     appInternalMessageService: AppInternalMessagesService,
     timeService: TimeService,
-    customErrorMsgService: CustomErrorMessageService
+    errorService: ErrorService
   ) {
-    super(route, TaskService, datepipe, authService, router, appInternalMessageService,
-    timeService, customErrorMsgService, "lessimportant");
+    super(route, taskService, datepipe, authService, router, appInternalMessageService,
+    timeService, errorService, "lessimportant");
 
   }
 

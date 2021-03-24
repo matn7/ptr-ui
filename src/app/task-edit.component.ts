@@ -8,7 +8,7 @@ import { TaskService } from "./services/task.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 import { TimeService } from "./services/data/time.service";
-import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { ErrorService } from "./services/data/error.service";
 import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, 
   BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "./app.constants";
 
@@ -55,7 +55,7 @@ export class TaskEditComponent implements OnInit {
     private router: Router,
     private appInternalMessageService: AppInternalMessagesService,
     private timeService: TimeService,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     target: string
   ) {
     this.target = target;
@@ -86,7 +86,7 @@ export class TaskEditComponent implements OnInit {
         this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
       },
       error => {
-        this.customErrorMsgService.displayMessage(error, this.returnUrl);
+        this.errorService.displayMessage(error, this.returnUrl);
       });
 
       // Check for invalid date
@@ -117,7 +117,7 @@ export class TaskEditComponent implements OnInit {
             ]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     } else {
@@ -131,7 +131,7 @@ export class TaskEditComponent implements OnInit {
             ]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     }
@@ -148,7 +148,7 @@ export class TaskEditComponent implements OnInit {
             ]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     }
@@ -185,7 +185,7 @@ export class TaskEditComponent implements OnInit {
             });
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
 

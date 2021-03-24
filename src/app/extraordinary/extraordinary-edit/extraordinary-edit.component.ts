@@ -1,13 +1,11 @@
-import { Component, OnInit, HostListener } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { ExtraordinaryService } from "../../services/extraordinary.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";
 
 @Component({
@@ -48,9 +46,8 @@ export class ExtraordinaryEditComponent implements OnInit {
     private extraordinaryService: ExtraordinaryService,
     private datepipe: DatePipe,
     private authService: AuthenticationService,
-    private handleError: HandleErrorsService,
     private router: Router,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -76,7 +73,7 @@ export class ExtraordinaryEditComponent implements OnInit {
           );
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
     }
@@ -104,7 +101,7 @@ export class ExtraordinaryEditComponent implements OnInit {
             ]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     } else {
@@ -117,7 +114,7 @@ export class ExtraordinaryEditComponent implements OnInit {
             ]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     }
@@ -134,7 +131,7 @@ export class ExtraordinaryEditComponent implements OnInit {
             ]);
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
     }
@@ -167,7 +164,7 @@ export class ExtraordinaryEditComponent implements OnInit {
             });
           },
           error => {
-            this.customErrorMsgService.displayMessage(error, this.returnUrl);
+            this.errorService.displayMessage(error, this.returnUrl);
           }
         );
 

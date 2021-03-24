@@ -62,7 +62,7 @@ export class RegistrationComponent implements OnInit {
         },
         error => {
           this.isDuplicated = true;
-          this.errorMessage = this.handleError.displayRegistrationErrorMessage(
+          this.errorMessage = this.handleError.displayErrorMessage(
             error.errorStatus,
             error.errorMsg,
             this.returnUrl

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminUserService } from '../../services/admin/admin-user.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { CustomErrorMessageService } from '../../services/data/custom-error-message.service';
+import { ErrorService } from '../../services/data/error.service';
 import { User } from '../../user/user.model';
 
 @Component({
@@ -21,7 +21,7 @@ export class AdminUserComponent implements OnInit {
   constructor(
     private userService: AdminUserService,
     private authService: AuthenticationService,
-    private customErrorMsgService: CustomErrorMessageService) { }
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.username = this.authService.getAuthenticatedUser();
@@ -40,7 +40,7 @@ export class AdminUserComponent implements OnInit {
           .map((x, i) => i);
       },
       error => {
-        this.customErrorMsgService.displayMessage(error, this.returnUrl);
+        this.errorService.displayMessage(error, this.returnUrl);
       }
     );
   }

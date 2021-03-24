@@ -3,7 +3,7 @@ import { TaskDetailComponent } from "../../task-detail.component";
 import { ActivatedRoute } from "@angular/router";
 import { TaskService } from "../../services/task.service";
 import { AuthenticationService } from "../../services/authentication.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 
 @Component({
   selector: "app-less-important-detail",
@@ -15,9 +15,9 @@ export class LessImportantDetailComponent extends TaskDetailComponent {
     route: ActivatedRoute,
     service: TaskService,
     authService: AuthenticationService,
-    customErrorMsgService: CustomErrorMessageService
+    errorService: ErrorService
   ) {
-    super(route, service, authService, customErrorMsgService, "lessimportant");
+    super(route, service, authService, errorService, "lessimportant");
   }
 
 }

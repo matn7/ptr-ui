@@ -1,10 +1,9 @@
-import { Component, OnInit, HostListener, HostBinding } from "@angular/core";
+import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "./services/statistics.important.service";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { AuthenticationService } from "./services/authentication.service";
-import { HandleErrorsService } from "./services/handle-errors.service";
-import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { ErrorService } from "./services/data/error.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "./app.constants";
 import * as Highcharts from 'highcharts';
 import { TimeService } from "./services/data/time.service";
@@ -38,8 +37,7 @@ export class TaskStatisticsComponent implements OnInit {
     private router: Router,
     private statisticsTaskService: StatisticsTaskService,
     private authService: AuthenticationService,
-    private handleError: HandleErrorsService,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     private timeService: TimeService,
     private appInternalMessageService: AppInternalMessagesService,
     target: string
@@ -80,7 +78,7 @@ export class TaskStatisticsComponent implements OnInit {
           this.pieChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -92,7 +90,7 @@ export class TaskStatisticsComponent implements OnInit {
           this.columnChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }
@@ -111,7 +109,7 @@ export class TaskStatisticsComponent implements OnInit {
           this.pieChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -125,7 +123,7 @@ export class TaskStatisticsComponent implements OnInit {
           this.columnChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
     this.router.navigate([

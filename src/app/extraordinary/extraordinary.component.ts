@@ -1,11 +1,9 @@
-import { Component, OnInit, HostListener, Inject, InjectionToken } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { ExtraordinaryService } from "../services/extraordinary.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { Extraordinary } from "./extraordinary.model";
-import { HandleErrorsService } from "../services/handle-errors.service";
 import { Router } from "@angular/router";
-import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
+import { ErrorService } from "../services/data/error.service";
 import { MAT_DIALOG_DATA } from "@angular/material";
 
 
@@ -25,9 +23,8 @@ export class ExtraordinaryComponent implements OnInit {
   constructor(
     private extraService: ExtraordinaryService,
     private authService: AuthenticationService,
-    private handleError: HandleErrorsService,
     private router: Router,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     console.log("Data", data);
@@ -45,7 +42,7 @@ export class ExtraordinaryComponent implements OnInit {
           .map((x, i) => i);
       },
       error => {
-        this.customErrorMsgService.displayMessage(error, this.returnUrl);
+        this.errorService.displayMessage(error, this.returnUrl);
       }
     );
   }

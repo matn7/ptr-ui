@@ -1,11 +1,9 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DaysService } from "../services/days.service";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
-import { HandleErrorsService } from "../services/handle-errors.service";
-import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
+import { ErrorService } from "../services/data/error.service";
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -34,9 +32,7 @@ export class DaysComponent implements OnInit {
     private service: DaysService,
     private router: Router,
     private authService: AuthenticationService,
-    private handleError: HandleErrorsService,
-    private appInternalMessageService: AppInternalMessagesService,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -64,11 +60,8 @@ export class DaysComponent implements OnInit {
           this.days = days;
         },
         error => {
-          this.customErrorMsgService.displayDayMessage(
+          this.errorService.displayMessage(
             error,
-            this.year,
-            this.month,
-            this.day,
             this.returnUrl
           );
         }
@@ -97,11 +90,8 @@ export class DaysComponent implements OnInit {
           this.days = days;
         },
         error => {
-          this.customErrorMsgService.displayDayMessage(
+          this.errorService.displayMessage(
             error,
-            this.year,
-            this.month,
-            this.day,
             this.returnUrl
           );
         }

@@ -3,7 +3,7 @@ import { YELLOW_COMPLETION_STYLES, GREEN_COMPLETION_STYLES, BLUE_COMPLETION_STYL
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "./services/authentication.service";
 import { TimeService } from "./services/data/time.service";
-import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { ErrorService } from "./services/data/error.service";
 import { WeekDay } from "@angular/common";
 import { TaskServiceInterface } from "./services/task.service-interface";
 import { IndexData } from "./services/index-class-interface";
@@ -35,7 +35,7 @@ export abstract class TaskIndexNewComponent implements OnInit {
     private authService: AuthenticationService,
     private timeService: TimeService,
     private router: Router,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     target: string,
     indexData: IndexData[]
     ) { 
@@ -71,6 +71,9 @@ export abstract class TaskIndexNewComponent implements OnInit {
         (data) => {
           this.indexData = data;
           this.processData();
+        },
+        error => {
+          this.errorService.displayMessage(error, this.returnUrl);
         }
     );
 
@@ -100,7 +103,7 @@ export abstract class TaskIndexNewComponent implements OnInit {
           this.processData();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 

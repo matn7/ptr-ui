@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, HostListener } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DaysService } from "src/app/services/days.service";
 import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { Days } from "../days.model";
 
 @Component({
@@ -26,7 +26,7 @@ export class DaysDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private daysService: DaysService,
     private authService: AuthenticationService,
-    private customErrorMsgService: CustomErrorMessageService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class DaysDetailComponent implements OnInit {
         this.days = new Days(values.id, values.body, values.rateDay, values.postedOn, values.startDate);
       },
       error => {
-        this.customErrorMsgService.displayMessage(error, this.returnUrl);
+        this.errorService.displayMessage(error, this.returnUrl);
       }
     );
   }

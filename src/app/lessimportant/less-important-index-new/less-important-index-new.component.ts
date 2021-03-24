@@ -3,7 +3,7 @@ import { LessImportantService, LessImportantIndex, LessImportantIndexDayData } f
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TimeService } from 'src/app/services/data/time.service';
-import { CustomErrorMessageService } from 'src/app/services/data/custom-error-message.service';
+import { ErrorService } from 'src/app/services/data/error.service';
 import { TaskIndexNewComponent } from 'src/app/task-index-new.component ';
 
 @Component({
@@ -21,9 +21,9 @@ export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
     authService: AuthenticationService,
     timeService: TimeService,
     router: Router,
-    customErrorMsgService: CustomErrorMessageService
+    errorService: ErrorService
     ) { 
-      super(route, indexService, authService, timeService, router, customErrorMsgService, 
+      super(route, indexService, authService, timeService, router, errorService, 
         "lessimportant", new LessImportantIndex()[31]);
     }
 

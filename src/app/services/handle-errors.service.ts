@@ -42,48 +42,12 @@ export class HandleErrorsService {
     }
   }
 
-  displayDayErrorMessage(errorNumber, year, month, day, redirectUrl) {
-    if (errorNumber === 401) {
-      return this.handle401Error(redirectUrl, null);
-    }
-    if (errorNumber === 403) {
-      return "Forbidden";
-    }
-    if (errorNumber === 404) {
-      return "Record not found in " + year + "/" + month + "/" + day;
-    }
-    if (errorNumber === 400) {
-      return "Bad request";
-    }
-    if (errorNumber === 500) {
-      return "Server error";
-    }
-  }
-
-  displayRegistrationErrorMessage(errorNumber, errorMsg, redirectUrl) {
-    if (errorNumber === 401) {
-      return this.handle401Error(redirectUrl, errorMsg);
-    }
-    if (errorNumber === 403) {
-      return "Forbidden";
-    }
-    if (errorNumber === 404) {
-      return "404 Record not found";
-    }
-    if (errorNumber === 400) {
-      return errorMsg;
-    }
-    if (errorNumber === 500) {
-      return "Server error";
-    }
-  }
-
+  // Used in http request user shoudl not see them
   handleError(error: Response) {
     if (error.status === 400) {
       return Observable.throw(new BadInput(error.status, error["error"]));
     }
     if (error.status === 401) {
-      console.log("TTTTTTTUUUUTAJ");
       return Observable.throw(
         new NotAuthorizedError(error.status, error["error"])
       );

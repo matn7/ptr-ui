@@ -75,8 +75,6 @@ import { LessImportantIndexNewComponent } from "./lessimportant/less-important-i
     ExtraordinaryComponent,
     ExtraordinaryEditComponent,
     ExtraordinaryDetailComponent,
-    ImportantIndexNewComponent,
-    LessImportantIndexNewComponent,
     ImportantEditComponent,
     ImportantDetailComponent,
     LessImportantEditComponent,

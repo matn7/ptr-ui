@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { DateRequest } from "../date-request";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { StatisticsDaysService } from "../../services/statistics-days.service";
-import { CustomErrorMessageService } from "../../services/data/custom-error-message.service";
+import { ErrorService } from "../../services/data/error.service";
 import { MONTH_NAMES, GREEN_COLORS } from "../../app.constants";
 import { WeekDay } from "@angular/common";
 import * as Highcharts from 'highcharts';
@@ -33,7 +33,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
     private authService: AuthenticationService,
     private route: ActivatedRoute,
     private statisticsDaysService: StatisticsDaysService,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     private router: Router
   ) {}
 
@@ -80,7 +80,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
           this.pieChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
       
@@ -95,7 +95,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
           this.columnChart(dayMade);
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }
@@ -132,7 +132,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
           this.pieChart();
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -146,7 +146,7 @@ export class StatisticsDaysMonthComponent implements OnInit {
           this.columnChart(dayMade);
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 

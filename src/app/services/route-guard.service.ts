@@ -22,6 +22,7 @@ export class RouteGuardService implements CanActivate {
     if (this.authenticationService.isUserLoggedIn()) {
       return true;
     }
+    console.log("Tju");
     sessionStorage.setItem("returnUrl", state.url);
     this.router.navigate(["login"], { queryParams: { returnUrl: state.url } });
     return false;

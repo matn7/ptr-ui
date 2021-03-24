@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="activeUrl">
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
       routerLinkActive="active"
@@ -8,7 +8,7 @@
       
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
-      routerLinkActive="active"
+      routerLinkActive="activeUrl"
       routerLink="important/{{ year }}/{{ month }}">Important</button>
       
   <button mat-button  

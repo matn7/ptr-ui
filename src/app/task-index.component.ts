@@ -1,14 +1,12 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WeekDay } from "@angular/common";
 import { TaskService } from "./services/task.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { Task } from "./task.model"
-import { HandleErrorsService } from "./services/handle-errors.service";
 import { TimeService } from "./services/data/time.service";
-import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
-import { CustomErrorMessageService } from "./services/data/custom-error-message.service";
+import { ErrorService } from "./services/data/error.service";
 import { GREEN_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
 
 export class TaskIndexComponent implements OnInit {
@@ -36,11 +34,9 @@ export class TaskIndexComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private importantIndexService: TaskService,
-    private handleError: HandleErrorsService,
     private authService: AuthenticationService,
     private timeService: TimeService,
-    private appInternalMessageService: AppInternalMessagesService,
-    private customErrorMsgService: CustomErrorMessageService,
+    private errorService: ErrorService,
     target: string
   ) {
     this.target = target;
@@ -86,7 +82,7 @@ export class TaskIndexComponent implements OnInit {
           console.log(data);
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
@@ -124,7 +120,7 @@ export class TaskIndexComponent implements OnInit {
           this.taskIndexData = data;
         },
         error => {
-          this.customErrorMsgService.displayMessage(error, this.returnUrl);
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 

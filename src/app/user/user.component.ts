@@ -1,9 +1,7 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { UserService } from "../services/user.service";
 import { AuthenticationService } from "../services/authentication.service";
-import { User } from "./user.model";
-import { CustomErrorMessageService } from "../services/data/custom-error-message.service";
-import { Subscriber, Subscription } from "rxjs";
+import { ErrorService } from "../services/data/error.service";
 
 @Component({
   selector: "app-user",
@@ -19,7 +17,7 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthenticationService,
-    private customErrorMsgService: CustomErrorMessageService) {}
+    private errorService: ErrorService) {}
 
   ngOnInit() {
     this.isChecked = true;
@@ -36,7 +34,7 @@ export class UserComponent implements OnInit {
         this.userData = data;
       },
       error => {
-        this.customErrorMsgService.displayMessage(error, this.returnUrl);
+        this.errorService.displayMessage(error, this.returnUrl);
       }
     );
   }
