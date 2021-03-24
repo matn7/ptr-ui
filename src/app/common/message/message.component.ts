@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from "@angular/core";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
+import { ErrorMessagesService } from "../../services/data/error-messages.service";
 
 @Component({
   selector: "app-message",
@@ -18,16 +18,16 @@ export class MessageComponent implements OnInit {
   isHeaderClicked = false;
 
   constructor(
-    private appInternalMessageService: AppInternalMessagesService
+    private errorMessageService: ErrorMessagesService
   ) {}
 
   ngOnInit() {
-    this.appInternalMessageService.changeDateInFutureMsg.subscribe(isActive => {
+    this.errorMessageService.changeDateInFutureMsg.subscribe(isActive => {
       this.isDateInFutureMsg = isActive;
       this.errorMessage = "Date in future";
     });
 
-    this.appInternalMessageService.changeMsgFromBackend.subscribe(isActive => {
+    this.errorMessageService.changeMsgFromBackend.subscribe(isActive => {
       this.isMsgFromBackend = isActive.isMsg;
       this.errorMessage = isActive.msg;
     });

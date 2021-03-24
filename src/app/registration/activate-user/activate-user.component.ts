@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RegistrationService } from "../../services/registration.service";
 import { Router, ActivatedRoute } from "@angular/router";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { ErrorService } from "../../services/data/error.service";
 
 @Component({
@@ -18,7 +17,6 @@ export class ActivateUserComponent implements OnInit {
     private registrationService: RegistrationService,
     private router: Router,
     private route: ActivatedRoute,
-    private appInternalMessageService: AppInternalMessagesService,
     private errorService: ErrorService
   ) {}
 
@@ -34,7 +32,7 @@ export class ActivateUserComponent implements OnInit {
     this.registrationService.activateUser(this.id, this.token).subscribe(
       response => {
         this.router.navigate(["/login"]);
-        this.appInternalMessageService.triggerMsgFromBackend(
+        this.errorService.displayBackendMessage(
           response["message"]
         );
       },

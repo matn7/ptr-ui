@@ -5,7 +5,6 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { TaskStatisticsComponent } from "../../task-statistics-component";
 import { TimeService } from "../../services/data/time.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 
 @Component({
   selector: 'app-statistics-lessimportant',
@@ -20,11 +19,10 @@ export class StatisticsLessimportantComponent extends TaskStatisticsComponent {
     statisticsTaskService: StatisticsTaskService,
     authService: AuthenticationService,
     errorService: ErrorService,
-    timeService: TimeService,
-    appInternalMessageService: AppInternalMessagesService
+    timeService: TimeService
   ) {
     super(route, router, statisticsTaskService, authService, errorService, 
-      timeService, appInternalMessageService, "lessimportant");
+      timeService, "lessimportant");
   }
 
 }

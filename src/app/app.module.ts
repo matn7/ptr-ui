@@ -29,7 +29,7 @@ import { HandleErrorsService } from "./services/handle-errors.service";
 import { RegistrationComponent } from "./registration/registration.component";
 import { RegistrationService } from "./services/registration.service";
 import { TimeService } from "./services/data/time.service";
-import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
+import { ErrorMessagesService } from "./services/data/error-messages.service";
 import { PasswordResetComponent } from "./registration/password-reset/password-reset.component";
 import { PasswordChangeComponent } from "./registration/password-change/password-change.component";
 import { MessageComponent } from "./common/message/message.component";
@@ -124,7 +124,7 @@ import { LessImportantIndexNewComponent } from "./lessimportant/less-important-i
     HandleErrorsService,
     AuthenticationService,
     TimeService,
-    AppInternalMessagesService,
+    ErrorMessagesService,
     UserService,
     AdminUserService,
     DatePipe,

@@ -3,8 +3,8 @@ import { RegistrationService } from "../services/registration.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { HandleErrorsService } from "../services/handle-errors.service";
-import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
 import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../app.constants";
+import { ErrorService } from "../services/data/error.service";
 
 @Component({
   selector: "app-registration",
@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit {
     private registrationService: RegistrationService,
     private handleError: HandleErrorsService,
     private router: Router,
-    private appInternalMessageService: AppInternalMessagesService
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class RegistrationComponent implements OnInit {
       .subscribe(
         response => {
           this.router.navigate(["/login"]);
-          this.appInternalMessageService.triggerMsgFromBackend(
+          this.errorService.displayBackendMessage(
             USER_CREATED_MSG
           );
         },
@@ -67,7 +67,7 @@ export class RegistrationComponent implements OnInit {
             error.errorMsg,
             this.returnUrl
           );
-          this.appInternalMessageService.triggerMsgFromBackend(
+          this.errorService.displayBackendMessage(
             this.errorMessage
           );
         }

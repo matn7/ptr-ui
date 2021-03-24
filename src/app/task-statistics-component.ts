@@ -1,13 +1,12 @@
 import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "./services/statistics.important.service";
-import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthenticationService } from "./services/authentication.service";
 import { ErrorService } from "./services/data/error.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "./app.constants";
 import * as Highcharts from 'highcharts';
 import { TimeService } from "./services/data/time.service";
-import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 
 export class TaskStatisticsComponent implements OnInit {
   year: number;
@@ -39,7 +38,6 @@ export class TaskStatisticsComponent implements OnInit {
     private authService: AuthenticationService,
     private errorService: ErrorService,
     private timeService: TimeService,
-    private appInternalMessageService: AppInternalMessagesService,
     target: string
   ) {
     this.target = target;
@@ -132,7 +130,7 @@ export class TaskStatisticsComponent implements OnInit {
   }
 
   private redirectMsg() {
-    this.appInternalMessageService.triggerDateInFutureMsg();
+    this.errorService.dateInFutureMessage();
   }
 
   private populateAverageMap(avg) {

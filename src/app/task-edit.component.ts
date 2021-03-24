@@ -6,7 +6,6 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { TaskService } from "./services/task.service";
 import { AuthenticationService } from "./services/authentication.service";
-import { AppInternalMessagesService } from "./services/data/app-internal-messages.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorService } from "./services/data/error.service";
 import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, 
@@ -53,7 +52,6 @@ export class TaskEditComponent implements OnInit {
     private datepipe: DatePipe,
     private authService: AuthenticationService,
     private router: Router,
-    private appInternalMessageService: AppInternalMessagesService,
     private timeService: TimeService,
     private errorService: ErrorService,
     target: string
@@ -91,7 +89,7 @@ export class TaskEditComponent implements OnInit {
 
       // Check for invalid date
       if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-        this.appInternalMessageService.triggerDateInFutureMsg();
+        this.errorService.dateInFutureMessage();
         this.router.navigate([this.returnUrl]);
       }
     }

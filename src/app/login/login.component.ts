@@ -4,7 +4,6 @@ import { AuthenticationService } from "../services/authentication.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { TOKEN_EXPIRED, RETURN_URL, USERNAME_LENGTH_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR } from "../app.constants";
 import { HandleErrorsService } from "../services/handle-errors.service";
-import { AppInternalMessagesService } from "../services/data/app-internal-messages.service";
 import { ErrorService } from "../services/data/error.service";
 
 @Component({
@@ -29,8 +28,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private handleError: HandleErrorsService,
-    private appInternalMessageService: AppInternalMessagesService,
     private errorService: ErrorService
   ) {}
 
@@ -67,15 +64,7 @@ export class LoginComponent implements OnInit {
         error => {
           this.invalidLogin = true;
           console.log(error);
-          this.errorMessage = this.handleError.displayErrorMessage(
-            error.errorStatus,
-            error.errorMsg,
-            this.returnUrl
-          );
-
-          this.appInternalMessageService.triggerMsgFromBackend(
-            this.errorMessage
-          );
+          this.errorService.displayMessage(error, this.returnUrl);
         }
       );
   }

@@ -3,7 +3,6 @@ import {
   OnInit
 } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { Router, ActivatedRoute, RouterEvent } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { DATE_FORMAT, DETAIL_DATE_FORMAT } from "../../app.constants";

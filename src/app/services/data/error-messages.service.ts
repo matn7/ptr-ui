@@ -3,7 +3,7 @@ import { Injectable, Output, EventEmitter } from "@angular/core";
 @Injectable({
   providedIn: "root"
 })
-export class AppInternalMessagesService {
+export class ErrorMessagesService {
   isDateInFutureMsg: boolean;
   isMsgFromBackend: boolean;
 

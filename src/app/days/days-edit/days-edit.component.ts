@@ -1,10 +1,9 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DaysService } from "../../services/days.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../services/authentication.service";
-import { AppInternalMessagesService } from "../../services/data/app-internal-messages.service";
 import { ErrorService } from "../../services/data/error.service";
 import { TimeService } from "../../services/data/time.service";
 import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
@@ -41,8 +40,7 @@ export class DaysEditComponent implements OnInit {
     private datepipe: DatePipe,
     private router: Router,
     private errorService: ErrorService,
-    private timeService: TimeService,
-    private appInternalMessageService: AppInternalMessagesService
+    private timeService: TimeService
   ) {}
 
   ngOnInit() {
@@ -127,7 +125,7 @@ export class DaysEditComponent implements OnInit {
   }
 
   private redirectMsg() {
-    this.appInternalMessageService.triggerDateInFutureMsg();
+    this.errorService.dateInFutureMessage();
   }
 
 

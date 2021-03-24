@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HandleErrorsService } from "../handle-errors.service";
-import { AppInternalMessagesService } from "./app-internal-messages.service";
+import { ErrorMessagesService } from "./error-messages.service";
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +10,7 @@ export class ErrorService {
 
   constructor(
     private handleError: HandleErrorsService,
-    private appInternalMessageService: AppInternalMessagesService
+    private errorMessageService: ErrorMessagesService
   ) {}
 
   displayMessage(error, returnUrl) {
@@ -19,6 +19,14 @@ export class ErrorService {
       error.errorMsg,
       returnUrl
     );
-    this.appInternalMessageService.triggerMsgFromBackend(this.errorMessage);
+    this.errorMessageService.triggerMsgFromBackend(this.errorMessage);
+  }
+
+  displayBackendMessage(message: string) {
+    this.errorMessageService.triggerMsgFromBackend(message);
+  }
+
+  dateInFutureMessage() {
+    this.errorMessageService.triggerDateInFutureMsg();
   }
 }
