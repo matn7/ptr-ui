@@ -6,11 +6,15 @@ import { CommonModule } from "@angular/common";
 import { SharedModule } from "../shared/shared.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatComponentsModule } from '../mat-components.module';
+import { ImportantEditComponent } from './important-edit/important-edit.component';
+import { ImportantDetailComponent } from './important-detail/important-detail.component';
 
 @NgModule({
     declarations: [
         ImportantHomeComponent,
-        ImportantIndexNewComponent
+        ImportantIndexNewComponent,
+        ImportantEditComponent,
+        ImportantDetailComponent
     ],
     imports: [
         CommonModule,

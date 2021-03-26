@@ -1,7 +1,6 @@
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { NgModule, Component } from "@angular/core";
-import { DaysComponent } from "./days/days.component";
 import { DaysDetailComponent } from "./days/days-detail/days-detail.component";
 import { DaysEditComponent } from "./days/days-edit/days-edit.component";
 import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
@@ -12,7 +11,6 @@ import { RouteGuardService } from "./services/route-guard.service";
 import { ErrorComponent } from "./error/error.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { RegistrationComponent } from "./registration/registration.component";
-import { ExtraordinaryComponent } from "./extraordinary/extraordinary.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { PasswordResetComponent } from "./registration/password-reset/password-reset.component";
@@ -46,6 +44,16 @@ const appRoutes: Routes = [
     loadChildren: () => import('./lessimportant/less-important.module').then(mod => mod.LessImportantModule)
   },
   {
+    path: "extraordinary",
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./extraordinary/extraordinary.module').then(mod => mod.ExtraordinaryModule)
+  },
+  {
+    path: "days",
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./days/days.module').then(mod => mod.DaysModule)
+  },
+  {
     path: "admin",
     component: AdminComponent,
     canActivate: [RouteGuardService]
@@ -63,46 +71,6 @@ const appRoutes: Routes = [
   {
     path: "user/:name",
     component: UserComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "days/:year/:month/:day/new",
-    component: DaysEditComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "days/:id/edit",
-    component: DaysEditComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "days/:id/view",
-    component: DaysDetailComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "days/:year/:month/:day",
-    component: DaysComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "extraordinary/all",
-    component: ExtraordinaryComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "extraordinary/:year/:month/:day/new",
-    component: ExtraordinaryEditComponent,
-    canActivate: [RouteGuardService]
-  },
-  {   
-    path: "extraordinary/:id/edit",
-    component: ExtraordinaryEditComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "extraordinary/:id/view",
-    component: ExtraordinaryDetailComponent,
     canActivate: [RouteGuardService]
   },
   {

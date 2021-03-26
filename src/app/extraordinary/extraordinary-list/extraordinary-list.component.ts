@@ -1,18 +1,19 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { ExtraordinaryService } from "../services/extraordinary.service";
-import { AuthenticationService } from "../services/authentication.service";
-import { Extraordinary } from "./extraordinary.model";
+import { Extraordinary } from "../extraordinary.model";
 import { Router } from "@angular/router";
-import { ErrorService } from "../services/data/error.service";
 import { MAT_DIALOG_DATA } from "@angular/material";
+import { ExtraordinaryService } from "src/app/services/extraordinary.service";
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { ErrorService } from "src/app/services/data/error.service";
 
 
 @Component({
-  selector: "app-extraordinary",
-  templateUrl: "./extraordinary.component.html",
-  styleUrls: ["./extraordinary.component.css"]
+  selector: 'app-extraordinary-list',
+  templateUrl: './extraordinary-list.component.html',
+  styleUrls: ['./extraordinary-list.component.css']
 })
-export class ExtraordinaryComponent implements OnInit {
+export class ExtraordinaryListComponent implements OnInit {
+
   username: string;
   extraordinaryData: Extraordinary[];
   errorNumber: number;

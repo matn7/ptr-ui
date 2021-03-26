@@ -1,17 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { DaysService } from "../services/days.service";
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication.service";
-import { ErrorService } from "../services/data/error.service";
+import { DaysService } from 'src/app/services/days.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ErrorService } from 'src/app/services/data/error.service';
+
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: "days",
-  templateUrl: "./days.component.html",
-  styleUrls: ["./days.component.css"]
+  selector: 'app-days-single',
+  templateUrl: './days-single.component.html',
+  styleUrls: ['./days-single.component.css']
 })
-export class DaysComponent implements OnInit {
+export class DaysSingleComponent implements OnInit {
+
   days: any;
   username: string;
   errorMessage: string;
@@ -109,4 +110,5 @@ export class DaysComponent implements OnInit {
       selectDay: new FormControl(selectDay, Validators.required)
     });
   }
+
 }

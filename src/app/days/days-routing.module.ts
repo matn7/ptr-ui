@@ -1,24 +1,32 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { DaysComponent } from "./days.component";
-import { DaysDetailComponent } from "./days-detail/days-detail.component";
+import { RouterModule, Routes } from "@angular/router";
+import { DaysHomeComponent } from "./days-home/days-home.component";
 import { DaysEditComponent } from "./days-edit/days-edit.component";
+import { DaysDetailComponent } from "./days-detail/days-detail.component";
 
-const daysRoutes: Routes = [
-  {
-    path: "days",
-    component: DaysDetailComponent,
-    children: [
-      { path: "allDays", component: DaysComponent },
-      { path: "new", component: DaysEditComponent },
-      { path: ":id/edit", component: DaysEditComponent },
-      { path: "days/:year/:month/:day", component: DaysComponent }
-    ]
-  }
+const routes: Routes = [
+    {
+        path: '',
+        component: DaysHomeComponent,
+        children: [
+            {
+                path: ':year/:month/:day/new',
+                component: DaysEditComponent
+            },
+            {
+                path: ':id/edit',
+                component: DaysEditComponent
+            },
+            {
+                path: ':id/view',
+                component: DaysDetailComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(daysRoutes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class DaysRoutingModule {}

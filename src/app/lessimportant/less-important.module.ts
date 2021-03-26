@@ -6,11 +6,15 @@ import { LessImportantRoutingModule } from "./less-important-routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatComponentsModule } from "../mat-components.module";
+import { LessImportantEditComponent } from "./lessimportant-edit/less-important-edit.component";
+import { LessImportantDetailComponent } from "./lessimportant-detail/less-important-detail.component";
 
 @NgModule({
     declarations: [
         LessImportantIndexNewComponent,
-        LessImportantHomeComponent
+        LessImportantHomeComponent,
+        LessImportantEditComponent,
+        LessImportantDetailComponent
     ],
     imports: [
         CommonModule,

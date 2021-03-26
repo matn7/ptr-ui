@@ -3,7 +3,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/timer';
 import { MatDialog } from '@angular/material';
-import { ExtraordinaryComponent } from '../extraordinary/extraordinary.component';
 
 @Component({
   selector: 'app-home',
@@ -63,14 +62,6 @@ export class HomeComponent implements OnInit {
 
   getCourses() {
     return Observable.timer(2000);
-  }
-
-  openDialog() {
-    this.dialog.open(ExtraordinaryComponent, {
-      data: { courseId: 1 }
-    })
-      .afterClosed()
-      .subscribe(result => console.log(result));
   }
 
 }

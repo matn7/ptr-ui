@@ -11,9 +11,6 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TaskService } from "./services/task.service";
-import { ExtraordinaryComponent } from "./extraordinary/extraordinary.component";
-import { ExtraordinaryEditComponent } from "./extraordinary/extraordinary-edit/extraordinary-edit.component";
-import { ExtraordinaryDetailComponent } from "./extraordinary/extraordinary-detail/extraordinary-detail.component";
 import { ExtraordinaryService } from "./services/extraordinary.service";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
@@ -36,9 +33,6 @@ import { MessageComponent } from "./common/message/message.component";
 import { RouterModule } from "@angular/router";
 import { FooterComponent } from "./common/footer/footer.component";
 import { HeaderComponent } from "./common/header/header.component";
-import { DaysComponent } from "./days/days.component";
-import { DaysDetailComponent } from "./days/days-detail/days-detail.component";
-import { DaysEditComponent } from "./days/days-edit/days-edit.component";
 import { ActivateUserComponent } from "./registration/activate-user/activate-user.component";
 import { StatisticsDaysComponent } from "./statistics/statistics-days/statistics-days.component";
 import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month/statistics-days-month.component";
@@ -46,7 +40,6 @@ import { UserComponent } from "./user/user.component";
 
 // Angular material
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 // ***
 
 import { MatComponentsModule } from "src/app/mat-components.module";
@@ -55,30 +48,14 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminUserService } from "./services/admin/admin-user.service";
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { StatisticsStartEndComponent } from './statistics/statistics-start-end/statistics-start-end.component';
-import { ImportantEditComponent } from "./important/important-edit/important-edit.component";
-import { ImportantDetailComponent } from "./important/important-detail/important-detail.component";
-import { LessImportantEditComponent } from "./lessimportant/lessimportant-edit/less-important-edit.component";
-import { LessImportantDetailComponent } from "./lessimportant/lessimportant-detail/less-important-detail.component";
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
 import { SharedModule } from "./shared/shared.module";
-import { ImportantIndexNewComponent } from "./important/important-index-new/important-index-new.component";
-import { LessImportantIndexNewComponent } from "./lessimportant/less-important-index-new/less-important-index-new.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DaysComponent,
-    DaysDetailComponent,
-    DaysEditComponent,
-    ExtraordinaryComponent,
-    ExtraordinaryEditComponent,
-    ExtraordinaryDetailComponent,
-    ImportantEditComponent,
-    ImportantDetailComponent,
-    LessImportantEditComponent,
-    LessImportantDetailComponent,
     StatisticsComponent,
     StatisticsImportantComponent,
     LoginComponent,
