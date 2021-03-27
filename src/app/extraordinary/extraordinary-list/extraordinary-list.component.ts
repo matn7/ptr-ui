@@ -3,7 +3,7 @@ import { Extraordinary } from "../extraordinary.model";
 import { Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from "@angular/material";
 import { ExtraordinaryService } from "src/app/services/extraordinary.service";
-import { AuthenticationService } from "src/app/registration/authentication.service";
+import { AuthenticationService } from "src/app/auth/authentication.service";
 import { ErrorService } from "src/app/services/data/error.service";
 
 

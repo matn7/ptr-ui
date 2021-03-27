@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { TaskService } from "./services/task.service";
-import { AuthenticationService } from "./registration/authentication.service";
+import { AuthenticationService } from "./auth/authentication.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorService } from "./services/data/error.service";
 import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, 

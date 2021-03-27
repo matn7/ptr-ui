@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { UserService } from "../services/user.service";
-import { AuthenticationService } from "../registration/authentication.service";
+import { AuthenticationService } from "../auth/authentication.service";
 import { ErrorService } from "../services/data/error.service";
 
 @Component({

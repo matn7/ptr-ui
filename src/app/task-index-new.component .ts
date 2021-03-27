@@ -1,7 +1,7 @@
 import { OnInit, Input } from "@angular/core";
 import { YELLOW_COMPLETION_STYLES, GREEN_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthenticationService } from "./registration/authentication.service";
+import { AuthenticationService } from "./auth/authentication.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorService } from "./services/data/error.service";
 import { WeekDay } from "@angular/common";

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from 'src/app/registration/authentication.service';
+import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { ImportantService, ImportantIndex, ImportantIndexDayData } from 'src/app/services/important.service.';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorService } from 'src/app/services/data/error.service';

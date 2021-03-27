@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { ExtraordinaryService } from "../../services/extraordinary.service";
-import { AuthenticationService } from "../../registration/authentication.service";
+import { AuthenticationService } from "../../auth/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ErrorService } from "../../services/data/error.service";
 import { TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";

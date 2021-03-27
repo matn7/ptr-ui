@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ExtraordinaryService } from "../../services/extraordinary.service";
-import { AuthenticationService } from "../../registration/authentication.service";
+import { AuthenticationService } from "../../auth/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 
 @Component({

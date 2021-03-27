@@ -19,18 +19,18 @@ import { StatisticsTaskService } from "./services/statistics.important.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";
-import { AuthenticationService } from "./registration/authentication.service";
+import { AuthenticationService } from "./auth/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
-import { RegistrationComponent } from "./registration/registration/registration.component";
-import { RegistrationService } from "./registration/registration.service";
+import { RegistrationComponent } from "./auth/registration/registration.component";
+import { RegistrationService } from "./auth/registration.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorMessagesService } from "./services/data/error-messages.service";
-import { PasswordResetComponent } from "./registration/password-reset/password-reset.component";
-import { PasswordChangeComponent } from "./registration/password-change/password-change.component";
+import { PasswordResetComponent } from "./auth/password-reset/password-reset.component";
+import { PasswordChangeComponent } from "./auth/password-change/password-change.component";
 import { RouterModule } from "@angular/router";
 import { FooterComponent } from "./common/footer/footer.component";
 import { HeaderComponent } from "./common/header/header.component";
-import { ActivateUserComponent } from "./registration/activate-user/activate-user.component";
+import { ActivateUserComponent } from "./auth/activate-user/activate-user.component";
 import { StatisticsDaysComponent } from "./statistics/statistics-days/statistics-days.component";
 import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month/statistics-days-month.component";
 import { UserComponent } from "./user/user.component";
@@ -48,7 +48,7 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
 import { SharedModule } from "./shared/shared.module";
-import { AuthModule } from "./registration/auth.module";
+import { AuthModule } from "./auth/auth.module";
 import { MessageComponent } from "./common/message/message.component";
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "../../services/statistics.important.service";
-import { AuthenticationService } from "../../registration/authentication.service";
+import { AuthenticationService } from "../../auth/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { TaskStatisticsComponent } from "../../task-statistics-component";
 import { TimeService } from "../../services/data/time.service";

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DaysService } from "src/app/services/days.service";
 import { ActivatedRoute } from "@angular/router";
-import { AuthenticationService } from "../../registration/authentication.service";
+import { AuthenticationService } from "../../auth/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { Days } from "../days.model";
 
