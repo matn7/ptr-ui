@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LessImportantService, LessImportantIndex, LessImportantIndexDayData } from 'src/app/services/less-important.service.';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/registration/authentication.service';
 import { TimeService } from 'src/app/services/data/time.service';
 import { ErrorService } from 'src/app/services/data/error.service';
 import { TaskIndexNewComponent } from 'src/app/task-index-new.component ';

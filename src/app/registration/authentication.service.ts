@@ -13,7 +13,6 @@ import { BadInput } from "../common/bad-input";
 import { NotFoundError } from "../common/not-found-error";
 import { NotAuthorizedError } from "../common/not-authorized-error";
 import { AppError } from "../common/app-error";
-import { HandleErrorsService } from "./handle-errors.service";
 
 @Injectable({
   providedIn: "root"

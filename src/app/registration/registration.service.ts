@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
-import { HandleErrorsService } from "./handle-errors.service";
+import { HandleErrorsService } from "../services/handle-errors.service";
 
 @Injectable({
   providedIn: "root"

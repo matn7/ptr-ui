@@ -1,7 +1,7 @@
 import { OnInit } from "@angular/core";
 import { TaskService } from "./services/task.service";
 import { ActivatedRoute } from "@angular/router";
-import { AuthenticationService } from "./services/authentication.service";
+import { AuthenticationService } from "./registration/authentication.service";
 import { ErrorService } from "./services/data/error.service";
 import { Task } from "./task.model";
 

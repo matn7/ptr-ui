@@ -16,20 +16,17 @@ import { StatisticsComponent } from "./statistics/statistics.component";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
 import { ChartModule } from "angular-highcharts";
 import { StatisticsTaskService } from "./services/statistics.important.service";
-import { LoginComponent } from "./login/login.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";
-import { AuthenticationService } from "./services/authentication.service";
-import { LogoutComponent } from "./logout/logout.component";
+import { AuthenticationService } from "./registration/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
-import { RegistrationComponent } from "./registration/registration.component";
-import { RegistrationService } from "./services/registration.service";
+import { RegistrationComponent } from "./registration/registration/registration.component";
+import { RegistrationService } from "./registration/registration.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorMessagesService } from "./services/data/error-messages.service";
 import { PasswordResetComponent } from "./registration/password-reset/password-reset.component";
 import { PasswordChangeComponent } from "./registration/password-change/password-change.component";
-import { MessageComponent } from "./common/message/message.component";
 import { RouterModule } from "@angular/router";
 import { FooterComponent } from "./common/footer/footer.component";
 import { HeaderComponent } from "./common/header/header.component";
@@ -51,6 +48,8 @@ import { StatisticsStartEndComponent } from './statistics/statistics-start-end/s
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
 import { SharedModule } from "./shared/shared.module";
+import { AuthModule } from "./registration/auth.module";
+import { MessageComponent } from "./common/message/message.component";
 
 @NgModule({
   declarations: [
@@ -58,14 +57,11 @@ import { SharedModule } from "./shared/shared.module";
     HomeComponent,
     StatisticsComponent,
     StatisticsImportantComponent,
-    LoginComponent,
     WelcomeComponent,
     ErrorComponent,
-    LogoutComponent,
-    RegistrationComponent,
+    MessageComponent,
     PasswordResetComponent,
     PasswordChangeComponent,
-    MessageComponent,
     FooterComponent,
     HeaderComponent,
     ActivateUserComponent,
@@ -90,7 +86,8 @@ import { SharedModule } from "./shared/shared.module";
     BrowserAnimationsModule,
     MatComponentsModule,
     HighchartsChartModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   providers: [
     DaysService,

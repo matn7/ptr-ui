@@ -2,7 +2,7 @@ import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "./services/statistics.important.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AuthenticationService } from "./services/authentication.service";
+import { AuthenticationService } from "./registration/authentication.service";
 import { ErrorService } from "./services/data/error.service";
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "./app.constants";
 import * as Highcharts from 'highcharts';

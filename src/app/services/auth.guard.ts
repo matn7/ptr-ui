@@ -5,7 +5,7 @@ import {
   Route,
   UrlSegment
 } from "@angular/router";
-import { AuthenticationService } from "./authentication.service";
+import { AuthenticationService } from "../registration/authentication.service";
 import { Observable } from 'rxjs';
 
 

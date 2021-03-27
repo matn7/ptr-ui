@@ -3,7 +3,7 @@ import { DaysService } from "../../services/days.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AuthenticationService } from "../../registration/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { TimeService } from "../../services/data/time.service";
 import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";

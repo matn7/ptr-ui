@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsDaysService } from "../../services/statistics-days.service";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AuthenticationService } from "../../registration/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateRequest } from "../date-request";

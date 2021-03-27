@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication.service";
+import { AuthenticationService } from "../authentication.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { TOKEN_EXPIRED, RETURN_URL, USERNAME_LENGTH_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR } from "../app.constants";
-import { HandleErrorsService } from "../services/handle-errors.service";
-import { ErrorService } from "../services/data/error.service";
+import { TOKEN_EXPIRED, RETURN_URL, USERNAME_LENGTH_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR } from "../../app.constants";
+import { ErrorService } from "../../services/data/error.service";
 
 @Component({
   selector: "app-login",

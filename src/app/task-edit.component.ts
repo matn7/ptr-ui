@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { TaskService } from "./services/task.service";
-import { AuthenticationService } from "./services/authentication.service";
+import { AuthenticationService } from "./registration/authentication.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorService } from "./services/data/error.service";
 import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, 
@@ -35,11 +35,9 @@ export class TaskEditComponent implements OnInit {
   month: number;
   year: number;
   today: number;
-  selectedDate: Date;
   returnUrl: string;
 
   // Constants to display in UI
-  readonly made_codes = MADE_CODES;
   readonly title_length_validator = TITLE_LENGTH_VALIDATOR;
   readonly title_required_validator = TITLE_REQUIRED_VALIDATOR;
   readonly body_length_validator = BODY_LENGTH_VALIDATOR;
@@ -65,8 +63,6 @@ export class TaskEditComponent implements OnInit {
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
 
-    this.selectedDate = new Date();
-
     this.returnUrl = "/" + this.target + "/" + this.year + "/" + this.month;
 
     // Retrieve url parameters
@@ -75,17 +71,26 @@ export class TaskEditComponent implements OnInit {
       this.editMode = params["id"] != null;
       this.num = +params["num"];
     });
+
     if (!this.editMode) {
-      this.route.params.subscribe(params => {
-        this.day = +params["day"];
-        this.month = +params["month"];
-        this.year = +params["year"];
-        this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
-        this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
-      },
-      error => {
-        this.errorService.displayMessage(error, this.returnUrl);
-      });
+      this.route.params.subscribe(
+        params => {
+          this.day = +params["day"];
+          this.month = +params["month"];
+          this.year = +params["year"];
+          this.startDate = this.datepipe.transform(
+            new Date(this.year, this.month - 1, this.day), 
+            DATE_FORMAT
+          );
+          this.postedOn = this.datepipe.transform(
+            new Date(), 
+            DETAIL_DATE_FORMAT
+          );
+        },
+        error => {
+          this.errorService.displayMessage(error, this.returnUrl);
+        }
+      );
 
       // Check for invalid date
       if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
@@ -177,9 +182,11 @@ export class TaskEditComponent implements OnInit {
               "id": this.id,
               "title": important.title,
               "body": important.body,
-              "made": this.made_codes[important.made],
+              "made": MADE_CODES[important.made],
               "startDate": important.startDate,
-              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT)
+              "postedOn": this.datepipe.transform(
+                new Date(), DETAIL_DATE_FORMAT
+              )
             });
           },
           error => {

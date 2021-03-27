@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { RegistrationService } from "../services/registration.service";
+import { RegistrationService } from "../registration.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { HandleErrorsService } from "../services/handle-errors.service";
-import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../app.constants";
-import { ErrorService } from "../services/data/error.service";
+import { HandleErrorsService } from "../../services/handle-errors.service";
+import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../../app.constants";
+import { ErrorService } from "../../services/data/error.service";
 
 @Component({
   selector: "app-registration",

@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpHandler
 } from "@angular/common/http";
-import { AuthenticationService } from "../authentication.service";
+import { AuthenticationService } from "../../registration/authentication.service";
 
 @Injectable({
   providedIn: "root"

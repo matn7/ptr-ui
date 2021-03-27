@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TaskDetailComponent } from "../../task-detail.component";
 import { ActivatedRoute } from "@angular/router";
 import { TaskService } from "../../services/task.service";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AuthenticationService } from "../../registration/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 
 @Component({
