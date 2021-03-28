@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
-import { HandleErrorsService } from "./handle-errors.service";
-import { TaskServiceInterface } from "./task.service-interface";
-import { IndexData } from "./index-class-interface";
+import { HandleErrorsService } from "../services/handle-errors.service";
+import { TaskServiceInterface } from "../services/task.service-interface";
+import { IndexData } from "../services/index-class-interface";
 
 // Data structure representing each day entry in INDEX page.
 export class ImportantIndexDayData {

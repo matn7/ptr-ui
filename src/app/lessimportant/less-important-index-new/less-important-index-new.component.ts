@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LessImportantService, LessImportantIndex, LessImportantIndexDayData } from 'src/app/services/less-important.service.';
+import { LessImportantService, LessImportantIndex, LessImportantIndexDayData } from 'src/app/lessimportant/less-important.service.';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { TimeService } from 'src/app/services/data/time.service';

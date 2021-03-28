@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DaysService } from "../../services/days.service";
+import { DaysService } from "../days.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";

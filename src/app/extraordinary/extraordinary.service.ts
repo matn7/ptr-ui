@@ -5,8 +5,8 @@ import "rxjs/add/operator/toPromise";
 import "rxjs/add/observable/throw";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
-import { Extraordinary } from "../extraordinary/extraordinary.model";
-import { HandleErrorsService } from "./handle-errors.service";
+import { Extraordinary } from "./extraordinary.model";
+import { HandleErrorsService } from "../services/handle-errors.service";
 
 @Injectable()
 export class ExtraordinaryService {

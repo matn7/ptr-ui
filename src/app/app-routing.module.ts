@@ -4,11 +4,10 @@ import { NgModule, Component } from "@angular/core";
 import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { RouteGuardService } from "./services/route-guard.service";
-import { ErrorComponent } from "./error/error.component";
+import { ErrorComponent } from "./common/error/error.component";
 import { LogoutComponent } from "./auth/logout/logout.component";
 import { RegistrationComponent } from "./auth/registration/registration.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
-import { StatisticsComponent } from "./statistics/statistics.component";
 import { PasswordResetComponent } from "./auth/password-reset/password-reset.component";
 import { PasswordChangeComponent } from "./auth/password-change/password-change.component";
 import { ActivateUserComponent } from "./auth/activate-user/activate-user.component";
@@ -50,6 +49,11 @@ const appRoutes: Routes = [
     loadChildren: () => import('./days/days.module').then(mod => mod.DaysModule)
   },
   {
+    path: "statistics",
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./statistics/statistics.module').then(mod => mod.StatisticsModule)
+  },
+  {
     path: "admin",
     component: AdminComponent,
     canActivate: [RouteGuardService]
@@ -69,37 +73,10 @@ const appRoutes: Routes = [
     component: UserComponent,
     canActivate: [RouteGuardService]
   },
-  {
-    path: "statistics",
-    component: StatisticsComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "statistics/important/:num/:year",
-    component: StatisticsImportantComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "statistics/lessimportant/:num/:year",
-    component: StatisticsLessimportantComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "statistics/days/:year",
-    component: StatisticsDaysComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "statistics/days/:year/:month",
-    component: StatisticsDaysMonthComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
-    path: "statistics/startend/:component/:num/:startDate/:endDate",
-    component: StatisticsStartEndComponent,
-    canActivate: [RouteGuardService]
-  },
-  { path: "**", component: ErrorComponent }
+  { 
+    path: "**", 
+    component: ErrorComponent 
+  }
 ];
 
 @NgModule({

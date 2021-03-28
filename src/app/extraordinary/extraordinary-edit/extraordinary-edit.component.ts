@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
-import { ExtraordinaryService } from "../../services/extraordinary.service";
+import { ExtraordinaryService } from "../extraordinary.service";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { ErrorService } from "../../services/data/error.service";

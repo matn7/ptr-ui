@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
 import { HandleErrorsService } from "./handle-errors.service";
-import { Stat } from "../stat-data.component";
 
 @Injectable()
 export class StatisticsTaskService {

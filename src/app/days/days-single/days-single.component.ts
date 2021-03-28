@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DaysService } from 'src/app/services/days.service';
+import { DaysService } from 'src/app/days/days.service';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { ErrorService } from 'src/app/services/data/error.service';
 

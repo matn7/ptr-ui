@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
-import { DaysService } from "./services/days.service";
+import { DaysService } from "./days/days.service";
 import { HttpModule } from "@angular/http";
 import { CommonModule, DatePipe } from "@angular/common";
 import { HomeComponent } from "./home/home.component";
@@ -11,17 +11,14 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TaskService } from "./services/task.service";
-import { ExtraordinaryService } from "./services/extraordinary.service";
-import { StatisticsComponent } from "./statistics/statistics.component";
-import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
+import { ExtraordinaryService } from "./extraordinary/extraordinary.service";
 import { ChartModule } from "angular-highcharts";
 import { StatisticsTaskService } from "./services/statistics.important.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
-import { ErrorComponent } from "./error/error.component";
+import { ErrorComponent } from "./common/error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";
 import { AuthenticationService } from "./auth/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
-import { RegistrationComponent } from "./auth/registration/registration.component";
 import { RegistrationService } from "./auth/registration.service";
 import { TimeService } from "./services/data/time.service";
 import { ErrorMessagesService } from "./services/data/error-messages.service";
@@ -31,8 +28,6 @@ import { RouterModule } from "@angular/router";
 import { FooterComponent } from "./common/footer/footer.component";
 import { HeaderComponent } from "./common/header/header.component";
 import { ActivateUserComponent } from "./auth/activate-user/activate-user.component";
-import { StatisticsDaysComponent } from "./statistics/statistics-days/statistics-days.component";
-import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month/statistics-days-month.component";
 import { UserComponent } from "./user/user.component";
 
 // Angular material
@@ -44,9 +39,7 @@ import { UserService } from "./services/user.service";
 import { AdminComponent } from './admin/admin.component';
 import { AdminUserService } from "./services/admin/admin-user.service";
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
-import { StatisticsStartEndComponent } from './statistics/statistics-start-end/statistics-start-end.component';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { StatisticsLessimportantComponent } from './statistics/statistics-lessimportant/statistics-lessimportant.component';
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { MessageComponent } from "./common/message/message.component";
@@ -55,8 +48,6 @@ import { MessageComponent } from "./common/message/message.component";
   declarations: [
     AppComponent,
     HomeComponent,
-    StatisticsComponent,
-    StatisticsImportantComponent,
     WelcomeComponent,
     ErrorComponent,
     MessageComponent,
@@ -65,13 +56,9 @@ import { MessageComponent } from "./common/message/message.component";
     FooterComponent,
     HeaderComponent,
     ActivateUserComponent,
-    StatisticsDaysComponent,
-    StatisticsDaysMonthComponent,
     UserComponent,
     AdminComponent,
-    AdminUserComponent,
-    StatisticsStartEndComponent,
-    StatisticsLessimportantComponent
+    AdminUserComponent
   ],
   imports: [
     BrowserModule,
