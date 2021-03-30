@@ -17,7 +17,7 @@ const routes: Routes = [
                 component: StatisticsImportantComponent
             },
             {
-                path: ':num/:year',
+                path: 'lessimportant/:num/:year',
                 component: StatisticsLessimportantComponent
             },
             {

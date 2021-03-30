@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       filter(event => event instanceof RouterEvent)
     ).subscribe((event: RouterEvent) => {
       if(event) {
-          // console.log("Event: " + event.url);
+          console.log("Event: " + event.url);
           // console.log(event.url.includes("important"));
           this.activeUrl = "active";
       }

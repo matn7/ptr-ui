@@ -1,17 +1,16 @@
-<form [formGroup]="selectDate" class="choose-date-form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="pandatronik-select-date" appearance="outline">
-    <mat-select formControlName="selectYear" id="selectYear">
-      <mat-option [value]="2020">2020</mat-option>
-      <mat-option [value]="2019">2019</mat-option>
-      <mat-option [value]="2018">2018</mat-option>
-      <mat-option [value]="2017">2017</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-button-toggle-group formControlName="selectTask" aria-label="Font Style">
-    <mat-button-toggle [value]="1">1</mat-button-toggle>
-    <mat-button-toggle [value]="2">2</mat-button-toggle>
-    <mat-button-toggle [value]="3">3</mat-button-toggle>
-  </mat-button-toggle-group>
+<form [formGroup]="selectDate" (ngSubmit)="onSubmit()">
+  <app-input 
+      controlType="selectyear" 
+      [control]="selectDate.get('selectYear')"
+      label="Select year">
+  </app-input>
+
+  <app-input 
+      controlType="selecttask" 
+      [control]="selectDate.get('selectTask')"
+      label="Select month">
+  </app-input>
+
   <button type="submit" color="primary" mat-raised-button>Submit</button>
 </form>
 

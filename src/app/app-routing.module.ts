@@ -1,7 +1,6 @@
-import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
-import { NgModule, Component } from "@angular/core";
-import { StatisticsImportantComponent } from "./statistics/statistics-important/statistics-important.component";
+import { NgModule } from "@angular/core";
 import { LoginComponent } from "./auth/login/login.component";
 import { RouteGuardService } from "./services/route-guard.service";
 import { ErrorComponent } from "./common/error/error.component";
@@ -11,20 +10,16 @@ import { WelcomeComponent } from "./welcome/welcome.component";
 import { PasswordResetComponent } from "./auth/password-reset/password-reset.component";
 import { PasswordChangeComponent } from "./auth/password-change/password-change.component";
 import { ActivateUserComponent } from "./auth/activate-user/activate-user.component";
-import { StatisticsDaysComponent } from "./statistics/statistics-days/statistics-days.component";
-import { StatisticsDaysMonthComponent } from "./statistics/statistics-days-month/statistics-days-month.component";
 import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
 import { AdminUserComponent } from "./admin/admin-user/admin-user.component";
-import { StatisticsStartEndComponent } from "./statistics/statistics-start-end/statistics-start-end.component";
-import { StatisticsLessimportantComponent } from "./statistics/statistics-lessimportant/statistics-lessimportant.component";
 import { AuthGuard } from "./services/auth.guard";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [RouteGuardService] },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
-  // { path: "register", component: RegistrationComponent },
+  { path: "register", component: RegistrationComponent },
   { path: "forgotpassword", component: PasswordResetComponent },
   { path: "changeuserpassword", component: PasswordChangeComponent },
   { path: "activateaccount", component: ActivateUserComponent },

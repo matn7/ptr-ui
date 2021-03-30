@@ -19,7 +19,7 @@ const routes: Routes = [
                 component: ImportantEditComponent
             },
             {
-                path: ':num/:id/:edit',
+                path: ':num/:id/edit',
                 component: ImportantEditComponent
             },
             {

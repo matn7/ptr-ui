@@ -13,7 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TaskService } from "./services/task.service";
 import { ExtraordinaryService } from "./extraordinary/extraordinary.service";
 import { ChartModule } from "angular-highcharts";
-import { StatisticsTaskService } from "./services/statistics.important.service";
+import { StatisticsTaskService } from "./statistics/statistics.important.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./common/error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";

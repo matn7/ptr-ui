@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { StatisticsTaskService } from "./services/statistics.important.service";
+import { StatisticsTaskService } from "./statistics/statistics.important.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthenticationService } from "./auth/authentication.service";
 import { ErrorService } from "./services/data/error.service";
@@ -18,10 +18,6 @@ export class TaskStatisticsComponent implements OnInit {
   selectImportantTask: FormGroup;
 
   highcharts = Highcharts;
-
-  selectTask: number;
-  selectTask2: number;
-  selectTask3: number;
 
   errorMessage: string;
   returnUrl: string;
@@ -71,7 +67,6 @@ export class TaskStatisticsComponent implements OnInit {
       .getImportantTaskCount(this.username, this.target, this.num, this.year)
       .subscribe(
         count => {
-          console.log("++++++++++>>>" + count)
           this.populateCountMap(count);
           this.pieChart();
         },
@@ -164,12 +159,13 @@ export class TaskStatisticsComponent implements OnInit {
 
   private initForm() {
     const selectYear = this.year;
-    const selectTask = this.selectTask;
-    this.selectTask = 1;
+    const selectTask = this.num;
+    // this.selectTask = 1;
 
+    console.log("============== " + this.num);
     this.selectDate = new FormGroup({
       selectYear: new FormControl(selectYear, Validators.required),
-      selectTask: new FormControl(selectTask)
+      selectTask: new FormControl(selectTask, Validators.required)
     });
   }
 
@@ -208,8 +204,8 @@ export class TaskStatisticsComponent implements OnInit {
   private pieChart() {
     this.chartOptions = {   
       chart : {
-          plotBorderWidth: null,
-          plotShadow: false
+        type: 'pie',
+        renderTo: 'container'
       },
       title : {
           text: 'Year Summary'    

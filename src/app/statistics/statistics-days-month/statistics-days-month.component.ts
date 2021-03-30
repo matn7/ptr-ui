@@ -3,7 +3,7 @@ import { AuthenticationService } from "../../auth/authentication.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DateRequest } from "../date-request";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { StatisticsDaysService } from "../../services/statistics-days.service";
+import { StatisticsDaysService } from "../statistics-days.service";
 import { ErrorService } from "../../services/data/error.service";
 import { MONTH_NAMES, GREEN_COLORS } from "../../app.constants";
 import { WeekDay } from "@angular/common";
@@ -73,19 +73,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
     this.initForm();
 
     this.statisticsDaysService
-      .retrieveDaysByUsernameMonthAndYear(this.username, this.dateRequest)
-      .subscribe(
-        count => {
-          this.populateCountMap(count);
-          this.pieChart();
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
-      
-
-    this.statisticsDaysService
       .retrieveMonthWeekDaysByUsernameMonthAndYear(
         this.username,
         this.dateRequest
@@ -125,18 +112,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       );
 
     this.statisticsDaysService
-      .retrieveDaysByUsernameMonthAndYear(this.username, this.dateRequest)
-      .subscribe(
-        count => {
-          this.populateCountMap(count);
-          this.pieChart();
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
-
-    this.statisticsDaysService
       .retrieveMonthWeekDaysByUsernameMonthAndYear(
         this.username,
         this.dateRequest
@@ -153,14 +128,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
     this.router.navigate(["/statistics/days/" + this.month + "/" + this.year]);
   }
 
-  private populateCountMap(count) {
-    this.countMap.set("100", count["100"]);
-    this.countMap.set("75", count["75"]);
-    this.countMap.set("50", count["50"]);
-    this.countMap.set("25", count["25"]);
-    this.countMap.set("0", count["0"]);
-  }
-
   private initForm() {
     const selectYear = this.year;
     const selectMonth = this.month;
@@ -170,20 +137,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       selectMonth: new FormControl(selectMonth, Validators.required)
     });
   }
-
-  chartOptions = {   
-    chart : {
-    },
-    title : { 
-    },
-    tooltip : {
-    },
-    plotOptions : {
-       pie: {}
-    },
-    series : [{
-    }]
- };
 
  columnChartOptions = {   
   chart : {
@@ -202,46 +155,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
   series : [{
   }]
 };
-
-  private pieChart() {
-    this.chartOptions = {   
-      chart : {
-          plotBorderWidth: null,
-          plotShadow: false
-      },
-      title : {
-          text: 'Year Summary'    
-      },
-      tooltip : {
-          pointFormat: '{point.y}'
-      },
-      plotOptions : {
-          pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>',
-                style: {
-                  color: 'black'
-                }
-            }
-          }
-      },
-      series : [{
-        type: 'pie',
-        name: 'Task ',
-        colors: GREEN_COLORS,
-        data: [
-        ['100', this.countMap.get("100")],
-        ['75', this.countMap.get("75")],
-        ['50', this.countMap.get("50")],
-        ['25', this.countMap.get("25")],
-        ['0', this.countMap.get("0")]
-      ]
-    }]
-    };
-  }
 
   private columnChart(dayMade) {
     this.columnChartOptions = {

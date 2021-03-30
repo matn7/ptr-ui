@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { HandleErrorsService } from "../../services/handle-errors.service";
 import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../../app.constants";
 import { ErrorService } from "../../services/data/error.service";
+import { MatchPassword } from "../validators/match-password";
 
 @Component({
   selector: "app-registration",
@@ -38,6 +39,7 @@ export class RegistrationComponent implements OnInit {
   readonly lastname_required_validator = LASTNAME_REQUIRED_VALIDATOR;
 
   constructor(
+    private matchPassword: MatchPassword,
     private registrationService: RegistrationService,
     private handleError: HandleErrorsService,
     private router: Router,
@@ -83,16 +85,19 @@ export class RegistrationComponent implements OnInit {
     const lastName = this.lastName;
 
     this.registrationForm = new FormGroup({
-      username: new FormControl(username, [Validators.required, 
+      username: new FormControl(username, [
+        Validators.required, 
         Validators.minLength(6), 
         Validators.maxLength(50)
       ]),
-      password: new FormControl(password, [Validators.required, 
+      password: new FormControl(password, [
+        Validators.required, 
         Validators.minLength(6), 
         Validators.maxLength(60)
         // Validators.pattern("^(?=.*?\\p{Lu})(?=.*?\\p{Ll})(?=.*?\\d)(?=.*?[`~!@#$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).*$")]
       ]),
-      confirmPassword: new FormControl(confirmPassword, [Validators.required, 
+      confirmPassword: new FormControl(confirmPassword, [
+        Validators.required, 
         Validators.minLength(6), 
         Validators.maxLength(60)
         // Validators.pattern('[a-zA-Z ]*')
@@ -101,15 +106,6 @@ export class RegistrationComponent implements OnInit {
       email: new FormControl(email, [Validators.required, Validators.email]),
       firstName: new FormControl(firstName, Validators.required),
       lastName: new FormControl(lastName, Validators.required)
-    });
-  }
-
-  // todo confirmation password finish
-  private validateAreEqual(fieldControl: FormControl) {
-    return fieldControl.value === this.registrationForm.get("password").value
-      ? null
-      : {
-          NotEqual: true
-        };
+    }, { validators: [this.matchPassword.validate] });
   }
 }

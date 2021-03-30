@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { StatisticsDaysService } from "../../services/statistics-days.service";
+import { StatisticsDaysService } from "../statistics-days.service";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -56,19 +56,6 @@ export class StatisticsDaysComponent implements OnInit {
     this.initForm();
 
     this.statisticsDaysService
-      .retrieveDaysByUsernameAndYear(this.username, this.dateRequest)
-      .subscribe(
-        count => {
-          this.populateCountMap(count);
-          this.pieChart();
-        },
-        error => {
-          // TODO: fix error handle. This is how we redirect
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
-
-    this.statisticsDaysService
       .retrieveAvgDaysByUsernameAndYear(this.username, this.dateRequest)
       .subscribe(
         avg => {
@@ -87,18 +74,6 @@ export class StatisticsDaysComponent implements OnInit {
     this.dateRequest.year = this.year;
     this.countMap.clear();
     this.averageMap.clear();
-
-    this.statisticsDaysService
-      .retrieveDaysByUsernameAndYear(this.username, this.dateRequest)
-      .subscribe(
-        count => {
-          this.populateCountMap(count);
-          this.pieChart();
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
 
     this.statisticsDaysService
       .retrieveAvgDaysByUsernameAndYear(this.username, this.dateRequest)
@@ -123,15 +98,6 @@ export class StatisticsDaysComponent implements OnInit {
     });
   }
 
-  private populateCountMap(count) {
-    console.log(count["1"]);
-    this.countMap.set("100", count["0"]);
-    this.countMap.set("75", count["1"]);
-    this.countMap.set("50", count["2"]);
-    this.countMap.set("25", count["3"]);
-    this.countMap.set("0", count["4"]);
-  }
-
   private populateAverageMap(avg) {
     this.averageMap.set("1", avg["1"] != null ? (-25 * avg["1"] + 100) : null);
     this.averageMap.set("2", avg["2"] != null ? (-25 * avg["2"] + 100) : null);
@@ -147,19 +113,6 @@ export class StatisticsDaysComponent implements OnInit {
     this.averageMap.set("12", avg["12"] != null ? (-25 * avg["12"] + 100) : null);
   }
 
-  chartOptions = {   
-    chart : {
-    },
-    title : { 
-    },
-    tooltip : {
-    },
-    plotOptions : {
-       pie: {}
-    },
-    series : [{
-    }]
- };
 
  columnChartOptions = {   
   chart : {
@@ -178,58 +131,6 @@ export class StatisticsDaysComponent implements OnInit {
   series : [{
   }]
 };
-
- private pieChart() {
-  this.chartOptions = {   
-    chart : {
-        plotBorderWidth: null,
-        plotShadow: false
-    },
-    title : {
-        text: 'Year Summary'    
-    },
-    tooltip : {
-        pointFormat: '{point.y}'
-    },
-    plotOptions : {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-              enabled: true,
-              format: '<b>{point.name}</b>',
-              style: {
-                color: 'black'
-              }
-          }
-        }
-    },
-    series : [{
-      type: 'pie',
-      name: 'Task ',
-      colors: GREEN_COLORS,
-      data: [
-      ['100', this.countMap.get("100")],
-      ['75', this.countMap.get("75")],
-      ['50', this.countMap.get("50")],
-      ['25', this.countMap.get("25")],
-      ['0', this.countMap.get("0")]
-    ]
-  }]
-  //   series : [{
-  //     type: 'pie',
-  //     name: 'Task ',
-  //     colors: GREEN_COLORS,
-  //     data: [
-  //       ['100', this.countMap.get("100")],
-  //       ['75', this.countMap.get("75")],
-  //       ['50', this.countMap.get("50")],
-  //       ['25', this.countMap.get("25")],
-  //       ['0', this.countMap.get("0")]
-  //     ]
-  // }]
-  };
-}
 
 private columnChart() {
   // Calculate values

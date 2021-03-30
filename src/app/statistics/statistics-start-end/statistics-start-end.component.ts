@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsTaskService } from "../../services/statistics.important.service";
+import { StatisticsTaskService } from "../statistics.important.service";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { StartEndDateRequest } from "../start-end-date-request";
 import { ActivatedRoute, Router } from "@angular/router";
