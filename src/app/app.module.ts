@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, Injectable } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { DaysService } from "./days/days.service";
@@ -9,10 +9,9 @@ import { HomeComponent } from "./home/home.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 import { TaskService } from "./services/task.service";
 import { ExtraordinaryService } from "./extraordinary/extraordinary.service";
-import { ChartModule } from "angular-highcharts";
 import { StatisticsTaskService } from "./statistics/statistics.important.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./common/error/error.component";
@@ -39,10 +38,10 @@ import { UserService } from "./services/user.service";
 import { AdminComponent } from './admin/admin.component';
 import { AdminUserService } from "./services/admin/admin-user.service";
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
-import { HighchartsChartModule } from 'highcharts-angular';
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { MessageComponent } from "./common/message/message.component";
+
 
 @NgModule({
   declarations: [
@@ -69,10 +68,8 @@ import { MessageComponent } from "./common/message/message.component";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartModule,
     BrowserAnimationsModule,
     MatComponentsModule,
-    HighchartsChartModule,
     SharedModule,
     AuthModule
   ],

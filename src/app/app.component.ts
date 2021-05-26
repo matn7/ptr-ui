@@ -12,6 +12,15 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthenticationService) {}
 
+  myType = 'PieChart';
+  myData = [
+      ['London', 8136000],
+      ['New York', 8538000],
+      ['Paris', 2244000],
+      ['Berlin', 3470000],
+      ['Kairo', 19500000]
+  ];  
+
   ngOnInit() {
     this.isLoggedInUser = this.authService.isUserLoggedIn();
   }

@@ -7,7 +7,6 @@ import { StatisticsDaysService } from "../statistics-days.service";
 import { ErrorService } from "../../services/data/error.service";
 import { MONTH_NAMES, GREEN_COLORS } from "../../app.constants";
 import { WeekDay } from "@angular/common";
-import * as Highcharts from 'highcharts';
 
 @Component({
   selector: "app-statistics-days-month",
@@ -24,8 +23,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
   monthDay: Array<number>;
   daysInMonth: number;
   monthWeekDayArr: Array<string>;
-
-  highcharts = Highcharts;
 
   countMap: Map<string, number>;
 
@@ -79,7 +76,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       )
       .subscribe(
         dayMade => {
-          this.columnChart(dayMade);
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
@@ -118,7 +114,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       )
       .subscribe(
         dayMade => {
-          this.columnChart(dayMade);
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
@@ -136,65 +131,6 @@ export class StatisticsDaysMonthComponent implements OnInit {
       selectYear: new FormControl(selectYear, Validators.required),
       selectMonth: new FormControl(selectMonth, Validators.required)
     });
-  }
-
- columnChartOptions = {   
-  chart : {
-  },
-  title : { 
-  },
-  xAxis: {
-  },
-  yAxis: {
-  },
-  tooltip : {
-  },
-  plotOptions : {
-     column: {}
-  },
-  series : [{
-  }]
-};
-
-  private columnChart(dayMade) {
-    this.columnChartOptions = {
-      chart: {
-        type: 'column',
-        renderTo: 'container'
-      },
-      title: {
-        text: 'Mood Daily'  
-      },
-      xAxis: {
-        categories: 
-          this.monthWeekDayArr
-        
-      },
-      yAxis: {
-        min: 0,
-        max: 100,
-        title: {
-          text: 'Average'
-        }
-      },
-      tooltip: {
-        formatter: function () {
-          return '' +
-            this.x + ': ' + this.y;
-        }
-      },
-      plotOptions: {
-        column: {
-          pointPadding: 0.2,
-          borderWidth: 0
-        }
-      },
-      series: [{
-        name: 'Important ',
-        color: GREEN_COLORS[0],
-        data: dayMade 
-      }]
-    };
   }
 }
 

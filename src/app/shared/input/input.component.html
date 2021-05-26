@@ -73,6 +73,14 @@
         <mat-button-toggle [value]="2">2</mat-button-toggle>
         <mat-button-toggle [value]="3">3</mat-button-toggle>
       </mat-button-toggle-group>
+
+    <mat-select 
+        *ngIf="controlType === 'selectelement'"
+        [formControl]="control">
+        <mat-option value="important">important</mat-option>
+        <mat-option value="lessimportant">lessimportant</mat-option>
+        <mat-option value="days">days</mat-option>
+    </mat-select>
     
     <input
         matInput

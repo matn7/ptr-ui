@@ -9,7 +9,6 @@ import { StatisticsLessimportantComponent } from "./statistics-lessimportant/sta
 import { StatisticsDaysComponent } from "./statistics-days/statistics-days.component";
 import { StatisticsDaysMonthComponent } from "./statistics-days-month/statistics-days-month.component";
 import { StatisticsStartEndComponent } from "./statistics-start-end/statistics-start-end.component";
-import { HighchartsChartModule } from "highcharts-angular";
 import { StatisticsHomeComponent } from "./statistics-home/statistics-home.component";
 
 @NgModule({
@@ -26,8 +25,7 @@ import { StatisticsHomeComponent } from "./statistics-home/statistics-home.compo
         StatisticsRoutingModule,
         SharedModule,
         ReactiveFormsModule,
-        MatComponentsModule,
-        HighchartsChartModule
+        MatComponentsModule
     ]
 })
 export class StatisticsModule {}

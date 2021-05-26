@@ -7,7 +7,6 @@ import { ErrorService } from "../../services/data/error.service";
 import { DatePipe } from "@angular/common";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "../../app.constants";
-import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-statistics-start-end',
@@ -27,8 +26,6 @@ export class StatisticsStartEndComponent implements OnInit {
   countMap: Map<string, number>;
   startEndData: any;
   colors: string[][];
-
-  highcharts = Highcharts;
 
   title: string;
 
@@ -65,14 +62,7 @@ export class StatisticsStartEndComponent implements OnInit {
         this.startEndDateRequest)
         .subscribe(
           count => {
-            // this.countMap.set("0", count[0]);
-            // this.countMap.set("1", count[1]);
-            // this.countMap.set("2", count[2]);
-            // this.countMap.set("3", count[3]);
-            // this.countMap.set("4", count[4]);
             this.populateCountMap(count);
-            this.columnChart();
-
           },
           error => {
             this.errorService.displayMessage(error, this.returnUrl);
@@ -100,7 +90,6 @@ export class StatisticsStartEndComponent implements OnInit {
       .subscribe(
         count => {
           this.populateCountMap(count);
-          this.columnChart();
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
@@ -113,11 +102,13 @@ export class StatisticsStartEndComponent implements OnInit {
     const selectComponent = this.component;
     const selectStartDate = this.startDate;
     const selectEndDate = this.endDate;
+    const selectTask = this.num;
 
     this.selectDateRange = new FormGroup({
       selectComponent: new FormControl(selectComponent, Validators.required),
       selectStartDate: new FormControl(selectStartDate, Validators.required),
-      selectEndDate: new FormControl(selectEndDate, Validators.required)
+      selectEndDate: new FormControl(selectEndDate, Validators.required),
+      selectTask: new FormControl(selectTask, Validators.required)
     });
   }
 
@@ -129,74 +120,4 @@ export class StatisticsStartEndComponent implements OnInit {
     this.countMap.set("4", count[4] ? count[4] : 0);
   }
 
-
-  columnChartOptions = {   
-    chart : {
-    },
-    title : { 
-    },
-    xAxis: {
-    },
-    yAxis: {
-    },
-    tooltip : {
-    },
-    plotOptions : {
-       column: {}
-    },
-    series : [{
-    }]
-  };
-
-
-  private columnChart() {
-    this.columnChartOptions = {
-      chart: {
-        type: 'column',
-        renderTo: 'container'
-      },
-      title: {
-        text: 'Month Average'  
-      },
-      xAxis: {
-        categories: [
-          '100',
-          '75',
-          '50',
-          '25',
-          '0'
-        ]
-      },
-      yAxis: {
-        min: 0,
-        // max: 100,
-        title: {
-          text: 'Average'
-        }
-      },
-      tooltip: {
-        formatter: function () {
-          return '' +
-            this.x + ': ' + this.y;
-        }
-      },
-      plotOptions: {
-        column: {
-          pointPadding: 0.2,
-          borderWidth: 0
-        }
-      },
-      series: [{
-        name: 'Important ',
-        color: this.colors[this.num - 1][0],
-        data: [
-          this.countMap.get("0"), 
-          this.countMap.get("1"), 
-          this.countMap.get("2"), 
-          this.countMap.get("3"), 
-          this.countMap.get("4")
-        ]
-      }]
-    };
-  }
 }

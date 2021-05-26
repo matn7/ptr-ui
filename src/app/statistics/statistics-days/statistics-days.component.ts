@@ -5,27 +5,21 @@ import { AuthenticationService } from "../../auth/authentication.service";
 import { ErrorService } from "../../services/data/error.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateRequest } from "../date-request";
-import { GREEN_COLORS } from "../../app.constants";
-import * as Highcharts from 'highcharts';
 
 @Component({
   selector: "app-statistics-days",
   templateUrl: "./statistics-days.component.html"
 })
 export class StatisticsDaysComponent implements OnInit {
+
   year: number;
   username: string;
   title: string;
   selectDate: FormGroup;
-  green_colors: string[];
   returnUrl: string;
-  myMap: Map<number, number>;
 
   dateRequest: DateRequest;
 
-  highcharts = Highcharts;
-
-  countMap: Map<string, number>;
   averageMap: Map<string, number>;
 
   constructor(
@@ -37,11 +31,7 @@ export class StatisticsDaysComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.myMap = new Map<number, number>();
-    
-
     this.username = this.authService.getAuthenticatedUser();
-    this.green_colors = GREEN_COLORS;
     this.route.params.subscribe(params => {
       this.year = +params["year"];
     });
@@ -51,7 +41,6 @@ export class StatisticsDaysComponent implements OnInit {
     this.dateRequest = new DateRequest(this.year, 0);
 
     this.averageMap = new Map<string, number>();
-    this.countMap = new Map<string, number>();
 
     this.initForm();
 
@@ -60,7 +49,6 @@ export class StatisticsDaysComponent implements OnInit {
       .subscribe(
         avg => {
           this.populateAverageMap(avg);
-          this.columnChart();
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
@@ -72,7 +60,6 @@ export class StatisticsDaysComponent implements OnInit {
     this.year = this.selectDate.value.selectYear;
     this.title = "Mood for " + this.year;
     this.dateRequest.year = this.year;
-    this.countMap.clear();
     this.averageMap.clear();
 
     this.statisticsDaysService
@@ -80,7 +67,6 @@ export class StatisticsDaysComponent implements OnInit {
       .subscribe(
         avg => {
           this.populateAverageMap(avg);
-          this.columnChart();
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
@@ -112,95 +98,4 @@ export class StatisticsDaysComponent implements OnInit {
     this.averageMap.set("11", avg["11"] != null ? (-25 * avg["11"] + 100) : null);
     this.averageMap.set("12", avg["12"] != null ? (-25 * avg["12"] + 100) : null);
   }
-
-
- columnChartOptions = {   
-  chart : {
-  },
-  title : { 
-  },
-  xAxis: {
-  },
-  yAxis: {
-  },
-  tooltip : {
-  },
-  plotOptions : {
-     column: {}
-  },
-  series : [{
-  }]
-};
-
-private columnChart() {
-  // Calculate values
-  // f(x) = ax + b
-  // f(0) = 100
-  // f(4) = 0
-  // 100 = a * 0 + b ===> b = 100
-  // 0 = 4 * a + 100 ===> a = -25
-  // f(x) = -25x + 100
-  this.columnChartOptions = {
-    chart: {
-      type: 'column',
-      renderTo: 'container'
-    },
-    title: {
-      text: 'Month Average'  
-    },
-    xAxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ]
-    },
-    yAxis: {
-      min: 0,
-      max: 100,
-      title: {
-        text: 'Average'
-      }
-    },
-    tooltip: {
-      formatter: function () {
-        return '' +
-          this.x + ': ' + this.y;
-      }
-    },
-    plotOptions: {
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    series: [{
-      name: 'Important ',
-      color: GREEN_COLORS[0],
-      data: [
-        this.averageMap.get("1"),
-        this.averageMap.get("2"),
-        this.averageMap.get("3"),
-        this.averageMap.get("4"),
-        this.averageMap.get("5"),
-        this.averageMap.get("6"),
-        this.averageMap.get("7"),
-        this.averageMap.get("8"),
-        this.averageMap.get("9"),
-        this.averageMap.get("10"),
-        this.averageMap.get("11"),
-        this.averageMap.get("12")
-      ]
-    }]
-  };
-}
 }
