@@ -22,7 +22,9 @@ export class StatisticsLessimportantComponent extends TaskStatisticsComponent {
     timeService: TimeService
   ) {
     super(route, router, statisticsTaskService, authService, errorService, 
-      timeService, "lessimportant");
+      timeService);
+
+      this.setTarget("lessimportant");
   }
 
 }

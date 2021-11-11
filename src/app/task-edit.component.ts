@@ -1,5 +1,9 @@
 import {
-  OnInit
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  Output
 } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
@@ -10,7 +14,12 @@ import { TimeService } from "./services/data/time.service";
 import { ErrorService } from "./services/data/error.service";
 import { MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR, 
   BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT } from "./app.constants";
+import { EventEmitter } from "events";
+import { HomeComponent } from "./home/home.component";
 
+  @Component({
+    template: ''
+  })
 export class TaskEditComponent implements OnInit {
   // One window for create new and edit
   editMode = false;
@@ -28,6 +37,7 @@ export class TaskEditComponent implements OnInit {
 
   // Task number fields number [1,2,3], target [important, lessimportant] 
   num: number;
+
   target: string;
 
   // Calendar data
@@ -44,6 +54,9 @@ export class TaskEditComponent implements OnInit {
   readonly body_required_validator = BODY_REQUIRED_VALIDATOR;
 
 
+  @Output()
+  dataChangedEvent = new EventEmitter();
+
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
@@ -52,9 +65,7 @@ export class TaskEditComponent implements OnInit {
     private router: Router,
     private timeService: TimeService,
     private errorService: ErrorService,
-    target: string
   ) {
-    this.target = target;
   }
 
   ngOnInit() {
@@ -62,6 +73,8 @@ export class TaskEditComponent implements OnInit {
     this.date = new Date();
     this.month = this.date.getMonth() + 1;
     this.year = this.date.getFullYear();
+
+    this.dataChangedEvent.emit('important');
 
     this.returnUrl = "/" + this.target + "/" + this.year + "/" + this.month;
 
@@ -105,6 +118,7 @@ export class TaskEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       // Edit
+      console.log("Message PATH (1)");
       this.taskService
         .updateTask(
           this.username,
@@ -120,6 +134,7 @@ export class TaskEditComponent implements OnInit {
             ]);
           },
           error => {
+            console.log("Message PATH (4)");
             this.errorService.displayMessage(error, this.returnUrl);
           }
         );
@@ -155,6 +170,10 @@ export class TaskEditComponent implements OnInit {
           }
         );
     }
+  }
+
+  setTarget(target: string) {
+    this.target = target;
   }
 
   private initForm(startDate: string, postedOn: string) {

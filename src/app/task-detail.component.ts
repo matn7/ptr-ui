@@ -1,10 +1,11 @@
-import { OnInit } from "@angular/core";
+import { Injectable, OnInit, Output, EventEmitter } from "@angular/core";
 import { TaskService } from "./services/task.service";
 import { ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "./auth/authentication.service";
 import { ErrorService } from "./services/data/error.service";
 import { Task } from "./task.model";
 
+@Injectable()
 export class TaskDetailComponent implements OnInit {
 
   id: number;
@@ -18,14 +19,17 @@ export class TaskDetailComponent implements OnInit {
 
   task: Task;
 
+  // *****
+  @Output()
+  dataChangedEvent = new EventEmitter();
+  // *****
+
   constructor(
     private route: ActivatedRoute,
     private service: TaskService,
     private authService: AuthenticationService,
     private errorService: ErrorService,
-    target: string
   ) {
-    this.target = target;
   }
 
   ngOnInit() {
@@ -43,10 +47,15 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(
         data => {
           this.task = data;
+          this,this.dataChangedEvent.emit();
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
         }
       );
+  }
+
+  public setTarget(target: string) {
+    this.target = target;
   }
 }

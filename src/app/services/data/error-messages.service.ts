@@ -7,8 +7,11 @@ export class ErrorMessagesService {
   isDateInFutureMsg: boolean;
   isMsgFromBackend: boolean;
 
-  @Output() changeDateInFutureMsg: EventEmitter<boolean> = new EventEmitter();
-  @Output() changeMsgFromBackend: EventEmitter<object> = new EventEmitter();
+  @Output() 
+  changeDateInFutureMsg: EventEmitter<boolean> = new EventEmitter();
+
+  @Output() 
+  changeMsgFromBackend: EventEmitter<object> = new EventEmitter();
 
   constructor() {}
 

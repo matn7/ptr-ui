@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header (dataChangedEvent)="loadData()"></app-header>
 
-<google-chart [type]="myType" [data]="myData"></google-chart>
+<!-- <google-chart [type]="myType" [data]="myData"></google-chart> -->
 
 <div class="container">
   <br>

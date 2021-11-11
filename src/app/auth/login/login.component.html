@@ -1,6 +1,7 @@
 <mat-card class="pandatronik-mat-card">
   <form [formGroup]="loginForm" (ngSubmit)="handleJWTAuthLogin()">
     <app-input 
+      class="full-width"
       controlType="input" 
       [control]="loginForm.get('username')" 
       placeholder="username"
@@ -8,7 +9,8 @@
       label="Username">
     </app-input>
 
-    <app-input 
+    <app-input
+      class="full-width"  
       controlType="password" 
       inputType="password"
       [control]="loginForm.get('password')" 

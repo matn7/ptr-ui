@@ -1,6 +1,7 @@
 <mat-card class="pandatronik-mat-card">
   <form [formGroup]="importantForm" (ngSubmit)="onSubmit()">
     <app-input 
+      class="full-width"
       controlType="input" 
       [control]="importantForm.get('title')" 
       placeholder="title"
@@ -9,6 +10,7 @@
     </app-input>
 
     <app-input 
+      class="full-width"
       controlType="textarea" 
       [control]="importantForm.get('body')" 
       placeholder="body"

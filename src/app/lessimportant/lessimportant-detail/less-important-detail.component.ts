@@ -17,7 +17,8 @@ export class LessImportantDetailComponent extends TaskDetailComponent {
     authService: AuthenticationService,
     errorService: ErrorService
   ) {
-    super(route, service, authService, errorService, "lessimportant");
+    super(route, service, authService, errorService);
+    this.setTarget("lessimportant");
   }
 
 }

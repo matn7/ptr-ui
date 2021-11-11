@@ -14,11 +14,13 @@ export class ErrorService {
   ) {}
 
   displayMessage(error, returnUrl) {
+    console.log("Message PATH (5)");
     this.errorMessage = this.handleError.displayErrorMessage(
       error.errorStatus,
       error.errorMsg,
       returnUrl
     );
+    
     this.errorMessageService.triggerMsgFromBackend(this.errorMessage);
   }
 

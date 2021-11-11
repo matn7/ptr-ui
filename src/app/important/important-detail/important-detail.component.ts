@@ -17,7 +17,8 @@ export class ImportantDetailComponent extends TaskDetailComponent {
     authService: AuthenticationService,
     errorService: ErrorService
   ) {
-    super(route, service, authService, errorService, "important");
+    super(route, service, authService, errorService);
+    this.setTarget("important");
   }
 
 }

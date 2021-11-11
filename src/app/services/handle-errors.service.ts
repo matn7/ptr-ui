@@ -22,6 +22,7 @@ export class HandleErrorsService {
   ) {}
 
   displayErrorMessage(errorNumber, errorMsg, redirectUrl) {
+    console.log("Message PATH (6) " + errorMsg);
     if (errorNumber === 401) {
       return this.handle401Error(redirectUrl, errorMsg);
     }
@@ -32,7 +33,14 @@ export class HandleErrorsService {
       return "Not found";
     }
     if (errorNumber === 400) {
-      return "Bad request";
+      console.log(errorMsg)
+      const stringifyErrMsg = JSON.stringify(errorMsg);
+      const parsedMsg = JSON.parse(stringifyErrMsg);
+      if (parsedMsg != null) {
+        return parsedMsg.body;
+      }
+      return "BAD Request";
+
     }
     if (errorNumber === 415) {
       return "Unsupported media type, you should not see this error :?";
@@ -44,7 +52,9 @@ export class HandleErrorsService {
 
   // Used in http request user shoudl not see them
   handleError(error: Response) {
+    console.log("Message PATH (3) " + error);
     if (error.status === 400) {
+
       return Observable.throw(new BadInput(error.status, error["error"]));
     }
     if (error.status === 401) {

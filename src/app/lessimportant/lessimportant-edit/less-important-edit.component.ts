@@ -24,9 +24,8 @@ export class LessImportantEditComponent extends TaskEditComponent {
     timeService: TimeService,
     errorService: ErrorService
   ) {
-    super(route, taskService, datepipe, authService, router,
-    timeService, errorService, "lessimportant");
-
+    super(route, taskService, datepipe, authService, router, timeService, errorService);
+    this.setTarget("lessimportant");
   }
 
 

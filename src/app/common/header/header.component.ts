@@ -1,12 +1,18 @@
 import {
   Component,
-  OnInit
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
 } from "@angular/core";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { Router, ActivatedRoute, RouterEvent } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { DATE_FORMAT, DETAIL_DATE_FORMAT } from "../../app.constants";
 import { filter } from "rxjs/operators";
+import { ImportantEditComponent } from "src/app/important/important-edit/important-edit.component";
+import { Subscription } from "rxjs";
+
 
 @Component({
   selector: "app-header",
@@ -22,6 +28,14 @@ export class HeaderComponent implements OnInit {
   endDate: string;
   activeUrl: string;
 
+  subscription: Subscription;
+
+  @Input()
+  second: ImportantEditComponent;
+
+  @Output()
+  dataChangedEvent = new EventEmitter();
+
   constructor(
     private authService: AuthenticationService,
     private datepipe: DatePipe,
@@ -32,7 +46,7 @@ export class HeaderComponent implements OnInit {
       filter(event => event instanceof RouterEvent)
     ).subscribe((event: RouterEvent) => {
       if(event) {
-          console.log("Event: " + event.url);
+          // console.log("Event: " + event.url);
           // console.log(event.url.includes("important"));
           this.activeUrl = "active";
       }
@@ -47,9 +61,15 @@ export class HeaderComponent implements OnInit {
     this.year = this.date.getFullYear();
     this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
     this.endDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+    this.dataChangedEvent.emit('event');
   }
 
   toActivate(url: string) {
     return this.activeUrl.includes(url) ? "active" : "";
+  }
+
+  loadData() {
+    console.log('event occured --- ');
+    this.dataChangedEvent.emit('event');
   }
 }

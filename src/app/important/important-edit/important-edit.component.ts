@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, Output
 } from "@angular/core";
 import { TaskEditComponent } from "../../task-edit.component";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -8,6 +8,7 @@ import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { TimeService } from "../../services/data/time.service";
 import { ErrorService } from "../../services/data/error.service";
+import { EventEmitter } from "events";
 
 @Component({
   selector: "app-important-edit",
@@ -25,7 +26,8 @@ export class ImportantEditComponent extends TaskEditComponent {
     errorService: ErrorService
   ) {
     super(route, taskService, datepipe, authService, router,
-    timeService, errorService, "important");
+    timeService, errorService);
+    this.setTarget("important");
   }
 
 

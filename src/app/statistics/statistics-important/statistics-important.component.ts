@@ -12,7 +12,6 @@ import { TimeService } from "../../services/data/time.service";
 })
 export class StatisticsImportantComponent extends TaskStatisticsComponent {
 
-
   constructor(
     route: ActivatedRoute,
     router: Router,
@@ -22,7 +21,8 @@ export class StatisticsImportantComponent extends TaskStatisticsComponent {
     timeService: TimeService
   ) {
     super(route, router, statisticsTaskService, authService, errorService, 
-      timeService, "important");
+      timeService);
+      this.setTarget("important");
   }
 
 }

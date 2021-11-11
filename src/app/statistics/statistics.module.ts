@@ -10,6 +10,7 @@ import { StatisticsDaysComponent } from "./statistics-days/statistics-days.compo
 import { StatisticsDaysMonthComponent } from "./statistics-days-month/statistics-days-month.component";
 import { StatisticsStartEndComponent } from "./statistics-start-end/statistics-start-end.component";
 import { StatisticsHomeComponent } from "./statistics-home/statistics-home.component";
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { StatisticsHomeComponent } from "./statistics-home/statistics-home.compo
         StatisticsRoutingModule,
         SharedModule,
         ReactiveFormsModule,
-        MatComponentsModule
+        MatComponentsModule,
+        ChartsModule
     ]
 })
 export class StatisticsModule {}

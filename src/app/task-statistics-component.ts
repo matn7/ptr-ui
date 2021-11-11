@@ -1,28 +1,57 @@
-import { OnInit } from "@angular/core";
+import { Component, Inject, Injectable, OnInit, EventEmitter } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StatisticsTaskService } from "./statistics/statistics.important.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthenticationService } from "./auth/authentication.service";
 import { ErrorService } from "./services/data/error.service";
-import { GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS } from "./app.constants";
 import { TimeService } from "./services/data/time.service";
+import { YearRequest } from "./statistics/year-request";
+import { ChartType, ChartOptions } from 'chart.js';
+import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { BLUE_COLORS, GREEN_COLORS, YELLOW_COLORS } from "./app.constants";
 
-export class TaskStatisticsComponent implements OnInit {
+@Injectable()
+export abstract class TaskStatisticsComponent implements OnInit {
+
   year: number;
   num: number;
   title: string;
   username: string;
-  colors: string[][];
   selectDate: FormGroup;
   selectImportantTask: FormGroup;
-
+  yearRequest: YearRequest;
   errorMessage: string;
   returnUrl: string;
   target: string;
+  role: Map<string, string> = new Map<string, string>();
 
-  // myMap: Map<number, number>;
-  averageMap: Map<string, number>;
-  countMap: Map<string, number>;
+  colors = [GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS];
+
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'left'
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
+  public pieChartLabels: Label[] = ['100', '75', '50', '25', '0'];
+  public pieChartData: SingleDataSet = [0, 0, 0, 0, 0];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+  public pieChartColors = [
+    {
+      backgroundColor: ['rgba(30,136,229,1)', 'rgba(30,136,229,0.75)', 
+      'rgba(30,136,229,0.50)', 'rgba(30,136,229,0.25)', 'rgba(30,136,229,0)'],
+    },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -30,17 +59,13 @@ export class TaskStatisticsComponent implements OnInit {
     private statisticsTaskService: StatisticsTaskService,
     private authService: AuthenticationService,
     private errorService: ErrorService,
-    private timeService: TimeService,
-    target: string
+    private timeService: TimeService
   ) {
-    this.target = target;
+    monkeyPatchChartJsTooltip();
+    monkeyPatchChartJsLegend();
   }
 
   ngOnInit() {
-
-    // this.myMap = new Map<number, number>();
-    this.averageMap = new Map<string, number>();
-    this.countMap = new Map<string, number>();
 
     this.username = this.authService.getAuthenticatedUser();
     this.route.params.subscribe(params => {
@@ -48,7 +73,7 @@ export class TaskStatisticsComponent implements OnInit {
       this.num = +params["num"];
     });
 
-    this.returnUrl = "/statistics/" + this.target + "/1/" + this.year + "/";
+    this.returnUrl = "/statistics/" + this.target + "/1/" + this.year;
 
     if (this.timeService.checkNumber(this.num) === -1) {
       this.redirectMsg();
@@ -56,62 +81,57 @@ export class TaskStatisticsComponent implements OnInit {
     }
 
     this.title = "Important task " + this.num;
-    this.colors = [GREEN_COLORS, YELLOW_COLORS, BLUE_COLORS];
+
+    this.yearRequest = new YearRequest(this.year);
 
     this.initForm();
 
     this.statisticsTaskService
-      .getImportantTaskCount(this.username, this.target, this.num, this.year)
+      .getImportantTaskCount(this.username, this.target, this.num, this.yearRequest)
       .subscribe(
         count => {
-          this.populateCountMap(count);
+          this.pieChartData = [count['100'], count['75'], count['50'], count['25'], count['0']];
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
         }
       );
 
-    this.statisticsTaskService
-      .getImportantTaskAvg(this.username, this.target, this.num, this.year)
-      .subscribe(
-        avg => {
-          this.populateAverageMap(avg);
+      this.pieChartColors = [
+        {
+          backgroundColor: this.colors[this.num - 1]
         },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
+      ];
+
+    this.title = "Important task " + this.num;
   }
 
   onSubmit() {
     this.year = this.selectDate.value.selectYear;
     this.num = this.selectDate.value.selectTask;
-    this.countMap.clear();
-    this.averageMap.clear();
+
+    this.yearRequest.year = this.year;
     
     this.statisticsTaskService
-      .getImportantTaskCount(this.username, this.target, this.num, this.year)
+      .getImportantTaskCount(this.username, this.target, this.num, this.yearRequest)
       .subscribe(
         count => {
-          this.populateCountMap(count);
+          this.pieChartData = [count['100'], count['75'], count['50'], count['25'], count['0']];
+          this.role = count;
         },
         error => {
           this.errorService.displayMessage(error, this.returnUrl);
         }
       );
+
+      this.pieChartColors = [
+        {
+          backgroundColor: this.colors[this.num - 1]
+        },
+      ];
 
     this.title = "Important task " + this.num;
 
-    this.statisticsTaskService
-      .getImportantTaskAvg(this.username, this.target, this.num, this.year)
-      .subscribe(
-        avg => {
-          this.populateAverageMap(avg);
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
     this.router.navigate([
       "/statistics/" + this.target + "/" + this.num + "/" + this.year
     ]);
@@ -121,41 +141,14 @@ export class TaskStatisticsComponent implements OnInit {
     this.errorService.dateInFutureMessage();
   }
 
-  private populateAverageMap(avg) {
-    this.averageMap.set("1", avg["1"] != null ? (-25 * avg["1"] + 100) : null);
-    this.averageMap.set("2", avg["2"] != null ? (-25 * avg["2"] + 100) : null);
-    this.averageMap.set("3", avg["3"] != null ? (-25 * avg["3"] + 100) : null);
-    this.averageMap.set("4", avg["4"] != null ? (-25 * avg["4"] + 100) : null);
-    this.averageMap.set("5", avg["5"] != null ? (-25 * avg["5"] + 100) : null);
-    this.averageMap.set("6", avg["6"] != null ? (-25 * avg["6"] + 100) : null);
-    this.averageMap.set("7", avg["7"] != null ? (-25 * avg["7"] + 100) : null);
-    this.averageMap.set("8", avg["8"] != null ? (-25 * avg["8"] + 100) : null);
-    this.averageMap.set("9", avg["9"] != null ? (-25 * avg["9"] + 100) : null);
-    this.averageMap.set("10", avg["10"] != null ? (-25 * avg["10"] + 100) : null);
-    this.averageMap.set("11", avg["11"] != null ? (-25 * avg["11"] + 100) : null);
-    this.averageMap.set("12", avg["12"] != null ? (-25 * avg["12"] + 100) : null);
+  public setTarget(target: string) {
+    this.target = target;
   }
 
-  private populateCountMap(count) {
-    // this.countMap.set("100", count["100"] != null ? count["100"] : '');
-    // this.countMap.set("75", count["75"] != null ? count["75"] : '');
-    // this.countMap.set("50", count["50"] != null ? count["50"] : '');
-    // this.countMap.set("25", count["25"] != null ? count["25"] : '');
-    // this.countMap.set("0", count["0"] != null ? count["0"] : '');
-
-    this.countMap.set("100", count["100"]);
-    this.countMap.set("75", count["75"]);
-    this.countMap.set("50", count["50"]);
-    this.countMap.set("25", count["25"]);
-    this.countMap.set("0", count["0"]);
-  }
 
   private initForm() {
     const selectYear = this.year;
     const selectTask = this.num;
-    // this.selectTask = 1;
-
-    console.log("============== " + this.num);
     this.selectDate = new FormGroup({
       selectYear: new FormControl(selectYear, Validators.required),
       selectTask: new FormControl(selectTask, Validators.required)

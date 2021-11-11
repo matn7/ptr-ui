@@ -67,29 +67,14 @@ export const MADE_CODES = {
 };
 
 
-export const GREEN_COLORS = [
-  "#4caf50",
-  "#66bb6a",
-  "#81c784",
-  "#a5d6a7",
-  "#c8e6c9"
-];
+export const GREEN_COLORS = ['rgba(76,175,80,1)', 'rgba(76,175,80,0.75)', 
+'rgba(76,175,80,0.50)', 'rgba(76,175,80,0.25)', 'rgba(76,175,80,0)'];
 
-export const YELLOW_COLORS = [
-  "#ffeb3b",
-  "#ffee58",
-  "#fff176",
-  "#fff59d",
-  "#fff9c4"
-];
+export const YELLOW_COLORS = ['rgba(255,235,59,1)', 'rgba(255,235,59,0.75)', 
+'rgba(255,235,59,0.50)', 'rgba(255,235,59,0.25)', 'rgba(255,235,59,0)'];
 
-export const BLUE_COLORS = [
-  "#2196f3",
-  "#42a5f5",
-  "#64b5f6",
-  "#90caf9",
-  "#bbdefb"
-];
+export const BLUE_COLORS = ['rgba(30,136,229,1)', 'rgba(30,136,229,0.75)', 
+'rgba(30,136,229,0.50)', 'rgba(30,136,229,0.25)', 'rgba(30,136,229,0)'];
 
 export const TITLE_LENGTH_VALIDATOR = "The title field max length is 40 characters";
 export const TITLE_REQUIRED_VALIDATOR = "The title field is required";

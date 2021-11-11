@@ -24,4 +24,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.isLoggedInUser = this.authService.isUserLoggedIn();
   }
+
+  loadData() {
+    console.log('Event fom header');
+  }
 }
