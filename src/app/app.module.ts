@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 import { TaskService } from "./services/task.service";
 import { ExtraordinaryService } from "./extraordinary/extraordinary.service";
-import { StatisticsTaskService } from "./statistics/statistics.important.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ErrorComponent } from "./common/error/error.component";
 import { HttpInterceptorAuthService } from "./services/http/http-interceptor-auth.service";
@@ -77,7 +76,6 @@ import { MessageComponent } from "./common/message/message.component";
     DaysService,
     TaskService,
     ExtraordinaryService,
-    StatisticsTaskService,
     RegistrationService,
     HandleErrorsService,
     AuthenticationService,

@@ -44,11 +44,6 @@ const appRoutes: Routes = [
     loadChildren: () => import('./days/days.module').then(mod => mod.DaysModule)
   },
   {
-    path: "statistics",
-    canLoad: [AuthGuard],
-    loadChildren: () => import('./statistics/statistics.module').then(mod => mod.StatisticsModule)
-  },
-  {
     path: "admin",
     component: AdminComponent,
     canActivate: [RouteGuardService]

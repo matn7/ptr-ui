@@ -34,6 +34,7 @@ export class UserComponent implements OnInit {
         this.userData = data;
       },
       error => {
+        console.log("Error in user component");
         this.errorService.displayMessage(error, this.returnUrl);
       }
     );

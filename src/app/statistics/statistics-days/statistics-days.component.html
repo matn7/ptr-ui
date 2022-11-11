@@ -1,9 +1,0 @@
-<form [formGroup]="selectDate" (ngSubmit)="onSubmit()">
-  <app-input 
-      controlType="selectyear" 
-      [control]="selectDate.get('selectYear')"
-      label="Select year">
-  </app-input>
-
-  <button type="submit" color="primary" mat-raised-button>Submit</button>
-</form>

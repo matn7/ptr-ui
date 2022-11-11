@@ -30,10 +30,11 @@ export class HandleErrorsService {
       return "Forbidden";
     }
     if (errorNumber === 404) {
-      return "Not found";
+      const stringifyErrMsg = JSON.stringify(errorMsg);
+      const parsedMsg = JSON.parse(stringifyErrMsg);
+      return parsedMsg.errorMessage;
     }
     if (errorNumber === 400) {
-      console.log(errorMsg)
       const stringifyErrMsg = JSON.stringify(errorMsg);
       const parsedMsg = JSON.parse(stringifyErrMsg);
       if (parsedMsg != null) {
