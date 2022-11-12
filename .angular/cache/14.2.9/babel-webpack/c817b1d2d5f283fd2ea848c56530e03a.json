@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class DaysBetween {\n  constructor(rateDay, startDate) {\n    this.rateDay = rateDay;\n    this.startDate = startDate;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
