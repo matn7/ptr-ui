@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ACTIVE_PATH } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-less-important-home',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LessImportantHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
+    console.log("lessimportant");
+    sessionStorage.setItem(ACTIVE_PATH, "lessimportant");
   }
 
 }

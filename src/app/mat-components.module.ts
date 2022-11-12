@@ -13,8 +13,14 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { MatToolbarModule, MatMenuModule, MatGridListModule, MatTableModule, 
-  MatDividerModule, MatListModule, MatCardModule, MatButtonToggleModule } from "@angular/material";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatTableModule } from "@angular/material/table";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatListModule } from "@angular/material/list";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @NgModule({
   exports: [

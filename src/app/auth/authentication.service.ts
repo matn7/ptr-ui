@@ -5,7 +5,8 @@ import {
   API_VERSION,
   TOKEN,
   AUTHENTICATED_USER,
-  TOKEN_EXPIRED
+  TOKEN_EXPIRED,
+  ACTIVE_PATH
 } from "../app.constants";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
@@ -70,6 +71,7 @@ export class AuthenticationService {
   logout() {
     sessionStorage.removeItem(AUTHENTICATED_USER);
     sessionStorage.removeItem(TOKEN);
+    sessionStorage.removeItem(ACTIVE_PATH);
   }
 
   handleError(error: Response) {

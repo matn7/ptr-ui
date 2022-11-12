@@ -1,26 +1,31 @@
-<mat-toolbar color="primary" *ngIf="activeUrl">
+<mat-toolbar color="primary">
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
-      routerLinkActive="active"
       title="{{ username }}"
-      routerLink="user/{{ username }}">
+      routerLink="user/{{ authService.getAuthenticatedUser() }}">
       <mat-icon aria-hidden="false" aria-label="User account">account_circle</mat-icon></button>
       
   <button mat-button 
       *ngIf="authService.isUserLoggedIn()"
-      routerLinkActive="active"
+      [ngClass]="{'active': activeUrl === 'important'}"
       routerLink="important/{{ year }}/{{ month }}">Important</button>
+      
+      <!-- [routerLinkActive]="activeUrl === 'lessimportant' ? active : ''" -->
+  <button mat-button  
+      *ngIf="authService.isUserLoggedIn()"
+      [ngClass]="{'active': activeUrl === 'lessimportant'}"
+      routerLink="lessimportant/{{ year }}/{{ month }}">Less Important</button> 
       
   <button mat-button  
       *ngIf="authService.isUserLoggedIn()"
-      routerLinkActive="active"
-      routerLink="lessimportant/{{ year }}/{{ month }}">Less Important</button>  
+      [ngClass]="{'active': activeUrl === 'stat'}"
+      routerLink="stat/days/daysbetween">Days Between Statistics</button> 
 
   <div class="flex-spacer"></div>
 
   <button mat-button
     *ngIf="!authService.isUserLoggedIn()"
-    routerLink="/regi`er">Register</button>
+    routerLink="/register">Register</button>
   
   <button mat-button 
     *ngIf="!authService.isUserLoggedIn()"

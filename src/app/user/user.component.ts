@@ -11,7 +11,6 @@ export class UserComponent implements OnInit {
   isChecked: boolean;
   username: string;
   userData: any;
-  // userData2: User;
   returnUrl: string;
 
   constructor(

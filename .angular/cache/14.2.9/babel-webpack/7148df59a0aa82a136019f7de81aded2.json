@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { AppError } from \"./app-error\";\nexport class NotAuthorizedError extends AppError {\n  constructor(errorStatus, errorMsg) {\n    super();\n    this.errorStatus = errorStatus;\n    this.errorMsg = errorMsg;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

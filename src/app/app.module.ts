@@ -1,15 +1,13 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, Injectable } from "@angular/core";
-
+import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { DaysService } from "./days/days.service";
-import { HttpModule } from "@angular/http";
 import { CommonModule, DatePipe } from "@angular/common";
 import { HomeComponent } from "./home/home.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TaskService } from "./services/task.service";
 import { ExtraordinaryService } from "./extraordinary/extraordinary.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
@@ -27,11 +25,7 @@ import { FooterComponent } from "./common/footer/footer.component";
 import { HeaderComponent } from "./common/header/header.component";
 import { ActivateUserComponent } from "./auth/activate-user/activate-user.component";
 import { UserComponent } from "./user/user.component";
-
-// Angular material
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-// ***
-
 import { MatComponentsModule } from "src/app/mat-components.module";
 import { UserService } from "./services/user.service";
 import { AdminComponent } from './admin/admin.component';
@@ -61,7 +55,6 @@ import { MessageComponent } from "./common/message/message.component";
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpModule,
     RouterModule,
     AppRoutingModule,
     CommonModule,

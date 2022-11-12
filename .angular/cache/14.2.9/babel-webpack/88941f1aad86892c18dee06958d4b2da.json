@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Days {\n  constructor(id, body, rateDay, postedOn, startDate) {\n    this.id = id;\n    this.body = body;\n    this.rateDay = rateDay;\n    this.postedOn = postedOn;\n    this.startDate = startDate;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

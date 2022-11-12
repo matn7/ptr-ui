@@ -1,0 +1,21 @@
+<form [formGroup]="yearBetweenForm" (ngSubmit)="onSubmit()">
+    <app-input 
+        controlType="selectyear" 
+        [control]="yearBetweenForm.get('yearStart')"
+        label="Select year start">
+    </app-input>
+
+    <app-input 
+        controlType="selectyear" 
+        [control]="yearBetweenForm.get('yearEnd')"
+        label="Select year end">
+    </app-input>
+
+    <button type="submit" color="primary" mat-raised-button>Submit</button>
+</form>
+
+<table mat-table [dataSource]="jsonResponse">
+    
+</table>
+
+{{ jsonResponse }}

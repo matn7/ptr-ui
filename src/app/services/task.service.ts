@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { RequestOptions, Headers } from "@angular/http";
+
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_VERSION } from "../app.constants";
 
@@ -43,7 +43,6 @@ export class TaskService {
   updateTask(username, target, num, id, resource) {
     // JSON.stringify({ isRead: true })
     const headers = new Headers({ "Content-Type": "application/json" });
-    const options = new RequestOptions({ headers: headers });
     console.log("Message PATH (2)");
     return this.http
       .put<Task>(

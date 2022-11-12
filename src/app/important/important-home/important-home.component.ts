@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ACTIVE_PATH } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-important-home',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImportantHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+    console.log("important");
+    sessionStorage.setItem(ACTIVE_PATH, "important");
   }
 
 }

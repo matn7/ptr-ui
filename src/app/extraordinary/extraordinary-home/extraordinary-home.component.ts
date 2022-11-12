@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ACTIVE_PATH } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-extraordinary-home',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExtraordinaryHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    sessionStorage.setItem(ACTIVE_PATH, "extraordinary");
+   }
 
   ngOnInit(): void {
   }

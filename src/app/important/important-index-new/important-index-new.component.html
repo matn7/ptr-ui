@@ -1,3 +1,8 @@
+<!-- selectDate: FormGroup; -->
+<!-- this.selectDate = new FormGroup({
+    selectYear: new FormControl(selectYear, Validators.required),
+    selectMonth: new FormControl(selectMonth, Validators.required)
+  }); -->
 <form [formGroup]="selectDate" (ngSubmit)="onSubmit()">
     <app-input 
         controlType="selectyear" 

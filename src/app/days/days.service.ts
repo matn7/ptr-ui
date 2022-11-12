@@ -13,10 +13,8 @@ import { HandleErrorsService } from "../services/handle-errors.service";
   providedIn: "root"
 })
 export class DaysService {
-  startedEditing = new Subject<number>();
   month: number;
   year: number;
-  items: any;
 
   constructor(
     private http: HttpClient,

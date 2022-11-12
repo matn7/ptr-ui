@@ -2,7 +2,7 @@ import { Component, OnInit, InjectionToken } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/timer';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',

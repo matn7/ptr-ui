@@ -1,4 +1,4 @@
-import { OnInit, Input } from "@angular/core";
+import { OnInit, Input, Directive } from "@angular/core";
 import { YELLOW_COMPLETION_STYLES, GREEN_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "./auth/authentication.service";
@@ -9,6 +9,7 @@ import { TaskServiceInterface } from "./services/task.service-interface";
 import { IndexData } from "./services/index-class-interface";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
+@Directive()
 export abstract class TaskIndexNewComponent implements OnInit {
   @Input() index: number = 0;
 
