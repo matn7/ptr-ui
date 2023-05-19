@@ -19,7 +19,12 @@
   <button mat-button  
       *ngIf="authService.isUserLoggedIn()"
       [ngClass]="{'active': activeUrl === 'stat'}"
-      routerLink="stat/days/daysbetween">Days Between Statistics</button> 
+      routerLink="stat/days/daysbetween">Days Between</button> 
+
+  <button mat-button  
+      *ngIf="authService.isUserLoggedIn()"
+      [ngClass]="{'active': activeUrl === 'stat'}"
+      routerLink="stat/days/monthavgratedaybyyear">Month Avg</button> 
 
   <div class="flex-spacer"></div>
 

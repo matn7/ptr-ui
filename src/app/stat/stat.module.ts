@@ -7,10 +7,11 @@ import { StatHomeComponent } from './stat-home/stat-home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatComponentsModule } from '../mat-components.module';
+import { DaysMonthAvgRateDayByYearComponent } from './days/days-month-avg-rate-day-by-year/days-month-avg-rate-day-by-year.component';
 
 
 @NgModule({
-  declarations: [DaysBetweenComponent, StatHomeComponent],
+  declarations: [DaysBetweenComponent, StatHomeComponent, DaysMonthAvgRateDayByYearComponent],
   imports: [
     CommonModule,
     StatRoutingModule,

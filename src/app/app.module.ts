@@ -34,7 +34,7 @@ import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { MessageComponent } from "./common/message/message.component";
-
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,8 @@ import { MessageComponent } from "./common/message/message.component";
     BrowserAnimationsModule,
     MatComponentsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    HighchartsChartModule
   ],
   providers: [
     DaysService,
