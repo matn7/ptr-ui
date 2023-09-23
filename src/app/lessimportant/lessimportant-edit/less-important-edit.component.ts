@@ -1,5 +1,5 @@
 import {
-  Component
+    Component
 } from "@angular/core";
 import { TaskEditComponent } from "../../task-edit.component";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -10,23 +10,20 @@ import { TimeService } from "../../services/data/time.service";
 import { ErrorService } from "../../services/data/error.service";
 
 @Component({
-  selector: "app-less-important-edit",
-  templateUrl: "./less-important-edit.component.html"
+    selector: "app-less-important-edit",
+    templateUrl: "./less-important-edit.component.html"
 })
 export class LessImportantEditComponent extends TaskEditComponent {
-
-  constructor(
-    route: ActivatedRoute,
-    taskService: TaskService,
-    datepipe: DatePipe,
-    authService: AuthenticationService,
-    router: Router,
-    timeService: TimeService,
-    errorService: ErrorService
-  ) {
-    super(route, taskService, datepipe, authService, router, timeService, errorService);
-    this.setTarget("lessimportant");
-  }
-
-
+    constructor(
+        route: ActivatedRoute,
+        taskService: TaskService,
+        datepipe: DatePipe,
+        authService: AuthenticationService,
+        router: Router,
+        timeService: TimeService,
+        errorService: ErrorService
+    ) {
+        super(route, taskService, datepipe, authService, router, timeService, errorService);
+        this.setTarget("lessimportant");
+    }
 }

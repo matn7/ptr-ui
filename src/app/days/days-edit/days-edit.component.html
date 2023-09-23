@@ -1,39 +1,18 @@
 <mat-card class="pandatronik-mat-card">
-  <form [formGroup]="daysForm" (ngSubmit)="onSubmit()">
-    <app-input 
-      controlType="textarea" 
-      [control]="daysForm.get('body')" 
-      placeholder="body"
-      title="body"
-      label="Body">
-    </app-input>
-    <app-input 
-      controlType="select" 
-      [control]="daysForm.get('rateDay')"
-      label="Rate Day">
-    </app-input>
+    <form [formGroup]="daysForm" (ngSubmit)="onSubmit()">
+        <app-input controlType="textarea" [control]="daysForm.get('body')" placeholder="body" title="body" label="Body">
+        </app-input>
+        <app-input controlType="select" [control]="daysForm.get('rateDay')" label="Rate Day">
+        </app-input>
 
-    <app-input 
-      controlType="hidden" 
-      inputType="hidden"
-      hidden="true"
-      [control]="daysForm.get('startDate')">
-    </app-input>
+        <app-input controlType="hidden" inputType="hidden" hidden="true" [control]="daysForm.get('startDate')">
+        </app-input>
 
-    <app-input 
-      controlType="hidden" 
-      inputType="hidden"
-      hidden="true"
-      [control]="daysForm.get('postedOn')">
-    </app-input>
+        <app-input controlType="hidden" inputType="hidden" hidden="true" [control]="daysForm.get('postedOn')">
+        </app-input>
 
-    <button type="submit" color="primary" mat-raised-button [disabled]="!daysForm.valid">Submit</button>
-    <button
-      type="button"
-      color="warn" mat-raised-button
-      *ngIf="editMode"
-      ng-confirm-click="Confirm unfavorite?"
-      (click)="onDelete()">Delete</button>
-  </form>  
+        <button type="submit" color="primary" mat-raised-button [disabled]="!daysForm.valid">Submit</button>
+        <button type="button" color="warn" mat-raised-button *ngIf="editMode" ng-confirm-click="Confirm unfavorite?"
+            (click)="onDelete()">Delete</button>
+    </form>
 </mat-card>
-

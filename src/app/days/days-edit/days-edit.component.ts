@@ -150,7 +150,7 @@ export class DaysEditComponent implements OnInit {
             this.daysForm.setValue({
               "id": this.id,
               "body": days.body,
-              "rateDay": this.made_codes[days.rateDay],
+              "rateDay": days.rateDay,
               "startDate": days.startDate,
               "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT)
             });

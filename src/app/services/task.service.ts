@@ -35,6 +35,7 @@ export class TaskService {
   }
 
   createTask(username, target, num, resource) {
+    console.log("Resource sent to backend: " + JSON.stringify(resource))
     return this.http
       .post(`${API_URL}/${API_VERSION}/users/${username}/${target}/${num}`, resource)
       .catch(this.handleErrorService.handleError);
