@@ -1,57 +1,31 @@
 <mat-card class="pandatronik-mat-card">
-  <form [formGroup]="registrationForm" (ngSubmit)="registerNewUser()">
-    
-    <app-input 
-      controlType="input" 
-      [control]="registrationForm.get('username')" 
-      placeholder="username"
-      title="username"
-      label="Username">
-    </app-input>
+    <form [formGroup]="registrationForm" (ngSubmit)="registerNewUser()">
 
-    <app-input 
-      controlType="password" 
-      inputType="password"
-      [control]="registrationForm.get('password')" 
-      placeholder="password"
-      title="password"
-      label="Password">
-    </app-input>
+        <app-input controlType="input" [control]="registrationForm.get('username')" placeholder="username"
+            title="username" label="Username">
+        </app-input>
 
-    <app-input 
-      controlType="password" 
-      inputType="password"
-      [control]="registrationForm.get('confirmPassword')" 
-      placeholder="confirm password"
-      title="confirm password"
-      label="Confirm password">
-    </app-input>
-    <!-- TODO: password and confirm password must match-->
+        <app-input controlType="password" inputType="password" [control]="registrationForm.get('password')"
+            placeholder="password" title="password" label="Password">
+        </app-input>
 
-    <app-input 
-      controlType="input" 
-      [control]="registrationForm.get('email')" 
-      placeholder="email"
-      title="email"
-      label="Email">
-    </app-input>
+        <app-input controlType="password" inputType="password" [control]="registrationForm.get('confirmPassword')"
+            placeholder="confirm password" title="confirm password" label="Confirm password">
+        </app-input>
+        <!-- TODO: password and confirm password must match-->
 
-    <app-input 
-      controlType="input" 
-      [control]="registrationForm.get('firstName')" 
-      placeholder="first name"
-      title="first name"
-      label="First name">
-    </app-input>
+        <app-input controlType="input" [control]="registrationForm.get('email')" placeholder="email" title="email"
+            label="Email">
+        </app-input>
 
-    <app-input 
-      controlType="input" 
-      [control]="registrationForm.get('lastName')" 
-      placeholder="last name"
-      title="last name"
-      label="Last name">
-    </app-input>
+        <app-input controlType="input" [control]="registrationForm.get('firstName')" placeholder="first name"
+            title="first name" label="First name">
+        </app-input>
 
-    <button type="submit" color="primary" mat-raised-button [disabled]="!registrationForm.valid">Submit</button>
-  </form>
-</mat-card>  
+        <app-input controlType="input" [control]="registrationForm.get('lastName')" placeholder="last name"
+            title="last name" label="Last name">
+        </app-input>
+
+        <button type="submit" color="primary" mat-raised-button [disabled]="!registrationForm.valid">Submit</button>
+    </form>
+</mat-card>

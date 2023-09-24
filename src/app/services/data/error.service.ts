@@ -27,6 +27,10 @@ export class ErrorService {
     this.errorMessageService.triggerMsgFromBackend(message);
   }
 
+  displayBackendMessages(messages: string[], affectedFields: string[]) {
+    this.errorMessageService.triggerMsgsFromBackend(messages, affectedFields);
+  }
+
   dateInFutureMessage() {
     this.errorMessageService.triggerDateInFutureMsg();
   }

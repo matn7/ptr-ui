@@ -1,43 +1,55 @@
 import { Injectable, Output, EventEmitter } from "@angular/core";
 
 @Injectable({
-  providedIn: "root"
+    providedIn: "root"
 })
 export class ErrorMessagesService {
-  isDateInFutureMsg: boolean;
-  isMsgFromBackend: boolean;
+    isDateInFutureMsg: boolean;
+    isMsgFromBackend: boolean;
 
-  @Output() 
-  changeDateInFutureMsg: EventEmitter<boolean> = new EventEmitter();
+    @Output()
+    changeDateInFutureMsg: EventEmitter<boolean> = new EventEmitter();
 
-  @Output() 
-  changeMsgFromBackend: EventEmitter<{isMsg: boolean, msg: string}> = new EventEmitter();
+    @Output()
+    changeMsgFromBackend: EventEmitter<{ isMsg: boolean, msg: string }> = new EventEmitter();
 
-  constructor() {}
+    @Output()
+    changeMsgsFromBackend: EventEmitter<{ isMsg: boolean, msgs: string[], aflds: string[] }> = new EventEmitter();
 
-  triggerDateInFutureMsg() {
-    this.isDateInFutureMsg = true;
-    this.changeDateInFutureMsg.emit(this.isDateInFutureMsg);
-  }
+    constructor() { }
 
-  triggerDateInFutureMsgSwitchOff() {
-    this.isDateInFutureMsg = false;
-    this.changeDateInFutureMsg.emit(this.isDateInFutureMsg);
-  }
+    triggerDateInFutureMsg() {
+        this.isDateInFutureMsg = true;
+        this.changeDateInFutureMsg.emit(this.isDateInFutureMsg);
+    }
 
-  triggerMsgFromBackend(message) {
-    this.isMsgFromBackend = true;
-    this.changeMsgFromBackend.emit({
-      isMsg: this.isMsgFromBackend,
-      msg: message
-    });
-  }
+    triggerDateInFutureMsgSwitchOff() {
+        this.isDateInFutureMsg = false;
+        this.changeDateInFutureMsg.emit(this.isDateInFutureMsg);
+    }
 
-  triggerMsgFromBackendSwitchOff() {
-    this.isMsgFromBackend = false;
-    this.changeMsgFromBackend.emit({
-      isMsg: this.isMsgFromBackend,
-      msg: ""
-    });
-  }
+    triggerMsgFromBackend(message) {
+        this.isMsgFromBackend = true;
+        this.changeMsgFromBackend.emit({
+            isMsg: this.isMsgFromBackend,
+            msg: message
+        });
+    }
+
+    triggerMsgsFromBackend(messages: string[], affectedFields: string[]) {
+        this.isMsgFromBackend = true;
+        this.changeMsgsFromBackend.emit({
+            isMsg: this.isMsgFromBackend,
+            msgs: messages,
+            aflds: affectedFields
+        });
+    }
+
+    triggerMsgFromBackendSwitchOff() {
+        this.isMsgFromBackend = false;
+        this.changeMsgFromBackend.emit({
+            isMsg: this.isMsgFromBackend,
+            msg: ""
+        });
+    }
 }

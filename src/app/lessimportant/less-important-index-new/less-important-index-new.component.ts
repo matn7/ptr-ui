@@ -27,6 +27,10 @@ export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
             "lessimportant", new LessImportantIndex()[31]);
     }
 
+    custom_sort(a, b) {
+        return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
+    }
+
     processData() {
         let dayIndex = 0;
         let extraIndex = 0;
@@ -38,8 +42,12 @@ export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
         this.dataToDisplay = null;
         this.dataToDisplay = [];
 
-        console.log("----- monthDaysArr -----");
-        console.log(this.monthDaysArr);
+        console.log("Sort retrieved from backend data based on startDate");
+        this.indexData['extraordinaryDTO'].sort(this.custom_sort);
+        this.indexData['lessImportantDTO'].sort(this.custom_sort);
+        this.indexData['lessImportant2DTO'].sort(this.custom_sort);
+        this.indexData['lessImportant3DTO'].sort(this.custom_sort);
+        this.indexData['daysDTO'].sort(this.custom_sort);
 
         for (let day of this.monthDaysArr) {
 

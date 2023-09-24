@@ -7,6 +7,8 @@ import { ErrorMessagesService } from "../../services/data/error-messages.service
 })
 export class MessageComponent implements OnInit {
   errorMessage: string;
+  errorMessages: string[];
+  affectedFields: string[];
 
   @HostBinding("class.is-open")
   isDateInFutureMsg = false;
@@ -32,6 +34,13 @@ export class MessageComponent implements OnInit {
       this.errorMessage = isActive.msg;
     });
 
+    this.errorMessageService.changeMsgsFromBackend.subscribe(message => {
+      this.isMsgFromBackend = message.isMsg;
+      this.errorMessages = message.msgs;
+      this.affectedFields = message.aflds
+    });
+
+    console.log(this.affectedFields);
   }
 
   reset() {
