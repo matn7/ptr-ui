@@ -39,8 +39,6 @@ export class MessageComponent implements OnInit {
       this.errorMessages = message.msgs;
       this.affectedFields = message.aflds
     });
-
-    console.log(this.affectedFields);
   }
 
   reset() {

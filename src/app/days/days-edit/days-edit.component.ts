@@ -9,159 +9,169 @@ import { TimeService } from "../../services/data/time.service";
 import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
 
 @Component({
-  selector: "app-days-edit",
-  templateUrl: "./days-edit.component.html"
+    selector: "app-days-edit",
+    templateUrl: "./days-edit.component.html"
 })
 export class DaysEditComponent implements OnInit {
 
-  editMode = false;
-  username: string;
-  id: number;
-  date: Date;
+    editMode = false;
+    username: string;
+    id: number;
+    date: Date;
 
-  daysForm: FormGroup;
-  
-  startDate: string;
-  postedOn: string;
-  body: string;
-  rateDay: number;
-  day: number;
-  month: number;
-  year: number;
-  errorMessage: string;
-  returnUrl: string;
+    daysForm: FormGroup;
 
-  readonly made_codes = MADE_CODES;
+    startDate: string;
+    postedOn: string;
+    body: string;
+    rateDay: number;
+    day: number;
+    month: number;
+    year: number;
+    errorMessage: string;
+    returnUrl: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    private daysService: DaysService,
-    private authService: AuthenticationService,
-    private datepipe: DatePipe,
-    private router: Router,
-    private errorService: ErrorService,
-    private timeService: TimeService
-  ) {}
+    readonly made_codes = MADE_CODES;
 
-  ngOnInit() {
+    constructor(
+        private route: ActivatedRoute,
+        private daysService: DaysService,
+        private authService: AuthenticationService,
+        private datepipe: DatePipe,
+        private router: Router,
+        private errorService: ErrorService,
+        private timeService: TimeService
+    ) { }
 
-    this.username = this.authService.getAuthenticatedUser();
+    ngOnInit() {
 
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params["id"];
-      this.editMode = params["id"] != null;
-    });
+        this.username = this.authService.getAuthenticatedUser();
 
-    if (!this.editMode) {
-      this.route.params.subscribe(
-        params => {
-          this.day = +params["day"];
-          this.month = +params["month"];
-          this.year = +params["year"];
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
+        this.route.params.subscribe((params: Params) => {
+            this.id = +params["id"];
+            this.editMode = params["id"] != null;
+        });
+
+        if (!this.editMode) {
+            this.route.params.subscribe(
+                params => {
+                    this.day = +params["day"];
+                    this.month = +params["month"];
+                    this.year = +params["year"];
+                },
+                error => {
+                    this.errorService.displayMessage(error, this.returnUrl);
+                }
+            );
+
+            if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
+                this.redirectMsg();
+                this.router.navigate([this.returnUrl]);
+            }
+
+            this.startDate = this.datepipe.transform(
+                new Date(this.year, this.month - 1, this.day),
+                START_DATE_PATTERN
+            );
+            this.postedOn = this.datepipe.transform(
+                new Date(),
+                POSTED_ON_PATTERN
+            );
         }
-      );
 
-      if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-        this.redirectMsg();
-        this.router.navigate([this.returnUrl]);
-      }
+        this.date = new Date();
+        this.month = this.date.getMonth() + 1;
+        this.year = this.date.getFullYear();
 
-      this.startDate = this.datepipe.transform(
-        new Date(this.year, this.month - 1, this.day),
-        START_DATE_PATTERN
-      );
-      this.postedOn = this.datepipe.transform(
-        new Date(),
-        POSTED_ON_PATTERN
-      );
+        this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
+        this.initForm(this.startDate, this.postedOn);
     }
 
-    this.date = new Date();
-    this.month = this.date.getMonth() + 1;
-    this.year = this.date.getFullYear();
+    onSubmit() {
+        if (this.editMode) {
+            this.daysService
+                .updateDays(this.username, this.id, this.daysForm.value)
+                .subscribe(
+                    response => {
+                        this.router.navigate(["/days/" + +response["id"] + "/view"]);
+                    },
+                    error => {
+                        this.displayError(error);
+                    }
+                );
+        } else {
+            this.daysService.createDays(this.username, this.daysForm.value).subscribe(
+                response => {
+                    this.router.navigate(["/days/" + +response["id"] + "/view"]);
+                },
+                error => {
+                    this.displayError(error);
+                }
+            );
+        }
+    }
 
-    this.returnUrl = "/days/" + this.year + "/" + this.month + "/" + this.day;
-    this.initForm(this.startDate, this.postedOn);
-  }
+    onDelete() {
+        if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
+            this.daysService.deleteDays(this.username, this.id).subscribe(
+                response => {
+                    this.router.navigate(["/important/" + this.year + "/" + this.month]);
+                },
+                error => {
+                    this.displayError(error);
+                }
+            );
+        }
+    }
 
-  onSubmit() {
-    if (this.editMode) {
-      this.daysService
-        .updateDays(this.username, this.id, this.daysForm.value)
-        .subscribe(
-          response => {
-            this.router.navigate(["/days/" + +response["id"] + "/view"]);
-          },
-          error => {
-            this.errorService.displayMessage(error, this.returnUrl);
-          }
+    private redirectMsg() {
+        this.errorService.dateInFutureMessage();
+    }
+
+
+    private initForm(startDate: string, postedOn: string) {
+        const id = this.id;
+        const body = this.body;
+        const rateDay = this.rateDay;
+
+        this.daysForm = new FormGroup({
+            id: new FormControl(id),
+            body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
+            rateDay: new FormControl(rateDay, Validators.required),
+            startDate: new FormControl(startDate, Validators.required),
+            postedOn: new FormControl(postedOn, Validators.required)
+        });
+
+        if (this.editMode) {
+            this.daysService
+                .getDays(this.username, this.id)
+                .subscribe(
+                    days => {
+                        this.daysForm.setValue({
+                            "id": this.id,
+                            "body": days.body,
+                            "rateDay": days.rateDay,
+                            "startDate": days.startDate,
+                            "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT)
+                        });
+                    },
+                    error => {
+                        this.displayError(error);
+                    }
+                );
+
+            this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+            this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
+        }
+    }
+
+    private displayError(error) {
+        this.errorService.displayBackendMessages(
+            error.errorMsg['errorMessages'],
+            error.errorMsg['affectedFields']
         );
-    } else {
-      this.daysService.createDays(this.username, this.daysForm.value).subscribe(
-        response => {
-          this.router.navigate(["/days/" + +response["id"] + "/view"]);
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
+        for (let field of error.errorMsg['affectedFields']) {
+            this.daysForm.controls[field].setErrors({ 'incorrect': true });
         }
-      );
     }
-  }
-
-  onDelete() {
-    if (this.editMode && confirm("Press a button!\nEither OK or Cancel.")) {
-      this.daysService.deleteDays(this.username, this.id).subscribe(
-        response => {
-          this.router.navigate(["/important/" + this.year + "/" + this.month]);
-        },
-        error => {
-          this.errorService.displayMessage(error, this.returnUrl);
-        }
-      );
-    }
-  }
-
-  private redirectMsg() {
-    this.errorService.dateInFutureMessage();
-  }
-
-
-  private initForm(startDate: string, postedOn: string) {
-    const id = this.id;
-    const body = this.body;
-    const rateDay = this.rateDay;
-
-    this.daysForm = new FormGroup({
-      id: new FormControl(id),
-      body: new FormControl(body, [Validators.required, Validators.maxLength(255)]),
-      rateDay: new FormControl(rateDay, Validators.required),
-      startDate: new FormControl(startDate, Validators.required),
-      postedOn: new FormControl(postedOn, Validators.required)
-    });
-
-    if (this.editMode) {
-      this.daysService
-        .getDays(this.username, this.id)
-        .subscribe(
-          days => {
-            this.daysForm.setValue({
-              "id": this.id,
-              "body": days.body,
-              "rateDay": days.rateDay,
-              "startDate": days.startDate,
-              "postedOn": this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT)
-            });
-          },
-          error => {
-            this.errorService.displayMessage(error, this.returnUrl);
-          }
-        );
-
-      this.startDate = this.datepipe.transform(new Date(), DATE_FORMAT);
-      this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
-    }
-  }
 }

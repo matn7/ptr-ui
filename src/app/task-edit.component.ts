@@ -49,13 +49,6 @@ export class TaskEditComponent implements OnInit {
     today: number;
     returnUrl: string;
 
-    // Constants to display in UI
-    readonly title_length_validator = TITLE_LENGTH_VALIDATOR;
-    readonly title_required_validator = TITLE_REQUIRED_VALIDATOR;
-    readonly body_length_validator = BODY_LENGTH_VALIDATOR;
-    readonly body_required_validator = BODY_REQUIRED_VALIDATOR;
-
-
     @Output()
     dataChangedEvent = new EventEmitter();
 
@@ -80,7 +73,6 @@ export class TaskEditComponent implements OnInit {
 
         this.returnUrl = "/" + this.target + "/" + this.year + "/" + this.month;
 
-        // Retrieve url parameters
         this.route.params.subscribe((params: Params) => {
             this.id = +params["id"];
             this.editMode = params["id"] != null;
@@ -103,7 +95,7 @@ export class TaskEditComponent implements OnInit {
                     );
                 },
                 error => {
-                    this.errorService.displayMessage(error, this.returnUrl);
+                    this.displayError(error);
                 }
             );
 
@@ -119,8 +111,6 @@ export class TaskEditComponent implements OnInit {
 
     onSubmit() {
         if (this.editMode) {
-            // Edit
-            console.log("Message PATH (1)");
             this.taskService
                 .updateTask(
                     this.username,
@@ -136,12 +126,10 @@ export class TaskEditComponent implements OnInit {
                         ]);
                     },
                     error => {
-                        console.log("Message PATH (4)");
-                        this.errorService.displayMessage(error, this.returnUrl);
+                        this.displayError(error);
                     }
                 );
         } else {
-            // New
             this.taskService
                 .createTask(this.username, this.target, this.num, this.importantForm.value)
                 .subscribe(
@@ -151,7 +139,7 @@ export class TaskEditComponent implements OnInit {
                         ]);
                     },
                     error => {
-                        this.errorService.displayMessage(error, this.returnUrl);
+                        this.displayError(error);
                     }
                 );
         }
@@ -168,7 +156,7 @@ export class TaskEditComponent implements OnInit {
                         ]);
                     },
                     error => {
-                        this.errorService.displayMessage(error, this.returnUrl);
+                        this.displayError(error);
                     }
                 );
         }
@@ -184,7 +172,6 @@ export class TaskEditComponent implements OnInit {
         const body = this.body;
         const made = this.made;
 
-        // Create form with Validators
         this.importantForm = new FormGroup({
             id: new FormControl(id),
             title: new FormControl(title, [Validators.required, Validators.maxLength(40)]),
@@ -211,7 +198,7 @@ export class TaskEditComponent implements OnInit {
                         });
                     },
                     error => {
-                        this.errorService.displayMessage(error, this.returnUrl);
+                        this.displayError(error);
                     }
                 );
 
@@ -219,5 +206,14 @@ export class TaskEditComponent implements OnInit {
             this.postedOn = this.datepipe.transform(new Date(), DETAIL_DATE_FORMAT);
         }
     }
-    // "made": MADE_CODES[important.made],
+
+    private displayError(error) {
+        this.errorService.displayBackendMessages(
+            error.errorMsg['errorMessages'],
+            error.errorMsg['affectedFields']
+        );
+        for (let field of error.errorMsg['affectedFields']) {
+            this.importantForm.controls[field].setErrors({'incorrect': true});
+        }
+    }
 }

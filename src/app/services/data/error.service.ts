@@ -3,35 +3,35 @@ import { HandleErrorsService } from "../handle-errors.service";
 import { ErrorMessagesService } from "./error-messages.service";
 
 @Injectable({
-  providedIn: "root"
+    providedIn: "root"
 })
 export class ErrorService {
-  errorMessage: string;
+    errorMessage: string;
 
-  constructor(
-    private handleError: HandleErrorsService,
-    private errorMessageService: ErrorMessagesService
-  ) {}
+    constructor(
+        private handleError: HandleErrorsService,
+        private errorMessageService: ErrorMessagesService
+    ) { }
 
-  displayMessage(error, returnUrl) {
-    this.errorMessage = this.handleError.displayErrorMessage(
-      error.errorStatus,
-      error.errorMsg,
-      returnUrl
-    );
-    
-    this.errorMessageService.triggerMsgFromBackend(this.errorMessage);
-  }
+    displayMessage(error, returnUrl) {
+        this.errorMessage = this.handleError.displayErrorMessage(
+            error.errorStatus,
+            error.errorMsg,
+            returnUrl
+        );
 
-  displayBackendMessage(message: string) {
-    this.errorMessageService.triggerMsgFromBackend(message);
-  }
+        this.errorMessageService.triggerMsgFromBackend(this.errorMessage);
+    }
 
-  displayBackendMessages(messages: string[], affectedFields: string[]) {
-    this.errorMessageService.triggerMsgsFromBackend(messages, affectedFields);
-  }
+    displayBackendMessage(message: string) {
+        this.errorMessageService.triggerMsgFromBackend(message);
+    }
 
-  dateInFutureMessage() {
-    this.errorMessageService.triggerDateInFutureMsg();
-  }
+    displayBackendMessages(messages: string[], affectedFields: string[]) {
+        this.errorMessageService.triggerMsgsFromBackend(messages, affectedFields);
+    }
+
+    dateInFutureMessage() {
+        this.errorMessageService.triggerDateInFutureMsg();
+    }
 }
