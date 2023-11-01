@@ -6,6 +6,7 @@ import { HandleErrorsService } from "../../services/handle-errors.service";
 import { USER_CREATED_MSG, USERNAME_LENGTH_VALIDATOR, USERNAME_REQUIRED_VALIDATOR, PASSWORD_LENGTH_VALIDATOR, PASSWORD_REQUIRED_VALIDATOR, USERNAME_DUPLICATED_VALIDATOR, EMAIL_REQUIRED_VALIDATOR, EMAIL_INVALID_VALIDATOR, FIRSTNAME_REQUIRED_VALIDATOR, LASTNAME_REQUIRED_VALIDATOR, PASSWORD_PATTERN_VALIDATOR } from "../../app.constants";
 import { ErrorService } from "../../services/data/error.service";
 import { MatchPassword } from "../validators/match-password";
+import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
     selector: "app-registration",
@@ -26,26 +27,11 @@ export class RegistrationComponent implements OnInit {
 
     registrationForm: FormGroup;
 
-    readonly username_length_validator = USERNAME_LENGTH_VALIDATOR;
-    readonly username_required_validator = USERNAME_REQUIRED_VALIDATOR;
-    readonly username_duplicated_validator = USERNAME_DUPLICATED_VALIDATOR;
-
-    readonly password_length_validator = PASSWORD_LENGTH_VALIDATOR;
-    readonly password_required_validator = PASSWORD_REQUIRED_VALIDATOR;
-    readonly password_pattern_validator = PASSWORD_PATTERN_VALIDATOR;
-
-    readonly email_required_validator = EMAIL_REQUIRED_VALIDATOR;
-    readonly email_invalid_validator = EMAIL_INVALID_VALIDATOR;
-
-    readonly firstname_required_validator = FIRSTNAME_REQUIRED_VALIDATOR;
-    readonly lastname_required_validator = LASTNAME_REQUIRED_VALIDATOR;
-
     constructor(
         private matchPassword: MatchPassword,
         private registrationService: RegistrationService,
-        private handleError: HandleErrorsService,
         private router: Router,
-        private errorService: ErrorService
+        private messagesService: MessagesService
     ) { }
 
     ngOnInit() {
@@ -60,8 +46,9 @@ export class RegistrationComponent implements OnInit {
             .subscribe(
                 response => {
                     this.router.navigate(["/login"]);
-                    this.errorService.displayBackendMessage(
-                        USER_CREATED_MSG
+                    this.messages.push(USER_CREATED_MSG);
+                    this.messagesService.triggerMsgsFromBackend(
+                        this.messages
                     );
                 },
                 error => {
@@ -70,9 +57,8 @@ export class RegistrationComponent implements OnInit {
                     console.log("*******************");
                     console.log(error.errorMsg['errorMessages']);
                     // Get registration error message in format
-                    this.errorService.displayBackendMessages(
-                        error.errorMsg['errorMessages'],
-                        error.errorMsg['affectedFields']
+                    this.messagesService.triggerMsgsFromBackend(
+                        error.errorMsg['errorMessages']
                     );
 
                     for (let field of error.errorMsg['affectedFields']) {

@@ -1,6 +1,11 @@
-FROM node:10
+FROM node
+
 WORKDIR "/app"
+
 COPY ./package.json ./
+
 RUN npm install
-COPY . .
-CMD ["npm","run","start"]
+
+COPY . /app
+
+CMD ["npm","start"]

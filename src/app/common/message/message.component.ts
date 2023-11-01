@@ -1,48 +1,47 @@
 import { Component, OnInit, HostBinding } from "@angular/core";
-import { ErrorMessagesService } from "../../services/data/error-messages.service";
+import { MessagesService } from "../../services/data/messages.service";
 
 @Component({
-  selector: "app-message",
-  templateUrl: "./message.component.html"
+    selector: "app-message",
+    templateUrl: "./message.component.html"
 })
 export class MessageComponent implements OnInit {
-  errorMessage: string;
-  errorMessages: string[];
-  affectedFields: string[];
+    errorMessage: string;
+    messages: string[];
 
-  @HostBinding("class.is-open")
-  isDateInFutureMsg = false;
+    @HostBinding("class.is-open")
+    displayMessage = false;
 
-  @HostBinding("class.is-open")
-  isMsgFromBackend = false;
+    constructor(
+        private messagesService: MessagesService
+    ) { }
 
-  @HostBinding("class.is-open")
-  isHeaderClicked = false;
+    ngOnInit() {
+        this.messagesService.changeUiMessages.subscribe(message => {
+            console.log("changeUiMessages");
+            this.displayMessage = true;
+            this.messages = message.msgs
+        });
 
-  constructor(
-    private errorMessageService: ErrorMessagesService
-  ) {}
+        this.messagesService.changeDateInFutureMsg.subscribe(isActive => {
+            console.log("changeDateInFutureMsg");
+            this.displayMessage = true;
+            this.messages = ["Date in future"];
+            console.log("error message: " + this.errorMessage);
+            console.log("display message: " + this.displayMessage);
+        });
 
-  ngOnInit() {
-    this.errorMessageService.changeDateInFutureMsg.subscribe(isActive => {
-      this.isDateInFutureMsg = isActive;
-      this.errorMessage = "Date in future";
-    });
+        this.messagesService.changeMsgsFromBackend.subscribe(message => {
+            console.log("changeMsgsFromBackend v2");
+            console.log(JSON.stringify(message));
+            this.displayMessage = true;
+            // this.messages.push(message["msgs"]);
+            this.messages = message.msgs;
+            console.log("-----> " + this.messages);
+        });
+    }
 
-    this.errorMessageService.changeMsgFromBackend.subscribe(isActive => {
-      this.isMsgFromBackend = isActive.isMsg;
-      this.errorMessage = isActive.msg;
-    });
-
-    this.errorMessageService.changeMsgsFromBackend.subscribe(message => {
-      this.isMsgFromBackend = message.isMsg;
-      this.errorMessages = message.msgs;
-      this.affectedFields = message.aflds
-    });
-  }
-
-  reset() {
-    this.isDateInFutureMsg = false;
-    this.isMsgFromBackend = false;
-  }
+    reset() {
+        this.displayMessage = false;
+    }
 }

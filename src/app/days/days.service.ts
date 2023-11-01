@@ -41,9 +41,9 @@ export class DaysService {
       .catch(this.handleErrorService.handleError);
   }
 
-  updateDays(username, id, resource) {
+  updateDays(username, resource) {
     return this.http
-      .put<Days>(`${API_URL}/${API_VERSION}/users/${username}/days/${id}`, resource)
+      .put<Days>(`${API_URL}/${API_VERSION}/users/${username}/days`, resource)
       .catch(this.handleErrorService.handleError);
   }
 

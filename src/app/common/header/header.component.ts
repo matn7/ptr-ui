@@ -1,9 +1,9 @@
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output
 } from "@angular/core";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { Router, ActivatedRoute, RouterEvent, NavigationStart, NavigationEnd } from "@angular/router";
@@ -15,48 +15,48 @@ import { Subscription } from "rxjs";
 
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html"
+    selector: "app-header",
+    templateUrl: "./header.component.html"
 })
 export class HeaderComponent implements OnInit {
-  day: number;
-  month: number;
-  year: number;
-  date: Date;
-  username: string;
-  startDate: string;
-  endDate: string;
-  activeUrl: string;
+    day: number;
+    month: number;
+    year: number;
+    date: Date;
+    username: string;
+    startDate: string;
+    endDate: string;
+    activeUrl: string;
 
-  subscription: Subscription;
+    subscription: Subscription;
 
-  @Input()
-  second: ImportantEditComponent;
+    @Input()
+    second: ImportantEditComponent;
 
-  constructor(
-    public authService: AuthenticationService,
-    private datepipe: DatePipe,
-    private router: Router
-  ) {
-    this.router.events.pipe(
-      filter(event => event instanceof RouterEvent)
-    ).subscribe((event: RouterEvent) => {
-      if(event instanceof NavigationStart || event instanceof NavigationEnd) {
-          let active = event.url.split("/")[1];
-          this.activeUrl = active;
-          sessionStorage.setItem(ACTIVE_PATH, active);
-      }
-    });
-  }
+    constructor(
+        public authService: AuthenticationService,
+        private datepipe: DatePipe,
+        private router: Router
+    ) {
+        this.router.events.pipe(
+            filter(event => event instanceof RouterEvent)
+        ).subscribe((event: RouterEvent) => {
+            if (event instanceof NavigationStart || event instanceof NavigationEnd) {
+                let active = event.url.split("/")[1];
+                this.activeUrl = active;
+                sessionStorage.setItem(ACTIVE_PATH, active);
+            }
+        });
+    }
 
-  ngOnInit() {
-    console.log('ngOnInit');
-    this.date = new Date();
-    this.day = this.date.getDate();
-    this.month = this.date.getMonth() + 1;
-    this.year = this.date.getFullYear();
-    this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
-    this.endDate = this.datepipe.transform(new Date(), DATE_FORMAT);  
-  }
+    ngOnInit() {
+        console.log('ngOnInit');
+        this.date = new Date();
+        this.day = this.date.getDate();
+        this.month = this.date.getMonth() + 1;
+        this.year = this.date.getFullYear();
+        this.startDate = this.datepipe.transform(new Date(this.year, this.month - 1, this.day), DATE_FORMAT);
+        this.endDate = this.datepipe.transform(new Date(), DATE_FORMAT);
+    }
 
 }

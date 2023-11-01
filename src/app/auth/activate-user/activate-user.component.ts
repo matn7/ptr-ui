@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RegistrationService } from "../registration.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ErrorService } from "../../services/data/error.service";
+import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
   selector: "app-activate-user",
@@ -17,7 +18,8 @@ export class ActivateUserComponent implements OnInit {
     private registrationService: RegistrationService,
     private router: Router,
     private route: ActivatedRoute,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private messagesService: MessagesService
   ) {}
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class ActivateUserComponent implements OnInit {
     this.registrationService.activateUser(this.id, this.token).subscribe(
       response => {
         this.router.navigate(["/login"]);
-        this.errorService.displayBackendMessage(
+        this.messagesService.triggerMsgsFromBackend(
           response["message"]
         );
       },

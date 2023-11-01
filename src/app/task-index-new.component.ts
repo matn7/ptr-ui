@@ -1,5 +1,5 @@
 import { OnInit, Input, Directive } from "@angular/core";
-import { YELLOW_COMPLETION_STYLES, GREEN_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
+import { AMBER_COMPLETION_STYLES, YELLOW_COMPLETION_STYLES, GREEN_COMPLETION_STYLES, BLUE_COMPLETION_STYLES } from "./app.constants";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "./auth/authentication.service";
 import { TimeService } from "./services/data/time.service";
@@ -26,6 +26,7 @@ export abstract class TaskIndexNewComponent implements OnInit {
     date: Date;
     target: string;
 
+    readonly amber_navigate_styles = AMBER_COMPLETION_STYLES;
     readonly yellow_completion_styles = YELLOW_COMPLETION_STYLES;
     readonly green_completion_styles = GREEN_COMPLETION_STYLES;
     readonly blue_completion_styles = BLUE_COMPLETION_STYLES;

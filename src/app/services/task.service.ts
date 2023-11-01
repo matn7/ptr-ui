@@ -41,13 +41,13 @@ export class TaskService {
       .catch(this.handleErrorService.handleError);
   }
 
-  updateTask(username, target, num, id, resource) {
+  updateTask(username, target, num, resource) {
     // JSON.stringify({ isRead: true })
     const headers = new Headers({ "Content-Type": "application/json" });
     console.log("Message PATH (2)");
     return this.http
       .put<Task>(
-        `${API_URL}/${API_VERSION}/users/${username}/${target}/${num}/${id}`,
+        `${API_URL}/${API_VERSION}/users/${username}/${target}/${num}`,
         resource
       )
       .catch(this.handleErrorService.handleError);

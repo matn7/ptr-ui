@@ -4,9 +4,9 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { ExtraordinaryService } from "../extraordinary.service";
 import { AuthenticationService } from "../../auth/authentication.service";
-import { ErrorService } from "../../services/data/error.service";
 import { DETAIL_DATE_FORMAT, DATE_FORMAT } from "../../app.constants";
 import { TimeService } from "src/app/services/data/time.service";
+import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
     selector: "app-extraordinary-edit",
@@ -43,7 +43,7 @@ export class ExtraordinaryEditComponent implements OnInit {
         private authService: AuthenticationService,
         private router: Router,
         private timeService: TimeService,
-        private errorService: ErrorService
+        private messagesService: MessagesService
     ) { }
 
     ngOnInit() {
@@ -80,10 +80,7 @@ export class ExtraordinaryEditComponent implements OnInit {
             );
 
             // Check for invalid date
-            if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-                this.errorService.dateInFutureMessage();
-                this.router.navigate([this.returnUrl]);
-            }
+            this.timeService.checkDateInFuture(this.year, this.month, this.day, this.returnUrl);
         }
         this.initForm(this.startDate, this.postedOn);
 
@@ -94,7 +91,6 @@ export class ExtraordinaryEditComponent implements OnInit {
             this.extraordinaryService
                 .updateExtraordinary(
                     this.username,
-                    this.id,
                     this.extraordinaryForm.value
                 )
                 .subscribe(
@@ -179,12 +175,6 @@ export class ExtraordinaryEditComponent implements OnInit {
     }
 
     private displayError(error) {
-        this.errorService.displayBackendMessages(
-            error.errorMsg['errorMessages'],
-            error.errorMsg['affectedFields']
-        );
-        for (let field of error.errorMsg['affectedFields']) {
-            this.extraordinaryForm.controls[field].setErrors({ 'incorrect': true });
-        }
+        this.messagesService.displayError(error, this.extraordinaryForm);
     }
 }

@@ -8,6 +8,7 @@ import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { TimeService } from "../../services/data/time.service";
 import { ErrorService } from "../../services/data/error.service";
+import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
     selector: "app-less-important-edit",
@@ -21,9 +22,9 @@ export class LessImportantEditComponent extends TaskEditComponent {
         authService: AuthenticationService,
         router: Router,
         timeService: TimeService,
-        errorService: ErrorService
+        messagesService: MessagesService
     ) {
-        super(route, taskService, datepipe, authService, router, timeService, errorService);
+        super(route, taskService, datepipe, authService, router, timeService, messagesService);
         this.setTarget("lessimportant");
     }
 }

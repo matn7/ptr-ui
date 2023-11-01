@@ -1,7 +1,5 @@
 import {
     Component,
-    Inject,
-    Input,
     OnInit,
     Output
 } from "@angular/core";
@@ -11,13 +9,11 @@ import { DatePipe } from "@angular/common";
 import { TaskService } from "./services/task.service";
 import { AuthenticationService } from "./auth/authentication.service";
 import { TimeService } from "./services/data/time.service";
-import { ErrorService } from "./services/data/error.service";
 import {
-    MADE_CODES, TITLE_LENGTH_VALIDATOR, TITLE_REQUIRED_VALIDATOR,
-    BODY_LENGTH_VALIDATOR, BODY_REQUIRED_VALIDATOR, DETAIL_DATE_FORMAT, DATE_FORMAT
+    DETAIL_DATE_FORMAT, DATE_FORMAT, VALID_NUMS
 } from "./app.constants";
 import { EventEmitter } from "events";
-import { HomeComponent } from "./home/home.component";
+import { MessagesService } from "./services/data/messages.service";
 
 @Component({
     template: ''
@@ -36,6 +32,7 @@ export class TaskEditComponent implements OnInit {
     username: string;
     startDate: string;
     postedOn: string;
+    messages: string[] = [];
 
     // Task number fields number [1,2,3], target [important, lessimportant] 
     num: number;
@@ -59,7 +56,7 @@ export class TaskEditComponent implements OnInit {
         private authService: AuthenticationService,
         private router: Router,
         private timeService: TimeService,
-        private errorService: ErrorService,
+        private messagesService: MessagesService
     ) {
     }
 
@@ -77,6 +74,8 @@ export class TaskEditComponent implements OnInit {
             this.id = +params["id"];
             this.editMode = params["id"] != null;
             this.num = +params["num"];
+        }, error => {
+            this.displayError(error);
         });
 
         if (!this.editMode) {
@@ -100,10 +99,18 @@ export class TaskEditComponent implements OnInit {
             );
 
             // Check for invalid date
-            if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-                this.errorService.dateInFutureMessage();
-                this.router.navigate([this.returnUrl]);
-            }
+            this.timeService.checkDateInFuture(this.year, this.month, this.day, this.returnUrl);
+        }
+        console.log("==================");
+        console.log(this.id);
+        console.log(this.num);
+        console.log(VALID_NUMS[this.num]);
+        if (VALID_NUMS[this.num] == undefined) {
+            console.log("Caught URL modyfication");
+            this.messages.push("Please do not change URL bar");
+            this.messagesService.emitUiMessage(this.messages);
+            this.router.navigate([this.returnUrl]);
+            return;
         }
         // Initialize hidden form fields
         this.initForm(this.startDate, this.postedOn);
@@ -116,7 +123,6 @@ export class TaskEditComponent implements OnInit {
                     this.username,
                     this.target,
                     this.num,
-                    this.id,
                     this.importantForm.value
                 )
                 .subscribe(
@@ -171,6 +177,7 @@ export class TaskEditComponent implements OnInit {
         const title = this.title;
         const body = this.body;
         const made = this.made;
+        console.log("initForm");
 
         this.importantForm = new FormGroup({
             id: new FormControl(id),
@@ -182,6 +189,7 @@ export class TaskEditComponent implements OnInit {
         });
 
         if (this.editMode) {
+
             this.taskService
                 .getTask(this.username, this.target, this.num, this.id)
                 .subscribe(
@@ -208,12 +216,6 @@ export class TaskEditComponent implements OnInit {
     }
 
     private displayError(error) {
-        this.errorService.displayBackendMessages(
-            error.errorMsg['errorMessages'],
-            error.errorMsg['affectedFields']
-        );
-        for (let field of error.errorMsg['affectedFields']) {
-            this.importantForm.controls[field].setErrors({'incorrect': true});
-        }
+        this.messagesService.displayError(error, this.importantForm);
     }
 }

@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { MessagesService } from "./messages.service";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: "root"
@@ -7,16 +9,28 @@ export class TimeService {
     selectedDate: Date;
     today: number;
 
-    constructor() { }
+    constructor(
+        private messagesService: MessagesService,
+        private router: Router) { }
 
-    checkDateInFuture(year: number, month: number, day: number) {
+    checkDateInFuture(year: number, month: number, day: number, returnUrl: string) {
         this.selectedDate = new Date();
         this.selectedDate.setFullYear(year);
         this.selectedDate.setMonth(month - 1);
         this.selectedDate.setDate(day);
         this.today = Date.now();
 
-        return !(this.today >= this.selectedDate.getTime());
+        if (!(this.today >= this.selectedDate.getTime())) {
+            this.handleErrorMessage(returnUrl);
+        }
+    }
+
+    private handleErrorMessage(returnUrl: string) {
+        console.log("Handle Error Message in TimeService");
+        this.messagesService.triggerMsgsFromBackend(
+            ["Date in future"]
+        );
+        this.router.navigate([returnUrl]);
     }
 
     getActiveDay(month: number, year: number, date: Date) {

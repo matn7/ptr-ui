@@ -1,37 +1,29 @@
 import { Injectable } from "@angular/core";
 import { HandleErrorsService } from "../handle-errors.service";
-import { ErrorMessagesService } from "./error-messages.service";
+import { MessagesService } from "./messages.service";
 
 @Injectable({
     providedIn: "root"
 })
 export class ErrorService {
     errorMessage: string;
+    errorMessages: string[];
 
     constructor(
         private handleError: HandleErrorsService,
-        private errorMessageService: ErrorMessagesService
+        private messagesService: MessagesService
     ) { }
 
     displayMessage(error, returnUrl) {
-        this.errorMessage = this.handleError.displayErrorMessage(
+        this.errorMessages = this.handleError.displayErrorMessage(
             error.errorStatus,
             error.errorMsg,
             returnUrl
         );
+        console.log("displayMessage in ErrorService");
+        console.log(JSON.stringify(this.errorMessages));
 
-        this.errorMessageService.triggerMsgFromBackend(this.errorMessage);
+        this.messagesService.triggerMsgsFromBackend(this.errorMessages);
     }
 
-    displayBackendMessage(message: string) {
-        this.errorMessageService.triggerMsgFromBackend(message);
-    }
-
-    displayBackendMessages(messages: string[], affectedFields: string[]) {
-        this.errorMessageService.triggerMsgsFromBackend(messages, affectedFields);
-    }
-
-    dateInFutureMessage() {
-        this.errorMessageService.triggerDateInFutureMsg();
-    }
 }

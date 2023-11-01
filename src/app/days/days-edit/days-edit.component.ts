@@ -4,9 +4,9 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../auth/authentication.service";
-import { ErrorService } from "../../services/data/error.service";
 import { TimeService } from "../../services/data/time.service";
 import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
+import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
     selector: "app-days-edit",
@@ -39,7 +39,7 @@ export class DaysEditComponent implements OnInit {
         private authService: AuthenticationService,
         private datepipe: DatePipe,
         private router: Router,
-        private errorService: ErrorService,
+        private messagesService: MessagesService,
         private timeService: TimeService
     ) { }
 
@@ -60,14 +60,11 @@ export class DaysEditComponent implements OnInit {
                     this.year = +params["year"];
                 },
                 error => {
-                    this.errorService.displayMessage(error, this.returnUrl);
+                    this.displayError(error);
                 }
             );
 
-            if (this.timeService.checkDateInFuture(this.year, this.month, this.day)) {
-                this.redirectMsg();
-                this.router.navigate([this.returnUrl]);
-            }
+            this.timeService.checkDateInFuture(this.year, this.month, this.day, this.returnUrl);
 
             this.startDate = this.datepipe.transform(
                 new Date(this.year, this.month - 1, this.day),
@@ -90,7 +87,7 @@ export class DaysEditComponent implements OnInit {
     onSubmit() {
         if (this.editMode) {
             this.daysService
-                .updateDays(this.username, this.id, this.daysForm.value)
+                .updateDays(this.username, this.daysForm.value)
                 .subscribe(
                     response => {
                         this.router.navigate(["/days/" + +response["id"] + "/view"]);
@@ -123,11 +120,6 @@ export class DaysEditComponent implements OnInit {
             );
         }
     }
-
-    private redirectMsg() {
-        this.errorService.dateInFutureMessage();
-    }
-
 
     private initForm(startDate: string, postedOn: string) {
         const id = this.id;
@@ -166,12 +158,6 @@ export class DaysEditComponent implements OnInit {
     }
 
     private displayError(error) {
-        this.errorService.displayBackendMessages(
-            error.errorMsg['errorMessages'],
-            error.errorMsg['affectedFields']
-        );
-        for (let field of error.errorMsg['affectedFields']) {
-            this.daysForm.controls[field].setErrors({ 'incorrect': true });
-        }
+        this.messagesService.displayError(error, this.daysForm);
     }
 }

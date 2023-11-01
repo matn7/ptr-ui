@@ -48,10 +48,10 @@ export class ExtraordinaryService {
       .catch(this.handleErrorService.handleError);
   }
 
-  updateExtraordinary(username, id, resource) {
+  updateExtraordinary(username, resource) {
     return this.http
       .put<Extraordinary>(
-        `${API_URL}/${API_VERSION}/users/${username}/extraordinary/${id}`,
+        `${API_URL}/${API_VERSION}/users/${username}/extraordinary`,
         resource
       )
       .catch(this.handleErrorService.handleError);

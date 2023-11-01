@@ -17,7 +17,7 @@ import { AuthenticationService } from "./auth/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
 import { RegistrationService } from "./auth/registration.service";
 import { TimeService } from "./services/data/time.service";
-import { ErrorMessagesService } from "./services/data/error-messages.service";
+import { MessagesService } from "./services/data/messages.service";
 import { PasswordResetComponent } from "./auth/password-reset/password-reset.component";
 import { PasswordChangeComponent } from "./auth/password-change/password-change.component";
 import { RouterModule } from "@angular/router";
@@ -74,7 +74,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HandleErrorsService,
     AuthenticationService,
     TimeService,
-    ErrorMessagesService,
+    MessagesService,
     UserService,
     AdminUserService,
     DatePipe,

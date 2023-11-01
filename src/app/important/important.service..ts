@@ -119,6 +119,7 @@ export class ImportantService implements TaskServiceInterface {
   ) {}
 
   getTaskIndexData(username: string, target: string, year: number, month: number) {
+    console.log("ImportantService");
     return this.http.get<ImportantIndex[]>(
       `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
     ).catch(this.handleErrorService.handleError);;
