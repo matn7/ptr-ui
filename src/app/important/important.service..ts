@@ -7,121 +7,103 @@ import { IndexData } from "../services/index-class-interface";
 
 // Data structure representing each day entry in INDEX page.
 export class ImportantIndexDayData {
-  _extraordinaryDTO: ExtraordinaryDTO;
-  _daysDTO: DaysDTO;
-  _importantDTO: ImportantDTO;
-  _important2DTO: Important2DTO;
-  _important3DTO: Important3DTO;
+    _extraordinaryDTO: ExtraordinaryDTO;
+    _daysDTO: DaysDTO;
+    _taskDTO: TaskDTO;
+    _task2DTO: TaskDTO;
+    _task3DTO: TaskDTO;
 
-  set extraordinaryDTO(extraordinaryDTO: ExtraordinaryDTO) {
-    this._extraordinaryDTO = extraordinaryDTO;
-  }
+    set extraordinaryDTO(extraordinaryDTO: ExtraordinaryDTO) {
+        this._extraordinaryDTO = extraordinaryDTO;
+    }
 
-  set daysDTO(daysDTO: DaysDTO) {
-    this._daysDTO = daysDTO;
-  }
+    set daysDTO(daysDTO: DaysDTO) {
+        this._daysDTO = daysDTO;
+    }
 
-  set importantDTO(importantDTO: ImportantDTO) {
-    this._importantDTO = importantDTO;
-  }
+    set taskDTO(taskDTO: TaskDTO) {
+        this._taskDTO = taskDTO;
+    }
 
-  set important2DTO(important2DTO: Important2DTO) {
-    this._important2DTO = important2DTO;
-  }
+    set task2DTO(task2DTO: TaskDTO) {
+        this._task2DTO = task2DTO;
+    }
 
-  set important3DTO(important3DTO: Important3DTO) {
-    this._important3DTO = important3DTO;
-  }
+    set task3DTO(task3DTO: TaskDTO) {
+        this._task3DTO = task3DTO;
+    }
 
-  get extraordinaryDTO() {
-    return this._extraordinaryDTO;
-  }
+    get extraordinaryDTO() {
+        return this._extraordinaryDTO;
+    }
 
-  get daysDTO() {
-    return this._daysDTO;
-  }
+    get daysDTO() {
+        return this._daysDTO;
+    }
 
-  get importantDTO() {
-    return this._importantDTO;
-  }
+    get taskDTO() {
+        return this._taskDTO;
+    }
 
-  get important2DTO() {
-    return this._important2DTO;
-  }
+    get task2DTO() {
+        return this._task2DTO;
+    }
 
-  get important3DTO() {
-    return this._important3DTO;
-  }
+    get task3DTO() {
+        return this._task3DTO;
+    }
 }
 
 // Data Structure stored each table entry - displayed on INDEX page.
 export class ImportantIndex implements IndexData {
-  extraordinaryDTO: ExtraordinaryDTO;
-  daysDTO: DaysDTO;
-  importantDTO: ImportantDTO;
-  important2DTO: Important2DTO;
-  important3DTO: Important3DTO;
+    extraordinaryDTO: ExtraordinaryDTO;
+    daysDTO: DaysDTO;
+    taskDTO: TaskDTO;
+    task2DTO: TaskDTO;
+    task3DTO: TaskDTO;
 
-  constructor() {}
+    constructor() { }
 }
 
 export interface ExtraordinaryDTO {
-  id: number;
-  title: string;
-  body: string;
+    id: number;
+    title: string;
+    body: string;
 }
 
 export interface DaysDTO {
-  id: number;
-  body: string;
-  rateDay: number;
-  startDate: number[];
-  postedOn: number[];
+    id: number;
+    body: string;
+    rateDay: number;
+    startDate: number[];
+    postedOn: number[];
 }
 
-export interface ImportantDTO {
-  id: number;
-  title: string;
-  body: string;
-  made: number;
-  postedOn: number[];
-  startDate: number[];
-}
-
-export interface Important2DTO {
-  id: number;
-  title: string;
-  body: string;
-  made: number;
-  postedOn: number[];
-  startDate: number[];
-}
-
-export interface Important3DTO {
-  id: number;
-  title: string;
-  body: string;
-  made: number;
-  postedOn: number[];
-  startDate: number[];
+export interface TaskDTO {
+    id: number;
+    title: string;
+    body: string;
+    made: number;
+    postedOn: number[];
+    startDate: number[];
 }
 
 @Injectable({
-  providedIn: "root"
+    providedIn: "root"
 })
 export class ImportantService implements TaskServiceInterface {
-  month: number;
-  year: number;
+    month: number;
+    year: number;
 
-  constructor(
-    private http: HttpClient,
-    private handleErrorService: HandleErrorsService
-  ) {}
+    constructor(
+        private http: HttpClient,
+        private handleErrorService: HandleErrorsService
+    ) { }
 
-  getTaskIndexData(username: string, target: string, year: number, month: number) {
-    console.log("ImportantService");
-    return this.http.get<ImportantIndex[]>(
-      `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
-    ).catch(this.handleErrorService.handleError);;
-  }
+    getTaskIndexData(username: string, target: string, year: number, month: number) {
+        console.log("ImportantService");
+        return this.http.get<ImportantIndex[]>(
+            `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
+        ).catch(this.handleErrorService.handleError);;
+    }
 }

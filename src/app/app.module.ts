@@ -17,6 +17,7 @@ import { AuthenticationService } from "./auth/authentication.service";
 import { HandleErrorsService } from "./services/handle-errors.service";
 import { RegistrationService } from "./auth/registration.service";
 import { TimeService } from "./services/data/time.service";
+import { CommonService } from "./services/common-service";
 import { MessagesService } from "./services/data/messages.service";
 import { PasswordResetComponent } from "./auth/password-reset/password-reset.component";
 import { PasswordChangeComponent } from "./auth/password-change/password-change.component";
@@ -34,7 +35,7 @@ import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { MessageComponent } from "./common/message/message.component";
-import { HighchartsChartModule } from 'highcharts-angular';
+// import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -63,8 +64,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     BrowserAnimationsModule,
     MatComponentsModule,
     SharedModule,
-    AuthModule,
-    HighchartsChartModule
+    AuthModule
+    // HighchartsChartModule
   ],
   providers: [
     DaysService,
@@ -74,6 +75,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HandleErrorsService,
     AuthenticationService,
     TimeService,
+    CommonService,
     MessagesService,
     UserService,
     AdminUserService,

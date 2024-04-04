@@ -6,119 +6,101 @@ import { TaskServiceInterface } from "../services/task.service-interface"
 import { IndexData } from "../services/index-class-interface";
 
 export class LessImportantIndexDayData {
-  _extraordinaryDTO: ExtraordinaryDTO;
-  _daysDTO: DaysDTO;
-  _lessImportantDTO: LessImportantDTO;
-  _lessImportant2DTO: LessImportant2DTO;
-  _lessImportant3DTO: LessImportant3DTO;
+    _extraordinaryDTO: ExtraordinaryDTO;
+    _daysDTO: DaysDTO;
+    _taskDTO: TaskDTO;
+    _task2DTO: TaskDTO;
+    _task3DTO: TaskDTO;
 
-  set extraordinaryDTO(extraordinaryDTO: ExtraordinaryDTO) {
-    this._extraordinaryDTO = extraordinaryDTO;
-  }
+    set extraordinaryDTO(extraordinaryDTO: ExtraordinaryDTO) {
+        this._extraordinaryDTO = extraordinaryDTO;
+    }
 
-  set daysDTO(daysDTO: DaysDTO) {
-    this._daysDTO = daysDTO;
-  }
+    set daysDTO(daysDTO: DaysDTO) {
+        this._daysDTO = daysDTO;
+    }
 
-  set lessImportantDTO(lessImportantDTO: LessImportantDTO) {
-    this._lessImportantDTO = lessImportantDTO;
-  }
+    set taskDTO(taskDTO: TaskDTO) {
+        this._taskDTO = taskDTO;
+    }
 
-  set lessImportant2DTO(lessImportant2DTO: LessImportant2DTO) {
-    this._lessImportant2DTO = lessImportant2DTO;
-  }
+    set task2DTO(task2DTO: TaskDTO) {
+        this._task2DTO = task2DTO;
+    }
 
-  set lessImportant3DTO(lessImportant3DTO: LessImportant3DTO) {
-    this._lessImportant3DTO = lessImportant3DTO;
-  }
+    set task3DTO(task3DTO: TaskDTO) {
+        this._task3DTO = task3DTO;
+    }
 
-  get extraordinaryDTO() {
-    return this._extraordinaryDTO;
-  }
+    get extraordinaryDTO() {
+        return this._extraordinaryDTO;
+    }
 
-  get daysDTO() {
-    return this._daysDTO;
-  }
+    get daysDTO() {
+        return this._daysDTO;
+    }
 
-  get lessImportantDTO() {
-    return this._lessImportantDTO;
-  }
+    get taskDTO() {
+        return this._taskDTO;
+    }
 
-  get lessImportant2DTO() {
-    return this._lessImportant2DTO;
-  }
+    get task2DTO() {
+        return this._task2DTO;
+    }
 
-  get lessImportant3DTO() {
-    return this._lessImportant3DTO;
-  }
+    get task3DTO() {
+        return this._task3DTO;
+    }
 }
 
 export class LessImportantIndex implements IndexData {
-  extraordinaryDTO: ExtraordinaryDTO;
-  daysDTO: DaysDTO;
-  importantDTO: LessImportantDTO;
-  important2DTO: LessImportant2DTO;
-  important3DTO: LessImportant3DTO;
+    extraordinaryDTO: ExtraordinaryDTO;
+    daysDTO: DaysDTO;
+    taskDTO: TaskDTO;
+    task2DTO: TaskDTO;
+    task3DTO: TaskDTO;
 
-  constructor() {}
+    constructor() { }
 }
 
 export interface ExtraordinaryDTO {
-  id: number;
-  title: string;
-  body: string;
+    id: number;
+    title: string;
+    body: string;
 }
 
 export interface DaysDTO {
-  id: number;
-  body: string;
-  rateDay: number;
-  startDate: number[];
-  postedOn: number[];
+    id: number;
+    body: string;
+    rateDay: number;
+    startDate: number[];
+    postedOn: number[];
 }
 
-export interface LessImportantDTO {
-  id: number;
-  title: string;
-  body: string;
-  made: number;
-  postedOn: number[];
-  startDate: number[];
-}
-
-export interface LessImportant2DTO {
-  id: number;
-  title: string;
-  body: string;
-  made: number;
-  postedOn: number[];
-  startDate: number[];
-}
-
-export interface LessImportant3DTO {
-  id: number;
-  title: string;
-  body: string;
-  made: number;
-  postedOn: number[];
-  startDate: number[];
+export interface TaskDTO {
+    id: number;
+    title: string;
+    body: string;
+    made: number;
+    postedOn: number[];
+    startDate: number[];
 }
 
 @Injectable({
-  providedIn: "root"
+    providedIn: "root"
 })
 export class LessImportantService implements TaskServiceInterface {
-  month: number;
-  year: number;
+    month: number;
+    year: number;
 
-  constructor(
-    private http: HttpClient,
-    private handleErrorService: HandleErrorsService
-  ) {}
+    constructor(
+        private http: HttpClient,
+        private handleErrorService: HandleErrorsService
+    ) { }
 
-  getTaskIndexData(username: string, target: string, year: number, month: number) {
-    return this.http.get<LessImportantIndex[]>(
-      `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
-    );
-  }
+    getTaskIndexData(username: string, target: string, year: number, month: number) {
+        return this.http.get<LessImportantIndex[]>(
+            `${API_URL}/${API_VERSION}/users/${username}/${target}/${year}/${month}`
+        );
+    }
 }

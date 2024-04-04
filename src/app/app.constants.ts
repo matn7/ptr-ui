@@ -1,5 +1,9 @@
+// ptr-backend
+// export const API_URL = `http://${process.env.PTR_BACKEND_SERVICE_HOST}:8080`;
+// export const API_URL = `http://10.96.240.254:8080`;
+// docker-compose
+// export const API_URL = "http://pandatronik-backend:8080";  // cannot be docker namespace since we are connecting to localhost browser
 export const API_URL = "http://localhost:8080";
-// export const API_URL = "http://pandatronik-backend:8080";
 export const API_VERSION = "api/v1";
 export const TOKEN = "token";
 export const AUTHENTICATED_USER = "authenticatedUser";
@@ -7,9 +11,6 @@ export const TOKEN_EXPIRED = "tokenExpired";
 export const RETURN_URL = "returnUrl";
 export const TEST_USERNAME = "AvHGfC2k2RtpCpA2Qc115crNDpuf2P";
 export const ACTIVE_PATH = "activePath";
-
-export const START_DATE_PATTERN = "yyyy-MM-dd";
-export const POSTED_ON_PATTERN = "yyyy-MM-ddTHH:mm:ss";
 
 export const USER_CREATED_MSG =
     "User was created. On email activated email was sent. Please follow description in email message";

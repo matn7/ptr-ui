@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { TimeService } from "../../services/data/time.service";
-import { START_DATE_PATTERN, POSTED_ON_PATTERN, DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
+import { DETAIL_DATE_FORMAT, DATE_FORMAT, MADE_CODES } from "../../app.constants";
 import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
@@ -68,11 +68,11 @@ export class DaysEditComponent implements OnInit {
 
             this.startDate = this.datepipe.transform(
                 new Date(this.year, this.month - 1, this.day),
-                START_DATE_PATTERN
+                DATE_FORMAT
             );
             this.postedOn = this.datepipe.transform(
                 new Date(),
-                POSTED_ON_PATTERN
+                DETAIL_DATE_FORMAT
             );
         }
 

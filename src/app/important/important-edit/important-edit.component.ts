@@ -1,5 +1,5 @@
 import {
-    Component, Output
+    Component
 } from "@angular/core";
 import { TaskEditComponent } from "../../task-edit.component";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -7,7 +7,6 @@ import { TaskService } from "../../services/task.service";
 import { DatePipe } from "@angular/common";
 import { AuthenticationService } from "../../auth/authentication.service";
 import { TimeService } from "../../services/data/time.service";
-import { ErrorService } from "../../services/data/error.service";
 import { MessagesService } from "src/app/services/data/messages.service";
 
 @Component({
