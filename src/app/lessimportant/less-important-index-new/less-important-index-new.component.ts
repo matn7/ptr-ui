@@ -44,9 +44,9 @@ export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
 
         console.log("Sort retrieved from backend data based on startDate");
         this.indexData['extraordinaryDTO'].sort(this.custom_sort);
-        this.indexData['lessImportantDTO'].sort(this.custom_sort);
-        this.indexData['lessImportant2DTO'].sort(this.custom_sort);
-        this.indexData['lessImportant3DTO'].sort(this.custom_sort);
+        this.indexData['taskDTO'].sort(this.custom_sort);
+        this.indexData['task2DTO'].sort(this.custom_sort);
+        this.indexData['task3DTO'].sort(this.custom_sort);
         this.indexData['daysDTO'].sort(this.custom_sort);
 
         for (let day of this.monthDaysArr) {
@@ -71,30 +71,30 @@ export class LessImportantIndexNewComponent extends TaskIndexNewComponent {
                 }
             }
 
-            if (this.indexData['lessImportantDTO'][impIndex]) {
-                if (day === this.indexData['lessImportantDTO'][impIndex].startDate[2]) {
-                    oneDay.lessImportantDTO = this.indexData['lessImportantDTO'][impIndex];
+            if (this.indexData['taskDTO'][impIndex]) {
+                if (day === this.indexData['taskDTO'][impIndex].startDate[2]) {
+                    oneDay.taskDTO = this.indexData['taskDTO'][impIndex];
                     impIndex++;
                 } else {
-                    oneDay.lessImportantDTO = null;
+                    oneDay.taskDTO = null;
                 }
             }
 
-            if (this.indexData['lessImportant2DTO'][imp2Index]) {
-                if (day === this.indexData['lessImportant2DTO'][imp2Index].startDate[2]) {
-                    oneDay.lessImportant2DTO = this.indexData['lessImportant2DTO'][imp2Index];
+            if (this.indexData['task2DTO'][imp2Index]) {
+                if (day === this.indexData['task2DTO'][imp2Index].startDate[2]) {
+                    oneDay.task2DTO = this.indexData['task2DTO'][imp2Index];
                     imp2Index++;
                 } else {
-                    oneDay.lessImportant2DTO = null;
+                    oneDay.task2DTO = null;
                 }
             }
 
-            if (this.indexData['lessImportant3DTO'][imp3Index]) {
-                if (day === this.indexData['lessImportant3DTO'][imp3Index].startDate[2]) {
-                    oneDay.lessImportant3DTO = this.indexData['lessImportant3DTO'][imp3Index];
+            if (this.indexData['task3DTO'][imp3Index]) {
+                if (day === this.indexData['task3DTO'][imp3Index].startDate[2]) {
+                    oneDay.task3DTO = this.indexData['task3DTO'][imp3Index];
                     imp3Index++;
                 } else {
-                    oneDay.lessImportant3DTO = null;
+                    oneDay.task3DTO = null;
                 }
             }
 

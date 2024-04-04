@@ -6,18 +6,8 @@
     <button mat-button *ngIf="authService.isUserLoggedIn()" [ngClass]="{'active': activeUrl === 'important'}"
         routerLink="important/{{ year }}/{{ month }}">Important</button>
 
-    <!-- [routerLinkActive]="activeUrl === 'lessimportant' ? active : ''" -->
     <button mat-button *ngIf="authService.isUserLoggedIn()" [ngClass]="{'active': activeUrl === 'lessimportant'}"
         routerLink="lessimportant/{{ year }}/{{ month }}">Less Important</button>
-
-    <button mat-button *ngIf="authService.isUserLoggedIn()" [ngClass]="{'active': activeUrl === 'days'}"
-        routerLink="days/{{ year }}/{{ month }}">Days</button>
-
-    <button mat-button *ngIf="authService.isUserLoggedIn()" [ngClass]="{'active': activeUrl === 'stat'}"
-        routerLink="stat/days/daysbetween">Days Between</button>
-
-    <button mat-button *ngIf="authService.isUserLoggedIn()" [ngClass]="{'active': activeUrl === 'stat'}"
-        routerLink="stat/days/monthavgratedaybyyear">Month Avg</button>
 
     <div class="flex-spacer"></div>
 

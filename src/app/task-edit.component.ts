@@ -177,7 +177,6 @@ export class TaskEditComponent implements OnInit {
         const title = this.title;
         const body = this.body;
         const made = this.made;
-        console.log("initForm");
 
         this.importantForm = new FormGroup({
             id: new FormControl(id),

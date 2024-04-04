@@ -33,37 +33,37 @@
         </mat-grid-tile>
 
         <mat-grid-tile (click)="
-            !entry.importantDTO
+            !entry.taskDTO
                 ? day + 1 <= today || today == -1
                 ? onAddNewClick(target, 1, year, month, day + 1)
                 : ''
-                : onEditClick(target, 1, entry.importantDTO.id)"
-            [style.background]="entry.importantDTO ? green_completion_styles[entry.importantDTO.made] : ''"
+                : onEditClick(target, 1, entry.taskDTO.id)"
+            [style.background]="entry.taskDTO ? green_completion_styles[entry.taskDTO.made] : ''"
             [ngClass]="{pandatronik_navigate_green: day + 1 <= today || today == -1}"
-            [title]="entry.importantDTO ? entry.importantDTO.title : ''">
+            [title]="entry.taskDTO ? entry.taskDTO.title : ''">
         </mat-grid-tile>
 
         <mat-grid-tile (click)="
-            !entry.important2DTO
+            !entry.task2DTO
                 ? day + 1 <= today || today == -1
                 ? onAddNewClick(target, 2, year, month, day + 1)
                 : ''
-                : onEditClick(target, 2, entry.important2DTO.id)"
-            [style.background]="entry.important2DTO ? yellow_completion_styles[entry.important2DTO.made] : ''"
+                : onEditClick(target, 2, entry.task2DTO.id)"
+            [style.background]="entry.task2DTO ? yellow_completion_styles[entry.task2DTO.made] : ''"
             [ngClass]="{pandatronik_navigate_yellow: day + 1 <= today || today == -1}"
-            [title]="entry.important2DTO ? entry.important2DTO.title : ''">
+            [title]="entry.task2DTO ? entry.task2DTO.title : ''">
         </mat-grid-tile>
 
 
         <mat-grid-tile (click)="
-            !entry.important3DTO
+            !entry.task3DTO
                 ? day + 1 <= today || today == -1
                 ? onAddNewClick(target, 3, year, month, day + 1)
                 : ''
-                : onEditClick(target, 3, entry.important3DTO.id)"
-            [style.background]="entry.important3DTO ? blue_completion_styles[entry.important3DTO.made] : ''"
+                : onEditClick(target, 3, entry.task3DTO.id)"
+            [style.background]="entry.task3DTO ? blue_completion_styles[entry.task3DTO.made] : ''"
             [ngClass]="{pandatronik_navigate_blue: day + 1 <= today || today == -1}"
-            [title]="entry.important3DTO ? entry.important3DTO.title : ''">
+            [title]="entry.task3DTO ? entry.task3DTO.title : ''">
         </mat-grid-tile>
 
         <mat-grid-tile (click)="
